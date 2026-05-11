@@ -1,0 +1,27 @@
+name: Update Sport M3U
+
+on:
+  schedule:
+    # Chạy tự động mỗi 5 phút (Đây là mức nhanh nhất GitHub cho phép)
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Cho phép bạn nhấn nút chạy thủ công bất cứ lúc nào
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download file from source
+        run: |
+          # Thay link Raw của người khác vào đây
+          curl -s https://raw.githubusercontent.com/t23-02/bongda/main/bongda.m3u -o sport.m3u
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add sport.m3u
+          # Chỉ commit nếu có sự thay đổi nội dung
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update sport.m3u" && git push)
