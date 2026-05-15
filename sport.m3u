@@ -8,48 +8,36 @@ https://live.alilicloud.com/live/610c95018011cb951426df99dbf3005a/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://bunchatv.net/
 https://live.alilicloud.com/live/55ec1a6b695520c6691e17417b0a44df/playlist.m3u8
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LƯU BỊ m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/6886_1hmfnd3fjw1s.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Lương Sơn) BLV LƯU BỊ m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/LUUBI/index.m3u8?expire=1788427256&sign=e15f8b184dc9c61cc5dacfd962841ae1
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LƯU BỊ flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/6886_1hmfnd3fjw1s.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Lương Sơn) BLV LƯU BỊ flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://flv.cdnfaster-a.live/live/LUUBI.flv?expire=1788427256&sign=e15f8b184dc9c61cc5dacfd962841ae1
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV NHỊ KA m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/24250_1hwesprgrj8.png",06h00 ngày 16/05 Montevideo City Torque vs Nacional Montevideo (Lương Sơn) NHÀ ÐÀI m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/NHIKA1/index.m3u8?expire=1788427256&sign=91d8d858b7cdccb6dd825469190514bd
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV NHỊ KA flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/NHIKA1.flv?expire=1788427256&sign=91d8d858b7cdccb6dd825469190514bd
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LEO m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/LEO/index.m3u8?expire=1923642660&sign=58990a132e2f8d3f764c947b95b28af6
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LEO flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/LEO.flv?expire=1923642660&sign=58990a132e2f8d3f764c947b95b28af6
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV TÔN LẬP m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/TONLAP/index.m3u8?expire=1788427256&sign=72cc58a29d787d621b0832b54e1a78df
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV TÔN LẬP flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/TONLAP.flv?expire=1788427256&sign=72cc58a29d787d621b0832b54e1a78df
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/2186_1gq15c96p07.png",01h45 ngày 16/05 Oud-Heverlee Leuven vs Royal Antwerp (Lương Sơn) BLV LÝ ỨNG m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/LYUNG1/index.m3u8?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/2186_1gq15c96p07.png",01h45 ngày 16/05 Oud-Heverlee Leuven vs Royal Antwerp (Lương Sơn) BLV LÝ ỨNG flv
+https://auto.cdnfaster.live/live/sd-6Mwe5EFXLBMeg2qnpU/playlist.m3u8
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/24250_1hwesprgrj8.png",06h00 ngày 16/05 Montevideo City Torque vs Nacional Montevideo (Lương Sơn) NHÀ ÐÀI flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV QUAN VŨ m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/68702_1jqtyj4xq91e.png",06h00 ngày 16/05 Westchester SC vs New York Cosmos (Lương Sơn) NHÀ ÐÀI m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/QUANVU/index.m3u8?expire=1788427256&sign=056d097a0bbbd810493fd64ccf4831b7
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV QUAN VŨ flv
+https://auto.cdnfaster.live/live/sd-6Mwe5LqBkVv4H5qYNg/playlist.m3u8
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/68702_1jqtyj4xq91e.png",06h00 ngày 16/05 Westchester SC vs New York Cosmos (Lương Sơn) NHÀ ÐÀI flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/QUANVU.flv?expire=1788427256&sign=056d097a0bbbd810493fd64ccf4831b7
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV PHI HỔ m3u
+
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1778877469.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons (Lương Sơn) BLV YẾN THANH m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/PHIHO/index.m3u8?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV PHI HỔ flv
+https://hls.cdnfaster-a.live/live/YENTHANH1/index.m3u8?expire=1788427256&sign=a79cc8d996707223a0011d33d04d4582
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1778877469.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons (Lương Sơn) BLV YẾN THANH flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/PHIHO.flv?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+https://flv.cdnfaster-a.live/live/YENTHANH1.flv?expire=1788427256&sign=a79cc8d996707223a0011d33d04d4582
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/9777_1hrb7wwkee24.png",06h30 ngày 16/05 Deportivo La Guaira vs Universidad Central de Venezuela (Lương Sơn) NHÀ ÐÀI m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://auto.cdnfaster.live/live/sd-6MwdLFTrJP9wWpLn2p/playlist.m3u8
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/9777_1hrb7wwkee24.png",06h30 ngày 16/05 Deportivo La Guaira vs Universidad Central de Venezuela (Lương Sơn) NHÀ ÐÀI flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+
 #EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
@@ -74,46 +62,14 @@ https://pull-kda.fastestcdn-global.com/live/8914c4f7f204410291f9e2fa67a4ebc5/ind
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
 https://pull-kda.fastestcdn-global.com/live/8914c4f7f204410291f9e2fa67a4ebc5/index.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) HD1
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131713_cf988fe6.png",06h00 ngày 16/05 Westchester SC vs NY Cosmos (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) HD2
+https://gckc0525.edgemaxcdn.org/live/m5x1/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131713_cf988fe6.png",06h00 ngày 16/05 Westchester SC vs NY Cosmos (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquat/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquat.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquathd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquathd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133418_c9c4f719.png",02h00 ngày 16/05 Cordoba vs Albacete (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/m5x2/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133418_c9c4f719.png",02h00 ngày 16/05 Cordoba vs Albacete (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/m5x2.flv
+https://gckc0525.edgemaxcdn.org/live/m5x1.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134620_da259809.png",15h30 ngày 16/05 Persik Kediri vs Persija (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://playerlive.xyz/
@@ -482,234 +438,198 @@ https://gckc0525.edgemaxcdn.org/live/chuoitohd/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://playerlive.xyz/
 https://gckc0525.edgemaxcdn.org/live/chuoitohd.flv
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) sd_1
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/2JepZwg5-vPkIlTrP.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Gà Vàng) sd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) hd_1
+https://pull-gv.fastestcdn-global.com/live/3125a5d676414549ab0902278c494d6c/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/2JepZwg5-vPkIlTrP.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Gà Vàng) hd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) sd_2
+https://pull-gv.fastestcdn-global.com/live/3125a5d676414549ab0902278c494d6c/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/2JepZwg5-vPkIlTrP.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Gà Vàng) sd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) hd_2
+https://pull-gv.fastestcdn-global.com/live/3125a5d676414549ab0902278c494d6c/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/2JepZwg5-vPkIlTrP.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Gà Vàng) hd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) sd_3
+https://pull-gv.fastestcdn-global.com/live/3125a5d676414549ab0902278c494d6c/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/2JepZwg5-vPkIlTrP.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Gà Vàng) sd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) hd_3
+https://pull-gv.fastestcdn-global.com/live/3125a5d676414549ab0902278c494d6c/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/2JepZwg5-vPkIlTrP.png",06h00 ngày 16/05 Patriotas FC vs Millonarios (Gà Vàng) hd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) sd_1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) hd_1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) sd_2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) hd_2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) sd_3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) hd_3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) flv
+https://pull-gv.fastestcdn-global.com/live/3125a5d676414549ab0902278c494d6c/index.m3u8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/74e1c061a9ea5bbd2d8c89364ce9bbe1.png",07h00 ngày 16/05 Palestino vs Deportes La Serena [LOGAN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-599634_lsd.flv?auth_key=1778880234-0-0-bad4e06c5b8456aab12f1a0fbc633204
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-552832_lsd.flv?auth_key=1778891034-0-0-ede0dafed48a31007c99cd8e2dce15e4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/74e1c061a9ea5bbd2d8c89364ce9bbe1.png",07h00 ngày 16/05 Palestino vs Deportes La Serena [LOGAN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-599634_lhd.flv?auth_key=1778880234-0-0-b1ad7ee790434baf1ca757ec1bb4c6a1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-552832_lhd.flv?auth_key=1778891034-0-0-63467f2935b2b01786613cdd3b647178
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/74e1c061a9ea5bbd2d8c89364ce9bbe1.png",07h00 ngày 16/05 Palestino vs Deportes La Serena [LOGAN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-599634_lsd.m3u8?auth_key=1778880234-0-0-0cc47b0c0058548255ddb0bcd702be86
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-552832_lsd.m3u8?auth_key=1778891034-0-0-321f07d8341278bc38062d32e1c6e8b2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/74e1c061a9ea5bbd2d8c89364ce9bbe1.png",07h00 ngày 16/05 Palestino vs Deportes La Serena [LOGAN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-599634_lhd.m3u8?auth_key=1778880234-0-0-fb46b0a087c1ef763c14267086ea4cce
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) flv
+https://pull.niues.live/live/stream-552832_lhd.m3u8?auth_key=1778891034-0-0-45db8dff3358de22d09625328fa14f76
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [KING] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-589848_lsd.flv?auth_key=1778880234-0-0-d823308a54788e497879f5a54708f6e9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912099_lsd.flv?auth_key=1778891034-0-0-6a8f3a0c0ce37ca16498dd4bfdd278ce
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [KING] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-589848_lhd.flv?auth_key=1778880234-0-0-be94cfab798aa4fcb181b6479be16d29
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912099_lhd.flv?auth_key=1778891034-0-0-fc361b211c7f29f8a940b712fee44c5b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [KING] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-589848_lsd.m3u8?auth_key=1778880234-0-0-4de9671e27d6833a3b29d52c463c9319
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912099_lsd.m3u8?auth_key=1778891034-0-0-7ab6bdf5e24061617349d3c0d0cf248d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [KING] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-589848_lhd.m3u8?auth_key=1778880234-0-0-028f3b2dbb0c32835a28949a17ab9d09
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) flv
+https://pull.niues.live/live/stream-9912099_lhd.m3u8?auth_key=1778891034-0-0-7627ba23252a70ea904f2c96208ce587
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BLV HENRY] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912091_lsd.flv?auth_key=1778880234-0-0-faa2f544fd531c8adf8e479224f1d1c2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912112_lsd.flv?auth_key=1778891034-0-0-32b8a83c9098cfb63d25ebd63099d128
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BLV HENRY] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912091_lhd.flv?auth_key=1778880234-0-0-b789f45a424cbba168c74dffaab24495
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912112_lhd.flv?auth_key=1778891034-0-0-39c72b0688f482dcc282fddfa546b488
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BLV HENRY] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912091_lsd.m3u8?auth_key=1778880234-0-0-17368ef8bfe5af73531727d6f73f7584
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912112_lsd.m3u8?auth_key=1778891034-0-0-7df37da926c77472ece6a9ddfed46417
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BLV HENRY] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912091_lhd.m3u8?auth_key=1778880234-0-0-1388310fafedb0597359e475ed8a7134
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) flv
+https://pull.niues.live/live/stream-9912112_lhd.m3u8?auth_key=1778891034-0-0-ddd4895e134fa1fc4a9e1eec67a1b091
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV CHIVAS] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912122_lsd.flv?txSecret=f1b0b45764bdecac65a6c5d080f6068f&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) hdFlv
+https://pull.niur.live/live/stream-485739_lsd.flv?txSecret=8006eece42399542d6399f651140d7b0&txTime=6a0800d2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV CHIVAS] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912122_lhd.flv?txSecret=036abe2c87b649c415c17a8bb153e37f&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) m3u8
+https://pull.niur.live/live/stream-485739_lhd.flv?txSecret=fab3fab059662a5714cdd07c257f038e&txTime=6a0800d2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV CHIVAS] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912122_lsd.m3u8?txSecret=f1b0b45764bdecac65a6c5d080f6068f&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-485739_lsd.m3u8?txSecret=8006eece42399542d6399f651140d7b0&txTime=6a0800d2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV CHIVAS] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912122_lhd.m3u8?txSecret=036abe2c87b649c415c17a8bb153e37f&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) flv
+https://pull.niur.live/live/stream-485739_lhd.m3u8?txSecret=fab3fab059662a5714cdd07c257f038e&txTime=6a0800d2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c49db23d3da8de3c0e803b289d62cfc9.png",04h30 ngày 16/05 Liga Dep Universitaria Quito vs Tecnico Universitario [BLV THÓC] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lsd.flv?txSecret=62b3cf3379d107f879e49820755cd709&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-606448_lsd.flv?auth_key=1778891394-0-0-652c50556846df43dd132605415e7f5e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c49db23d3da8de3c0e803b289d62cfc9.png",04h30 ngày 16/05 Liga Dep Universitaria Quito vs Tecnico Universitario [BLV THÓC] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lhd.flv?txSecret=bfe8472711052ee5bd5d4f6ec144929c&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-606448_lhd.flv?auth_key=1778891394-0-0-0e1eecdf234bd207ec3d709c39e189f3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c49db23d3da8de3c0e803b289d62cfc9.png",04h30 ngày 16/05 Liga Dep Universitaria Quito vs Tecnico Universitario [BLV THÓC] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lsd.m3u8?txSecret=62b3cf3379d107f879e49820755cd709&txTime=6a07d53a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-606448_lsd.m3u8?auth_key=1778891394-0-0-ebfa249d69eb7a456d47fc1418e9eddd
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c49db23d3da8de3c0e803b289d62cfc9.png",04h30 ngày 16/05 Liga Dep Universitaria Quito vs Tecnico Universitario [BLV THÓC] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lhd.m3u8?txSecret=bfe8472711052ee5bd5d4f6ec144929c&txTime=6a07d53a
+https://pull.niues.live/live/stream-606448_lhd.m3u8?auth_key=1778891394-0-0-be96ce074f035caa7e7bc8b85b7f5653
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [A CHÈ] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-356042_lsd.flv?auth_key=1778891394-0-0-3cf3527c0ca8fe9fa8149916f416847c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [A CHÈ] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-356042_lhd.flv?auth_key=1778891394-0-0-2a0a2758a3a0ba9a2babb5ec1a64d6e3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [A CHÈ] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-356042_lsd.m3u8?auth_key=1778891394-0-0-137a2d98847f82c6ab46cc5cbeee8538
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [A CHÈ] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-356042_lhd.m3u8?auth_key=1778891394-0-0-50420653f89aa539ca35cbd8b99e46f4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [CHAN SENA] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912115_lsd.flv?auth_key=1778891394-0-0-a155d9e1ab9c1eb64f5348fc51bf3ff0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [CHAN SENA] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912115_lhd.flv?auth_key=1778891394-0-0-4235b520b3dd5c112c04f972018ce2c9
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [CHAN SENA] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912115_lsd.m3u8?auth_key=1778891394-0-0-1cf1f23d092c374cf717ad74dab14d09
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [CHAN SENA] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912115_lhd.m3u8?auth_key=1778891394-0-0-5a4805691f25c97c1c16b43618d1194f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV NẤM] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-608899_lsd.flv?auth_key=1778891394-0-0-28d313453349b77dd93f54b8d37aeb45
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV NẤM] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-608899_lhd.flv?auth_key=1778891394-0-0-551102db6ea26e7fabf7f7bb2b63c870
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV NẤM] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-608899_lsd.m3u8?auth_key=1778891394-0-0-5078c6603177394fd980b5eac1a88f43
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/fd6e58d8809be7cdcd80170037d6be11.png",06h00 ngày 16/05 Patriotas FC vs Millonarios [BLV NẤM] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-608899_lhd.m3u8?auth_key=1778891394-0-0-18ea0f8f41136af677d26dc96bd5e1b3
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1778880594-0-0-1dd797370cfb33aa2d926f5954ebaf03
+https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1778891394-0-0-25bff5bacb958fa152837a750165353a
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1778880594-0-0-416cae09f274c97e8a03f09d13340c6a
+https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1778891394-0-0-d01a868cb69e644625423a57dd9e1cda
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1778880594-0-0-c95558e8b59afda5486490c3babe1bc3
+https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1778891394-0-0-877d34901699d5449cf0f708af553ecd
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1778880594-0-0-a9e7b782c01dbcfdb0ef459fda487fe0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) flv
+https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1778891394-0-0-d01c41ae509d63dc0463c141269b20ea
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BRIAN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lsd.flv?txSecret=67cc20d728f18aa57805a7063ca7056c&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912106_lsd.flv?auth_key=1778891754-0-0-ec28c4ed18f6233d418292d2ef624f61
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BRIAN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lhd.flv?txSecret=73cb520003241c5e63f3566c4b38626e&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912106_lhd.flv?auth_key=1778891754-0-0-e81677c054533818585d90b2a4be4110
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BRIAN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lsd.m3u8?txSecret=67cc20d728f18aa57805a7063ca7056c&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912106_lsd.m3u8?auth_key=1778891754-0-0-2fe07fe3953d9008023d31e934f6cf04
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260514/d87c1130e8e0f86b267b68a2e9204ebe.png",06h00 ngày 16/05 Cleveland Cavaliers vs Detroit Pistons [BRIAN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lhd.m3u8?txSecret=73cb520003241c5e63f3566c4b38626e&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) flv
+https://pull.niues.live/live/stream-9912106_lhd.m3u8?auth_key=1778891754-0-0-ebe65dfd354ceab6d7d07b5bed5d3224
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c279a2d3446610c8cbea31624d9d8914.png",07h00 ngày 16/05 Coquimbo Unido vs Audax Italiano [BLV PIRLO] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lsd.flv?txSecret=980f8373c9690dc6e6e7e1e145c11667&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-351530_lsd.flv?auth_key=1778891754-0-0-2d907727f089be2c6823c7534f66095b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c279a2d3446610c8cbea31624d9d8914.png",07h00 ngày 16/05 Coquimbo Unido vs Audax Italiano [BLV PIRLO] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lhd.flv?txSecret=923daa27edbabdc2ebe052d4609af4c2&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-351530_lhd.flv?auth_key=1778891754-0-0-daff1bdc3ec01563887c82751f98ffb9
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c279a2d3446610c8cbea31624d9d8914.png",07h00 ngày 16/05 Coquimbo Unido vs Audax Italiano [BLV PIRLO] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lsd.m3u8?txSecret=980f8373c9690dc6e6e7e1e145c11667&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-351530_lsd.m3u8?auth_key=1778891754-0-0-fc28557d3335c00af3ca66188fccf869
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/c279a2d3446610c8cbea31624d9d8914.png",07h00 ngày 16/05 Coquimbo Unido vs Audax Italiano [BLV PIRLO] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lhd.m3u8?txSecret=923daa27edbabdc2ebe052d4609af4c2&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) flv
+https://pull.niues.live/live/stream-351530_lhd.m3u8?auth_key=1778891754-0-0-2d6e52b7e48ebee7e0340b5f6fdd8ae0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [BLV CÒ] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-532081_lsd.flv?auth_key=1778880954-0-0-a81b7379d71446140bdfd3ad6f5d0545
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-582342_lsd.flv?auth_key=1778891754-0-0-f246fd05c4b0a305297466ea5fca8e10
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [BLV CÒ] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-532081_lhd.flv?auth_key=1778880954-0-0-ff31797a0f63a4e08ff67228433d1dfe
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-582342_lhd.flv?auth_key=1778891754-0-0-02d77bec14dc7f80d5cd145a29549549
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [BLV CÒ] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-532081_lsd.m3u8?auth_key=1778880954-0-0-12f0c203b593013b37a79a2e5329079d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-582342_lsd.m3u8?auth_key=1778891754-0-0-fc7e6a36c08d10a3519a40a18f4ba9a6
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [BLV CÒ] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-532081_lhd.m3u8?auth_key=1778880954-0-0-e6360c52f7f49340f8f225fe2a911444
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) flv
+https://pull.niues.live/live/stream-582342_lhd.m3u8?auth_key=1778891754-0-0-ed2cc8ed74b50e4248f675aa1daf1a86
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [QUỐC KHÁNH] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912060_lsd.flv?auth_key=1778880954-0-0-8b42105c59ca4a6ceb703ae82a530945
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) hdFlv
+https://pull.niur.live/live/stream-602153_lsd.flv?txSecret=bcba57e0b985e2ce4ee48f9858cb23a8&txTime=6a08023a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [QUỐC KHÁNH] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912060_lhd.flv?auth_key=1778880954-0-0-7028c5f8645a64656808408c831d3776
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) m3u8
+https://pull.niur.live/live/stream-602153_lhd.flv?txSecret=7c8ed53bbc6670e4448ddd8928272ec9&txTime=6a08023a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [QUỐC KHÁNH] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912060_lsd.m3u8?auth_key=1778880954-0-0-1fca029d9cc5b78e4b263bccb6306289
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-602153_lsd.m3u8?txSecret=bcba57e0b985e2ce4ee48f9858cb23a8&txTime=6a08023a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/e159949d8390fccc8b6b97af368281a0.png",07h00 ngày 16/05 Libertad FC vs Deportivo Cuenca [QUỐC KHÁNH] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912060_lhd.m3u8?auth_key=1778880954-0-0-6cae11f8487aa9987e550a83508c1d00
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lsd.flv?txSecret=5220bf77ea4a9c27dac2e20f1fba21c1&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lhd.flv?txSecret=89991279471fcc8e3c3af5a8b6862c6e&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lsd.m3u8?txSecret=5220bf77ea4a9c27dac2e20f1fba21c1&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lhd.m3u8?txSecret=89991279471fcc8e3c3af5a8b6862c6e&txTime=6a07d80a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-595335_lsd.flv?auth_key=1778880954-0-0-479462493ac19359a2e368360e02dd16
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-595335_lhd.flv?auth_key=1778880954-0-0-500015f2353bb5e81b6259cb9133665d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-595335_lsd.m3u8?auth_key=1778880954-0-0-e3372b7def2b682e38ed9445b9c4693a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-595335_lhd.m3u8?auth_key=1778880954-0-0-c7929e837b508b37b9eb0924fcd9769b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-536185_lsd.flv?auth_key=1778880954-0-0-8e2fa8436427383187b07accbf9e8fbc
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-536185_lhd.flv?auth_key=1778880954-0-0-75b03da111d6335c391509b541b3cd47
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-536185_lsd.m3u8?auth_key=1778880954-0-0-0a7238b15cf29837434175749ba277f9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-536185_lhd.m3u8?auth_key=1778880954-0-0-5e8f413ece508d600f543794de8bad08
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) FHD 
+https://pull.niur.live/live/stream-602153_lhd.m3u8?txSecret=7c8ed53bbc6670e4448ddd8928272ec9&txTime=6a08023a
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSON_xAXqlmVA6CaABNgxtXMaVaFZIg65IPrg&s",06h00 16/05 Cleveland Cavaliers vs Detroit Pistons (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phanma/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) HD 
+https://hqlive.yarncdn.live/live/hqtv_blv_phanbap/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSON_xAXqlmVA6CaABNgxtXMaVaFZIg65IPrg&s",06h00 16/05 Cleveland Cavaliers vs Detroit Pistons (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phanma/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) SD 
+https://alive.yarncdn.live/hqtv_blv_phanbap/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSON_xAXqlmVA6CaABNgxtXMaVaFZIg65IPrg&s",06h00 16/05 Cleveland Cavaliers vs Detroit Pistons (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phanma/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) FHD 
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phanto/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) HD 
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phanto/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) SD 
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phanto/tracks-v1a1/mono.m3u8
+https://alive.yarncdn.live/hqtv_blv_phanbap/tracks-v1a1/mono.m3u8
 #EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/dc0e43b95c6676c54415bac168472aa4.png!w80",23h00 03/05 Juventus F.C. vs Hellas Verona F.C.
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 https://live5.msrktz.app/live/14830711.m3u8
