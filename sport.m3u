@@ -8,242 +8,72 @@ https://live.alilicloud.com/live/610c95018011cb951426df99dbf3005a/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://bunchatv.net/
 https://live.alilicloud.com/live/55ec1a6b695520c6691e17417b0a44df/playlist.m3u8
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/11070_1grj9kcw8v28.png",21h40 ngày 15/05 Al-Shabab(KUW) vs Kazma (Lương Sơn) BLV VÕ TÒNG m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/VOTONG/index.m3u8?expire=1891347600&sign=cbb47d2000b9576a7b34114624ff8299
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/11070_1grj9kcw8v28.png",21h40 ngày 15/05 Al-Shabab(KUW) vs Kazma (Lương Sơn) BLV VÕ TÒNG flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/VOTONG.flv?expire=1891347600&sign=cbb47d2000b9576a7b34114624ff8299
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1766839781.png",23h15 ngày 15/05 Damac FC vs Al-Feiha (Lương Sơn) BLV NHỊ KA m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/NHIKA1/index.m3u8?expire=1788427256&sign=91d8d858b7cdccb6dd825469190514bd
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1766839781.png",23h15 ngày 15/05 Damac FC vs Al-Feiha (Lương Sơn) BLV NHỊ KA flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/NHIKA1.flv?expire=1788427256&sign=91d8d858b7cdccb6dd825469190514bd
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1766839781.png",23h15 ngày 15/05 Damac FC vs Al-Feiha (Lương Sơn) BLV LÃO HẠC m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/LAOHAC/index.m3u8?expire=2556118740&sign=d7e003f1201f61166a559ac474dc7491
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1766839781.png",23h15 ngày 15/05 Damac FC vs Al-Feiha (Lương Sơn) BLV LÃO HẠC flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/LAOHAC.flv?expire=2556118740&sign=d7e003f1201f61166a559ac474dc7491
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/887_1hbcqjz2z10.png",23h00 ngày 15/05 Zaglebie Lubin vs Pogon Szczecin (Lương Sơn) BLV MỘT CHÂN m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/MOTCHAN1/index.m3u8?expire=1891347600&sign=cbb47d2000b9576a7b34114624ff8299
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/887_1hbcqjz2z10.png",23h00 ngày 15/05 Zaglebie Lubin vs Pogon Szczecin (Lương Sơn) BLV MỘT CHÂN flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/MOTCHAN1.flv?expire=2556072660&sign=4b991d1cc92d0eb9bddfcb0b1b372a21
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/887_1hbcqjz2z10.png",23h00 ngày 15/05 Zaglebie Lubin vs Pogon Szczecin (Lương Sơn) BLV URA m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/URA/index.m3u8?expire=1788427256&sign=b321b6b8b5cd73e24aae2a3a16b7b5d2
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/887_1hbcqjz2z10.png",23h00 ngày 15/05 Zaglebie Lubin vs Pogon Szczecin (Lương Sơn) BLV URA flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/URA.flv?expire=1788427256&sign=b321b6b8b5cd73e24aae2a3a16b7b5d2
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/887_1hbcqjz2z10.png",23h00 ngày 15/05 Zaglebie Lubin vs Pogon Szczecin (Lương Sơn) BLV MÃ SIÊU m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/MASIEU/index.m3u8?expire=1788427256&sign=b91fcfc36fe72375e8f8cc813de0220b
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/887_1hbcqjz2z10.png",23h00 ngày 15/05 Zaglebie Lubin vs Pogon Szczecin (Lương Sơn) BLV MÃ SIÊU flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/MASIEU.flv?expire=1788427256&sign=b91fcfc36fe72375e8f8cc813de0220b
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/7954_1gqccpdwg0v.png",23h00 ngày 15/05 Al-Budaiya vs Al-Ahli(BHR) (Lương Sơn) BLV TÔN LẬP m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/TONLAP/index.m3u8?expire=1788427256&sign=72cc58a29d787d621b0832b54e1a78df
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/7954_1gqccpdwg0v.png",23h00 ngày 15/05 Al-Budaiya vs Al-Ahli(BHR) (Lương Sơn) BLV TÔN LẬP flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/TONLAP.flv?expire=1788427256&sign=72cc58a29d787d621b0832b54e1a78df
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/13898_1gskk9pt2rn.png",23h00 ngày 15/05 Al-Riffa vs Bahrain SC (Lương Sơn) BLV LƯU BỊ m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LƯU BỊ m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/LUUBI/index.m3u8?expire=1788427256&sign=e15f8b184dc9c61cc5dacfd962841ae1
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/13898_1gskk9pt2rn.png",23h00 ngày 15/05 Al-Riffa vs Bahrain SC (Lương Sơn) BLV LƯU BỊ flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LƯU BỊ flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://flv.cdnfaster-a.live/live/LUUBI.flv?expire=1788427256&sign=e15f8b184dc9c61cc5dacfd962841ae1
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/5872_1gqgp4rc2n21.png",23h00 ngày 15/05 Al Hidd vs Al-Shabbab (Lương Sơn) BLV LÝ ỨNG m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV NHỊ KA m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/NHIKA1/index.m3u8?expire=1788427256&sign=91d8d858b7cdccb6dd825469190514bd
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV NHỊ KA flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/NHIKA1.flv?expire=1788427256&sign=91d8d858b7cdccb6dd825469190514bd
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LEO m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/LEO/index.m3u8?expire=1923642660&sign=58990a132e2f8d3f764c947b95b28af6
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV LEO flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/LEO.flv?expire=1923642660&sign=58990a132e2f8d3f764c947b95b28af6
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV TÔN LẬP m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/TONLAP/index.m3u8?expire=1788427256&sign=72cc58a29d787d621b0832b54e1a78df
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/14_1hzrbdqcqe1x.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Lương Sơn) BLV TÔN LẬP flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/TONLAP.flv?expire=1788427256&sign=72cc58a29d787d621b0832b54e1a78df
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/2186_1gq15c96p07.png",01h45 ngày 16/05 Oud-Heverlee Leuven vs Royal Antwerp (Lương Sơn) BLV LÝ ỨNG m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/LYUNG1/index.m3u8?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/5872_1gqgp4rc2n21.png",23h00 ngày 15/05 Al Hidd vs Al-Shabbab (Lương Sơn) BLV LÝ ỨNG flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/2186_1gq15c96p07.png",01h45 ngày 16/05 Oud-Heverlee Leuven vs Royal Antwerp (Lương Sơn) BLV LÝ ỨNG flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/LYUNG1.flv?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/5872_1gqgp4rc2n21.png",23h00 ngày 15/05 Al Hidd vs Al-Shabbab (Lương Sơn) BLV QUAN VŨ m3u
+
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV QUAN VŨ m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/QUANVU/index.m3u8?expire=1788427256&sign=056d097a0bbbd810493fd64ccf4831b7
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/5872_1gqgp4rc2n21.png",23h00 ngày 15/05 Al Hidd vs Al-Shabbab (Lương Sơn) BLV QUAN VŨ flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV QUAN VŨ flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://flv.cdnfaster-a.live/live/QUANVU.flv?expire=1788427256&sign=056d097a0bbbd810493fd64ccf4831b7
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzc9fOmXkUXVf-KqZbsR2bSRzsHH1VBglzbA&s",20h00 ngày 15/05 VTV Bình Điền Long An vs Jiangsu (Trung Quốc) (Khán Đài A) hd_1
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV PHI HỔ m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/PHIHO/index.m3u8?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/134_1gtqqdcyne16.png",02h00 ngày 16/05 Cordoba vs Albacete (Lương Sơn) BLV PHI HỔ flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/PHIHO.flv?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/42b6459cd0f34509a223d6226bda70fc/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzc9fOmXkUXVf-KqZbsR2bSRzsHH1VBglzbA&s",20h00 ngày 15/05 VTV Bình Điền Long An vs Jiangsu (Trung Quốc) (Khán Đài A) hd_2
+https://pull-kda.fastestcdn-global.com/live/384ae3b6d3fd41fc84f718016b7334d0/index.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/42b6459cd0f34509a223d6226bda70fc/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzc9fOmXkUXVf-KqZbsR2bSRzsHH1VBglzbA&s",20h00 ngày 15/05 VTV Bình Điền Long An vs Jiangsu (Trung Quốc) (Khán Đài A) hd_3
+https://pull-kda.fastestcdn-global.com/live/384ae3b6d3fd41fc84f718016b7334d0/index.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/42b6459cd0f34509a223d6226bda70fc/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/0437356503a22e50b9e8aa76145c7f71.png!w80",23h00 ngày 15/05 Japan U17 vs  Tajikistan U17 (Khán Đài A) hd_1
+https://pull-kda.fastestcdn-global.com/live/384ae3b6d3fd41fc84f718016b7334d0/index.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/94d9b60f06aa4986a6e326b5240098e8/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/0437356503a22e50b9e8aa76145c7f71.png!w80",23h00 ngày 15/05 Japan U17 vs  Tajikistan U17 (Khán Đài A) hd_2
+https://pull-kda.fastestcdn-global.com/live/8914c4f7f204410291f9e2fa67a4ebc5/index.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/94d9b60f06aa4986a6e326b5240098e8/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/0437356503a22e50b9e8aa76145c7f71.png!w80",23h00 ngày 15/05 Japan U17 vs  Tajikistan U17 (Khán Đài A) hd_3
+https://pull-kda.fastestcdn-global.com/live/8914c4f7f204410291f9e2fa67a4ebc5/index.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/a3c32d6a906083118cac2cb796edaab3.png!w80",02h00 ngày 16/05 Aston Villa vs Liverpool (Khán Đài A) hd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/94d9b60f06aa4986a6e326b5240098e8/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/volleyball/team/f32033248df4ef77a4427106c91ebbff.png!w30",23h00 ngày 15/05 MGTU Moscow vs Nizhnevartovsk (Khán Đài A) hd_1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/48e50c30b04b4e64ab48a4ade53eead5/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/volleyball/team/f32033248df4ef77a4427106c91ebbff.png!w30",23h00 ngày 15/05 MGTU Moscow vs Nizhnevartovsk (Khán Đài A) hd_2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/48e50c30b04b4e64ab48a4ade53eead5/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/volleyball/team/f32033248df4ef77a4427106c91ebbff.png!w30",23h00 ngày 15/05 MGTU Moscow vs Nizhnevartovsk (Khán Đài A) hd_3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/48e50c30b04b4e64ab48a4ade53eead5/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/07668fe49f8fec6832919e14449eb340.png!w80",21h00 ngày 15/05 Mohammedan SC vs Mumbai City FC (Khán Đài A) hd_1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/3377847cea274b3d878582ea39728ee4/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/07668fe49f8fec6832919e14449eb340.png!w80",21h00 ngày 15/05 Mohammedan SC vs Mumbai City FC (Khán Đài A) hd_2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/3377847cea274b3d878582ea39728ee4/index.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img0.aiscore.com/football/team/07668fe49f8fec6832919e14449eb340.png!w80",21h00 ngày 15/05 Mohammedan SC vs Mumbai City FC (Khán Đài A) hd_3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://khandaia2.me/
-https://pull-kda.fastestcdn-global.com/live/3377847cea274b3d878582ea39728ee4/index.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134734_2c1d051d.png",21h00 ngày 15/05 Mohammedan vs Mumbai City (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoi/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134734_2c1d051d.png",21h00 ngày 15/05 Mohammedan vs Mumbai City (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoi.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134734_2c1d051d.png",21h00 ngày 15/05 Mohammedan vs Mumbai City (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoihd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134734_2c1d051d.png",21h00 ngày 15/05 Mohammedan vs Mumbai City (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoihd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanh/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanh.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanhhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanhhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhhot/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhhot.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhhothd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145018_f7c8e720.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhhothd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoito/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoito.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoitohd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoitohd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquat/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquat.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquathd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134005_f85c2439.png",23h15 ngày 15/05 Damac vs Al-Fayha (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhquathd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoi/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoi.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoihd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/anhsoihd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoidong/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoidong.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoidonghd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145021_952f6da3.png",00h00 ngày 16/05 Saudi Arabia U17 vs China PR U17 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chuoidonghd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134003_9cc81345.png",01h00 ngày 16/05 Al Taawon vs Al Riyadh (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanh/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134003_9cc81345.png",01h00 ngày 16/05 Al Taawon vs Al Riyadh (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanh.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134003_9cc81345.png",01h00 ngày 16/05 Al Taawon vs Al Riyadh (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanhhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134003_9cc81345.png",01h00 ngày 16/05 Al Taawon vs Al Riyadh (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://playerlive.xyz/
-https://gckc0525.edgemaxcdn.org/live/chanhhd.flv
+https://pull-kda.fastestcdn-global.com/live/8914c4f7f204410291f9e2fa67a4ebc5/index.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125552_15f20ce5.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://playerlive.xyz/
@@ -276,438 +106,610 @@ https://gckc0525.edgemaxcdn.org/live/anhquathd/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://playerlive.xyz/
 https://gckc0525.edgemaxcdn.org/live/anhquathd.flv
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/08yhjPHG-E1YhvyqD.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Gà Vàng) sd_1
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133418_c9c4f719.png",02h00 ngày 16/05 Cordoba vs Albacete (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/m5x2/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133418_c9c4f719.png",02h00 ngày 16/05 Cordoba vs Albacete (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/m5x2.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134620_da259809.png",15h30 ngày 16/05 Persik Kediri vs Persija (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoito/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134620_da259809.png",15h30 ngày 16/05 Persik Kediri vs Persija (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoito.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134620_da259809.png",15h30 ngày 16/05 Persik Kediri vs Persija (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitohd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134620_da259809.png",15h30 ngày 16/05 Persik Kediri vs Persija (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitohd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanh/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanh.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanhhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanhhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhot/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhot.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhothd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250918_215520_259de84c.png",17h00 ngày 16/05 Khatoco Khanh Hoa vs Bắc Ninh (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhothd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132402_2fa85175.png",18h00 ngày 16/05 Hai Phong vs Becamex Hồ Chí Minh (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieu/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132402_2fa85175.png",18h00 ngày 16/05 Hai Phong vs Becamex Hồ Chí Minh (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieu.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132402_2fa85175.png",18h00 ngày 16/05 Hai Phong vs Becamex Hồ Chí Minh (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieuhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132402_2fa85175.png",18h00 ngày 16/05 Hai Phong vs Becamex Hồ Chí Minh (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieuhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoi/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoi.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoihd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20250817_040514_e14149ab.png",18h00 ngày 16/05 Song Lam Nghe An vs Ninh Bình FC (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoihd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20251121_155919_59876ece.png",18h00 ngày 16/05 Trường Tươi Đồng Nai vs Văn Hiến (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidong/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20251121_155919_59876ece.png",18h00 ngày 16/05 Trường Tươi Đồng Nai vs Văn Hiến (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidong.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20251121_155919_59876ece.png",18h00 ngày 16/05 Trường Tươi Đồng Nai vs Văn Hiến (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidonghd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20251121_155919_59876ece.png",18h00 ngày 16/05 Trường Tươi Đồng Nai vs Văn Hiến (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidonghd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanh/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanh.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanhhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanhhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhot/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhot.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhothd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125553_909d7704.png",20h30 ngày 16/05 Bayern München vs 1.FC Köln (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhothd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125554_076ca6ba.png",20h30 ngày 16/05 Werder Bremen vs Borussia Dortmund (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoito/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125554_076ca6ba.png",20h30 ngày 16/05 Werder Bremen vs Borussia Dortmund (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoito.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125554_076ca6ba.png",20h30 ngày 16/05 Werder Bremen vs Borussia Dortmund (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitohd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125554_076ca6ba.png",20h30 ngày 16/05 Werder Bremen vs Borussia Dortmund (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitohd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidong/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidong.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidonghd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidonghd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquat/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquat.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquathd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125549_a4353df0.png",21h00 ngày 16/05 Chelsea vs Manchester City (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquathd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieu/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieu.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieuhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieuhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoi/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoi.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoihd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131436_f3e8c8f3.png",23h05 ngày 16/05 Al-Hilal Saudi FC vs Al Neom (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoihd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquat/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquat.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquathd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145023_6270222c.png",00h00 ngày 17/05 Vietnam U17 vs Australia U17 (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhquathd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanh/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanh.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanhhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chanhhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoi/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoi.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoihd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_57842973.png",00h45 ngày 17/05 Al-Nassr vs Gamba Osaka (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhsoihd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidong/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidong.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidonghd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoidonghd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhot/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhot.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhothd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133413_e6842fb5.png",01h00 ngày 17/05 Al-Ahli Jeddah vs Al Kholood (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/anhhothd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125526_82eb303d.png",01h45 ngày 17/05 St. Truiden vs Gent (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieu/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125526_82eb303d.png",01h45 ngày 17/05 St. Truiden vs Gent (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieu.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125526_82eb303d.png",01h45 ngày 17/05 St. Truiden vs Gent (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieuhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125526_82eb303d.png",01h45 ngày 17/05 St. Truiden vs Gent (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitieuhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131609_91b722bb.png",03h30 ngày 17/05 CF Montreal vs Chicago Fire (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131609_91b722bb.png",03h30 ngày 17/05 CF Montreal vs Chicago Fire (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131609_91b722bb.png",03h30 ngày 17/05 CF Montreal vs Chicago Fire (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131609_91b722bb.png",03h30 ngày 17/05 CF Montreal vs Chicago Fire (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125536_3079f020.png",05h00 ngày 17/05 Fluminense vs Sao Paulo (Chuối Chiên) HD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoito/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125536_3079f020.png",05h00 ngày 17/05 Fluminense vs Sao Paulo (Chuối Chiên) HD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoito.flv
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125536_3079f020.png",05h00 ngày 17/05 Fluminense vs Sao Paulo (Chuối Chiên) FHD1
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitohd/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125536_3079f020.png",05h00 ngày 17/05 Fluminense vs Sao Paulo (Chuối Chiên) FHD2
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+#EXTVLCOPT:http-referrer=https://playerlive.xyz/
+https://gckc0525.edgemaxcdn.org/live/chuoitohd.flv
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) sd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/77f034f4f6874759a6a364be461d61fd/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/08yhjPHG-E1YhvyqD.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Gà Vàng) hd_1
+https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) hd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/77f034f4f6874759a6a364be461d61fd/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/08yhjPHG-E1YhvyqD.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Gà Vàng) sd_2
+https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) sd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/77f034f4f6874759a6a364be461d61fd/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/08yhjPHG-E1YhvyqD.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Gà Vàng) hd_2
+https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) hd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/77f034f4f6874759a6a364be461d61fd/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/08yhjPHG-E1YhvyqD.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Gà Vàng) sd_3
+https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) sd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/77f034f4f6874759a6a364be461d61fd/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/08yhjPHG-E1YhvyqD.png",23h00 ngày 15/05 Japan U17 vs Tajikistan U17 (Gà Vàng) hd_3
+https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/b7wgpIDa-8Ca53MKO.png",01h30 ngày 16/05 St Etienne vs Rodez (Gà Vàng) hd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/77f034f4f6874759a6a364be461d61fd/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/firrxSYA-KU5prZRt.png",23h45 ngày 15/05 FC Minsk vs FC Belshina Babruisk (Gà Vàng) sd_1
+https://pull-gv.fastestcdn-global.com/live/9bd67e5ca68844238adfa297d5d9ea61/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) sd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b84aa07080564d3883552d3257ebce2f/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/firrxSYA-KU5prZRt.png",23h45 ngày 15/05 FC Minsk vs FC Belshina Babruisk (Gà Vàng) hd_1
+https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) hd_1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b84aa07080564d3883552d3257ebce2f/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/firrxSYA-KU5prZRt.png",23h45 ngày 15/05 FC Minsk vs FC Belshina Babruisk (Gà Vàng) sd_2
+https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) sd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b84aa07080564d3883552d3257ebce2f/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/firrxSYA-KU5prZRt.png",23h45 ngày 15/05 FC Minsk vs FC Belshina Babruisk (Gà Vàng) hd_2
+https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) hd_2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b84aa07080564d3883552d3257ebce2f/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/firrxSYA-KU5prZRt.png",23h45 ngày 15/05 FC Minsk vs FC Belshina Babruisk (Gà Vàng) sd_3
+https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) sd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b84aa07080564d3883552d3257ebce2f/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/firrxSYA-KU5prZRt.png",23h45 ngày 15/05 FC Minsk vs FC Belshina Babruisk (Gà Vàng) hd_3
+https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/QsnteKXg-jwz95gs0.png",02h00 ngày 16/05 Aston Villa vs Liverpool (Gà Vàng) hd_3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b84aa07080564d3883552d3257ebce2f/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/WlJ4EgFa-t6TQGRSb.png",00h00 ngày 16/05 Saudi Arabia U17 vs China U17 (Gà Vàng) sd_1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b99e8f6dec614c57aa9250e15b2b4dc9/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/WlJ4EgFa-t6TQGRSb.png",00h00 ngày 16/05 Saudi Arabia U17 vs China U17 (Gà Vàng) hd_1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b99e8f6dec614c57aa9250e15b2b4dc9/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/WlJ4EgFa-t6TQGRSb.png",00h00 ngày 16/05 Saudi Arabia U17 vs China U17 (Gà Vàng) sd_2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b99e8f6dec614c57aa9250e15b2b4dc9/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/WlJ4EgFa-t6TQGRSb.png",00h00 ngày 16/05 Saudi Arabia U17 vs China U17 (Gà Vàng) hd_2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b99e8f6dec614c57aa9250e15b2b4dc9/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/WlJ4EgFa-t6TQGRSb.png",00h00 ngày 16/05 Saudi Arabia U17 vs China U17 (Gà Vàng) sd_3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b99e8f6dec614c57aa9250e15b2b4dc9/index.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://static.flashscore.com/res/image/data/WlJ4EgFa-t6TQGRSb.png",00h00 ngày 16/05 Saudi Arabia U17 vs China U17 (Gà Vàng) hd_3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-#EXTVLCOPT:http-referrer=https://xem1.gv03.live/
-https://pull-gv.fastestcdn-global.com/live/b99e8f6dec614c57aa9250e15b2b4dc9/index.m3u8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV COZY] (Socolive) flv
+https://pull-gv.fastestcdn-global.com/live/e13a5609c7504102862bb036a68438ac/index.m3u8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-531989_lsd.flv?auth_key=1778865114-0-0-7f6373126c33df73fb39f6b6a3265cfd
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV COZY] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-599634_lsd.flv?auth_key=1778880234-0-0-bad4e06c5b8456aab12f1a0fbc633204
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-531989_lhd.flv?auth_key=1778865114-0-0-99ec9f4b40c1a28f10b08653f8c9e2eb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV COZY] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-599634_lhd.flv?auth_key=1778880234-0-0-b1ad7ee790434baf1ca757ec1bb4c6a1
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-531989_lsd.m3u8?auth_key=1778865114-0-0-bead9a806cb4bc33f8e60c42f1c2fb80
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV COZY] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-599634_lsd.m3u8?auth_key=1778880234-0-0-0cc47b0c0058548255ddb0bcd702be86
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [HẢI THANH] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-531989_lhd.m3u8?auth_key=1778865114-0-0-ab264800a191cf1606227c90acc73718
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [VƯƠNG ANH] (Socolive) flv
+https://pull.niues.live/live/stream-599634_lhd.m3u8?auth_key=1778880234-0-0-fb46b0a087c1ef763c14267086ea4cce
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-548860_lsd.flv?txSecret=9e810a3f7d79f65331a445fdc53a5012&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [VƯƠNG ANH] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-589848_lsd.flv?auth_key=1778880234-0-0-d823308a54788e497879f5a54708f6e9
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-548860_lhd.flv?txSecret=c159b23024448d78c2a25cfef403c86d&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [VƯƠNG ANH] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-589848_lhd.flv?auth_key=1778880234-0-0-be94cfab798aa4fcb181b6479be16d29
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-548860_lsd.m3u8?txSecret=9e810a3f7d79f65331a445fdc53a5012&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [VƯƠNG ANH] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-589848_lsd.m3u8?auth_key=1778880234-0-0-4de9671e27d6833a3b29d52c463c9319
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [LOKA] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-548860_lhd.m3u8?txSecret=c159b23024448d78c2a25cfef403c86d&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [LOGAN] (Socolive) flv
+https://pull.niues.live/live/stream-589848_lhd.m3u8?auth_key=1778880234-0-0-028f3b2dbb0c32835a28949a17ab9d09
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-552832_lsd.flv?auth_key=1778865114-0-0-38a424940b503af763469e10cba88d5d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [LOGAN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912091_lsd.flv?auth_key=1778880234-0-0-faa2f544fd531c8adf8e479224f1d1c2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-552832_lhd.flv?auth_key=1778865114-0-0-8343217c038828037453463868e20ed9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [LOGAN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912091_lhd.flv?auth_key=1778880234-0-0-b789f45a424cbba168c74dffaab24495
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-552832_lsd.m3u8?auth_key=1778865114-0-0-9cd223624ece476ea97ddc08364c7b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [LOGAN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912091_lsd.m3u8?auth_key=1778880234-0-0-17368ef8bfe5af73531727d6f73f7584
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV Củ Cải] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-552832_lhd.m3u8?auth_key=1778865114-0-0-05307299270508d15dedb6b72096af68
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [DECO] (Socolive) flv
+https://pull.niues.live/live/stream-9912091_lhd.m3u8?auth_key=1778880234-0-0-1388310fafedb0597359e475ed8a7134
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912060_lsd.flv?auth_key=1778865114-0-0-2e66e911663de87ed033b485b7b5e375
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [DECO] (Socolive) hdFlv
+https://pull.niur.live/live/stream-9912122_lsd.flv?txSecret=f1b0b45764bdecac65a6c5d080f6068f&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912060_lhd.flv?auth_key=1778865114-0-0-ed7ac11f281ee1d952b290b976d54bdb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [DECO] (Socolive) m3u8
+https://pull.niur.live/live/stream-9912122_lhd.flv?txSecret=036abe2c87b649c415c17a8bb153e37f&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912060_lsd.m3u8?auth_key=1778865114-0-0-165425321cce4d17d4c88abb46506c46
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [DECO] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-9912122_lsd.m3u8?txSecret=f1b0b45764bdecac65a6c5d080f6068f&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [RICKHANTER] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912060_lhd.m3u8?auth_key=1778865114-0-0-726c50dd02068abfdc52980bb974779f
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV BÉO] (Socolive) flv
+https://pull.niur.live/live/stream-9912122_lhd.m3u8?txSecret=036abe2c87b649c415c17a8bb153e37f&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lsd.flv?txSecret=69f78111985557d6d6a1c711cd3b1e97&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV BÉO] (Socolive) hdFlv
+https://pull.niur.live/live/stream-462413_lsd.flv?txSecret=62b3cf3379d107f879e49820755cd709&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lhd.flv?txSecret=471cea997e5824e70d2bd3f41e1f173a&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV BÉO] (Socolive) m3u8
+https://pull.niur.live/live/stream-462413_lhd.flv?txSecret=bfe8472711052ee5bd5d4f6ec144929c&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lsd.m3u8?txSecret=69f78111985557d6d6a1c711cd3b1e97&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV BÉO] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-462413_lsd.m3u8?txSecret=62b3cf3379d107f879e49820755cd709&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [SAO LA] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lhd.m3u8?txSecret=471cea997e5824e70d2bd3f41e1f173a&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A WIN] (Socolive) flv
+https://pull.niur.live/live/stream-462413_lhd.m3u8?txSecret=bfe8472711052ee5bd5d4f6ec144929c&txTime=6a07d53a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-536185_lsd.flv?auth_key=1778865114-0-0-00584cd80cbdf2e7d4bdbc0d6435442e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A WIN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1778880594-0-0-1dd797370cfb33aa2d926f5954ebaf03
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-536185_lhd.flv?auth_key=1778865114-0-0-3ea1fa553fd93c0a8ae7d1ee82e855ef
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A WIN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1778880594-0-0-416cae09f274c97e8a03f09d13340c6a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-536185_lsd.m3u8?auth_key=1778865114-0-0-8f017d14c4d96ac286ccaa12f8bea746
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A WIN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1778880594-0-0-c95558e8b59afda5486490c3babe1bc3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-536185_lhd.m3u8?auth_key=1778865114-0-0-510e1a58a2a397467fbda98c6576841d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A TÚ] (Socolive) flv
+https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1778880594-0-0-a9e7b782c01dbcfdb0ef459fda487fe0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-557845_lsd.flv?auth_key=1778865114-0-0-7f0f9c17a12d7d8fca89d73f448f943c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A TÚ] (Socolive) hdFlv
+https://pull.niur.live/live/stream-501412_lsd.flv?txSecret=67cc20d728f18aa57805a7063ca7056c&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-557845_lhd.flv?auth_key=1778865114-0-0-000798c7726304e74d48c8481af9454d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A TÚ] (Socolive) m3u8
+https://pull.niur.live/live/stream-501412_lhd.flv?txSecret=73cb520003241c5e63f3566c4b38626e&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-557845_lsd.m3u8?auth_key=1778865114-0-0-7af7ead61a79393c62fbe336f4bd3317
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",POL D1: Zaglebie Lubin vs Pogon Szczecin [BLV A TÚ] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-501412_lsd.m3u8?txSecret=67cc20d728f18aa57805a7063ca7056c&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [XUÂN SON] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-557845_lhd.m3u8?auth_key=1778865114-0-0-651638eaf5e17df81188715e73cc0b89
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [BLV RAMBO] (Socolive) flv
+https://pull.niur.live/live/stream-501412_lhd.m3u8?txSecret=73cb520003241c5e63f3566c4b38626e&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lsd.flv?txSecret=744bd4f1cd7ff1ead534a6f9b4ebc66e&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [BLV RAMBO] (Socolive) hdFlv
+https://pull.niur.live/live/stream-9912050_lsd.flv?txSecret=980f8373c9690dc6e6e7e1e145c11667&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lhd.flv?txSecret=3c181dfa8ee5165bfc0f836e64d33f04&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [BLV RAMBO] (Socolive) m3u8
+https://pull.niur.live/live/stream-9912050_lhd.flv?txSecret=923daa27edbabdc2ebe052d4609af4c2&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lsd.m3u8?txSecret=744bd4f1cd7ff1ead534a6f9b4ebc66e&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [BLV RAMBO] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-9912050_lsd.m3u8?txSecret=980f8373c9690dc6e6e7e1e145c11667&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [BLV LONG] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lhd.m3u8?txSecret=3c181dfa8ee5165bfc0f836e64d33f04&txTime=6a079a2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV ANH TÀI] (Socolive) flv
+https://pull.niur.live/live/stream-9912050_lhd.m3u8?txSecret=923daa27edbabdc2ebe052d4609af4c2&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-406865_lsd.flv?auth_key=1778865114-0-0-c4243306bc6ad130e7214c5158597ad9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV ANH TÀI] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-532081_lsd.flv?auth_key=1778880954-0-0-a81b7379d71446140bdfd3ad6f5d0545
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-406865_lhd.flv?auth_key=1778865114-0-0-39981412b7e451e87c1fcc009763ba09
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV ANH TÀI] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-532081_lhd.flv?auth_key=1778880954-0-0-ff31797a0f63a4e08ff67228433d1dfe
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-406865_lsd.m3u8?auth_key=1778865114-0-0-a554960eeb5ac731c7bdb516b8ddf000
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV ANH TÀI] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-532081_lsd.m3u8?auth_key=1778880954-0-0-12f0c203b593013b37a79a2e5329079d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",SPA D2 : Cordoba  vs Albacete Balompié SAD [BLV ALEX] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-406865_lhd.m3u8?auth_key=1778865114-0-0-e0c10cdf84bcd9c1064d9073c0361e0a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",GEO D1: Torpedo Kutaisi vs Dila Gori [HẢI THANH] (Socolive) flv
+https://pull.niues.live/live/stream-532081_lhd.m3u8?auth_key=1778880954-0-0-e6360c52f7f49340f8f225fe2a911444
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-599634_lsd.flv?auth_key=1778865114-0-0-360d96d80ed9bd296db3cd654c7dde39
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",GEO D1: Torpedo Kutaisi vs Dila Gori [HẢI THANH] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912060_lsd.flv?auth_key=1778880954-0-0-8b42105c59ca4a6ceb703ae82a530945
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-599634_lhd.flv?auth_key=1778865114-0-0-40a8893ac2aba237117f13d600aa9f1e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",GEO D1: Torpedo Kutaisi vs Dila Gori [HẢI THANH] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912060_lhd.flv?auth_key=1778880954-0-0-7028c5f8645a64656808408c831d3776
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-599634_lsd.m3u8?auth_key=1778865114-0-0-fb3fdfa5c83eed58c8ec21fad695ebc7
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",GEO D1: Torpedo Kutaisi vs Dila Gori [HẢI THANH] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912060_lsd.m3u8?auth_key=1778880954-0-0-1fca029d9cc5b78e4b263bccb6306289
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [DECO] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-599634_lhd.m3u8?auth_key=1778865114-0-0-10a6e8c616622798a3ee816cf8715492
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV Củ Cải] (Socolive) flv
+https://pull.niues.live/live/stream-9912060_lhd.m3u8?auth_key=1778880954-0-0-6cae11f8487aa9987e550a83508c1d00
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912091_lsd.flv?auth_key=1778865474-0-0-6be05906081c394edbf649d87e2416aa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV Củ Cải] (Socolive) hdFlv
+https://pull.niur.live/live/stream-9912116_lsd.flv?txSecret=5220bf77ea4a9c27dac2e20f1fba21c1&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912091_lhd.flv?auth_key=1778865474-0-0-a6126a4b8d1dec01ed3f49db87814624
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV Củ Cải] (Socolive) m3u8
+https://pull.niur.live/live/stream-9912116_lhd.flv?txSecret=89991279471fcc8e3c3af5a8b6862c6e&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912091_lsd.m3u8?auth_key=1778865474-0-0-6b5db0cbfad535e6c2da952a31eefda4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV Củ Cải] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-9912116_lsd.m3u8?txSecret=5220bf77ea4a9c27dac2e20f1fba21c1&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/143a229ced906c1e5d726c109fc3f87d.png",02h00 ngày 16/05 Aston Villa vs Liverpool [THẠCH TÚ] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912091_lhd.m3u8?auth_key=1778865474-0-0-de5479a6ed5569955690284dcaba31f6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [THẠCH TÚ] (Socolive) flv
+https://pull.niur.live/live/stream-9912116_lhd.m3u8?txSecret=89991279471fcc8e3c3af5a8b6862c6e&txTime=6a07d80a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lsd.flv?txSecret=8a73360274a0e550b8d424dba3b3ce10&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [THẠCH TÚ] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-595335_lsd.flv?auth_key=1778880954-0-0-479462493ac19359a2e368360e02dd16
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lhd.flv?txSecret=3bf5f186f1b0d6580eacd86cc71c8a6b&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [THẠCH TÚ] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-595335_lhd.flv?auth_key=1778880954-0-0-500015f2353bb5e81b6259cb9133665d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lsd.m3u8?txSecret=8a73360274a0e550b8d424dba3b3ce10&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [THẠCH TÚ] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-595335_lsd.m3u8?auth_key=1778880954-0-0-e3372b7def2b682e38ed9445b9c4693a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/3e8ad4b0c130366406177ac306ac1f79.png",01h45 ngày 16/05 Partick Thistle FC vs Dunfermline Athletic [NGƯỜI CÁ] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lhd.m3u8?txSecret=3bf5f186f1b0d6580eacd86cc71c8a6b&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ENZO] (Socolive) flv
+https://pull.niues.live/live/stream-595335_lhd.m3u8?auth_key=1778880954-0-0-c7929e837b508b37b9eb0924fcd9769b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-380460_lsd.flv?auth_key=1778865474-0-0-4b8dfa7b8398b9df7e5108e9756de613
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ENZO] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-536185_lsd.flv?auth_key=1778880954-0-0-8e2fa8436427383187b07accbf9e8fbc
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-380460_lhd.flv?auth_key=1778865474-0-0-a70020bc80c70accfdeafbf8fe1557ca
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ENZO] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-536185_lhd.flv?auth_key=1778880954-0-0-75b03da111d6335c391509b541b3cd47
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-380460_lsd.m3u8?auth_key=1778865474-0-0-68335d22cb486d98707e3eee6ee2cbcb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ENZO] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-536185_lsd.m3u8?auth_key=1778880954-0-0-0a7238b15cf29837434175749ba277f9
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260513/669831413a57784ff37f3360b893aea2.png",02h00 ngày 16/05 Cordoba vs Albacete Balompié SAD [BLV A WIN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-380460_lhd.m3u8?auth_key=1778865474-0-0-1cf49379bccfd673c079007c6b7cddd2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV ALEX] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-532081_lsd.flv?auth_key=1778865474-0-0-c63854714b55ef7828378d135f52a827
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV ALEX] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-532081_lhd.flv?auth_key=1778865474-0-0-4694fbe2c2fb5b5856d41464602b29e5
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV ALEX] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-532081_lsd.m3u8?auth_key=1778865474-0-0-21e25d2cd3608cf57ea3fac953ccb546
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV ALEX] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-532081_lhd.m3u8?auth_key=1778865474-0-0-a352ee95eb1409803667339fc12bbead
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [CHANH MUỐI] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-598549_lsd.flv?auth_key=1778865474-0-0-4879285b341279afe1482cc8e6a075bc
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [CHANH MUỐI] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-598549_lhd.flv?auth_key=1778865474-0-0-a0de5f4bf17bec5aa76214622645ec38
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [CHANH MUỐI] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-598549_lsd.m3u8?auth_key=1778865474-0-0-fb4eb684f678ed3a209a9817687ca5f2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [CHANH MUỐI] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-598549_lhd.m3u8?auth_key=1778865474-0-0-1254a6aaf63d95ea54ae5e22fa8c26a2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [SAO LA] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lsd.flv?txSecret=897bc1c3e16fa30ffc0898a70eb49ca2&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [SAO LA] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lhd.flv?txSecret=337507bba76b0eacc572ecb532066e3c&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [SAO LA] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lsd.m3u8?txSecret=897bc1c3e16fa30ffc0898a70eb49ca2&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",CRO D1: HNK Vukovar 1991 vs NK Varteks Varazdin [SAO LA] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-462413_lhd.m3u8?txSecret=337507bba76b0eacc572ecb532066e3c&txTime=6a079b92
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1778865474-0-0-1dcbc04dfe8e98b7bb9d784f6f976240
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1778865474-0-0-63e9ccfc0cb6dc4a8f46df51e5902291
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1778865474-0-0-7cd9864674e23baabb091f2186fe76b4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1778865474-0-0-9be971bc0b714ad21fa7799b929b86c5
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ROBBEN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-527383_lsd.flv?auth_key=1778865834-0-0-74c7bb9444356d6bb3e3dbc68ad78cda
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ROBBEN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-527383_lhd.flv?auth_key=1778865834-0-0-a0ccec2a7bd27d48c37ffbfa992fdc9b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ROBBEN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-527383_lsd.m3u8?auth_key=1778865834-0-0-b1285835a9cecec3440682e5f894a9eb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Japan U17 vs Tajikistan U17 [BLV ROBBEN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-527383_lhd.m3u8?auth_key=1778865834-0-0-d11ff4063e0994322a96a609292b8bd6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [LOKA] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-589848_lsd.flv?auth_key=1778865834-0-0-a19f3f481c2a4553c100bd3c531cb4a1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [LOKA] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-589848_lhd.flv?auth_key=1778865834-0-0-94740cd514f73bb297ad63989200d6cd
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [LOKA] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-589848_lsd.m3u8?auth_key=1778865834-0-0-f0e79552870ea6a2b1bdbd22aa02746a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [LOKA] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-589848_lhd.m3u8?auth_key=1778865834-0-0-9f7ef4fa79c0ee2d380676c907bd1855
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV MIXI] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-290928_lsd.flv?auth_key=1778865834-0-0-5f0b8688ccd09a4231c5f05838324144
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV MIXI] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-290928_lhd.flv?auth_key=1778865834-0-0-49b90b029fd1aea3f47c968c4814daf2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV MIXI] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-290928_lsd.m3u8?auth_key=1778865834-0-0-0bc31890273d76e8a8cfe8d8ab9f6052
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [BLV MIXI] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-290928_lhd.m3u8?auth_key=1778865834-0-0-a17c8c2bb7029251a9b5295c3a2c78b6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [TẠ BIÊN GIỚI] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912108_lsd.flv?auth_key=1778865834-0-0-30d10ea0acd9976f48ce9c0041ae5160
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [TẠ BIÊN GIỚI] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912108_lhd.flv?auth_key=1778865834-0-0-e8fd56a89665107911862824a550a175
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [TẠ BIÊN GIỚI] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912108_lsd.m3u8?auth_key=1778865834-0-0-cb8be828477600a8262aa23b9cd1c254
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",KSA PR: Damac vs Al Fayha [TẠ BIÊN GIỚI] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912108_lhd.m3u8?auth_key=1778865834-0-0-c6bdf6718c4cca8358b5987d02753e9d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV PEWPEW] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912015_lsd.flv?auth_key=1778865834-0-0-d495ee1ad777c6e32c4e8e52607b702b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV PEWPEW] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912015_lhd.flv?auth_key=1778865834-0-0-56e0f122cdaf989138ad3c3720757f9e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV PEWPEW] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912015_lsd.m3u8?auth_key=1778865834-0-0-a391dc5cc6044e4456ac0b81666aa827
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV PEWPEW] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912015_lhd.m3u8?auth_key=1778865834-0-0-541146706a5383c5be5f063af8d64b22
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV KEM] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-513394_lsd.flv?auth_key=1778865834-0-0-3845c668486d47676cef85b9e52b4612
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV KEM] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-513394_lhd.flv?auth_key=1778865834-0-0-6aa2235c8b00d4559262aa74d6f0f08e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV KEM] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-513394_lsd.m3u8?auth_key=1778865834-0-0-2866c7734644f8977fe0e4e94236308d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV KEM] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-513394_lhd.m3u8?auth_key=1778865834-0-0-36ff6065575d6a818d53ea55b210f874
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV RÔSI] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912102_lsd.flv?auth_key=1778865834-0-0-ee09b7e0140b9b009cf7ce022d1f34a6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV RÔSI] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912102_lhd.flv?auth_key=1778865834-0-0-1bf59a2c7d5c7f9660666d878b35385a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV RÔSI] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912102_lsd.m3u8?auth_key=1778865834-0-0-52db5fe4c886733c033806aa6ec63c93
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/b4ba697ea4ab1515d7438b5a3ffc2f80.png",22h00 ngày 15/05 Grobina vs Tukums-2000 [BLV RÔSI] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912102_lhd.m3u8?auth_key=1778865834-0-0-ebb31cbf238f1c39ac479315b5ce4b00
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Saudi Arabia U17 vs China U17 [BLV CUỘI] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-256080_lsd.flv?auth_key=1778865834-0-0-d9d05d390251e55f5275bc067bd2c5c4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Saudi Arabia U17 vs China U17 [BLV CUỘI] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-256080_lhd.flv?auth_key=1778865834-0-0-c7f6f0d4287382cf25deefaee176deb4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Saudi Arabia U17 vs China U17 [BLV CUỘI] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-256080_lsd.m3u8?auth_key=1778865834-0-0-d5e1ada51adb017aa1a1ab6ed44005d5
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",AFC U17: Saudi Arabia U17 vs China U17 [BLV CUỘI] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-256080_lhd.m3u8?auth_key=1778865834-0-0-4f2c68d74bddd1dde7b90d46d393f6c2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV XO] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-472241_lsd.flv?auth_key=1778865834-0-0-9b18d653ca68a665e02e8ef5f0654d73
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV XO] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-472241_lhd.flv?auth_key=1778865834-0-0-9a5792ff72e615fca5046a0d0ebf7e8e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV XO] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-472241_lsd.m3u8?auth_key=1778865834-0-0-81d31a7a536d47fb5a67eb89de47aa48
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [BLV XO] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-472241_lhd.m3u8?auth_key=1778865834-0-0-bf4db6b13cb7a1a6d0ad6bd467458e29
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [PINKMAN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-595715_lsd.flv?txSecret=38996e1622291062fe0c5667ce810e48&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [PINKMAN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-595715_lhd.flv?txSecret=cdc33f82d8601f6ad9004bea52b8e0a9&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [PINKMAN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-595715_lsd.m3u8?txSecret=38996e1622291062fe0c5667ce810e48&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",DEN D1: Kolding FC vs Lyngby [PINKMAN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-595715_lhd.m3u8?txSecret=cdc33f82d8601f6ad9004bea52b8e0a9&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",TUR D1: Caykur Rizespor vs Besiktas JK [BLV LONG] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lsd.flv?txSecret=8ed0ba467055f183cd20e5f05134ec68&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",TUR D1: Caykur Rizespor vs Besiktas JK [BLV LONG] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lhd.flv?txSecret=b4018225f7eb931d79fa58e9eb17376b&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",TUR D1: Caykur Rizespor vs Besiktas JK [BLV LONG] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lsd.m3u8?txSecret=8ed0ba467055f183cd20e5f05134ec68&txTime=6a079cfa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260511/61fd1594f941b797ddef8f979d77cda8.png",TUR D1: Caykur Rizespor vs Besiktas JK [BLV LONG] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912050_lhd.m3u8?txSecret=b4018225f7eb931d79fa58e9eb17376b&txTime=6a079cfa
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/12511.png",23h00 15/05 Japan U17 vs Tajikistan U17 (Hội Quán) FHD 
+https://pull.niues.live/live/stream-536185_lhd.m3u8?auth_key=1778880954-0-0-5e8f413ece508d600f543794de8bad08
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phanhalinh/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/12511.png",23h00 15/05 Japan U17 vs Tajikistan U17 (Hội Quán) HD 
+https://hqlive.yarncdn.live/live/hqtv_blv_phanma/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.zlylive.com/hqtv_blv_phanhalinh/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/12511.png",23h00 15/05 Japan U17 vs Tajikistan U17 (Hội Quán) SD 
+https://alive.yarncdn.live/hqtv_blv_phanma/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.zlylive.com/hqtv_blv_phanhalinh/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHPUzabryz7df8DJGSlU-oaXS6zaWEi7A-sg&s",21h00 15/05 Casper Ruud vs Luciano Darderi (Hội Quán) FHD 
+https://alive.yarncdn.live/hqtv_blv_phanma/tracks-v1a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phanchuot/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHPUzabryz7df8DJGSlU-oaXS6zaWEi7A-sg&s",21h00 15/05 Casper Ruud vs Luciano Darderi (Hội Quán) HD 
+https://hqlive.yarncdn.live/live/hqtv_blv_phanto/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phanchuot/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHPUzabryz7df8DJGSlU-oaXS6zaWEi7A-sg&s",21h00 15/05 Casper Ruud vs Luciano Darderi (Hội Quán) SD 
+https://alive.yarncdn.live/hqtv_blv_phanto/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png",02h00 16/05 Aston Villa vs Liverpool (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phanchuot/tracks-v1a1/mono.m3u8
+https://alive.yarncdn.live/hqtv_blv_phanto/tracks-v1a1/mono.m3u8
 #EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/dc0e43b95c6676c54415bac168472aa4.png!w80",23h00 03/05 Juventus F.C. vs Hellas Verona F.C.
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 https://live5.msrktz.app/live/14830711.m3u8
