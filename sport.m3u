@@ -1,56 +1,60 @@
 #EXTM3U
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/16833_1gq6j9e8zn18.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC (Lương Sơn) NHÀ ÐÀI m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/59649_1grt0ne4471f.png",17h00 ngày 19/05 Ethiopian Insurance FC vs Wolaita Dicha (Lương Sơn) BLV PHI HỔ m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://auto.cdnfaster.live/live/sd-6Mwe5EGGUoKPyTVLck/playlist.m3u8
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/16833_1gq6j9e8zn18.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC (Lương Sơn) NHÀ ÐÀI flv
+https://hls.cdnfaster-a.live/live/PHIHO/index.m3u8?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/59649_1grt0ne4471f.png",17h00 ngày 19/05 Ethiopian Insurance FC vs Wolaita Dicha (Lương Sơn) BLV PHI HỔ flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/345_1gy3vp9wzp2.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR (Lương Sơn) NHÀ ÐÀI m3u
+https://flv.cdnfaster-a.live/live/PHIHO.flv?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/26504_1k4948jhf3p.png",16h00 ngày 19/05 Than KSVN (W) vs Ho Chi Minh City (W) (Lương Sơn) BLV LÝ ỨNG m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://auto.cdnfaster.live/live/sd-6MvVNfPVfQvsBMRVmW/playlist.m3u8
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/345_1gy3vp9wzp2.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR (Lương Sơn) NHÀ ÐÀI flv
+https://hls.cdnfaster-a.live/live/LYUNG1/index.m3u8?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/26504_1k4948jhf3p.png",16h00 ngày 19/05 Than KSVN (W) vs Ho Chi Minh City (W) (Lương Sơn) BLV LÝ ỨNG flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/d53d8c2e307894416c0b1989482fd022.png",03h00 ngày 19/05 Envigado FC vs Deportes Quindio (Khán Đài A) source
+https://flv.cdnfaster-a.live/live/LYUNG1.flv?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/26504_1k4948jhf3p.png",16h00 ngày 19/05 Than KSVN (W) vs Ho Chi Minh City (W) (Lương Sơn) BLV TIỂU LANG m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/AJUN/index.m3u8?expire=2556118740&sign=4cf66df9135854d82fa43d2c5f365419
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/26504_1k4948jhf3p.png",16h00 ngày 19/05 Than KSVN (W) vs Ho Chi Minh City (W) (Lương Sơn) BLV TIỂU LANG flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/AJUN.flv?expire=2556118740&sign=4cf66df9135854d82fa43d2c5f365419
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/59649_1grt0ne4471f.png",17h00 ngày 19/05 Ethiopian Insurance FC vs Wolaita Dicha (Lương Sơn) BLV HÀN TÍN m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/HANTIN/index.m3u8?expire=1898537700&sign=546f072aa0beee54643020b57b8be5df
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/59649_1grt0ne4471f.png",17h00 ngày 19/05 Ethiopian Insurance FC vs Wolaita Dicha (Lương Sơn) BLV HÀN TÍN flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/HANTIN.flv?expire=1898537700&sign=546f072aa0beee54643020b57b8be5df
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/57936_167066175516.png",17h00 ngày 19/05 RTC FC vs Paro FC (Lương Sơn) BLV QUAN VŨ m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/QUANVU/index.m3u8?expire=1788427256&sign=056d097a0bbbd810493fd64ccf4831b7
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/57936_167066175516.png",17h00 ngày 19/05 RTC FC vs Paro FC (Lương Sơn) BLV QUAN VŨ flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/QUANVU.flv?expire=1788427256&sign=056d097a0bbbd810493fd64ccf4831b7
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/57936_167066175516.png",17h00 ngày 19/05 RTC FC vs Paro FC (Lương Sơn) BLV URA m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/URA/index.m3u8?expire=1788427256&sign=b321b6b8b5cd73e24aae2a3a16b7b5d2
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/57936_167066175516.png",17h00 ngày 19/05 RTC FC vs Paro FC (Lương Sơn) BLV URA flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/URA.flv?expire=1788427256&sign=b321b6b8b5cd73e24aae2a3a16b7b5d2
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/78bcd497926129aca13114807cd29aff.png",16h00 ngày 19/05 Elimai Women vs Okzhetpes Women (Khán Đài A) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia3.me/
-https://www3.f2k3.shop/live/2ed4f74349051d206116d934d4111bab/playlist.m3u8
-#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/932f3790a25e5c4f40ae328ad9060055.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC (Khán Đài A) source
+https://www3.f2k3.shop/live/849e289de788be286dbd742c1cf6745d/playlist.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/4535b4701b1056d0ddef43d6a19d8884.png",16h00 ngày 19/05 Than KSVN Women vs Hồ Chí Minh City Women (Khán Đài A) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia3.me/
-https://www3.f2k3.shop/live/11133c2f02aa01e86c591f382a58d4b4/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125833_1497f193.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio (Chuối Chiên) HD1
+https://www3.f2k3.shop/live/9843c0c9b4652761363f7b68de0e1fe9/playlist.m3u8
+#EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/89471a940cef200c717e39893452d8b9.png",16h30 ngày 19/05 Avondale FC Women vs Heidelberg United Women (Khán Đài A) source
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+#EXTVLCOPT:http-referrer=https://khandaia3.me/
+https://www3.f2k3.shop/live/18644566ce83d7fe2b70e7a3e4be6745/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20251007_195940_68fd6f5c.png",16h00 ngày 19/05 TKS Việt Nam Nữ vs TP Hồ Chí Minh  (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125833_1497f193.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio (Chuối Chiên) HD2
+https://gckc0525.edgemaxcdn.org/live/m5x1/playlist.m3u8
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/20251007_195940_68fd6f5c.png",16h00 ngày 19/05 TKS Việt Nam Nữ vs TP Hồ Chí Minh  (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125833_1497f193.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125833_1497f193.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132255_fc95b09f.png",07h00 ngày 19/05 Guayaquil City FC vs Orense SC (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132255_fc95b09f.png",07h00 ngày 19/05 Guayaquil City FC vs Orense SC (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132255_fc95b09f.png",07h00 ngày 19/05 Guayaquil City FC vs Orense SC (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132255_fc95b09f.png",07h00 ngày 19/05 Guayaquil City FC vs Orense SC (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
+https://gckc0525.edgemaxcdn.org/live/m5x1.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134733_e769fc26.png",18h30 ngày 19/05 NorthEast United vs Mohammedan (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
@@ -307,101 +311,146 @@ https://gckc0525.edgemaxcdn.org/live/anhhothd/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
 https://gckc0525.edgemaxcdn.org/live/anhhothd.flv
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://img.sports-data.online/football/team/d53d8c2e307894416c0b1989482fd022.png",03h00 ngày 19/05 Envigado FC vs Deportes Quindio (Gà Vàng) source
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://img.sports-data.online/football/team/78bcd497926129aca13114807cd29aff.png",16h00 ngày 19/05 Elimai Women vs Okzhetpes Women (Gà Vàng) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem2.gv08.live/
-https://www3.f2k3.shop/live/2ed4f74349051d206116d934d4111bab/playlist.m3u8
-#EXTINF:0 group-title="Gà vàng" tvg-logo="https://img.sports-data.online/football/team/932f3790a25e5c4f40ae328ad9060055.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC (Gà Vàng) source
+https://www3.f2k3.shop/live/849e289de788be286dbd742c1cf6745d/playlist.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://img.sports-data.online/football/team/4535b4701b1056d0ddef43d6a19d8884.png",16h00 ngày 19/05 Than KSVN Women vs Hồ Chí Minh City Women (Gà Vàng) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem2.gv08.live/
-https://www3.f2k3.shop/live/11133c2f02aa01e86c591f382a58d4b4/playlist.m3u8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [HÀ DUY KIÊN] (Socolive) flv
+https://www3.f2k3.shop/live/9843c0c9b4652761363f7b68de0e1fe9/playlist.m3u8
+#EXTINF:0 group-title="Gà vàng" tvg-logo="https://img.sports-data.online/football/team/89471a940cef200c717e39893452d8b9.png",16h30 ngày 19/05 Avondale FC Women vs Heidelberg United Women (Gà Vàng) source
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+#EXTVLCOPT:http-referrer=https://xem2.gv08.live/
+https://www3.f2k3.shop/live/18644566ce83d7fe2b70e7a3e4be6745/playlist.m3u8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/0163a6beeeff907e9f95e3ae0b58a61f.png",18h35 ngày 19/05 Tianjin Jinmen Tiger vs Henan FC [BLV MIXI] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-607400_lsd.flv?auth_key=1779144835-0-0-098db6fb9b3a529bf7f41baa0d8a846e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [HÀ DUY KIÊN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-290928_lsd.flv?auth_key=1779190555-0-0-cd7c2292b7280e3fd41a8036d2c74042
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/0163a6beeeff907e9f95e3ae0b58a61f.png",18h35 ngày 19/05 Tianjin Jinmen Tiger vs Henan FC [BLV MIXI] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-607400_lhd.flv?auth_key=1779144835-0-0-ac85fdd74dbf0e1ba175962a32cbdf06
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [HÀ DUY KIÊN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-290928_lhd.flv?auth_key=1779190555-0-0-71d13f89f13f5cb6d34b00d0ec53eabf
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/0163a6beeeff907e9f95e3ae0b58a61f.png",18h35 ngày 19/05 Tianjin Jinmen Tiger vs Henan FC [BLV MIXI] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-607400_lsd.m3u8?auth_key=1779144835-0-0-dee559be5dae16301bb84575876f5358
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [HÀ DUY KIÊN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-290928_lsd.m3u8?auth_key=1779190555-0-0-3a1074cdd16a40cd249a4261d820edd5
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/0163a6beeeff907e9f95e3ae0b58a61f.png",18h35 ngày 19/05 Tianjin Jinmen Tiger vs Henan FC [BLV MIXI] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-607400_lhd.m3u8?auth_key=1779144835-0-0-b2d3bed82698683f968e8815a2d79ef1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [VỊT BẠC] (Socolive) flv
+https://pull.niues.live/live/stream-290928_lhd.m3u8?auth_key=1779190555-0-0-003c87b44f42672f7a98151d38481bd5
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/134c60bc01a658c344999e5602e1ecd1.png",16h00 ngày 19/05 South China vs Hi-Tech [CHAN SENA] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-474421_lsd.flv?auth_key=1779144835-0-0-8427d6ddcd0fd517d90d02b6bdd085c8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [VỊT BẠC] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912115_lsd.flv?auth_key=1779190555-0-0-f3e11617e6bf00f16e99525621619180
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/134c60bc01a658c344999e5602e1ecd1.png",16h00 ngày 19/05 South China vs Hi-Tech [CHAN SENA] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-474421_lhd.flv?auth_key=1779144835-0-0-19b2f05c761f297c2942b037a5de9020
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [VỊT BẠC] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912115_lhd.flv?auth_key=1779190555-0-0-7fa95c03926a4711ce48328589d45f71
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/134c60bc01a658c344999e5602e1ecd1.png",16h00 ngày 19/05 South China vs Hi-Tech [CHAN SENA] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-474421_lsd.m3u8?auth_key=1779144835-0-0-0eef24d7c90b9034f5b4fe6bb2dbce16
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/07bacce284c3ec578d1a49eca4c67967.png",04h30 ngày 19/05 Deportivo Maldonado vs Danubio FC [VỊT BẠC] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912115_lsd.m3u8?auth_key=1779190555-0-0-3676cddd3d46af341adc542168b3a648
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/134c60bc01a658c344999e5602e1ecd1.png",16h00 ngày 19/05 South China vs Hi-Tech [CHAN SENA] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-474421_lhd.m3u8?auth_key=1779144835-0-0-4f966b55105cc3f845586ec6deb80fce
+https://pull.niues.live/live/stream-9912115_lhd.m3u8?auth_key=1779190555-0-0-1a5067dd760cc4cdc377bf09f91eb65c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BLV HENRY] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912112_lsd.flv?auth_key=1779190555-0-0-2761fc72dc049129eed176c97d73af7d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BLV HENRY] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912112_lhd.flv?auth_key=1779190555-0-0-a20a6a6a4054cb36bdae49f62b887525
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BLV HENRY] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912112_lsd.m3u8?auth_key=1779190555-0-0-d4521c0db74f804ebd76bf9cbf1b189e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BLV HENRY] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912112_lhd.m3u8?auth_key=1779190555-0-0-78a6948e456dd035d035e4511ef02c83
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV LION] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-603255_lsd.flv?auth_key=1779190555-0-0-34ee010f266e04353c844ed53422931b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV LION] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-603255_lhd.flv?auth_key=1779190555-0-0-ae3a9987177a2db25b92ff170d933975
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV LION] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-603255_lsd.m3u8?auth_key=1779190555-0-0-55dd246522d8b174732edd0514c57cc0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV LION] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-603255_lhd.m3u8?auth_key=1779190555-0-0-147366128c7aa34500aab246dd56bda3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV KAN] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-283501_lsd.flv?txSecret=674c710a62bc4f579ff520467ce21db9&txTime=6a0c916b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV KAN] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-283501_lhd.flv?txSecret=9e7ea26f0a029890c5e12fad562f9c79&txTime=6a0c916b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV KAN] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-283501_lsd.m3u8?txSecret=674c710a62bc4f579ff520467ce21db9&txTime=6a0c916b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV KAN] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-283501_lhd.m3u8?txSecret=9e7ea26f0a029890c5e12fad562f9c79&txTime=6a0c916b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BRIAN] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912106_lsd.flv?auth_key=1779190555-0-0-45b887f914e8d887bc9b83a3402d4a02
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BRIAN] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912106_lhd.flv?auth_key=1779190555-0-0-8e6dc15f46a5d4c4750ab4d24e22e7a7
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BRIAN] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912106_lsd.m3u8?auth_key=1779190555-0-0-7d2dbb21e04dfdf7ffcce623bd52830e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260517/9f0477048ae1989eebbd5a48bf664d41.png",17h00 ngày 19/05 Ilagan Isabela Cowboys vs Quezon City [BRIAN] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912106_lhd.m3u8?auth_key=1779190555-0-0-6cdc4a415c02bca1cb1f373db4d84c40
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260515/86b2de66f6ad19e3d7a93675c6eecfa5.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1779144835-0-0-e55164d2cd3e69e957568427fe1cb8a0
+https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1779190555-0-0-ad4d288b8271ed5db3b75db9816cd69b
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260515/86b2de66f6ad19e3d7a93675c6eecfa5.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1779144835-0-0-ee1dea6566ec0b0bfce8fe4292bd72bf
+https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1779190555-0-0-e65dcd95d0d1a1ce2733a13df3076f82
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260515/86b2de66f6ad19e3d7a93675c6eecfa5.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1779144835-0-0-3c8d8b545240e40692e8102ef33f8b6b
+https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1779190555-0-0-f565ae918bd25a8b61f5bd26ff03219b
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260515/86b2de66f6ad19e3d7a93675c6eecfa5.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1779144835-0-0-9e67391c376e9a13b3e3bb0dbcac0ad8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [MONEY MAN] (Socolive) flv
+https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1779190555-0-0-ec06d431adb68c6053cd9081b3adebac
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV ALEX] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-605412_lsd.flv?auth_key=1779145195-0-0-4d942085ba48c00839ac5bc0bbfd381c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [MONEY MAN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-532081_lsd.flv?auth_key=1779190915-0-0-359d45c898dc68867f5e0d705842c696
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV ALEX] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-605412_lhd.flv?auth_key=1779145195-0-0-b1e90a8ea718a384e436f8d7f6ab92c4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [MONEY MAN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-532081_lhd.flv?auth_key=1779190915-0-0-dfaa4d6c32ea37db91907a37881157da
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV ALEX] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-605412_lsd.m3u8?auth_key=1779145195-0-0-6f5bc13ee481847df9fb3066a55d6846
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [MONEY MAN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-532081_lsd.m3u8?auth_key=1779190915-0-0-45d864df685d3767174a19a06a3c23fa
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [BLV ALEX] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-605412_lhd.m3u8?auth_key=1779145195-0-0-5f6d3f89f23f8af645d16ad84fc7c2cb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV CHIVAS] (Socolive) flv
+https://pull.niues.live/live/stream-532081_lhd.m3u8?auth_key=1779190915-0-0-784aa4e6cb54b05d6bcf5a95c215623c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [VỊT BẠC] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-485739_lsd.flv?txSecret=befa3baea95197b9cde56779a8c3763b&txTime=6a0be1a3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV CHIVAS] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-474421_lsd.flv?auth_key=1779190915-0-0-e0ec5958258128e363cd47a099720561
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [VỊT BẠC] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-485739_lhd.flv?txSecret=b3d88357f5f9009df755b636714ac652&txTime=6a0be1a3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV CHIVAS] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-474421_lhd.flv?auth_key=1779190915-0-0-17785f17dc4d05d33ae67769e4026e10
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [VỊT BẠC] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-485739_lsd.m3u8?txSecret=befa3baea95197b9cde56779a8c3763b&txTime=6a0be1a3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV CHIVAS] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-474421_lsd.m3u8?auth_key=1779190915-0-0-5e45dea3eef15713770b9dce0701efd8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/54cbaade65c8e8b6d2fec114a19b3c70.png",17h00 ngày 19/05 RTC FC vs Paro FC [VỊT BẠC] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-485739_lhd.m3u8?txSecret=b3d88357f5f9009df755b636714ac652&txTime=6a0be1a3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV NẤM] (Socolive) flv
+https://pull.niues.live/live/stream-474421_lhd.m3u8?auth_key=1779190915-0-0-2de015d2260411f74cc76c6e21ab2002
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://static.flashscore.com/res/image/data/O2nuZwRp-vaAM5VhK.png",15h00 19/05 PERODUA Malaysia Masters 2026 (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-608899_lsd.flv?auth_key=1779145555-0-0-1e470bee0327d1cd9f36df17cd512d68
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV NẤM] (Socolive) hdFlv
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://yvm80526.edgemaxcdn.org/live/hqtv_blv_phantu/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5HCWkFJv5UCjPj7-UaPNthpNPBvpKpCSD2g&s",17h00 19/05 Flavio Cobolli vs Ignacio Buse (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-608899_lhd.flv?auth_key=1779145555-0-0-a59112c19ef13038648fc9defdaa25d2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV NẤM] (Socolive) m3u8
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://hqlive.yarncdn.live/live/hqtv_blv_phanca/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://static.flashscore.com/res/image/data/O2nuZwRp-vaAM5VhK.png",16h30 19/05 PERODUA Malaysia Masters 2026 (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-608899_lsd.m3u8?auth_key=1779145555-0-0-b2c7ce58c985a19facf442c1c3daae94
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV NẤM] (Socolive) hdM3u8
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://hqlive.yarncdn.live/live/hqtv_blv_phanchuot/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://static.flashscore.com/res/image/data/O2nuZwRp-vaAM5VhK.png",16h30 19/05 PERODUA Malaysia Masters 2026 (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-608899_lhd.m3u8?auth_key=1779145555-0-0-838024693befafd7167a630ae758753c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV YONE] (Socolive) flv
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://alive.yarncdn.live/hqtv_blv_phanchuot/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://static.flashscore.com/res/image/data/O2nuZwRp-vaAM5VhK.png",16h30 19/05 PERODUA Malaysia Masters 2026 (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-372746_lsd.flv?auth_key=1779145555-0-0-9ae84177bcfcfe0bd42ee68c599e6dbd
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV YONE] (Socolive) hdFlv
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://alive.yarncdn.live/hqtv_blv_phanchuot/tracks-v1a1/mono.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/4535b4701b1056d0ddef43d6a19d8884.png!w80",16h00 19/05 TKS Việt Nam Nữ vs Hồ Chí Minh Nữ
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-372746_lhd.flv?auth_key=1779145555-0-0-4b8f31ade54abd7551d17f1266d752f2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV YONE] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-372746_lsd.m3u8?auth_key=1779145555-0-0-14bc1bd68b4d6de1123e468013728da3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260516/80f36deb9fd7d5751fb439f83ab58651.png",05h00 ngày 19/05 Ponte Preta vs Londrina PR [BLV YONE] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-372746_lhd.m3u8?auth_key=1779145555-0-0-fe7e41f4aa4c46f9e284d31bc5672aa8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/932f3790a25e5c4f40ae328ad9060055.png!w80",04h30 19/05 Maldonado vs Danubio FC
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live5.msrktz.app/live/99121525.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/fb735adffa94a7306c7f68b9609d929f.png!w80",05h00 19/05 Ponte Preta vs Londrina
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live5.msrktz.app/live/88508431.m3u8
+https://live5.msrktz.app/live/90725470.m3u8
