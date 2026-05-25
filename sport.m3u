@@ -1,70 +1,58 @@
 #EXTM3U
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1779709488.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC (Lương Sơn) BLV TÂY MÔN KHÁNH m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/6120_1h56c4f7bqe.png",00h00 ngày 26/05 Dinamo Batumi vs FC Metalurgi Rustavi (Lương Sơn) BLV FERNANDO m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/TAYMONKHANH/index.m3u8?expire=1788427256&sign=b79b5be508185d24f76a0b1effca53da
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1779709488.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC (Lương Sơn) BLV TÂY MÔN KHÁNH flv
+https://hls.cdnfaster-a.live/live/FERNANDO/index.m3u8?expire=1924930980&sign=bab24fb93b0be5c98af9138659989bcb
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/6120_1h56c4f7bqe.png",00h00 ngày 26/05 Dinamo Batumi vs FC Metalurgi Rustavi (Lương Sơn) BLV FERNANDO flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/TAYMONKHANH.flv?expire=1788427256&sign=b79b5be508185d24f76a0b1effca53da
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1779709504.jpg",19h00 ngày 25/05 Drukpa FC vs Tsirang FC (Lương Sơn) BLV TRIỆU TỬ LONG m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/TRIEUTULONG/index.m3u8?expire=1788427256&sign=45e4fdc4bdb8472f513ccc78f57f6070
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1779709504.jpg",19h00 ngày 25/05 Drukpa FC vs Tsirang FC (Lương Sơn) BLV TRIỆU TỬ LONG flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/TRIEUTULONG.flv?expire=1788427256&sign=45e4fdc4bdb8472f513ccc78f57f6070
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1835_165750041563.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 (Lương Sơn) BLV LÝ ỨNG m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/LYUNG1/index.m3u8?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1835_165750041563.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 (Lương Sơn) BLV LÝ ỨNG flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/LYUNG1.flv?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV MỘT CHÂN m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/MOTCHAN1/index.m3u8?expire=1891347600&sign=cbb47d2000b9576a7b34114624ff8299
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV MỘT CHÂN flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/MOTCHAN1.flv?expire=2556072660&sign=4b991d1cc92d0eb9bddfcb0b1b372a21
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV KEVILL m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/KEVILL/index.m3u8?expire=1788427256&sign=189afcf7f800d4c6c8a5aa97649a110799
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV KEVILL flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/KEVILL.flv?expire=1788427256&sign=189afcf7f800d4c6c8a5aa97649a110799
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV KAKA m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/KAKA/index.m3u8?expire=1788427256&sign=c34e1c9b22c9ced94eca7e7bf7a81ae6
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV KAKA flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/KAKA.flv?expire=1788427256&sign=c34e1c9b22c9ced94eca7e7bf7a81ae6
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV DƯƠNG CHÍ m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/VANCONAN/index.m3u8?expire=1830276060&sign=53991e2e589a2f7031dd37b82a585e33
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1109_1gxmbp25v21r.png",19h30 ngày 25/05 Start Kristiansand vs Valerenga (Lương Sơn) BLV DƯƠNG CHÍ flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/VANCONAN.flv?expire=1830276060&sign=53991e2e589a2f7031dd37b82a585e33
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1449_1j9jcsq451v.png",18h00 ngày 25/05 Kolding IF vs Hillerod Fodbold (Lương Sơn) BLV NGƯỜI THÉP m3u
+https://flv.cdnfaster-a.live/live/FERNANDO.flv?expire=1924930980&sign=bab24fb93b0be5c98af9138659989bcb
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/377_1hg209brnt23.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF (Lương Sơn) BLV NGƯỜI THÉP m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/NGUOITHEP/index.m3u8?expire=2556118740&sign=6d80f4e33c3761371f29a8ca0645fee5
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1449_1j9jcsq451v.png",18h00 ngày 25/05 Kolding IF vs Hillerod Fodbold (Lương Sơn) BLV NGƯỜI THÉP flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/377_1hg209brnt23.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF (Lương Sơn) BLV NGƯỜI THÉP flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://flv.cdnfaster-a.live/live/NGUOITHEP.flv?expire=2556118740&sign=6d80f4e33c3761371f29a8ca0645fee5
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1449_1j9jcsq451v.png",18h00 ngày 25/05 Kolding IF vs Hillerod Fodbold (Lương Sơn) BLV PHI HỔ m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/PHIHO/index.m3u8?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1449_1j9jcsq451v.png",18h00 ngày 25/05 Kolding IF vs Hillerod Fodbold (Lương Sơn) BLV PHI HỔ flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/PHIHO.flv?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/16124_1gxa4t8d1bx.png",18h00 ngày 25/05 Bhutan (W) vs Nepal (W) (Lương Sơn) BLV MAYBACH m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/MAYBACH/index.m3u8?expire=1923468720&sign=862d9b5fa441bf644b6c2fbcec08487b
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/16124_1gxa4t8d1bx.png",18h00 ngày 25/05 Bhutan (W) vs Nepal (W) (Lương Sơn) BLV MAYBACH flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/MAYBACH.flv?expire=1923468720&sign=862d9b5fa441bf644b6c2fbcec08487b
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/16124_1gxa4t8d1bx.png",18h00 ngày 25/05 Bhutan (W) vs Nepal (W) (Lương Sơn) BLV HÀN TÍN m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/381_1h8wtxnzmc2g.png",00h00 ngày 26/05 Elfsborg vs Hacken (Lương Sơn) BLV HÀN TÍN m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/HANTIN/index.m3u8?expire=1898537700&sign=546f072aa0beee54643020b57b8be5df
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/16124_1gxa4t8d1bx.png",18h00 ngày 25/05 Bhutan (W) vs Nepal (W) (Lương Sơn) BLV HÀN TÍN flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/381_1h8wtxnzmc2g.png",00h00 ngày 26/05 Elfsborg vs Hacken (Lương Sơn) BLV HÀN TÍN flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://flv.cdnfaster-a.live/live/HANTIN.flv?expire=1898537700&sign=546f072aa0beee54643020b57b8be5df
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3086_1gqgp6phb3y.png",00h25 ngày 26/05 Al-Ttadamon(KUW) vs Al-Qadsia SC (Lương Sơn) BLV MÃ SIÊU m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/MASIEU/index.m3u8?expire=1788427256&sign=b91fcfc36fe72375e8f8cc813de0220b
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3086_1gqgp6phb3y.png",00h25 ngày 26/05 Al-Ttadamon(KUW) vs Al-Qadsia SC (Lương Sơn) BLV MÃ SIÊU flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/MASIEU.flv?expire=1788427256&sign=b91fcfc36fe72375e8f8cc813de0220b
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3085_167142100712.jpg",23h15 ngày 25/05 Al-Jahra vs Al-Arabi Club (KUW) (Lương Sơn) BLV PHI HỔ m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/PHIHO/index.m3u8?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3085_167142100712.jpg",23h15 ngày 25/05 Al-Jahra vs Al-Arabi Club (KUW) (Lương Sơn) BLV PHI HỔ flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/PHIHO.flv?expire=2556118740&sign=ebc20a588b7a62eb65d12f7372d39a3f
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/32584_1grz8ga1tn11.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia (Lương Sơn) BLV TRIỆU TỬ LONG m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/TRIEUTULONG/index.m3u8?expire=1788427256&sign=45e4fdc4bdb8472f513ccc78f57f6070
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/32584_1grz8ga1tn11.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia (Lương Sơn) BLV TRIỆU TỬ LONG flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/TRIEUTULONG.flv?expire=1788427256&sign=45e4fdc4bdb8472f513ccc78f57f6070
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/32584_1grz8ga1tn11.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia (Lương Sơn) BLV KAKA m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/KAKA/index.m3u8?expire=1788427256&sign=c34e1c9b22c9ced94eca7e7bf7a81ae6
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/32584_1grz8ga1tn11.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia (Lương Sơn) BLV KAKA flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/KAKA.flv?expire=1788427256&sign=c34e1c9b22c9ced94eca7e7bf7a81ae6
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/13452_1gytycjdfre.png",00h30 ngày 26/05 Ludogorets Razgrad vs CSKA Sofia (Lương Sơn) BLV PELE m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/NGUCA/index.m3u8?expire=1788427256&sign=abf9c93edd0de1c833f9ffc14381d526
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/13452_1gytycjdfre.png",00h30 ngày 26/05 Ludogorets Razgrad vs CSKA Sofia (Lương Sơn) BLV PELE flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/NGUCA.flv?expire=1788427256&sign=abf9c93edd0de1c833f9ffc14381d526
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1066_1hbcs91he82m.png",00h30 ngày 26/05 Rapid Bucuresti vs CS Universitatea Craiova (Lương Sơn) BLV TÂY MÔN KHÁNH m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/TAYMONKHANH/index.m3u8?expire=1788427256&sign=b79b5be508185d24f76a0b1effca53da
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1066_1hbcs91he82m.png",00h30 ngày 26/05 Rapid Bucuresti vs CS Universitatea Craiova (Lương Sơn) BLV TÂY MÔN KHÁNH flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/TAYMONKHANH.flv?expire=1788427256&sign=b79b5be508185d24f76a0b1effca53da
 #EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/1a8729f6837d72a8092aaabd02695c2b.png",07h30 ngày 23/05 FC Tulsa vs Hartford Athletic (Khán Đài A) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia3.me/
@@ -85,110 +73,54 @@ https://www3.f2k3.shop/live/87b8a02016610052ff23e50744f98f77/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia3.me/
 https://www3.f2k3.shop/live/e699af6f4692703a8c718f285b40deb2/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_142853_d070e820.png",18h00 ngày 25/05 Bhutan W vs Nepal W (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/m5x1/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_142853_d070e820.png",18h00 ngày 25/05 Bhutan W vs Nepal W (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/m5x1.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130617_0cab151b.png",20h00 ngày 25/05 Hvidovre vs Esbjerg (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/max/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130617_0cab151b.png",20h00 ngày 25/05 Hvidovre vs Esbjerg (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/max.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130617_0cab151b.png",20h00 ngày 25/05 Hvidovre vs Esbjerg (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/maxhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130617_0cab151b.png",20h00 ngày 25/05 Hvidovre vs Esbjerg (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/maxhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130917_57e82f4f.png",21h00 ngày 25/05 Notts County vs Salford City (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinho/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130917_57e82f4f.png",21h00 ngày 25/05 Notts County vs Salford City (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinho.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130917_57e82f4f.png",21h00 ngày 25/05 Notts County vs Salford City (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinhohd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130917_57e82f4f.png",21h00 ngày 25/05 Notts County vs Salford City (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinhohd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144844_4f0ea1da.png",23h00 ngày 25/05 Budaiya vs Al Najma (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitieu/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/chuoibo/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144844_4f0ea1da.png",23h00 ngày 25/05 Budaiya vs Al Najma (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitieu.flv
+https://gckc0525.edgemaxcdn.org/live/chuoibo.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144844_4f0ea1da.png",23h00 ngày 25/05 Budaiya vs Al Najma (Chuối Chiên) FHD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitieuhd/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/chuoibohd/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144844_4f0ea1da.png",23h00 ngày 25/05 Budaiya vs Al Najma (Chuối Chiên) FHD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitieuhd.flv
+https://gckc0525.edgemaxcdn.org/live/chuoibohd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144534_a8a30f8c.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibo/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/max/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144534_a8a30f8c.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibo.flv
+https://gckc0525.edgemaxcdn.org/live/max.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144534_a8a30f8c.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 (Chuối Chiên) FHD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibohd/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/maxhd/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_144534_a8a30f8c.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 (Chuối Chiên) FHD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibohd.flv
+https://gckc0525.edgemaxcdn.org/live/maxhd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130303_42c0f4e9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/max/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/chuoibo/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130303_42c0f4e9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/max.flv
+https://gckc0525.edgemaxcdn.org/live/chuoibo.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130303_42c0f4e9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg (Chuối Chiên) FHD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/maxhd/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/chuoibohd/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_130303_42c0f4e9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg (Chuối Chiên) FHD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/maxhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133901_efb6a068.png",03h30 ngày 26/05 Comerciantes Unidos vs Deportivo Garcilaso (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoichay/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133901_efb6a068.png",03h30 ngày 26/05 Comerciantes Unidos vs Deportivo Garcilaso (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoichay.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133901_efb6a068.png",03h30 ngày 26/05 Comerciantes Unidos vs Deportivo Garcilaso (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoichayhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_133901_efb6a068.png",03h30 ngày 26/05 Comerciantes Unidos vs Deportivo Garcilaso (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoichayhd.flv
+https://gckc0525.edgemaxcdn.org/live/chuoibohd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_131723_0cdd41c5.png",04h00 ngày 26/05 Miramar vs Fenix (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
@@ -245,351 +177,414 @@ https://www3.f2k3.shop/live/a60cdd817beb680017f46a5c111202f7/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem2.gv08.live/
 https://www3.f2k3.shop/live/829f44b193d50a1f8dcb948fab6a0983/playlist.m3u8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV ROBBEN] (Socolive) flv
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV 7UP] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-527383_lsd.flv?auth_key=1779715795-0-0-9dd61642c00d9a95c0f0229f2f650631
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV ROBBEN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-534219_lsd.flv?auth_key=1779735595-0-0-c30aaab603043f21a941eff13082650c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV 7UP] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-527383_lhd.flv?auth_key=1779715795-0-0-7df9dfc9ed5801bcc33ff70eac1dabd3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV ROBBEN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-534219_lhd.flv?auth_key=1779735595-0-0-4589c3c70563d4558759bf0f4eb8c709
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV 7UP] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-527383_lsd.m3u8?auth_key=1779715795-0-0-9455f48e4d232389ae004bcd6d9909f2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV ROBBEN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-534219_lsd.m3u8?auth_key=1779735595-0-0-80f88f2fe79980c4f8c8ff8debd923ce
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV 7UP] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-527383_lhd.m3u8?auth_key=1779715795-0-0-08a08c8d6c22a4ab25f5f0ef324da865
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV ENZO] (Socolive) flv
+https://pull.niues.live/live/stream-534219_lhd.m3u8?auth_key=1779735595-0-0-f41eb15326f269de68a8104a7a3d088c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV Củ Cải] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-380460_lsd.flv?auth_key=1779715795-0-0-ad93ae3aedc143294c328124d8856fd0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV ENZO] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912091_lsd.flv?auth_key=1779735595-0-0-950524afcf0e1cc25be0d9b6e9e8b45d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV Củ Cải] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-380460_lhd.flv?auth_key=1779715795-0-0-0cf13c70b5270cff760b57cc3d66af2a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV ENZO] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912091_lhd.flv?auth_key=1779735595-0-0-5341a9c30ec0f5fef2e67447f5578797
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV Củ Cải] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-380460_lsd.m3u8?auth_key=1779715795-0-0-6c4fb3f4745b1b1ce8b6c09575b33580
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV ENZO] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912091_lsd.m3u8?auth_key=1779735595-0-0-d006653cc561c47447114352e2bb0956
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [BLV Củ Cải] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-380460_lhd.m3u8?auth_key=1779715795-0-0-436e15b6fe690d3da2034dba225ea878
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CR Bưởi] (Socolive) flv
+https://pull.niues.live/live/stream-9912091_lhd.m3u8?auth_key=1779735595-0-0-d5cdf75e7369db5759a875ca5087b59d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [LOKA] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-387694_lsd.flv?auth_key=1779715795-0-0-bf6304cdeafb6b85bb7466020acea901
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CR Bưởi] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-589848_lsd.flv?auth_key=1779735595-0-0-88b0b987cb9d8c4e9776c0a38d181d71
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [LOKA] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-387694_lhd.flv?auth_key=1779715795-0-0-7a26afe2846182f5fdbb114fb81bb1af
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CR Bưởi] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-589848_lhd.flv?auth_key=1779735595-0-0-fdd353e9f06238ef7b0740bc6b45a64e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [LOKA] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-387694_lsd.m3u8?auth_key=1779715795-0-0-8a378a1c61822e99477a85a8b72dd31f
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CR Bưởi] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-589848_lsd.m3u8?auth_key=1779735595-0-0-8f95755ab6e68d829cab7e4c04a48728
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [LOKA] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-387694_lhd.m3u8?auth_key=1779715795-0-0-92376518417f3e2f9b028c651a58aff1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV COZY] (Socolive) flv
+https://pull.niues.live/live/stream-589848_lhd.m3u8?auth_key=1779735595-0-0-f95327abd96ad9c1aef486d1fc7bce8a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV LION] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-531989_lsd.flv?auth_key=1779715795-0-0-a9cb571a20fbc82317967602f2062e4f
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV COZY] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-603255_lsd.flv?auth_key=1779735595-0-0-2bfb41e6cc373d09ea11af998c883aa8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV LION] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-531989_lhd.flv?auth_key=1779715795-0-0-d9337b6076a97b6714c39793ddcb68ea
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV COZY] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-603255_lhd.flv?auth_key=1779735595-0-0-585f321fc00699496de06a79be500468
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV LION] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-531989_lsd.m3u8?auth_key=1779715795-0-0-b1ed45d0ff8f54fa72cd2165252e5818
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV COZY] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-603255_lsd.m3u8?auth_key=1779735595-0-0-64c5d73c4d35cb2af5903b83fccebf92
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV LION] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-531989_lhd.m3u8?auth_key=1779715795-0-0-53c44cb8a04055a03b35426202917fb8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV LION] (Socolive) flv
+https://pull.niues.live/live/stream-603255_lhd.m3u8?auth_key=1779735595-0-0-213e1212d1c9f5147a95bf38610005b2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5f38ee00794c7f46839ec86e77e4c79d.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-603255_lsd.flv?auth_key=1779715795-0-0-f3839a9c55df2ad33898cd408b6845cf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV LION] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1779735595-0-0-236eaaa56ab998c141ba4486910ced9f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5f38ee00794c7f46839ec86e77e4c79d.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-603255_lhd.flv?auth_key=1779715795-0-0-2defc420fd58a8d89bce34b38650c80c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV LION] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1779735595-0-0-1e7f8551341b5aa363eaa158ecc03747
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5f38ee00794c7f46839ec86e77e4c79d.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-603255_lsd.m3u8?auth_key=1779715795-0-0-8765e153dec8553765b6a06dfe3ada5e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV LION] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1779735595-0-0-6d498959227bb2b42042cd72d3803bff
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5f38ee00794c7f46839ec86e77e4c79d.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-603255_lhd.m3u8?auth_key=1779715795-0-0-2205a55a038be27ecb377d628f3a14be
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [XUÂN SON] (Socolive) flv
+https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1779735595-0-0-81a4b0e09b42165cc1146665c4b40375
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV FIREMAN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lsd.flv?txSecret=0caf2a933c04216af89d6be32b5a230c&txTime=6a149523
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [XUÂN SON] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-991140_lsd.flv?auth_key=1779735955-0-0-70ff70d822d1d3e297f29dfe93f957f5
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV FIREMAN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lhd.flv?txSecret=6ebfb00a6168880de2dfd1e81dcf29d0&txTime=6a149523
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [XUÂN SON] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-991140_lhd.flv?auth_key=1779735955-0-0-95c0fda6ce854d9c545e20d48d5f1b52
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV FIREMAN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lsd.m3u8?txSecret=0caf2a933c04216af89d6be32b5a230c&txTime=6a149523
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [XUÂN SON] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-991140_lsd.m3u8?auth_key=1779735955-0-0-6f78778c22a5b6cee583f8419df1093c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV FIREMAN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lhd.m3u8?txSecret=6ebfb00a6168880de2dfd1e81dcf29d0&txTime=6a149523
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [HUNTER] (Socolive) flv
+https://pull.niues.live/live/stream-991140_lhd.m3u8?auth_key=1779735955-0-0-7029c9896e55b682cfa97afc3621f070
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV COZY] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-558264_lsd.flv?auth_key=1779715795-0-0-077049c622390f9942350da9e700ec8b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [HUNTER] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-531989_lsd.flv?auth_key=1779735955-0-0-69dca3cf6ad56146d375b580e4d86fe8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV COZY] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-558264_lhd.flv?auth_key=1779715795-0-0-ad987ab7e57a91b4845bf58a667c9778
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [HUNTER] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-531989_lhd.flv?auth_key=1779735955-0-0-cc87a5764d39e18c2a594e3782cdc259
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV COZY] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-558264_lsd.m3u8?auth_key=1779715795-0-0-8ed7c4175efd9a32a9bdda8a082d279b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [HUNTER] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-531989_lsd.m3u8?auth_key=1779735955-0-0-df215d24c23631d422369b89dc214262
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV COZY] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-558264_lhd.m3u8?auth_key=1779715795-0-0-a5594883419fc64912f8c0bc4ea949fe
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV THÓC] (Socolive) flv
+https://pull.niues.live/live/stream-531989_lhd.m3u8?auth_key=1779735955-0-0-62dc357c8ed654841ac5481e18837538
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [THẠCH TÚ] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-606448_lsd.flv?auth_key=1779715795-0-0-05c8fcaac88970c4831dc808231897bc
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV THÓC] (Socolive) hdFlv
+https://pull.niur.live/live/stream-9912116_lsd.flv?txSecret=0753b6d47494b515b50e6ce443fc33f4&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [THẠCH TÚ] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-606448_lhd.flv?auth_key=1779715795-0-0-ee35a08de758aaacd394c1a1735490b2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV THÓC] (Socolive) m3u8
+https://pull.niur.live/live/stream-9912116_lhd.flv?txSecret=e39a4409290ea87f5006c28de469d8b4&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [THẠCH TÚ] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-606448_lsd.m3u8?auth_key=1779715795-0-0-2ea243a50ba780fb2f5f1b126fe1a3d1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV THÓC] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-9912116_lsd.m3u8?txSecret=0753b6d47494b515b50e6ce443fc33f4&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [THẠCH TÚ] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-606448_lhd.m3u8?auth_key=1779715795-0-0-bf98ff86096b1833539d8ff156079bf0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV KEM] (Socolive) flv
+https://pull.niur.live/live/stream-9912116_lhd.m3u8?txSecret=e39a4409290ea87f5006c28de469d8b4&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [CR Bưởi] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-513394_lsd.flv?auth_key=1779716155-0-0-ec3ff5d0231dbe4ee62243b390e3aca1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV KEM] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-387694_lsd.flv?auth_key=1779736315-0-0-53c772142ee8b82da35940ef7e9ea2b0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [CR Bưởi] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-513394_lhd.flv?auth_key=1779716155-0-0-f1b039c6cb29b1be45947473d7e9b473
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV KEM] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-387694_lhd.flv?auth_key=1779736315-0-0-f7d58cb9da50eb0616d72aea02255773
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [CR Bưởi] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-513394_lsd.m3u8?auth_key=1779716155-0-0-01316816975e571c5ce6b6e16637620d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV KEM] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-387694_lsd.m3u8?auth_key=1779736315-0-0-008caac16dfa59fc66181572b6a6f6a8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [CR Bưởi] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-513394_lhd.m3u8?auth_key=1779716155-0-0-739e37a4f883d8b018857b8f99e402f5
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV VITAMIN] (Socolive) flv
+https://pull.niues.live/live/stream-387694_lhd.m3u8?auth_key=1779736315-0-0-d979689176d89b0682ff1549672dfad5
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VIP] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-400722_lsd.flv?auth_key=1779716155-0-0-9a490b761212272eb71b6a34159add09
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV VITAMIN] (Socolive) hdFlv
+https://pull.niur.live/live/stream-491873_lsd.flv?txSecret=0dc1fc4f616f0fd91ff0d1ef0942fec3&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VIP] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-400722_lhd.flv?auth_key=1779716155-0-0-a87c1b8f1593579f006bf87bb1037e97
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV VITAMIN] (Socolive) m3u8
+https://pull.niur.live/live/stream-491873_lhd.flv?txSecret=cf0b6f47ef7b317a622bd0d325b1b4ec&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VIP] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-400722_lsd.m3u8?auth_key=1779716155-0-0-51bf0b30d1f26e96cca8167adf4f6a93
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV VITAMIN] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-491873_lsd.m3u8?txSecret=0dc1fc4f616f0fd91ff0d1ef0942fec3&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VIP] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-400722_lhd.m3u8?auth_key=1779716155-0-0-3427665c487a6177bde81954008cb32d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [TYPN] (Socolive) flv
+https://pull.niur.live/live/stream-491873_lhd.m3u8?txSecret=cf0b6f47ef7b317a622bd0d325b1b4ec&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV MIXI] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912009_lsd.flv?txSecret=e8c4c7cd8d584d3ba7dbf3dba058f417&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [TYPN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-290928_lsd.flv?auth_key=1779736315-0-0-3a401c1e35808c907e9f77278cfb5eae
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV MIXI] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912009_lhd.flv?txSecret=9a89c5a07a4396eac5b5ea6b1aa123ca&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [TYPN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-290928_lhd.flv?auth_key=1779736315-0-0-8f80b0ddd0bf648b30592005b4fa50c3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV MIXI] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912009_lsd.m3u8?txSecret=e8c4c7cd8d584d3ba7dbf3dba058f417&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [TYPN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-290928_lsd.m3u8?auth_key=1779736315-0-0-e8253970b75264e54aab89765264ecc2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV MIXI] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912009_lhd.m3u8?txSecret=9a89c5a07a4396eac5b5ea6b1aa123ca&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV PEWPEW] (Socolive) flv
+https://pull.niues.live/live/stream-290928_lhd.m3u8?auth_key=1779736315-0-0-b754954a1b73ef7efa36d7dd4b35f217
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [A BỆU] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912015_lsd.flv?auth_key=1779716155-0-0-0ee753e2b504a54dcbd86f1bb8ba60ce
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV PEWPEW] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-484845_lsd.flv?auth_key=1779736315-0-0-dce03651badcfef6ec1f0724ac1714ac
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [A BỆU] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912015_lhd.flv?auth_key=1779716155-0-0-40b169a59e3caa93e766e45ae0c739a3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV PEWPEW] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-484845_lhd.flv?auth_key=1779736315-0-0-d07a014b28cb33c7d2cbeca6a694d805
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [A BỆU] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912015_lsd.m3u8?auth_key=1779716155-0-0-60acae92e4e87933ab31fbb792f61757
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV PEWPEW] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-484845_lsd.m3u8?auth_key=1779736315-0-0-58024f9508854e2666a92e97f466b5ad
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [A BỆU] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912015_lhd.m3u8?auth_key=1779716155-0-0-6d7baa0dbfce220e4da3acbdccd3026e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV VIP] (Socolive) flv
+https://pull.niues.live/live/stream-484845_lhd.m3u8?auth_key=1779736315-0-0-e9b2d968907151b2476f46d4ff4db1ac
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VITAMIN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-491873_lsd.flv?txSecret=5df3394d919349eba65b698037bef3e2&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV VIP] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-400722_lsd.flv?auth_key=1779736315-0-0-31e42bb0ec222f5f993654b47e034586
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VITAMIN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-491873_lhd.flv?txSecret=7eea678b09d967471dcb1c953a142a8c&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV VIP] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-400722_lhd.flv?auth_key=1779736315-0-0-5c422945c2506ae9790e54d1570f9b29
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VITAMIN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-491873_lsd.m3u8?txSecret=5df3394d919349eba65b698037bef3e2&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV VIP] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-400722_lsd.m3u8?auth_key=1779736315-0-0-8c4151186a1901f13fb9e2836f4cb98b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV VITAMIN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-491873_lhd.m3u8?txSecret=7eea678b09d967471dcb1c953a142a8c&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV KAN] (Socolive) flv
+https://pull.niues.live/live/stream-400722_lhd.m3u8?auth_key=1779736315-0-0-07fa858c0b2652febeb97a3ef57c7c4c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [LÃO LÂM] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lsd.flv?txSecret=2a15a501981a8ab6741a26aeea713dff&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV KAN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-527384_lsd.flv?auth_key=1779736315-0-0-1c598ed7634e72a60f6fe532cc365a33
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [LÃO LÂM] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lhd.flv?txSecret=8a161bf22ffe7997d83fdf81d9f2fa84&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV KAN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-527384_lhd.flv?auth_key=1779736315-0-0-ddf5bb9fcadf69fe795ac91449e82c90
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [LÃO LÂM] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lsd.m3u8?txSecret=2a15a501981a8ab6741a26aeea713dff&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV KAN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-527384_lsd.m3u8?auth_key=1779736315-0-0-348001ac00495630dde350b60a72cb6e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/d2cd6767ccecd6820c47a596afbefb60.png",00h15 ngày 26/05 Sandefjord vs Fredrikstad [LÃO LÂM] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lhd.m3u8?txSecret=8a161bf22ffe7997d83fdf81d9f2fa84&txTime=6a14968b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [BLV HENRY] (Socolive) flv
+https://pull.niues.live/live/stream-527384_lhd.m3u8?auth_key=1779736315-0-0-bb737ebe540d34474d3fb864e94efd01
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [CÔNG CHẤT] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912112_lsd.flv?auth_key=1779716155-0-0-e6b86aaa895d8c98f8b7deaa162d00a7
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [BLV HENRY] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-291277_lsd.flv?auth_key=1779736315-0-0-8846523fc0863f240326bb09cded12f6
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [CÔNG CHẤT] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912112_lhd.flv?auth_key=1779716155-0-0-9a36b54dc966b11d2bf7fadeb41c8409
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [BLV HENRY] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-291277_lhd.flv?auth_key=1779736315-0-0-f2e3bd709c45c8d09da82db0b186c1f4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [CÔNG CHẤT] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912112_lsd.m3u8?auth_key=1779716155-0-0-edae017193bb8d47f136d0984fad8e90
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/575aba2afae2152cbb3b652c3b9f08ee.png",19h00 ngày 25/05 Quezon City vs Bulacan Kuyas [BLV HENRY] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-291277_lsd.m3u8?auth_key=1779736315-0-0-a061742a89a9548a7c2a5ceffaab380e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [CÔNG CHẤT] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912112_lhd.m3u8?auth_key=1779716155-0-0-1fe8baee970c9898a9e602eab5923d47
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV YONE] (Socolive) flv
+https://pull.niues.live/live/stream-291277_lhd.m3u8?auth_key=1779736315-0-0-c1dab8e71bbf975b48c9c311232cd8f3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV BÉO] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-372746_lsd.flv?auth_key=1779716155-0-0-0dcbde95df00e94c9d2d6ed5062cfcca
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV YONE] (Socolive) hdFlv
+https://pull.niur.live/live/stream-459401_lsd.flv?txSecret=f1ac01507ecb29a99a1ded2f3b507c3c&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV BÉO] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-372746_lhd.flv?auth_key=1779716155-0-0-8a912f605bd8215c8c4c5c646456b837
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV YONE] (Socolive) m3u8
+https://pull.niur.live/live/stream-459401_lhd.flv?txSecret=3d998b9b8035a413c5f26e2e12ff4af1&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV BÉO] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-372746_lsd.m3u8?auth_key=1779716155-0-0-2c3c7b64cb98b095b9d428ad14dbc57b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [BLV YONE] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-459401_lsd.m3u8?txSecret=f1ac01507ecb29a99a1ded2f3b507c3c&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/42c6c4388a3908920d498fc7d21d29cf.png",00h00 ngày 26/05 Elfsborg vs Hacken [BLV BÉO] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-372746_lhd.m3u8?auth_key=1779716155-0-0-a773609b7fb7629536ea222fe8c6a004
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260521/7df87d21a70a12de2e2eb121d040fb3f.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
+https://pull.niur.live/live/stream-459401_lhd.m3u8?txSecret=3d998b9b8035a413c5f26e2e12ff4af1&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV PEWPEW] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1779716155-0-0-6e2fdefcffecad5bc50a9e81e73acafb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260521/7df87d21a70a12de2e2eb121d040fb3f.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912015_lsd.flv?auth_key=1779736315-0-0-7206e6a0ed8bb688589f63947d0761ed
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV PEWPEW] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1779716155-0-0-1cf8aba70dbd0868af40e6908fd74791
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260521/7df87d21a70a12de2e2eb121d040fb3f.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912015_lhd.flv?auth_key=1779736315-0-0-db25ea258e5f4b2dc9d037b978d94fe2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV PEWPEW] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1779716155-0-0-f3485597db82d6874da1fd52b8339b9a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260521/7df87d21a70a12de2e2eb121d040fb3f.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912015_lsd.m3u8?auth_key=1779736315-0-0-44cd522aa6528dbaa6480bd13de63f5d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV PEWPEW] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1779716155-0-0-89d28ef20aed220c094816ff20d2325b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [THẠCH TÚ] (Socolive) flv
+https://pull.niues.live/live/stream-9912015_lhd.m3u8?auth_key=1779736315-0-0-ec39ac3a6a559d4de5ee487c2bc30cd8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV XO] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lsd.flv?txSecret=8e9bde160c204e8147b3b591a047c77d&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [THẠCH TÚ] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-472241_lsd.flv?auth_key=1779736315-0-0-923d3b86aae62893f055f4e2cc58a444
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV XO] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lhd.flv?txSecret=1744227670bf396a0d2fe94917159c45&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [THẠCH TÚ] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-472241_lhd.flv?auth_key=1779736315-0-0-9dea7eeee5f843c029566c2100a010aa
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV XO] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lsd.m3u8?txSecret=8e9bde160c204e8147b3b591a047c77d&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [THẠCH TÚ] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-472241_lsd.m3u8?auth_key=1779736315-0-0-07899c4dfb5c0f675b786b3d2b4eba6b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [BLV XO] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-9912116_lhd.m3u8?txSecret=1744227670bf396a0d2fe94917159c45&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV FIREMAN] (Socolive) flv
+https://pull.niues.live/live/stream-472241_lhd.m3u8?auth_key=1779736315-0-0-8166a820fde23cb583771645b3f9af4f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [XUÂN SON] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-991140_lsd.flv?auth_key=1779716515-0-0-b8453993b1d28ae9746bf1e29b9a8f5e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV FIREMAN] (Socolive) hdFlv
+https://pull.niur.live/live/stream-501412_lsd.flv?txSecret=d00a5934e4c612f8dc321b45797bca01&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [XUÂN SON] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-991140_lhd.flv?auth_key=1779716515-0-0-0714ec64edb167b25e2b861832d92f03
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV FIREMAN] (Socolive) m3u8
+https://pull.niur.live/live/stream-501412_lhd.flv?txSecret=195cf90f94e5b5afe9aa2b102af2b659&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [XUÂN SON] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-991140_lsd.m3u8?auth_key=1779716515-0-0-cb7ad2ccfb3d07c86f06aaec0aeb2ec6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/5de30303723679fd51d4326d017dc395.png",18h30 ngày 25/05 Croatia U17 vs Belgium U17 [BLV FIREMAN] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-501412_lsd.m3u8?txSecret=d00a5934e4c612f8dc321b45797bca01&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [XUÂN SON] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-991140_lhd.m3u8?auth_key=1779716515-0-0-ff0ce545f229e564dbc8c7dd069cea22
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV TOMIA] (Socolive) flv
+https://pull.niur.live/live/stream-501412_lhd.m3u8?txSecret=195cf90f94e5b5afe9aa2b102af2b659&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV SATIVA] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912008_lsd.flv?auth_key=1779716515-0-0-b58ae3b04e07545a8d4da561c1c5ff51
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV TOMIA] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-321443_lsd.flv?auth_key=1779736315-0-0-d396400824357a0b3e2a48a2dd3dc946
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV SATIVA] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912008_lhd.flv?auth_key=1779716515-0-0-6c958ee2918d70ca4a835ad398f1b2fa
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV TOMIA] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-321443_lhd.flv?auth_key=1779736315-0-0-1afb9e7f9468b954c2ae85ca4c9501a3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV SATIVA] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912008_lsd.m3u8?auth_key=1779716515-0-0-514f36d978d029cd1cee762fb5615afb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [BLV TOMIA] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-321443_lsd.m3u8?auth_key=1779736315-0-0-db46d5bb635e1144f0608a5f0be8dab0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV SATIVA] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912008_lhd.m3u8?auth_key=1779716515-0-0-d2a760cfe54dea25cf6750ee177b8094
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CÔNG CHẤT] (Socolive) flv
+https://pull.niues.live/live/stream-321443_lhd.m3u8?auth_key=1779736315-0-0-0fdc1f4ac4297338e9087f640d0627bb
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV CÒ] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-291277_lsd.flv?auth_key=1779716515-0-0-0c04eaa2dc3f36d52d610f0062a249e2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CÔNG CHẤT] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-582342_lsd.flv?auth_key=1779736315-0-0-7c2097637a6fc475e2bf1bd5bc6f1592
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV CÒ] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-291277_lhd.flv?auth_key=1779716515-0-0-62d00e937fce2eba9fc7b31d42f70b02
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CÔNG CHẤT] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-582342_lhd.flv?auth_key=1779736315-0-0-b8b64fdcbeef469992d2908baf3977e5
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV CÒ] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-291277_lsd.m3u8?auth_key=1779716515-0-0-119a52ae2d0831baf58d31ee5cac3eb6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/28499fa66d41cfbf0b4a32a7801579d8.png",19h30 ngày 25/05 Start Kristiansand vs Vålerenga Fotball Elite [CÔNG CHẤT] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-582342_lsd.m3u8?auth_key=1779736315-0-0-eaa08fc9052d721b2924a3bb9b289999
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/c127d886a8c1fbc6d967edd0d65ee392.png",00h00 ngày 26/05 IFK Goteborg vs Mjallby AIF [BLV CÒ] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-291277_lhd.m3u8?auth_key=1779716515-0-0-85382a4bf6392506fb60667b43213b48
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV CÒ] (Socolive) flv
+https://pull.niues.live/live/stream-582342_lhd.m3u8?auth_key=1779736315-0-0-3655a9db8b73d46e4c380d4a9a5b1b7a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV CÁO] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-582342_lsd.flv?auth_key=1779716515-0-0-e6873f8200a58a00d4262ad8b2b5e891
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV CÒ] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-597929_lsd.flv?auth_key=1779736315-0-0-78a983e851a9d159099dc1d1582af421
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV CÁO] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-582342_lhd.flv?auth_key=1779716515-0-0-ce8c793fe723d0733b253c29014d454d
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV CÒ] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-597929_lhd.flv?auth_key=1779736315-0-0-33fc7c6b8d3d086b25e6e802041fac1b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV CÁO] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-582342_lsd.m3u8?auth_key=1779716515-0-0-dafae7318c2d5946d250d2a3b44e508b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV CÒ] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-597929_lsd.m3u8?auth_key=1779736315-0-0-261f13199680b68ddae19b2fcd8a2b2e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/a9b2951175f4f60217b14f74b03f7671.png",00h30 ngày 26/05 FC Rapid 1923 vs CS Universitatea Craiova [BLV CÁO] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-582342_lhd.m3u8?auth_key=1779716515-0-0-09ed226197c07cc41a2998fee9192eec
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV RAMBO] (Socolive) flv
+https://pull.niues.live/live/stream-597929_lhd.m3u8?auth_key=1779736315-0-0-7b84167a44418e350eab1c1c7c0afe73
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV ALEX] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lsd.flv?txSecret=8a8240a6baebb9f00d7597d2b32e14a2&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV RAMBO] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-532081_lsd.flv?auth_key=1779736315-0-0-f44d1aea33a17641f511b71f4b1087ff
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV ALEX] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lhd.flv?txSecret=8cdb0e82273f2529c93d40d6e43eb105&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV RAMBO] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-532081_lhd.flv?auth_key=1779736315-0-0-d67f82b0215714ca77557a4a5a617b6f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV ALEX] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lsd.m3u8?txSecret=8a8240a6baebb9f00d7597d2b32e14a2&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/4351d1a09d3ffdb1571ca4089c0a2d2a.png",18h00 ngày 25/05 Kolding FC vs Hillerod Fodbold [BLV RAMBO] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-532081_lsd.m3u8?auth_key=1779736315-0-0-cbef762851eb05eddeea7a8f2b523148
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV ALEX] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lhd.m3u8?txSecret=8cdb0e82273f2529c93d40d6e43eb105&txTime=6a1497f3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [BLV SATIVA] (Socolive) flv
+https://pull.niues.live/live/stream-532081_lhd.m3u8?auth_key=1779736315-0-0-1de76fef835093e612ecb848607e1803
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/2ad2ac2327330ccf092820bba7434c8b.png",00h30 ngày 26/05 Ludogorets Razgrad vs CSKA Sofia [ĐỖ TÚ TÀI] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-321443_lsd.flv?auth_key=1779716515-0-0-dacf4e1337e3e5f3b5295b5f3b24ebe1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [BLV SATIVA] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-607552_lsd.flv?auth_key=1779736315-0-0-8955e10e371b812d006e96b29fc8a1a4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/2ad2ac2327330ccf092820bba7434c8b.png",00h30 ngày 26/05 Ludogorets Razgrad vs CSKA Sofia [ĐỖ TÚ TÀI] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-321443_lhd.flv?auth_key=1779716515-0-0-5610d41779f0db614c64e6d3b8e0785e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [BLV SATIVA] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-607552_lhd.flv?auth_key=1779736315-0-0-f971fba8d40bd7b5815ec6c5714f6e91
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/2ad2ac2327330ccf092820bba7434c8b.png",00h30 ngày 26/05 Ludogorets Razgrad vs CSKA Sofia [ĐỖ TÚ TÀI] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-321443_lsd.m3u8?auth_key=1779716515-0-0-41c5a8a2efde2fa6b573be1bdb83fc67
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/39359b00e0ae51fd0bb5efb3e5cd599d.png",19h00 ngày 25/05 Drukpa FC vs Tsirang FC [BLV SATIVA] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-607552_lsd.m3u8?auth_key=1779736315-0-0-2ee10c3d4ac976009d20ad7c4a7d81ed
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/2ad2ac2327330ccf092820bba7434c8b.png",00h30 ngày 26/05 Ludogorets Razgrad vs CSKA Sofia [ĐỖ TÚ TÀI] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-321443_lhd.m3u8?auth_key=1779716515-0-0-f5c24f98daf8de0a486163783fe0aa32
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [HÀ DUY KIÊN] (Socolive) flv
+https://pull.niues.live/live/stream-607552_lhd.m3u8?auth_key=1779736315-0-0-8bdd376cd1bfa0c0feec93ebe0b975d6
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [TRÀ ĐÁ] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-607400_lsd.flv?auth_key=1779716515-0-0-566f62eacf7c41dd48122a761849ba23
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [HÀ DUY KIÊN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-603914_lsd.flv?auth_key=1779736315-0-0-bd4da71c9607e5b810e23b8ea3f0010b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [TRÀ ĐÁ] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-607400_lhd.flv?auth_key=1779716515-0-0-4c6b9ba138901c69a50579d708a3395e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [HÀ DUY KIÊN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-603914_lhd.flv?auth_key=1779736315-0-0-27ab8f5668b088504bb67b0a9363d2d3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [TRÀ ĐÁ] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-607400_lsd.m3u8?auth_key=1779716515-0-0-f17ed40239a13989cd7d781958e8a643
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260522/3d5d632c65f1f955f3e4c87e7ae58547.png",20h00 ngày 25/05 Hvidovre IF vs Esbjerg [HÀ DUY KIÊN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-603914_lsd.m3u8?auth_key=1779736315-0-0-328ca316287022ddb42d8f8ecb014b83
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [TRÀ ĐÁ] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-607400_lhd.m3u8?auth_key=1779716515-0-0-adde8bab117b805b0d027be1479a1df3
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",18h30 25/05 Croatia U17 vs Belgium U17 (Hội Quán) FHD 
+https://pull.niues.live/live/stream-603914_lhd.m3u8?auth_key=1779736315-0-0-f5eeb1d6ff67a387ea3ca374d991443c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV GÔN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phananh/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",18h30 25/05 Croatia U17 vs Belgium U17 (Hội Quán) HD 
+https://pull.niur.live/live/stream-445260_lsd.flv?txSecret=4e7e1ad237a390c22d6e8b84361b845d&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV GÔN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phananh/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",18h30 25/05 Croatia U17 vs Belgium U17 (Hội Quán) SD 
+https://pull.niur.live/live/stream-445260_lhd.flv?txSecret=fb5523592010be4db0e8b7a5df2b53b2&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV GÔN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phananh/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Wawrinka_RG19_%2816%29_%2848199015787%29.jpg/960px-Wawrinka_RG19_%2816%29_%2848199015787%29.jpg",18h00 25/05 Stan Wawrinka vs Jesper De Jong (Hội Quán) FHD 
+https://pull.niur.live/live/stream-445260_lsd.m3u8?txSecret=4e7e1ad237a390c22d6e8b84361b845d&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV GÔN] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-445260_lhd.m3u8?txSecret=fb5523592010be4db0e8b7a5df2b53b2&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV A WIN] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-536185_lsd.flv?auth_key=1779736315-0-0-eaff483094be71277e413f46d9656bf2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV A WIN] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-536185_lhd.flv?auth_key=1779736315-0-0-f0bfbd79824c8dd0aa5f49820700a109
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV A WIN] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-536185_lsd.m3u8?auth_key=1779736315-0-0-489ab10e55833c8c3105be97211b329f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV A WIN] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-536185_lhd.m3u8?auth_key=1779736315-0-0-2458ea52c0302698b40b2121f76b69b9
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/bd1e5225316aa6086d7b2ed8c311eb33.png",23h30 ngày 25/05 Split vs Cibona [BRIAN] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912106_lsd.flv?auth_key=1779736315-0-0-3d9b5985d31715c1e8abb4d9229bfdb4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/bd1e5225316aa6086d7b2ed8c311eb33.png",23h30 ngày 25/05 Split vs Cibona [BRIAN] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912106_lhd.flv?auth_key=1779736315-0-0-91743cea6d1cf517328fb762c1d2a895
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/bd1e5225316aa6086d7b2ed8c311eb33.png",23h30 ngày 25/05 Split vs Cibona [BRIAN] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912106_lsd.m3u8?auth_key=1779736315-0-0-34a625a1e789745d6652c02285aefb14
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/bd1e5225316aa6086d7b2ed8c311eb33.png",23h30 ngày 25/05 Split vs Cibona [BRIAN] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912106_lhd.m3u8?auth_key=1779736315-0-0-ab558eae50674a218b78bd6fd42ef448
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV HÚP] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-611382_lsd.flv?auth_key=1779736315-0-0-71a6f4fb60a52af43449103a1cb31926
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV HÚP] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-611382_lhd.flv?auth_key=1779736315-0-0-a3aefc83514909cf8888673f4657ea07
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV HÚP] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-611382_lsd.m3u8?auth_key=1779736315-0-0-8586ac477ca0181e58c009d786c1aa0a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/03e9f821d87bf9bc15f1e409cee62042.png",00h30 ngày 26/05 CSKA 1948 Sofia vs Levski Sofia [BLV HÚP] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-611382_lhd.m3u8?auth_key=1779736315-0-0-039c8c73d03e23818eed8322e3282000
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV RAMBO] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-534055_lsd.flv?txSecret=1ef6059997d18f9c3337e20a88cc6364&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV RAMBO] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-534055_lhd.flv?txSecret=43bbebedc68706b429b7a01106040bc0&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV RAMBO] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-534055_lsd.m3u8?txSecret=1ef6059997d18f9c3337e20a88cc6364&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/1ccf6cb269378f6d44b572d3b8ce8288.png",00h00 ngày 26/05 Estonia U17 vs Spain U17 [BLV RAMBO] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-534055_lhd.m3u8?txSecret=43bbebedc68706b429b7a01106040bc0&txTime=6a14e54b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [HẢI THANH] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-599634_lsd.flv?auth_key=1779736315-0-0-076d9e24d2fc3f07ba5559702a512a82
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [HẢI THANH] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-599634_lhd.flv?auth_key=1779736315-0-0-b1e750441e3d2a5dab5e0f770bbb646d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [HẢI THANH] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-599634_lsd.m3u8?auth_key=1779736315-0-0-85f98c580695d1c0c725b90693fe2004
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260523/aa8c2c89e04b1bdfa9180186e190f4c9.png",01h30 ngày 26/05 SC Paderborn 07 vs VfL Wolfsburg [HẢI THANH] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-599634_lhd.m3u8?auth_key=1779736315-0-0-f86980ef82ec64e1b463f2c90667a1e2
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://dothethao.net.vn/wp-content/uploads/2020/06/sc-paderborn-logo-900px.png",01h30 26/05 SC Paderborn 07 vs VfL Wolfsburg (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
 https://hqlive.yarncdn.live/live/hqtv_blv_phanca/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Wawrinka_RG19_%2816%29_%2848199015787%29.jpg/960px-Wawrinka_RG19_%2816%29_%2848199015787%29.jpg",18h00 25/05 Stan Wawrinka vs Jesper De Jong (Hội Quán) HD 
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://dothethao.net.vn/wp-content/uploads/2020/06/sc-paderborn-logo-900px.png",01h30 26/05 SC Paderborn 07 vs VfL Wolfsburg (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
 https://alive.zlylive.com/hqtv_blv_phanca/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Wawrinka_RG19_%2816%29_%2848199015787%29.jpg/960px-Wawrinka_RG19_%2816%29_%2848199015787%29.jpg",18h00 25/05 Stan Wawrinka vs Jesper De Jong (Hội Quán) SD 
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://dothethao.net.vn/wp-content/uploads/2020/06/sc-paderborn-logo-900px.png",01h30 26/05 SC Paderborn 07 vs VfL Wolfsburg (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
 https://alive.zlylive.com/hqtv_blv_phanca/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxgbcQTwQftJppnCiKC9Wed1i6puDevH9m5Q&s",19h00 25/05 Elena Rybakina vs Veronika Erjavec (Hội Quán) FHD 
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://cdn.prod.website-files.com/643e87bf05428401f6b2c705/6638b0089c2b8dc14e652d4f_IMG_BIO_Darina_Webflow.png",22h00 25/05 Daniel Merida Aguilar vs Ben Shelton (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
 https://hqlive.yarncdn.live/live/hqtv_blv_phantu/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxgbcQTwQftJppnCiKC9Wed1i6puDevH9m5Q&s",19h00 25/05 Elena Rybakina vs Veronika Erjavec (Hội Quán) HD 
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://cdn.prod.website-files.com/643e87bf05428401f6b2c705/6638b0089c2b8dc14e652d4f_IMG_BIO_Darina_Webflow.png",22h00 25/05 Daniel Merida Aguilar vs Ben Shelton (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
 https://alive.yarncdn.live/hqtv_blv_phantu/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxgbcQTwQftJppnCiKC9Wed1i6puDevH9m5Q&s",19h00 25/05 Elena Rybakina vs Veronika Erjavec (Hội Quán) SD 
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://cdn.prod.website-files.com/643e87bf05428401f6b2c705/6638b0089c2b8dc14e652d4f_IMG_BIO_Darina_Webflow.png",22h00 25/05 Daniel Merida Aguilar vs Ben Shelton (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
 https://alive.yarncdn.live/hqtv_blv_phantu/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/7fbd8bb9f25d755c1062a28e210186d1.png!w80",18h00 25/05 Kolding vs Hillerod
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/6277e37ca37add055bcf859d528147c8.png!w80",00h15 26/05 Sandefjord vs Fredrikstad
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/82054853.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/0c383e8deecbd58d5cbdfd324132b91f.png!w80",18h30 25/05 Croatia U17 vs Bỉ U17
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/68848594.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/ee17e7b8f55f0f6ffb1f766bc565f9a5.png!w80",19h30 25/05 IK Start vs Valerenga
+https://live05.msdht.app/live/24561735.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/983e56ee1d89379148cbb1d28384b6af.png!w80",00h00 26/05 Elfsborg vs Hacken
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 https://live05.msdht.app/live/87547578.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/865113ccf397b8f317e0681c9c3234dd.png!w80",20h00 25/05 Hvidovre vs Esbjerg
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/41b828223947cae32e97c8cac45fb17f.png!w80",00h00 26/05 Goteborg vs Mjallby
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/75915087.m3u8
+https://live05.msdht.app/live/68848594.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/6bb1babe89fffc1f77f25a47db40c847.png!w80",00h30 26/05 Rapid Bucuresti vs Univ. Craiova
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://live05.msdht.app/live/08552895.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/7c8c3c50966c793eba910e18659759a1.png!w80",01h30 26/05 Paderborn vs VfL Wolfsburg
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://live05.msdht.app/live/33982309.m3u8
