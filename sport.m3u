@@ -1,22 +1,40 @@
 #EXTM3U
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1584_1htkbf6ndy1h.png",06h00 ngày 02/06 CA Penarol vs Central Espanol (Lương Sơn) BLV SHIN m3u
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1780339763.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai (Lương Sơn) BLV YẾN THANH m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/SHIN/index.m3u8?expire=1830276060&sign=2e2271dce625a0d03d328eeed8859587
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/1584_1htkbf6ndy1h.png",06h00 ngày 02/06 CA Penarol vs Central Espanol (Lương Sơn) BLV SHIN flv
+https://hls.cdnfaster-a.live/live/YENTHANH1/index.m3u8?expire=1788427256&sign=a79cc8d996707223a0011d33d04d4582
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1780339763.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai (Lương Sơn) BLV YẾN THANH flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/SHIN.flv?expire=1830276060&sign=2e2271dce625a0d03d328eeed8859587
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/669_165018896247.png",06h00 ngày 02/06 Colombia vs Costa Rica (Lương Sơn) BLV LÝ QUỲ m3u
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://hls.cdnfaster-a.live/live/LYQUY/index.m3u8?expire=1891408380&sign=4eb9451ad0178fa8207d583db7d469e3
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/669_165018896247.png",06h00 ngày 02/06 Colombia vs Costa Rica (Lương Sơn) BLV LÝ QUỲ flv
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
-https://flv.cdnfaster-a.live/live/LYQUY.flv?expire=1891408380&sign=4eb9451ad0178fa8207d583db7d469e3
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/51084_1k37xz2jsf1c.png",05h00 ngày 02/06 Leones del Norte vs Macara (Lương Sơn) BLV VÕ TÒNG m3u
+https://flv.cdnfaster-a.live/live/YENTHANH1.flv?expire=1788427256&sign=a79cc8d996707223a0011d33d04d4582
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1780393310.png",18h00 ngày 02/06 Formosa Dreamers vs New Taipei Kings (Lương Sơn) BLV VÕ TÒNG m3u
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://hls.cdnfaster-a.live/live/VOTONG/index.m3u8?expire=1891347600&sign=cbb47d2000b9576a7b34114624ff8299
-#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/51084_1k37xz2jsf1c.png",05h00 ngày 02/06 Leones del Norte vs Macara (Lương Sơn) BLV VÕ TÒNG flv
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://upload-img.cdnokvip.com/uploads/team_logo/1780393310.png",18h00 ngày 02/06 Formosa Dreamers vs New Taipei Kings (Lương Sơn) BLV VÕ TÒNG flv
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 https://flv.cdnfaster-a.live/live/VOTONG.flv?expire=1891347600&sign=cbb47d2000b9576a7b34114624ff8299
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/61773_1h0y004dk04.png",18h35 ngày 02/06 Yunnan Cuanhe vs Sichuan 318 (Lương Sơn) BLV GẤU KA m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+ https://hls.cdnfaster-a.live/live/GAUKA/index.m3u8?expire=2530553700&sign=778587d85b2551e2baa61a02917ace14
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/61773_1h0y004dk04.png",18h35 ngày 02/06 Yunnan Cuanhe vs Sichuan 318 (Lương Sơn) BLV GẤU KA flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/GAUKA/index.m3u8?expire=2530553700&sign=778587d85b2551e2baa61a02917ace14
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3046_165018985765.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste (Lương Sơn) BLV LÝ ỨNG m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/LYUNG1/index.m3u8?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3046_165018985765.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste (Lương Sơn) BLV LÝ ỨNG flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/LYUNG1.flv?expire=1788427256&sign=d5c6932fefdcb98268754f4ccd4aa45d
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3046_165018985765.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste (Lương Sơn) BLV VƯƠNG LUÂN m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/VUONGLUAN/index.m3u8?expire=1893165900&sign=60fcb5252d4dafeac0cb5da922c56645
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3046_165018985765.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste (Lương Sơn) BLV VƯƠNG LUÂN flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/VUONGLUAN.flv?expire=1893165900&sign=60fcb5252d4dafeac0cb5da922c56645
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3046_165018985765.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste (Lương Sơn) BLV DƯƠNG CHÍ m3u
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://hls.cdnfaster-a.live/live/VANCONAN/index.m3u8?expire=1830276060&sign=53991e2e589a2f7031dd37b82a585e33
+#EXTINF:0 group-title="Lương sơn" tvg-logo="https://cdn-img.cdnokvip.com/logos/3046_165018985765.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste (Lương Sơn) BLV DƯƠNG CHÍ flv
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
+https://flv.cdnfaster-a.live/live/VANCONAN.flv?expire=1830276060&sign=53991e2e589a2f7031dd37b82a585e33
 #EXTINF:0 group-title="Khán đài a" tvg-logo="https://img.sports-data.online/football/team/1a8729f6837d72a8092aaabd02695c2b.png",07h30 ngày 23/05 FC Tulsa vs Hartford Athletic (Khán Đài A) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia3.me/
@@ -37,134 +55,6 @@ https://www3.f2k3.shop/live/87b8a02016610052ff23e50744f98f77/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://khandaia3.me/
 https://www3.f2k3.shop/live/e699af6f4692703a8c718f285b40deb2/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoito/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoito.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitohd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132807_7f305cf9.png",06h00 ngày 02/06 Colombia vs Costa Rica (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitohd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhong/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhong.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhonghd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhonghd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibo/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibo.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibohd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132742_666d88b2.png",08h00 ngày 02/06 Canada vs Uzbekistan (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoibohd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alex/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alex.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alexhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alexhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitay.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132715_358dda20.png",16h00 ngày 02/06 Thailand U19 vs Brunei U19 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinho/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinho.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinhohd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/chuoinhohd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhong/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhong.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhonghd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_125755_bc571b33.png",17h00 ngày 02/06 Metalurh Zaporizhya vs Bukovyna (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhonghd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132717_27d7fb21.png",19h15 ngày 02/06 Brunei vs Timor-Leste (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
@@ -216,32 +106,16 @@ https://gckc0525.edgemaxcdn.org/live/chuoibohd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134345_d31bb816.png",20h00 ngày 02/06 China PR U20 vs Congo DR U20 (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alex/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/ngokhong/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134345_d31bb816.png",20h00 ngày 02/06 China PR U20 vs Congo DR U20 (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alex.flv
+https://gckc0525.edgemaxcdn.org/live/ngokhong.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134345_d31bb816.png",20h00 ngày 02/06 China PR U20 vs Congo DR U20 (Chuối Chiên) FHD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alexhd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134345_d31bb816.png",20h00 ngày 02/06 China PR U20 vs Congo DR U20 (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alexhd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.api-sports.io/Bóng đá/teams/26600.png",22h00 ngày 02/06 Gharraf vs Naft Maysan (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhong/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.api-sports.io/Bóng đá/teams/26600.png",22h00 ngày 02/06 Gharraf vs Naft Maysan (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/ngokhong.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.api-sports.io/Bóng đá/teams/26600.png",22h00 ngày 02/06 Gharraf vs Naft Maysan (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
 https://gckc0525.edgemaxcdn.org/live/ngokhonghd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.api-sports.io/Bóng đá/teams/26600.png",22h00 ngày 02/06 Gharraf vs Naft Maysan (Chuối Chiên) FHD2
+#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134345_d31bb816.png",20h00 ngày 02/06 China PR U20 vs Congo DR U20 (Chuối Chiên) FHD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
 https://gckc0525.edgemaxcdn.org/live/ngokhonghd.flv
@@ -309,22 +183,6 @@ https://gckc0525.edgemaxcdn.org/live/chuoibohd/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
 https://gckc0525.edgemaxcdn.org/live/chuoibohd.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132757_56274e6a.png",00h00 ngày 03/06 Morocco vs Madagascar (Chuối Chiên) HD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/anhbeo/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132757_56274e6a.png",00h00 ngày 03/06 Morocco vs Madagascar (Chuối Chiên) HD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/anhbeo.flv
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132757_56274e6a.png",00h00 ngày 03/06 Morocco vs Madagascar (Chuối Chiên) FHD1
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/anhbeohd/playlist.m3u8
-#EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_132757_56274e6a.png",00h00 ngày 03/06 Morocco vs Madagascar (Chuối Chiên) FHD2
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-#EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/anhbeohd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_134251_66ec2f9b.png",01h45 ngày 03/06 Wales vs Ghana (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
@@ -344,19 +202,19 @@ https://gckc0525.edgemaxcdn.org/live/chuoitayhd.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145017_77e006c2.png",02h00 ngày 03/06 Tanzania U17 vs Senegal U17 (Chuối Chiên) HD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alex/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/ngokhong/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145017_77e006c2.png",02h00 ngày 03/06 Tanzania U17 vs Senegal U17 (Chuối Chiên) HD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alex.flv
+https://gckc0525.edgemaxcdn.org/live/ngokhong.flv
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145017_77e006c2.png",02h00 ngày 03/06 Tanzania U17 vs Senegal U17 (Chuối Chiên) FHD1
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alexhd/playlist.m3u8
+https://gckc0525.edgemaxcdn.org/live/ngokhonghd/playlist.m3u8
 #EXTINF:0 group-title="Chuối chiên" tvg-logo="https://media.chuoichientv.com/media/uploads/20250623_145017_77e006c2.png",02h00 ngày 03/06 Tanzania U17 vs Senegal U17 (Chuối Chiên) FHD2
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://live.chuoichien.tv/
-https://gckc0525.edgemaxcdn.org/live/alexhd.flv
+https://gckc0525.edgemaxcdn.org/live/ngokhonghd.flv
 #EXTINF:0 group-title="Gà vàng" tvg-logo="https://img.sports-data.online/football/team/75bf136c336015d3adb291a238ea039e.png",09h00 ngày 23/05 UNSW FC Women vs University of Sydney Women (Gà Vàng) source
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem2.gv08.live/
@@ -381,381 +239,303 @@ https://www3.f2k3.shop/live/a60cdd817beb680017f46a5c111202f7/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 AppleWebKit/537.36 Chrome/81.0.4044.138 Safari/537.36
 #EXTVLCOPT:http-referrer=https://xem2.gv08.live/
 https://www3.f2k3.shop/live/829f44b193d50a1f8dcb948fab6a0983/playlist.m3u8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ROBBEN] (Socolive) flv
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV ENZO] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-527383_lsd.flv?auth_key=1780360879-0-0-7b90c1fc3db813b324567a1ce6ebe3b6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ROBBEN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-380460_lsd.flv?auth_key=1780407679-0-0-e7e0d9ff2b908f5f1c499e194977a015
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV ENZO] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-527383_lhd.flv?auth_key=1780360879-0-0-9cb5435a2f949eaf5c0c7fb41094ca61
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ROBBEN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-380460_lhd.flv?auth_key=1780407679-0-0-884c584392041130817990399957092a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV ENZO] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-527383_lsd.m3u8?auth_key=1780360879-0-0-3ba1a66d4479d9b347d55cb475cf5be0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ROBBEN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-380460_lsd.m3u8?auth_key=1780407679-0-0-2d3568b10826e1b9e2caf95056e43e9c
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV ENZO] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-527383_lhd.m3u8?auth_key=1780360879-0-0-d95a5d4e167a64f54d49b0eb2d16f769
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ENZO] (Socolive) flv
+https://pull.niues.live/live/stream-380460_lhd.m3u8?auth_key=1780407679-0-0-b2df43c26b70a9d958206db8fe30310f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [SAO LA] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-380460_lsd.flv?auth_key=1780360879-0-0-4e951281cfae96d42f5d78d751e76032
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ENZO] (Socolive) hdFlv
+https://pull.niur.live/live/stream-462413_lsd.flv?txSecret=b3910ce790d1a515a882687518a6b28a&txTime=6a1f23cf
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [SAO LA] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-380460_lhd.flv?auth_key=1780360879-0-0-4bd0c7af0dee71076d5389ecceec3178
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ENZO] (Socolive) m3u8
+https://pull.niur.live/live/stream-462413_lhd.flv?txSecret=c5cf41c1c6d6175d0628fbb7549e5e08&txTime=6a1f23cf
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [SAO LA] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-380460_lsd.m3u8?auth_key=1780360879-0-0-e0cee9e428fd0fb1b52751da86a8a780
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV ENZO] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-462413_lsd.m3u8?txSecret=b3910ce790d1a515a882687518a6b28a&txTime=6a1f23cf
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [SAO LA] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-380460_lhd.m3u8?auth_key=1780360879-0-0-212fdb2579980262da746bb4ef002f63
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [HÀ DUY KIÊN] (Socolive) flv
+https://pull.niur.live/live/stream-462413_lhd.m3u8?txSecret=c5cf41c1c6d6175d0628fbb7549e5e08&txTime=6a1f23cf
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV COZY] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-607400_lsd.flv?auth_key=1780360879-0-0-fedcbc71cb8704b4beab16e3616b841c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [HÀ DUY KIÊN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-531989_lsd.flv?auth_key=1780407679-0-0-474c0278602872a145558a9e836b939d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV COZY] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-607400_lhd.flv?auth_key=1780360879-0-0-b082f5eeba7a45f9411ad0b2a4866084
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [HÀ DUY KIÊN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-531989_lhd.flv?auth_key=1780407679-0-0-c8652811925f2985289b4112987a62f6
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV COZY] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-607400_lsd.m3u8?auth_key=1780360879-0-0-a68d85ecbf3d0932954eb87b74a028c6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [HÀ DUY KIÊN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-531989_lsd.m3u8?auth_key=1780407679-0-0-0417913e9cd7700a4947a0f3c595654d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV COZY] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-607400_lhd.m3u8?auth_key=1780360879-0-0-cc2a7b055736a22a8190006b059083c8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV YONE] (Socolive) flv
+https://pull.niues.live/live/stream-531989_lhd.m3u8?auth_key=1780407679-0-0-971eaad9ca5a3d5ca51b34e606233c00
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [BLV HENRY] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-372746_lsd.flv?auth_key=1780360879-0-0-c236667cab773d5162b867451b3f2be2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV YONE] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912112_lsd.flv?auth_key=1780407679-0-0-df14ebd756c9cc35a666c776fdcae658
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [BLV HENRY] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-372746_lhd.flv?auth_key=1780360879-0-0-0f363c62dc8cec22b7d5a5faccb32712
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV YONE] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912112_lhd.flv?auth_key=1780407679-0-0-a5f542ca618425d750a04e5941c0cfbc
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [BLV HENRY] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-372746_lsd.m3u8?auth_key=1780360879-0-0-405dc6abad8f824def9d7a50ec323c1f
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV YONE] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912112_lsd.m3u8?auth_key=1780407679-0-0-13c0cef4da680727db5939c6668a3a3e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [BLV HENRY] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-372746_lhd.m3u8?auth_key=1780360879-0-0-4a642f5553bff367795f133991c28315
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV LUCAS] (Socolive) flv
+https://pull.niues.live/live/stream-9912112_lhd.m3u8?auth_key=1780407679-0-0-30439f67489a4ec497539b5f83334819
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV FIREMAN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-304148_lsd.flv?auth_key=1780360879-0-0-a854f93b4a6202c871fbdc02b52c58c3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV LUCAS] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-991140_lsd.flv?auth_key=1780407679-0-0-664619c7080b227d4c2f8529caeb7221
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV FIREMAN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-304148_lhd.flv?auth_key=1780360879-0-0-f869e515e4fbd26ad8151af22750a891
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV LUCAS] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-991140_lhd.flv?auth_key=1780407679-0-0-50a840596a4531840211418cddfee587
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV FIREMAN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-304148_lsd.m3u8?auth_key=1780360879-0-0-01db5ded924175f9c59000d646c2dbc2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV LUCAS] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-991140_lsd.m3u8?auth_key=1780407679-0-0-562d336c163c33df41fbb3b8daaf616d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV FIREMAN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-304148_lhd.m3u8?auth_key=1780360879-0-0-29ef2d3b9c8a7c5cbeaa944795359274
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [XUÂN SON] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lsd.flv?txSecret=d5711f671d545b2bd737469e4972dc57&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [XUÂN SON] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lhd.flv?txSecret=8927fe4d367f7def8aa3abd59da04ad0&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [XUÂN SON] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lsd.m3u8?txSecret=d5711f671d545b2bd737469e4972dc57&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [XUÂN SON] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-501412_lhd.m3u8?txSecret=8927fe4d367f7def8aa3abd59da04ad0&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV A TINH] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-598119_lsd.flv?txSecret=3ea2db1686e0946352921554926a089b&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV A TINH] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-598119_lhd.flv?txSecret=0994891f493115e3ad336b9a9eca6ed4&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV A TINH] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-598119_lsd.m3u8?txSecret=3ea2db1686e0946352921554926a089b&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV A TINH] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-598119_lhd.m3u8?txSecret=0994891f493115e3ad336b9a9eca6ed4&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV GÔN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-445260_lsd.flv?txSecret=e623dd974ca6eb2642a95a888749c8d3&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV GÔN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-445260_lhd.flv?txSecret=0e15eee200ce933bbafb92d50770bd44&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV GÔN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-445260_lsd.m3u8?txSecret=e623dd974ca6eb2642a95a888749c8d3&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV GÔN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-445260_lhd.m3u8?txSecret=0e15eee200ce933bbafb92d50770bd44&txTime=6a1e6cff
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV FIREMAN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-991140_lsd.flv?auth_key=1780360887-0-0-9e450cbcb24cf96d6f0740829afbe0de
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV FIREMAN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-991140_lhd.flv?auth_key=1780360887-0-0-d77ce5c09062cd706ec9456f277468d0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV FIREMAN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-991140_lsd.m3u8?auth_key=1780360887-0-0-34c4fec1132b21c0613edd691161578a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV FIREMAN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-991140_lhd.m3u8?auth_key=1780360887-0-0-acba06d382ac30238f59d656a7740d47
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [BRIAN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912106_lsd.flv?auth_key=1780360879-0-0-e19e82d1f2a32ccf5ba93bfd4a75af2c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [BRIAN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912106_lhd.flv?auth_key=1780360879-0-0-80ca637b5c389a8357f243644b811380
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [BRIAN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912106_lsd.m3u8?auth_key=1780360879-0-0-88309b6afc8d31c318a2069d32588941
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [BRIAN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912106_lhd.m3u8?auth_key=1780360879-0-0-de5a2feadafbb05d4d7bc980d307acd4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV CUỘI] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-256080_lsd.flv?auth_key=1780361239-0-0-05710749f6cc2dddfb4080f92209383b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV CUỘI] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-256080_lhd.flv?auth_key=1780361239-0-0-33a86b61b1bf14c4cd2465587049d728
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV CUỘI] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-256080_lsd.m3u8?auth_key=1780361239-0-0-f6b273e8dff19aa06b0b6f210b77b0d3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV CUỘI] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-256080_lhd.m3u8?auth_key=1780361239-0-0-525d9aeae8b13f2e6543824f11c04bae
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV THÓC] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-606448_lsd.flv?auth_key=1780361239-0-0-e381ff8313fb19991637a67d420c05f5
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV THÓC] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-606448_lhd.flv?auth_key=1780361239-0-0-91206280f4c548f8b29ef90dbd2dc8b3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV THÓC] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-606448_lsd.m3u8?auth_key=1780361239-0-0-5199c2bc2db2ef8a2f27d3ccee00ac52
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/678979107bb47ae4ea1e14372080d10d.png",05h00 ngày 02/06 Ponte Preta vs Botafogo SP [BLV THÓC] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-606448_lhd.m3u8?auth_key=1780361239-0-0-2ffe71e02ce0272630ded9e50d5b559e
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [LOKA] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-589848_lsd.flv?auth_key=1780361239-0-0-3d929d440922195e131ba2dbb19405c3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [LOKA] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-589848_lhd.flv?auth_key=1780361239-0-0-2bc9dbb82665010ace78cde62ef681f2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [LOKA] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-589848_lsd.m3u8?auth_key=1780361239-0-0-6a1cf9d97a07b5584df3489f136a8fb3
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [LOKA] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-589848_lhd.m3u8?auth_key=1780361239-0-0-ee6500f971cd697254c0fc1d8bd3383a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV RAMBO] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lsd.flv?txSecret=9da0905ad904d209eb97676a8099fe47&txTime=6a1e6e67
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV RAMBO] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lhd.flv?txSecret=3f1cb18284b68c4b45b6b2199e0db3c7&txTime=6a1e6e67
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV RAMBO] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lsd.m3u8?txSecret=9da0905ad904d209eb97676a8099fe47&txTime=6a1e6e67
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a2388f942f21fbb11a3bb4d2c654bd21.png",06h00 ngày 02/06 CA Penarol vs Central Espanol [BLV RAMBO] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-534055_lhd.m3u8?txSecret=3f1cb18284b68c4b45b6b2199e0db3c7&txTime=6a1e6e67
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [BLV A WIN] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-536185_lsd.flv?auth_key=1780361239-0-0-6d1c05b1390df5dcfc0610c3056e7fa6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [BLV A WIN] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-536185_lhd.flv?auth_key=1780361239-0-0-1f07b17d36631508800658e79f5b81f0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [BLV A WIN] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-536185_lsd.m3u8?auth_key=1780361239-0-0-dab4ea6e3e2bac27395a9cb4ae178ebe
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [BLV A WIN] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-536185_lhd.m3u8?auth_key=1780361239-0-0-12e1e2a1e8c9accb889b4a64d4cf0c5a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [A CHÈ] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-356042_lsd.flv?auth_key=1780361239-0-0-f16802bde5899c3f9525f06054d9cbbb
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [A CHÈ] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-356042_lhd.flv?auth_key=1780361239-0-0-f57a7bb7532655056b1eb49287f48f38
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [A CHÈ] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-356042_lsd.m3u8?auth_key=1780361239-0-0-1fa6bdc55de0adc7b3f0dcff2b4ebef0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [A CHÈ] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-356042_lhd.m3u8?auth_key=1780361239-0-0-2f8503dafe2864cc5488210aacb792c9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [KÉP] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-560690_lsd.flv?auth_key=1780361239-0-0-5731f714aa33bc0122c9eaf16b918292
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [KÉP] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-560690_lhd.flv?auth_key=1780361239-0-0-9a43af552611dc65d6e7f061dfca2ef0
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [KÉP] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-560690_lsd.m3u8?auth_key=1780361239-0-0-ec5d901e12939551a456b9a7c26183a6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/a359dc66d7f65c13365d613faa5ff8a9.png",06h00 ngày 02/06 Curico Unido vs CSD Antofagasta [KÉP] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-560690_lhd.m3u8?auth_key=1780361239-0-0-0a8ce4189506fbaa94b7ebde7f151a57
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [BLV HENRY] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912112_lsd.flv?auth_key=1780361239-0-0-2ae0e7dabd77a73a4505b0a4eb7716ae
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [BLV HENRY] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912112_lhd.flv?auth_key=1780361239-0-0-9e437b2de2609ab45267fc53ec6e57d4
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [BLV HENRY] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912112_lsd.m3u8?auth_key=1780361239-0-0-ebf4d0f14bd961a3be5fe9b2e138aed2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/dac604ead1c1306aacd58d0e21505241.png",07h00 ngày 02/06 Gigantes de Carolina vs Osos de Manati [BLV HENRY] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912112_lhd.m3u8?auth_key=1780361239-0-0-3b7f345227e60d7a565f0208a054c270
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [TƯ MÃ Ý] (Socolive) flv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-611377_lsd.flv?auth_key=1780361239-0-0-70f1acafc1ab68ed42d25b555679d528
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [TƯ MÃ Ý] (Socolive) hdFlv
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-611377_lhd.flv?auth_key=1780361239-0-0-63f296eed983a371fbcb55f2bff66ca9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [TƯ MÃ Ý] (Socolive) m3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-611377_lsd.m3u8?auth_key=1780361239-0-0-0f9b43828dba1194ddd925bd7aa3fedd
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [TƯ MÃ Ý] (Socolive) hdM3u8
-#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-611377_lhd.m3u8?auth_key=1780361239-0-0-2a8569616b1d8ef5f0b7246f8b5fdc0d
+https://pull.niues.live/live/stream-991140_lhd.m3u8?auth_key=1780407679-0-0-bf83e7ba05077385e860f79bcce097c6
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/30f7363263ee8c7e228d5e303e988762.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1780361239-0-0-171e025f3bb76b7687bb27007d291dad
+https://pull06.scstream.net/live/stream-175784_lsd.flv?auth_key=1780407679-0-0-438b1eabb58aa2cdb004a7e1387458a6
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/30f7363263ee8c7e228d5e303e988762.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1780361239-0-0-cba360802a7e00c86006909bd77a8197
+https://pull06.scstream.net/live/stream-175784_lhd.flv?auth_key=1780407679-0-0-2a3f2e3b9da9ed786940dc0bc0d4ac65
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/30f7363263ee8c7e228d5e303e988762.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1780361239-0-0-c99305f3fe34c075590a9d9d1f379ce5
+https://pull.niues.live/live/stream-175784_lsd.m3u8?auth_key=1780407679-0-0-9024fb6ccf986d0ce77884b315b9b5b8
 #EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/30f7363263ee8c7e228d5e303e988762.png",BIT.LY/SOCOLIVE [SOCOLIVE] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1780361239-0-0-85e7fd4cde3846f1175483843bbd5522
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV A TÚ] (Socolive) flv
+https://pull.niues.live/live/stream-175784_lhd.m3u8?auth_key=1780407679-0-0-6471cc27a5f683f504e8dc760d6d508b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV Củ Cải] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-557845_lsd.flv?auth_key=1780361599-0-0-32afb0443d105694c9d09cf67d83b889
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV A TÚ] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912091_lsd.flv?auth_key=1780408039-0-0-1f72ba7b7a3d48414d3674bb2970b876
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV Củ Cải] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-557845_lhd.flv?auth_key=1780361599-0-0-d2356528f2146f92312b0c2d29c400d9
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV A TÚ] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912091_lhd.flv?auth_key=1780408039-0-0-3142a418e8f945bf2e044d2ca830ca0d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV Củ Cải] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-557845_lsd.m3u8?auth_key=1780361599-0-0-b3fa1f1b50f488c877b3ff1384b346b6
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV A TÚ] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912091_lsd.m3u8?auth_key=1780408039-0-0-837a9100e6a324b3aa54790432309209
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV Củ Cải] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-557845_lhd.m3u8?auth_key=1780361599-0-0-9b892d10d4b0c3937da069999d5df7ae
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [QUỐC KHÁNH] (Socolive) flv
+https://pull.niues.live/live/stream-9912091_lhd.m3u8?auth_key=1780408039-0-0-9c728a13d3055e0d6917173b6ae6f7d6
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV MIXI] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-602153_lsd.flv?txSecret=052be5cee7caeaa38488de2270b653bf&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [QUỐC KHÁNH] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-290928_lsd.flv?auth_key=1780408039-0-0-d95267f15489ebc3508bf63e6f4c5f34
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV MIXI] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-602153_lhd.flv?txSecret=a4f50af5231ac2d894028b0dc53cd717&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [QUỐC KHÁNH] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-290928_lhd.flv?auth_key=1780408039-0-0-1377fba0ff6d5ccb30e25e19700b96c9
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV MIXI] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-602153_lsd.m3u8?txSecret=052be5cee7caeaa38488de2270b653bf&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [QUỐC KHÁNH] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-290928_lsd.m3u8?auth_key=1780408039-0-0-bf52c5224c413b2c63ccb1da484cb6b0
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV MIXI] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-602153_lhd.m3u8?txSecret=a4f50af5231ac2d894028b0dc53cd717&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV NẤM] (Socolive) flv
+https://pull.niues.live/live/stream-290928_lhd.m3u8?auth_key=1780408039-0-0-a99fb528ee74d7c071531ceae4094beb
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [LÃO LÂM] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-608899_lsd.flv?auth_key=1780361599-0-0-e8cf7f0c0d6cdedc7a500f16f85791c8
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV NẤM] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-527384_lsd.flv?auth_key=1780408039-0-0-0d5d89d67799366fd9f426be03a2b401
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [LÃO LÂM] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-608899_lhd.flv?auth_key=1780361599-0-0-299cd9401791a45da3ce9802b31522f2
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV NẤM] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-527384_lhd.flv?auth_key=1780408039-0-0-6f1868d323d48bc2706d36b2a8b91301
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [LÃO LÂM] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-608899_lsd.m3u8?auth_key=1780361599-0-0-d49fa8332a6db3345033eef86f60fb61
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/654781ee60493e53972ac0f9f47ca7d5.png",05h00 ngày 02/06 Club Leones del Norte vs Macara [BLV NẤM] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-527384_lsd.m3u8?auth_key=1780408039-0-0-8f036264ac57b095fa31c1e0f83b8b21
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [LÃO LÂM] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-608899_lhd.m3u8?auth_key=1780361599-0-0-44d2a0f96fa5e9096b1acfd59e42693f
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV BÉO] (Socolive) flv
+https://pull.niues.live/live/stream-527384_lhd.m3u8?auth_key=1780408039-0-0-2140cf12fbdee729259011a04e7347c4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [RICKHANTER] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lsd.flv?txSecret=beed3081000a9f5d2477c7412cf6b3c9&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV BÉO] (Socolive) hdFlv
+https://pull.niur.live/live/stream-9912122_lsd.flv?txSecret=abee382ce4f1ed38ab7a6cf4ca50b9de&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [RICKHANTER] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lhd.flv?txSecret=b519ec33b8ffdf7c12b4844fd3c6238c&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV BÉO] (Socolive) m3u8
+https://pull.niur.live/live/stream-9912122_lhd.flv?txSecret=e422529675e97aac113b4b6f712b20bf&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [RICKHANTER] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lsd.m3u8?txSecret=beed3081000a9f5d2477c7412cf6b3c9&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6be42eca8a8f6c4e1efe6489bc37741e.png",06h00 ngày 02/06 Colombia vs Costa Rica [BLV BÉO] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-9912122_lsd.m3u8?txSecret=abee382ce4f1ed38ab7a6cf4ca50b9de&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [RICKHANTER] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-459401_lhd.m3u8?txSecret=b519ec33b8ffdf7c12b4844fd3c6238c&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV CÒ] (Socolive) flv
+https://pull.niur.live/live/stream-9912122_lhd.m3u8?txSecret=e422529675e97aac113b4b6f712b20bf&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [CÔNG CHẤT] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-582342_lsd.flv?auth_key=1780361599-0-0-d707af43413443d927634a8e44154f75
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV CÒ] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-291277_lsd.flv?auth_key=1780408039-0-0-a2d76d007d9cde2e8c1ac38c6b686f7a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [CÔNG CHẤT] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-582342_lhd.flv?auth_key=1780361599-0-0-18057dcaaf1c125adf7ecf6988dfb12a
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV CÒ] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-291277_lhd.flv?auth_key=1780408039-0-0-b4e55cdc9cffdb8cbcdef58ac3328bb5
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [CÔNG CHẤT] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-582342_lsd.m3u8?auth_key=1780361599-0-0-ded041a67f549949a24ea170bf38aec1
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV CÒ] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-291277_lsd.m3u8?auth_key=1780408039-0-0-85e3d34fc9f9a8955816eb74a49c4fe6
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [CÔNG CHẤT] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-582342_lhd.m3u8?auth_key=1780361599-0-0-a1044b588a740c8d3d45e75e07ebdde7
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [KING] (Socolive) flv
+https://pull.niues.live/live/stream-291277_lhd.m3u8?auth_key=1780408039-0-0-68eafd092df489fac8068b0e964f7bb4
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [VƯƠNG ANH] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912099_lsd.flv?auth_key=1780361599-0-0-c0a8197d5360a12bebc26d4b9ec0c77b
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [KING] (Socolive) hdFlv
+https://pull.niur.live/live/stream-548860_lsd.flv?txSecret=3110ab021cc19a17b5582b12b2e425bf&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [VƯƠNG ANH] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912099_lhd.flv?auth_key=1780361599-0-0-c53ab000c9a213ac3501cabcc7993f46
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [KING] (Socolive) m3u8
+https://pull.niur.live/live/stream-548860_lhd.flv?txSecret=aa0a34cd3fda001185feeaeba2ad3535&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [VƯƠNG ANH] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912099_lsd.m3u8?auth_key=1780361599-0-0-92106a939fda8be68d2e6c195653176c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [KING] (Socolive) hdM3u8
+https://pull.niur.live/live/stream-548860_lsd.m3u8?txSecret=3110ab021cc19a17b5582b12b2e425bf&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [VƯƠNG ANH] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912099_lhd.m3u8?auth_key=1780361599-0-0-26a4a7ca09c3cc14f0fc6e07353c8439
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV KAN] (Socolive) flv
+https://pull.niur.live/live/stream-548860_lhd.m3u8?txSecret=aa0a34cd3fda001185feeaeba2ad3535&txTime=6a1f2537
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV VITAMIN] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lsd.flv?txSecret=f957deef6228fc4e8659b55ab82912f5&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV KAN] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-400722_lsd.flv?auth_key=1780408039-0-0-f4d2ffde8de3fdf9c75a71d2a0ce7a31
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV VITAMIN] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lhd.flv?txSecret=64943d2a3ba82390c69a8a91adb7bd66&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV KAN] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-400722_lhd.flv?auth_key=1780408039-0-0-79ba667ab8d25d8e7daff02fe81d217e
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV VITAMIN] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lsd.m3u8?txSecret=f957deef6228fc4e8659b55ab82912f5&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/5c0b27983240ef4ae45336fb309a7695.png",07h00 ngày 02/06 Universitario De Vinto vs Aurora [BLV KAN] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-400722_lsd.m3u8?auth_key=1780408039-0-0-ffe88355ac3d2a0c8b0659bc0c51a1af
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV VITAMIN] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niur.live/live/stream-283501_lhd.m3u8?txSecret=64943d2a3ba82390c69a8a91adb7bd66&txTime=6a1e6fcf
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [CHAN SENA] (Socolive) flv
+https://pull.niues.live/live/stream-400722_lhd.m3u8?auth_key=1780408039-0-0-f605bad50304ee5fbf85c797e4cd76b3
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV TAP] (Socolive) flv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912115_lsd.flv?auth_key=1780361599-0-0-9e51d4380ea0ff7e7d5160f2338fea2c
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [CHAN SENA] (Socolive) hdFlv
+https://pull06.scstream.net/live/stream-9912041_lsd.flv?auth_key=1780408399-0-0-4a123b6534b193eeaf797d3ba3772750
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV TAP] (Socolive) hdFlv
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull06.scstream.net/live/stream-9912115_lhd.flv?auth_key=1780361599-0-0-9bb8be228a94c2aa4760eb08c8f1ad98
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [CHAN SENA] (Socolive) m3u8
+https://pull06.scstream.net/live/stream-9912041_lhd.flv?auth_key=1780408399-0-0-60f90fb4de23d76adae83d0d61097175
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV TAP] (Socolive) m3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912115_lsd.m3u8?auth_key=1780361599-0-0-a1a243c1a1ad6c60f93d4533e631d04f
-#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/76e2227205b30ae1ea31bbefb06dd370.png",07h00 ngày 02/06 Dallas Wings W vs Seattle Storm W [CHAN SENA] (Socolive) hdM3u8
+https://pull.niues.live/live/stream-9912041_lsd.m3u8?auth_key=1780408399-0-0-4ccfed8bdbfef5d2f429f1df929d9f26
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/358d7d3c7856cc1a95c389c723c7a55e.png",19h15 ngày 02/06 Brunei Darussalam vs Timor Leste [BLV TAP] (Socolive) hdM3u8
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://pull.niues.live/live/stream-9912115_lhd.m3u8?auth_key=1780361599-0-0-7ad76e12ceb2b78a0165c10c24fccb5d
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",06h00 02/06 Colombia vs Costa Rica (Hội Quán) FHD 
+https://pull.niues.live/live/stream-9912041_lhd.m3u8?auth_key=1780408399-0-0-e920114deb8301728716c6a8eddaaed8
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV RÔSI] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-9912102_lsd.flv?txSecret=548bc7047a109463c9648fa0afce36b7&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV RÔSI] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-9912102_lhd.flv?txSecret=5f5950768481b487c6b6a5b374878613&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV RÔSI] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-9912102_lsd.m3u8?txSecret=548bc7047a109463c9648fa0afce36b7&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV RÔSI] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-9912102_lhd.m3u8?txSecret=5f5950768481b487c6b6a5b374878613&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV TOMIA] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912008_lsd.flv?auth_key=1780408399-0-0-ff9da2de9523dab5ba5bf54da7773846
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV TOMIA] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-9912008_lhd.flv?auth_key=1780408399-0-0-f10f2e07beaa776d9b51a2d2475f1212
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV TOMIA] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912008_lsd.m3u8?auth_key=1780408399-0-0-a779758aa7c12076c60a386bd8331189
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [BLV TOMIA] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-9912008_lhd.m3u8?auth_key=1780408399-0-0-48e2002468682c0bf508492e96e1c07d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [A BỆU] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-484845_lsd.flv?auth_key=1780408399-0-0-b99c23b8b5f34d863dbfc7fc4381439a
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [A BỆU] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-484845_lhd.flv?auth_key=1780408399-0-0-029ebb6cf7060311298f350c7daad517
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [A BỆU] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-484845_lsd.m3u8?auth_key=1780408399-0-0-f46847145083b381108e1450872ef41b
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [A BỆU] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-484845_lhd.m3u8?auth_key=1780408399-0-0-523f2f700e35c732bfc7df46aa5290cd
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [CR Bưởi] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-387694_lsd.flv?txSecret=2d44034779cf607ebde520f3c71b8d4a&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [CR Bưởi] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-387694_lhd.flv?txSecret=9e3787957ba74832e876a482a00d8f2a&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [CR Bưởi] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-387694_lsd.m3u8?txSecret=2d44034779cf607ebde520f3c71b8d4a&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/6fe4d052399b6c2fb995aad8b2bf7ead.png",20h00 ngày 02/06 Malaysia U19 vs Singapore U19 [CR Bưởi] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niur.live/live/stream-387694_lhd.m3u8?txSecret=9e3787957ba74832e876a482a00d8f2a&txTime=6a1f269f
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV KEM] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-513394_lsd.flv?auth_key=1780408399-0-0-5109293506942bd300752b1e8be9a635
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV KEM] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-513394_lhd.flv?auth_key=1780408399-0-0-76ac047fc91cea88d3565aade7215bb2
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV KEM] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-513394_lsd.m3u8?auth_key=1780408399-0-0-1e608ed930972412d9462fda9b915e1d
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV KEM] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-513394_lhd.m3u8?auth_key=1780408399-0-0-6ca5cb081d0361187d48453942995413
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [HUNTER] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-558264_lsd.flv?auth_key=1780408399-0-0-d3930df3af7dab4c8cb3ac4c45f1ab18
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [HUNTER] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-558264_lhd.flv?auth_key=1780408399-0-0-80c5bfee6edc7025ba2f7cff1cb0e1fb
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [HUNTER] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-558264_lsd.m3u8?auth_key=1780408399-0-0-5a32b616e9063c3587c780d8a9c3ce31
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260531/0a981189931ede5124b62416de581896.png",18h35 ngày 02/06 Zhejiang Guangsha vs Shanghai [HUNTER] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-558264_lhd.m3u8?auth_key=1780408399-0-0-9707c108f56812e64d62df8675bcb422
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV RYO] (Socolive) flv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-602019_lsd.flv?auth_key=1780408399-0-0-04323535b0b29fbed89067d7aad6e7ff
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV RYO] (Socolive) hdFlv
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull06.scstream.net/live/stream-602019_lhd.flv?auth_key=1780408399-0-0-bad7d1b807aae8c36f12dc53e0789458
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV RYO] (Socolive) m3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-602019_lsd.m3u8?auth_key=1780408399-0-0-e749b6b90ed7ca76b60b033aca026cab
+#EXTINF:0 group-title="socolive" tvg-logo="https://sta.vnres.co/file/common/20260529/4c0b983c35baf626bf58146529d72ab7.png",20h00 ngày 02/06 China U19 vs Democratic Rep Congo U23 [BLV RYO] (Socolive) hdM3u8
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://pull.niues.live/live/stream-602019_lhd.m3u8?auth_key=1780408399-0-0-fb22bb208474eb7562b5cc07cffdcbd8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/19151.png",20h00 02/06 Malaysia U19 vs Singapore U19 (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phanca/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",06h00 02/06 Colombia vs Costa Rica (Hội Quán) HD 
+https://tdlive.yarncdn.live/live/tdtv_blv_taokinhte/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/19151.png",20h00 02/06 Malaysia U19 vs Singapore U19 (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.zlylive.com/hqtv_blv_phanca/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",06h00 02/06 Colombia vs Costa Rica (Hội Quán) SD 
+https://alive.yarncdn.live/tdtv_blv_taokinhte/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/19151.png",20h00 02/06 Malaysia U19 vs Singapore U19 (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.zlylive.com/hqtv_blv_phanca/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/139.png",05h00 02/06 Ponte Preta vs Botafogo SP (Hội Quán) FHD 
+https://alive.yarncdn.live/tdtv_blv_taokinhte/tracks-v1a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/19151.png",20h00 02/06 Malaysia U19 vs Singapore U19 (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://hqlive.yarncdn.live/live/hqtv_blv_phananh/playlist.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/139.png",05h00 02/06 Ponte Preta vs Botafogo SP (Hội Quán) HD 
+https://hqlive.yarncdn.live/live/hqtv_blv_phanliem/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/19151.png",20h00 02/06 Malaysia U19 vs Singapore U19 (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phananh/tracks-v2a1/mono.m3u8
-#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/139.png",05h00 02/06 Ponte Preta vs Botafogo SP (Hội Quán) SD 
+https://alive.yarncdn.live/hqtv_blv_phanliem/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://media.api-sports.io/football/teams/19151.png",20h00 02/06 Malaysia U19 vs Singapore U19 (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 #EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
-https://alive.yarncdn.live/hqtv_blv_phananh/tracks-v1a1/mono.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/13844d01d85a85bed47338e396b2aa3d.png!w80",06h00 02/06 Colombia vs Costa Rica
+https://alive.yarncdn.live/hqtv_blv_phanliem/tracks-v1a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8c/Rafa_J%C3%B3dar_Espinar_2025.jpg",19h30 02/06 Rafael Jodar vs Alexander Zverev (Hội Quán) FHD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/33982309.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/fb735adffa94a7306c7f68b9609d929f.png!w80",05h00 02/06 Ponte Preta vs Botafogo
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://hqlive.yarncdn.live/live/hqtv_blv_phantu/playlist.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8c/Rafa_J%C3%B3dar_Espinar_2025.jpg",19h30 02/06 Rafael Jodar vs Alexander Zverev (Hội Quán) HD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/14707124.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/0bab5c51d1f07f0dc8447c5b860debe3.png!w80",05h00 02/06 Leones del Norte vs Macara
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://alive.yarncdn.live/hqtv_blv_phantu/tracks-v2a1/mono.m3u8
+#EXTINF:0 group-title="Hội quán" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8c/Rafa_J%C3%B3dar_Espinar_2025.jpg",19h30 02/06 Rafael Jodar vs Alexander Zverev (Hội Quán) SD 
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/87379114.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/d95f60f58aac7368fb6659aa0f27cfbf.png!w80",06h00 02/06 CA Penarol vs Central Espanol
+#EXTVLCOPT:http-referrer=https://sv2.hoiquan.live/
+https://alive.yarncdn.live/hqtv_blv_phantu/tracks-v1a1/mono.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/10d4b366f410a1275f7b684f07a28456.png!w80",19h15 02/06 Brunei vs Đông Timor
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/99121525.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/basketball/team/58709b9e7964e03c28ebe777ef823eca.png!w80",07h00 02/06 Dallas Wings vs Seattle Storm
+https://live05.msdht.app/live/24561735.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/basketball/team/96108e3d2a3cf92f8f5305e5135f2419.png!w80",18h35 02/06 Zhejiang East Sunshine Medicine vs Shanghai
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
-https://live05.msdht.app/live/87379114.m3u8
-#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/78806733b03788c901fd2f2cda1f0bd2.png!w80",07h00 02/06 Universitario de Vinto vs Aurora
+https://live05.msdht.app/live/19919577.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/367ba92bc85435312f1074132e9e2ce8.png!w80",20h00 02/06 Trung Quốc U19 vs Democratic Rep Congo U23
+#EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
+https://live05.msdht.app/live/08552895.m3u8
+#EXTINF:0 group-title="Colalive" tvg-logo="https://img.colatv88xd.cc/football/team/d754f7302ec0da60aeb079c36b4938d4.png!w80",20h00 02/06 Malaysia U19 vs Singapore U19
 #EXTVLCOPT:http-user-agent=Mozilla AppleWebKit Chrome Safari
 https://live05.msdht.app/live/02456966.m3u8
