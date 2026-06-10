@@ -259,8 +259,8 @@ https://live.fptplay53.net/epzhd1/htv7hd_vhls.smil/chunklist_b5000000.m3u8
 
 #EXTINF:-1 tvg-id="htv9hd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/4VNDzHh/HTV9-BEARTV.png", HTV9 HD
 #https://e2.endpoint.cdn.sctvonline.vn/hls/htv9/index.m3u8
-#https://live.fptplay53.net/epzhd1/htv9hd_vhls.smil/chunklist_b5000000.m3u8
-https://live.fptplay53.net/epzhd1/htv9hd_vhls.smil/chunklist.m3u8
+https://live.fptplay53.net/epzhd1/htv9hd1_vhls.smil/chunklist_b5000000.m3u8|https://live.fptplay53.net/epzhd1/htv9hd_vhls.smil/chunklist.m3u8
+
 
 #EXTINF:-1 tvg-id="htvthethaohd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/Y8mr4Hf/HTV-TT.png" , HTV Thể Thao
 https://live.fptplay53.net/epzhd1/htvcthethao_vhls.smil/chunklist_b5000000.m3u8
