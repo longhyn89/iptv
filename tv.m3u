@@ -156,18 +156,32 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_GOLF_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vtvgolive-sctv.vtvdigital.vn/D6cFjqM0kYFG1ULEGBZxKA/1780996054/asdfasdvgas2vtvsctv/1/masterh264.m3u8
+https://hoiquan.dpdns.org/VTVGo/?sctv1
+#EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD Backup
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://toiyeuvietnam.dpdns.org/OnliveTV/sctv1hd/Free.m3u8
 
 #EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vtvgolive-sctvdrm.vtvdigital.vn/7xHQyI4MyS2PeF3tBu0ZjA/1780996063/manifest/sctv2/master.m3u8
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=201
+#EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD Backup
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://toiyeuvietnam.dpdns.org/TuyetDoiKhongKinhDoanh/sctv2-today-tv/KenhCoBan.m3u8
+
 #EXTINF:-1 tvg-id="sctv3hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/bW9fKGv/sctv3-hd-BEARTV.png", SCTV3 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vtvgolive-sctvdrm.vtvdigital.vn/7xHQyI4MyS2PeF3tBu0ZjA/1780996063/manifest/sctv3/master.m3u8
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv3-hd-cf3adaca
+#EXTINF:-1 tvg-id="sctv3hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/bW9fKGv/sctv3-hd-BEARTV.png", SCTV3 HD Backup
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://toiyeuvietnam.dpdns.org/OnliveTV/sctv3hd/Free.m3u8
+
 #EXTINF:-1 tvg-id="sctv4hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/2N5hVDx/sctv4-hd-BEARTV.png", SCTV4 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv4-ae779f7e
+#EXTINF:-1 tvg-id="sctv4hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/2N5hVDx/sctv4-hd-BEARTV.png", SCTV4 HD Backup
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://toiyeuvietnam.dpdns.org/OnliveTV/sctv4hd/Free.m3u8
 
-https://vtvgolive-sctvdrm.vtvdigital.vn/8W5RGeKkhqU5bMIMVmznOA/1780996064/manifest/sctv4/master.m3u8
 #EXTINF:-1 tvg-id="sctv5hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vtvgolive-sctv.vtvdigital.vn/VMKbWt6uIOxGWv7FkE4sYA/1780996065/5m63a995d8vtvsctv/5/index.m3u8
