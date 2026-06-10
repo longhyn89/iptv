@@ -189,15 +189,16 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_GOLF_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv1-hd-7f2aafec
-https://vpsttt.vietanhtv.top/sctv/proxy.php/https://e11.endpoint.cdn.sctvonline.vn/cdn-secure/v1/sctvonline/1/yWZBZoHepqHJKJt0U-_1HA/1781197200/LA4FE/live/sctv1/master.m3u8
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv1-hd-7f2aafec
+
 #EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD Backup
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://toiyeuvietnam.dpdns.org/OnliveTV/sctv1hd/Free.m3u8
 
 #EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vpsttt.vietanhtv.top/tv360/tv360.php?id=201
+#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=201
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv2-57c3884d
 #EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD Backup
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://toiyeuvietnam.dpdns.org/TuyetDoiKhongKinhDoanh/sctv2-today-tv/KenhCoBan.m3u8
