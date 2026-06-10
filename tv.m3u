@@ -189,18 +189,28 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_GOLF_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
+#https://hoiquan.dpdns.org/VTVGo/?sctv1
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv1-hd-7f2aafec
 
 #EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
+#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv2-57c3884d
+https://freem3u.xyz/api/live/play.m3u8?vid=201
 
 #EXTINF:-1 tvg-id="sctv3hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/bW9fKGv/sctv3-hd-BEARTV.png", SCTV3 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
+#https://hoiquan.dpdns.org/VTVGo/?sctv3
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv3-hd-cf3adaca
 
 #EXTINF:-1 tvg-id="sctv4hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/2N5hVDx/sctv4-hd-BEARTV.png", SCTV4 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
+#https://hoiquan.dpdns.org/VTVGo/?sctv4
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv4-ae779f7e
 
 #EXTINF:-1 tvg-id="sctv5hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
+#https://hoiquan.dpdns.org/VTVGo/?sctv5
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv5-a3cdb592
 
 #EXTINF:-1 tvg-id="sctv6hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DDf1zhNX/SCTV6-logo-2011.webp", SCTV6 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
