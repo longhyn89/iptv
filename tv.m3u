@@ -78,10 +78,8 @@ https://live.fptplay53.net/live/media/vtv5tnb/live-hls-avc/vtv5tnb-avc1_4000000=
 #EXTINF:-1 tvg-id="vtv5hdtn" group-title="📦| VTV" tvg-logo="https://i.ibb.co/Fxzdz7v/ccvtv5TN.webp", VTV5 Tây Nguyên
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://vpsttt.vietanhtv.top/sctv/tv.php?id=vtv5-tay-nguyen
-https://vpsttt.vietanhtv.top/tv360/tv360.php?id=207
 #https://live.fptplay53.net/fnxhd1/vtv5taynguyen_vhls.smil/chunklist_b5000000.m3u8
-
-
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=207
 
 #EXTINF:-1 tvg-id="vntodayhd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/zTMvHrSm/Vietnam-Today.jpg", Việt Nam Today
 #EXTVLCOPT:http-user-agent="CloudTV"
