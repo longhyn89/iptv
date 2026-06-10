@@ -355,13 +355,17 @@ https://live.fptplay53.net/epzhd1/htvcmovieshd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="antvhd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/9wxKmLH/ANTV-BEARTV.png", ANTV HD
 https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b5000000.m3u8
 #EXTINF:-1 tvg-id="qpvnhd" group-title="🇻🇳| Địa phương" tvg-logo="https://upload.wikimedia.org/wikipedia/vi/5/5d/QPVN.png", QPVN HD
-https://live.fptplay53.net/fnxhd2/quocphongvnhd_vhls.smil/chunklist_b5000000.m3u8
+#https://live.fptplay53.net/fnxhd2/quocphongvnhd_vhls.smil/chunklist_b5000000.m3u8
+#https://vpsttt.vietanhtv.top/sctv/tv.php?id=qpvn-fea05134
+https://freem3u.xyz/api/live/play.m3u8?vid=19
 
 #EXTINF:-1 tvg-id="HiTV" group-title="🇻🇳| Địa phương" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823412691/61627b84a612_640_360.png", HiTV
-https://sgclient.duckdns.org/source/tv360.m3u8?id=32
+#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=32
+https://freem3u.xyz/api/live/play.m3u8?vid=32
 
 #EXTINF:-1 tvg-id="YouTV" group-title="🇻🇳| Địa phương" tvg-logo="https://i.imgur.com/3d4Hfh8.png", YouTV
-https://sgclient.duckdns.org/source/tv360.m3u8?id=31
+#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=31
+https://freem3u.xyz/api/live/play.m3u8?vid=31
 
 #-*--THVL-*--#
 
