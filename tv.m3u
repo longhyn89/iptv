@@ -371,7 +371,8 @@ https://freem3u.xyz/api/live/play.m3u8?vid=31
 
 #EXTINF:-1 tvg-id="vinhlong1hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/2MVntS3/THVL1-HD-BEARTV.png", THVL1 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://live.fptplay53.net/epzch2/vinhlong1_abr.smil/chunklist_b4200000.m3u8
+#https://live.fptplay53.net/epzch2/vinhlong1_abr.smil/chunklist_b4200000.m3u8
+https://freem3u.xyz/api/live/play.m3u8?vid=25
 
 #EXTINF:-1 tvg-id="vinhlong2hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/LJWVVRp/THVL2-HD-BEARTV.png", THVL2 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
@@ -506,9 +507,6 @@ https://live.fptplay53.net/epzsd1/lamdong_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="lamdong" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/YcBXy9Y/LAMDONG-BEARTV.png", LTV HD | TH Lâm Đồng 2
 https://live.fptplay53.net/epzsd1/lamdong02_hls.smil/chunklist.m3u8
 https://freem3u.xyz/api/live/play.m3u8?vid=45
-
-#EXTINF:-1 tvg-id="lamdong" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/YcBXy9Y/LAMDONG-BEARTV.png", LTV HD | TH Lâm Đồng 3
-https://freem3u.xyz/api/live/play.m3u8?vid=50
 
 #EXTINF:-1 tvg-id="langson" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/8PdwJC0/LSTV-BEARTV.png", LSTV HD | TH Lạng Sơn
 https://stream.langsontv.vn/live/285c78da0c246524c90917842f8de03bd21/chunklist.m3u8
