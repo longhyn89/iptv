@@ -683,7 +683,7 @@ https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/boomerang.smil/manifest.mpd
 https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/dreamwork.smil/manifest.mpd
 
 #EXTINF:-1 tvg-id="babytvhd" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/Ht2cjfV/Baby-TV-cc.webp", BabyTV HD
-http://ch-4k-top.org:80/play/live.php?mac=00:1A:79:7a:39:a6&amp;stream=150391&amp;extension=ts&amp;play_token=7pUsoprXJc
+http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:3F:0C:96&stream=960054&extension=ts&play_token=qpvBSWKfyz
 
 #EXTINF:-1 tvg-id="cartoonhd" group-title="🌈| KIDS" tvg-logo="https://mytv.com.vn/upload/channel/179.png", Cartoon Network HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -729,183 +729,6 @@ https://2-fss-2.streamhoster.com/pl_140/amlst:200914-1298290/chunklist_b600000.m
 https://ebsonair.ebs.co.kr/ebsufamilypc/familypc1m/chunklist.m3u8
 
 
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="http://worldiptv.xyz/chlogos/FoxSports1.nl.png",Fox Sports 1 HD
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="http://worldiptv.xyz/chlogos/FoxSports2.nl.png",Fox Sports 2 HD
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="http://worldiptv.xyz/chlogos/FoxSports2.nl.png",Fox Sports 2 HD
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="http://worldiptv.xyz/chlogos/FoxSports3.nl.png",Fox Sports 3 HD
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="http://worldiptv.xyz/chlogos/FoxSports4.nl.png",Fox Sports 4 HD
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.imgur.com/315UpiI.png",Eleven Sports 1
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.imgur.com/4QqTCYL.png",Eleven Sports 2
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.imgur.com/4K8hai4.jpg",Eleven Sports 3
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.imgur.com/gfcipPv.png",Eleven Sports 4
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.imgur.com/LMZBAm9.png",Eleven Sports 5
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.imgur.com/x20TLLJ.png",Eleven Sports 6
-
-
-
-#-*--THỂ THAO-*--#
-
-#EXTINF:-1  group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/8Dhd2BR/onegolf-HD.png", ONE GOLF HD
-  
-#EXTINF:-1 tvg-logo="https://imgur.com/acLhL9F.png" group-title="🏆| Thể Thao",Abu Dhabi Sports 1
-#EXTINF:-1 tvg-logo="https://imgur.com/XBwtxX6.png" group-title="🏆| Thể Thao",Abu Dhabi Sports 2
-#EXTINF:-1 tvg-logo="https://imgur.com/HZKxrt4.png" group-title="🏆| Thể Thao",Abu Dhabi Sports 3
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="http://gg.gg/130co2",Diema Sport 1
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="http://gg.gg/130cnz",Diema Sport 2
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="http://gg.gg/130cnu",Diema Sport 3
-
-  
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/4kftf5b8",Setanta Sports 1
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/4kftf5b8",Setanta Sports 2
-
-
-#EXTINF:-1,tvg-id="CCTV5" tvg-name="CCTV5" tvg-logo="https://live.fanmingming.com/tv/CCTV5.png" group-title="🏆| Thể Thao",CCTV-5 高清
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1,tvg-id="CCTV5+" tvg-name="CCTV5+" tvg-logo="https://live.fanmingming.com/tv/CCTV5+.png" group-title="🏆| Thể Thao",CCTV5+ 高清
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1,tvg-id="CCTV16" tvg-name="CCTV16" tvg-logo="https://live.fanmingming.com/tv/CCTV16.png" group-title="🏆| Thể Thao",CCTV-16 高清
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1,tvg-id="欢笑剧场" tvg-name="欢笑剧场" tvg-logo="https://live.fanmingming.com/tv/欢笑剧场.png" group-title="📺| KÊNH 4K",欢笑剧场4K
-
-#EXTINF:-1,tvg-id="CCTV4K" tvg-name="CCTV4K" tvg-logo="https://live.fanmingming.com/tv/CCTV4K.png" group-title="📺| KÊNH 4K",CCTV-4K
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1,tvg-id="CCTV16" tvg-name="CCTV16" tvg-logo="https://live.fanmingming.com/tv/CCTV16.png" group-title="📺| KÊNH 4K",CCTV16-4K
-#EXTVLCOPT:http-user-agent="CloudTV"
-  
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/qxCDP87/cccctv5.webp", CCTV5 - Thể Thao
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/BV7tvDd/cccctv5p.webp", CCTV5+ Thể Thao
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/X76FGhP/SPOTV.png",SPOTV1
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/wSGW6yG/SPOTV2.png",SPOTV2
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tiny.one/ccwwe",WWE
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tiny.one/tennischannel",Tennis Channel
-
-#EXTINF:0 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/MSSKTB9/redbull.png",RedBull
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/M8y7nSg/Polsat-Sport.png",Polsat Sport
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/YQz1thZ/Polsat-Sport-Extra.png",Polsat Sport Extra
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/hKHzWvZ/Polsat-Sport-News.png",Polsat Sport News
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/46hn3yc5",Sport Klub 1
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/3jfydje5",Sport Klub 2
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/3x3nenxn",Sport Klub 3
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/msz8mbfx",Sport Klub 4
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/25haf6m5",Sport Klub 5
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/3swh2tmv",Sport Klub 6
-
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="https://imgur.com/eaY9HWT.png",DIGI SPORT 1
-
-#EXTINF: group-title="🏆| Thể Thao" tvg logo="https://imgur.com/ZmGnG4l.png",DIGI SPORT 2
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="https://imgur.com/MOiIdbg.jpg",DIGI SPORT 3
-
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="https://imgur.com/bXHGV4I.png",DIGI SPORT 4
-
-  
-#EXTINF: group-title="🏆| Thể Thao" tvg-logo="https://imgur.com/4IcUOLq.png",Nova Sports Start
-
-
-  
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/ypzWQM4/Eurosport1.png", Eurosport 1
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/QNM5t5m/Eurosport2.png", Eurosport 2
-
-#EXTINF:0 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/WWrSQT9/TVRI-Sport-HD-BEARTV.png", TVRI SPORT
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/4s3scab7", MUTV
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/4eew8by5",ESPN US
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg logo="https://tinyurl.com/37ynrc89",ESPN2 US
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/2p8ch9t8",Маtch ТV
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/z3r49y36",Маtch Futbol 1
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/36pes3vm",Маtch Futbol 2
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/mr2xyb8r",Маtch Futbol 3
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://tinyurl.com/2p8a4h55",Маtch Premier
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/YWh1jD7/SONY-Sports-Ten1-HD.png",Sony Ten 1
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/b6jWJFs/SONY-Sports-Ten2-HD.png",Sony Ten 2
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/wy2jCpy/SONY-Sports-Ten3-HD.png",Sony Ten 3
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/Lkfq8Pw/SONY-Sports-Ten4-HD.png",Sony Ten 4
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/3BhW5qc/SONY-Sports-Ten5-HD.png",Sony Ten 5
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:0 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/2hyptTN/ccbillard.png",Billard TV
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/94RLkpL/ccBein1.png",BEIN Sports 1
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/jMp9WQx/ccBein2.png",BEIN Sports 2
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/DrHRpRX/ccBein3.png",BEIN Sports 3
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/ydv8Hzn/ccBein4.png",BEIN Sports 4
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/VpSVBnm/ccBein5.png",BEIN Sports 5
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/n8d1Yh6/ccBein6.png",BEIN Sports 6
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-#EXTINF:-1 group-title="🏆| Thể Thao" tvg-logo="https://i.ibb.co/xGLxkbL/ccBein7.png",BEIN Sports 7
-
-
 #EXTINF:-1 group-title="🌏| Quốc tế" tvg-logo="https://i.imgur.com/ZL62USj.png", History sv2
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh34.vtvprime.vn/hls/HISTORY/02.m3u8
@@ -949,18 +772,6 @@ https://liveh12.vtvprime.vn/hls/DW/03.m3u8
 #EXTINF:-1 tvg-id="france24eng" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/BztxwvZ/FRANCE-24-BEARTV.png", France 24
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/FRANCE24/03.m3u8
-
-#EXTINF:-1 tvg-id="tv360plus1" group-title="💚| Livestream" tvg-logo="https://img-zlr1.tv360.vn/image1/2024/09/24/21/1727189720461/dc4ee8910c25_640_360.png", TV360+1
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-
-#EXTINF:-1 tvg-id="tv360plus2" group-title="💚| Livestream" tvg-logo="https://img-zlr1.tv360.vn/image1/2024/09/24/21/1727189794311/c4d18ecff9f7_640_360.png", TV360+2
-#EXTVLCOPT:http-user-agent="CloudTV"
-
-
-#EXTINF:-1 tvg-id="tv360plus3" group-title="💚| Livestream" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/f/f0/TV360%2B3.png", TV360+3
-#EXTVLCOPT:http-user-agent="CloudTV"
-
 
 #EXTINF:-1 tvg-id="animalhd" group-title="🌏| Quốc tế" tvg-logo="https://identsandpresentation.com/animalplanet2018/stingone-d.jpg", Animal Planet
 https://ace.hoiquan.click/module/IPTV/?id=animalplanet&amp;accKenh=vuminhthanh1
