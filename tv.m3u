@@ -261,7 +261,11 @@ https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv14-789c9f45
 
 #EXTINF:-1 tvg-id="sctv15hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/q1PkQkp/sctv15-hd-BEARTV.png", SCTV15 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv15-4aec9a9f
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
+https://cdnet-cdn-01.onsports.vn/onplus/SCTV15HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv16hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/CMr9xN0/sctv16-hd-BEARTV.png", SCTV16 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
