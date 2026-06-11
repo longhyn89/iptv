@@ -657,11 +657,6 @@ https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/cinemaworld.smil/manifest.mpd
 #EXTINF:0 tvg-id="blueantent" group-title="🇧🌎🇽" tvg-logo="https://i.ibb.co/L5yHTzj/Rock-Entertainment.png" ,Rock Entertainment
 #EXTVLCOPT:http-user-agent="KIIP"
 
-
-#EXTINF:0 tvg-id="blueantext" group-title="🇧🌎🇽" tvg-logo="https://i.ibb.co/1Qd6pxW/Rock-Extreme.png" ,Rock Action
-#EXTVLCOPT:http-user-agent="KIIP"
-
-
 🌈| KID |🌈
 
 #EXTINF:-1 tvg-id="boomerang" group-title="🌈| KIDS" tvg-logo="https://1000logos.net/wp-content/uploads/2023/10/Cartoonito-Logo.jpg", Cartoonito
@@ -728,16 +723,23 @@ https://2-fss-2.streamhoster.com/pl_140/amlst:200914-1298290/chunklist_b600000.m
 #EXTINF:0 type="stream" group-title="🌈| KIDS" tvg-id="ebskids" tvg-logo="https://i.ibb.co/Tk66hWb/ebskids.png",EBS Kids
 https://ebsonair.ebs.co.kr/ebsufamilypc/familypc1m/chunklist.m3u8
 
+#EXTINF:-1 tvg-id="bbcworldnews" group-title="🌏| Quốc tế" tvg-logo="https://i.ytimg.com/vi/jL2fsQB9J-g/maxresdefault.jpg", BBC World News
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c7ba46086dda345a929e29bf155e459c:d374b8f39904bf572689ea347ae86591
+https://s7771.cdn.mytvnet.vn/pkg20/live_dzones/bbcworldnews.smil/manifest.mpd
 
-#EXTINF:-1 group-title="🌏| Quốc tế" tvg-logo="https://i.imgur.com/ZL62USj.png", History sv2
+
+#EXTINF:-1 group-title="🌏| Quốc tế" tvg-logo="https://i.imgur.com/ZL62USj.png", History
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://liveh34.vtvprime.vn/hls/HISTORY/02.m3u8
+https://freem3u.xyz/api/live/play.m3u8?vid=9856
 #EXTINF:-1 group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/BVdwFmN/Da-Vinci-cc.png", Da Vinci HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/DAVINVY/04.m3u8
 #EXTINF:0 group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/Q8NX9GC/kix-BEARTV.png", Kix HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://liveh34.vtvprime.vn/hls/KIX/04.m3u8
+https://freem3u.xyz/api/live/play.m3u8?vid=9901
 #EXTINF:-1 tvg-id="kbsworld" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/8XwH2hS/KBS-World-BEARTV.png", KBS World
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/KBS/03.m3u8
@@ -746,7 +748,7 @@ https://liveh12.vtvprime.vn/hls/KBS/03.m3u8
 https://liveh12.vtvprime.vn/hls/AFC/03.m3u8
 #EXTINF:-1 tvg-id="cnbc" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/ChmR52g/CNBC-BEARTV.png", CNBC
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://liveh34.vtvprime.vn/hls/CNBC/03.m3u8
+https://freem3u.xyz/api/live/play.m3u8?vid=9855
 #EXTINF:0 tvg-id="outdoorhd" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/hDhK578/Outdoor-Channel-BEARTV.png", Outdoor Channel
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://live.fptplay53.net/epzhd2/outdoorfhd_vhls.smil/chunklist_b5000000.m3u8
@@ -773,19 +775,33 @@ https://liveh12.vtvprime.vn/hls/DW/03.m3u8
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/FRANCE24/03.m3u8
 
-#EXTINF:-1 tvg-id="animalhd" group-title="🌏| Quốc tế" tvg-logo="https://identsandpresentation.com/animalplanet2018/stingone-d.jpg", Animal Planet
-https://ace.hoiquan.click/module/IPTV/?id=animalplanet&amp;accKenh=vuminhthanh1
+#EXTINF:-1 tvg-id="animalhd" group-title="🌏| Quốc tế" tvg-logo="https://vnepg.site/logos/143.png" catchup="append" catchup-days="2" catchup-source="https://tshift.fptplay.net/dvr/animalplanet_1000.stream/chunks_dvr_range-${start}-${offset}.m3u8", Animal Planet
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ec6f072c7125377a9bc0ae61598095f4:1d5388e0781415ebcec9914f5ad75875
+https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/ap.smil/manifest.mpd
+
+#EXTINF:-1 tvg-id="animalhd" group-title="🌏| Quốc tế" tvg-logo="https://identsandpresentation.com/animalplanet2018/stingone-d.jpg", Animal Planet Backup
+https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/ap.smil/manifest.mpd
+
 #EXTINF:-1 tvg-id="discoveryhd" group-title="🌏| Quốc tế" tvg-logo="https://s72140.cdn.mytvnet.vn/vimages/c7/7f/fc/c6/69/9b/c7fc6-pdiscoveryhd-channel-unkn.png", Discovery
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"vqWgcVfgxNF7Eas5lRf5Ug","kid":"60Fg6lU6Mh2JlVPk55b+wg"}],"type":"temporary"}
 https://s7770.cdn.mytvnet.vn/pkg20/live_dzones/dsc.smil/manifest.mpd
-#EXTINF:-1 tvg-id="discoveryhd" group-title="🌏| Quốc tế" tvg-logo="https://s72140.cdn.mytvnet.vn/vimages/c7/7f/fc/c6/69/9b/c7fc6-pdiscoveryhd-channel-unkn.png", Discovery (dự phòng)
-http://akasaijr.myftp.org:21585/discovery/index.m3u8
-#EXTINF:-1 tvg-id="discoveryasiahd" group-title="🌏| Quốc tế" tvg-logo="https://astromedia.com.my/wp-content/uploads/2024/01/Discovery-Asia.png", Discovery Asia
+
+#EXTINF:-1 tvg-id="discoveryasiahd" group-title="🌏| Quốc tế" tvg-logo="https://astromedia.com.my/wp-content/uploads/2024/01/Discovery-Asia.png" catchup="append" catchup-days="2" catchup-source="https://tshift.fptplay.net/dvr/discoveryasia_1000.stream/chunks_dvr_range-${start}-${offset}.m3u8", Discovery Asia
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://ace.hoiquan.click/module/IPTV/?id=discoveryasia&amp;accKenh=vuminhthanh1
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=934907b134be3963a6263a453846924c:788e2835fb98568aed2f47bbdc091515
+https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/dscasia.smil/manifest.mpd
+
+#EXTINF:-1 tvg-id="discoveryasiahd" group-title="🌏| Quốc tế" tvg-logo="https://astromedia.com.my/wp-content/uploads/2024/01/Discovery-Asia.png", Discovery Asia Backup
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/dscasia.smil/manifest.mpd
 
 
 
