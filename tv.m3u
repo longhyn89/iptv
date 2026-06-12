@@ -770,7 +770,7 @@ https://freem3u.xyz/api/live/play.m3u8?vid=9855
 https://live.fptplay53.net/epzhd2/outdoorfhd_vhls.smil/chunklist_b5000000.m3u8
 #EXTINF:-1 tvg-id="hgtv" group-title="🌏| Quốc tế"  tvg-logo="https://i.ibb.co/3dTPBnd/cchgtv.png",HGTV
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://freem3u.xyz/api/live/play.m3u8?vid=99
+https://ec04-pop4-hlc.tv360.vn/bpk-token/xsjuswnpwbpvtkrbanml5e2jlg6jgskz/bpk-tv/295/output/index.mpd
 #EXTINF:-1 tvg-id="" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/HnBxLwB/TV5-Monde-BEARTV.png", TV5Monde
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/TV5/03.m3u8
