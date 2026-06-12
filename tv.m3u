@@ -97,7 +97,8 @@ https://freem3u.xyz/api/live/play.m3u8?vid=180
 
 #EXTINF:-1 tvg-id="vtvcab2hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SKvqCJR/VTVCAB2.png", ON Phim Việt
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://freem3u.xyz/api/live/play.m3u8?vid=175
+#https://freem3u.xyz/api/live/play.m3u8?vid=175
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=175
 
 #EXTINF:-1 tvg-id="vtvcab4hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/pLPBMJ0/tb-cab4.webp", ON Movies
 #EXTVLCOPT:http-user-agent="CloudTV"
