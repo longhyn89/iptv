@@ -384,8 +384,9 @@ https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b5000000.m3u8
 https://freem3u.xyz/api/live/play.m3u8?vid=19
 
 #EXTINF:-1 tvg-id="HiTV" group-title="🇻🇳| Địa phương" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823412691/61627b84a612_640_360.png", HiTV
-#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=32
-https://freem3u.xyz/api/live/play.m3u8?vid=32
+#https://freem3u.xyz/api/live/play.m3u8?vid=32
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=32
+
 
 #EXTINF:-1 tvg-id="YouTV" group-title="🇻🇳| Địa phương" tvg-logo="https://i.imgur.com/3d4Hfh8.png", YouTV
 #https://vpsttt.vietanhtv.top/tv360/tv360.php?id=31
