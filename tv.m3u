@@ -156,8 +156,8 @@ https://freem3u.xyz/api/live/play.m3u8?vid=188
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
-https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
-
+#https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
+https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/Onsport.mpd
 
 #EXTINF:-1 tvg-id="OnSport" tvg-name="On Sports HD" group-title="Thể Thao",On Sports HD
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
