@@ -161,9 +161,8 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://gviet.vn", ON SPORTS thethao
 #EXTVLCOPT:http-user-agent=CloudTV
-#EXTVLCOPT:drm_type=clearkey
-#EXTVLCOPT:drm_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
-https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
+https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd|drm_type=clearkey|drm_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
+
 
 
 
