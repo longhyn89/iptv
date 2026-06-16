@@ -159,12 +159,10 @@ https://freem3u.xyz/api/live/play.m3u8?vid=188
 https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
 
 
-#EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS the thao
+#EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://gviet.vn", ON SPORTS thethao
 #EXTVLCOPT:http-user-agent=CloudTV
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"MGE1MTNlYTQyMDMxYjlmZjgyNzFlNWRjMzdkOTBlMTA","kid":"YzQxMGRkYzZhNzUyNDQ2MzlmZDA1NjFmYmE1ZWYxOWI"}],"type":"temporary"}
+#EXTVLCOPT:drm_type=clearkey
+#EXTVLCOPT:drm_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
 https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
 
 
