@@ -160,9 +160,10 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="OnSport" tvg-name="On Sports HD" group-title="Thể Thao",On Sports HD
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
-https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd|User-Agent=Mozilla/5.0&Referer=https://onsports.vn/&Origin=https://onsports.vn
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_key=https://lic.example.com/license
+https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd|User-Agent=Mozilla/5.0 (Linux; Android 10; TV) AppleWebKit/537.36&Referer=https://onsports.vn/&Origin=https://onsports.vn
 
 #EXTINF:-1 tvg-id="onsportsplus" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #EXTVLCOPT:http-user-agent="CloudTV"
