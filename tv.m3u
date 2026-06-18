@@ -157,7 +157,8 @@ https://freem3u.xyz/api/live/play.m3u8?vid=188
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
 #https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
-https://iptv-proxy-sandy.vercel.app/api/onsport
+https://iptv-proxy-beq5.vercel.app/api/onsport
+
 
 #EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS thethao1
 https://iptv-proxy-sandy.vercel.app/api/onsport
