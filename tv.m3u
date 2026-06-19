@@ -156,20 +156,16 @@ https://freem3u.xyz/api/live/play.m3u8?vid=188
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
-#https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
-https://iptv-proxy-sandy.vercel.app/api/onsport
+https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
+
+#EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS thethao
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36 Edg/149.0.0.0
+#EXTVLCOPT:http-referrer=https://on.vtvcab.vn/
+https://live-on-cdn.sigmaott.com/manifest/on-sports/playlist_360p.m3u8
 
 
-#EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS thethao1
-https://iptv-proxy-sandy.vercel.app/api/onsport
 
-#EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS thethao2
-#EXTVLCOPT:http-user-agent="CloudTV"
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
-https://iptv-proxy-sandy.vercel.app/api/onsport
+
 
 #EXTINF:-1 tvg-id="onsportsplus" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #EXTVLCOPT:http-user-agent="CloudTV"
