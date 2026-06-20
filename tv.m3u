@@ -25,6 +25,7 @@ https://live-a.fptplay53.net/live/media/vtv6/live247-hls-avc/vtv6-avc1_5600000=1
 https://live.fptplay53.net/live/media/vtv7/live247-hls-avc/vtv7-avc1_5600000=10000-mp4a_131600=20000.m3u8
 #EXTINF:-1 tvg-id="vtv8hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/RyBxx0F/VTV8-cc.webp", VTV8
 #EXTVLCOPT:http-user-agent="CloudTV"
+https://live.fptplay53.net/live/media/vtv8/live-hls-avc/vtv8-avc1_4000000=10000-mp4a_131600=20000.m3u8
 #EXTINF:-1 tvg-id="vtv9hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/HVRdGVT/VTV9-cc.webp", VTV9
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://live.fptplay53.net/live/media/vtv9/live247-hls-avc/vtv9-avc1_5600000=10000-mp4a_131600=20000.m3u8
