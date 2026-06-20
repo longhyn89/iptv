@@ -107,14 +107,6 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=188
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"89c7OpuJRi6_eREATqOzuQ","k":"LlR6gf-QqgJkjLnj955zOQ"},{"kty":"oct","kid":"vFww_J9-Q-WIh6LYp3iKOA","k":"Vb1mmQ-3Rf2JXxqnE5PoHw"}],"type":"temporary"}
 https://livebytsct.vtvprime.vn/livesnv2/THETHAO_HD/manifest.mpd
 
-#EXTINF:-1 tvg-id="onsports" group-title="VTV/VTVcab" tvg-logo="https://raw.githubusercontent.com/lam9999/IPTV/main/Logos/OnSports.png", ON SPORTS thethao
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c410ddc6a75244639fd0561fba5ef19b:30d13ea42031b9ff8271e5dc37d90e10
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36
-https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_HD/manifest.mpd
-
 #EXTINF:-1 tvg-id="onsportsplus" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
