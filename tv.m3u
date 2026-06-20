@@ -112,19 +112,22 @@ https://livebytsct.vtvprime.vn/livesnv2/THETHAO_HD/manifest.mpd
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"89c7OpuJRi6_eREATqOzuQ","k":"LlR6gf-QqgJkjLnj955zOQ"},{"kty":"oct","kid":"TmGcW1RJR2KxMfZfw0qIWw","k":"Z22fWijUCdfWAVFLqhR8nQ"}],"type":"temporary"}
+https://livevlisctcdnw.seenow.vn/livesnv2/HAY_TV/manifest.mpd
 #EXTINF:-1 tvg-id="onfootball" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ootball_-_opyright_by_cab_logo_202212.jpg",  ON FOOTBALL
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"89c7OpuJRi6_eREATqOzuQ","k":"LlR6gf-QqgJkjLnj955zOQ"},{"kty":"oct","kid":"UYQWLjATSkSvodWR_8LnNg","k":"CbINX5u_Qf2405FsQJRwqA"}],"type":"temporary"}
+https://livevlisctcdnw.seenow.vn/mean/BONGDA_HD/manifest.mpd
 #EXTINF:-1 tvg-id="onsportsnews" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONSPORTSNEWS_150x904_1675158858.webp", ON SPORTS NEWS
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"89c7OpuJRi6_eREATqOzuQ","k":"LlR6gf-QqgJkjLnj955zOQ"},{"kty":"oct","kid":"yvtuYMFQTfyFj9Pd3G_SDA","k":"kgYf_rE_R8TYh5MW28lSHQ"}],"type":"temporary"}
+https://livevlisctcdnw.seenow.vn/mean/THETHAO_TINTUC_HD/manifest.mpd
 #EXTINF:-1 tvg-id="ongolf" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
