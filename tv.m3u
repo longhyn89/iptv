@@ -302,25 +302,21 @@ https://live.fptplay53.net/epzhd1/htvcmovieshd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="antvhd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/9wxKmLH/ANTV-BEARTV.png", ANTV HD
 https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b5000000.m3u8
 #EXTINF:-1 tvg-id="qpvnhd" group-title="🇻🇳| Địa phương" tvg-logo="https://upload.wikimedia.org/wikipedia/vi/5/5d/QPVN.png", QPVN HD
-#https://live.fptplay53.net/fnxhd2/quocphongvnhd_vhls.smil/chunklist_b5000000.m3u8
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=qpvn-fea05134
-https://freem3u.xyz/api/live/play.m3u8?vid=19
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=19
 
 #EXTINF:-1 tvg-id="HiTV" group-title="🇻🇳| Địa phương" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823412691/61627b84a612_640_360.png", HiTV
-#https://freem3u.xyz/api/live/play.m3u8?vid=32
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=32
 
 
 #EXTINF:-1 tvg-id="YouTV" group-title="🇻🇳| Địa phương" tvg-logo="https://i.imgur.com/3d4Hfh8.png", YouTV
-#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=31
-https://freem3u.xyz/api/live/play.m3u8?vid=31
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=31
+
 
 #-*--THVL-*--#
 
 #EXTINF:-1 tvg-id="vinhlong1hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/2MVntS3/THVL1-HD-BEARTV.png", THVL1 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://live.fptplay53.net/epzch2/vinhlong1_abr.smil/chunklist_b4200000.m3u8
-https://freem3u.xyz/api/live/play.m3u8?vid=25
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=25
 
 #EXTINF:-1 tvg-id="vinhlong2hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/LJWVVRp/THVL2-HD-BEARTV.png", THVL2 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
@@ -356,8 +352,6 @@ https://live.fptplay53.net/epzsd1/angiang_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="angiang" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Jz474K1/An-Giang-BEARTV.png", ATV | TH An Giang 3 - Báo và PTTH An Giang
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 https://tv.angiangtv.vn/live/kgtv1/kgtv1.m3u8
-
-
 
 #EXTINF:-1 tvg-id="baria" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/ZMVBv8X/BRT-BEARTV.png", BRT HD | TH Bà Rịa Vũng Tàu
 https://live.fptplay53.net/epzsd1/bariavungtau_hls.smil/chunklist.m3u8
@@ -401,10 +395,10 @@ https://live.fptplay53.net/fnxsd1/caobang_hls.smil/chunklist.m3u8
 
 
 #EXTINF:-1 tvg-id="danang1" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/TRhDWXc/128.png", DaNangTV1 HD
-https://freem3u.xyz/api/live/play.m3u8?vid=49
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=49
 
 #EXTINF:-1 tvg-id="danang2" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/TRhDWXc/128.png", DaNangTV2 HD
-https://freem3u.xyz/api/live/play.m3u8?vid=80
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=80
 
 #EXTINF:-1 tvg-id="daklak" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/NmVVpFC/daklak-BEARTV.png", DRT HD | TH Đắk Lắk
 https://live.fptplay53.net/epzsd1/daklak_hls.smil/chunklist.m3u8
@@ -455,7 +449,7 @@ https://live.fptplay53.net/fnxsd1/laichau_hls.smil/chunklist.m3u8
 https://live.fptplay53.net/epzsd1/lamdong_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="lamdong" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/YcBXy9Y/LAMDONG-BEARTV.png", LTV HD | TH Lâm Đồng 2
 https://live.fptplay53.net/epzsd1/lamdong02_hls.smil/chunklist.m3u8
-https://freem3u.xyz/api/live/play.m3u8?vid=45
+
 
 #EXTINF:-1 tvg-id="langson" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/8PdwJC0/LSTV-BEARTV.png", LSTV HD | TH Lạng Sơn
 https://stream.langsontv.vn/live/285c78da0c246524c90917842f8de03bd21/chunklist.m3u8
@@ -672,13 +666,13 @@ https://s7771.cdn.mytvnet.vn/pkg20/live_dzones/bbcworldnews.smil/manifest.mpd
 
 #EXTINF:-1 group-title="🌏| Quốc tế" tvg-logo="https://i.imgur.com/ZL62USj.png", History
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://freem3u.xyz/api/live/play.m3u8?vid=9856
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9856
 #EXTINF:-1 group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/BVdwFmN/Da-Vinci-cc.png", Da Vinci HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/DAVINVY/04.m3u8
 #EXTINF:0 group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/Q8NX9GC/kix-BEARTV.png", Kix HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://freem3u.xyz/api/live/play.m3u8?vid=9901
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9901
 #EXTINF:-1 tvg-id="kbsworld" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/8XwH2hS/KBS-World-BEARTV.png", KBS World
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/KBS/03.m3u8
@@ -687,13 +681,13 @@ https://liveh12.vtvprime.vn/hls/KBS/03.m3u8
 https://liveh12.vtvprime.vn/hls/AFC/03.m3u8
 #EXTINF:-1 tvg-id="cnbc" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/ChmR52g/CNBC-BEARTV.png", CNBC
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://freem3u.xyz/api/live/play.m3u8?vid=9855
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9855
 #EXTINF:0 tvg-id="outdoorhd" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/hDhK578/Outdoor-Channel-BEARTV.png", Outdoor Channel
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://live.fptplay53.net/epzhd2/outdoorfhd_vhls.smil/chunklist_b5000000.m3u8
 #EXTINF:-1 tvg-id="hgtv" group-title="🌏| Quốc tế"  tvg-logo="https://i.ibb.co/3dTPBnd/cchgtv.png",HGTV
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://ec04-pop4-hlc.tv360.vn/bpk-token/xsjuswnpwbpvtkrbanml5e2jlg6jgskz/bpk-tv/295/output/index.mpd
+
 #EXTINF:-1 tvg-id="" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/HnBxLwB/TV5-Monde-BEARTV.png", TV5Monde
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://liveh12.vtvprime.vn/hls/TV5/03.m3u8
