@@ -104,6 +104,8 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=188
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"89c7OpuJRi6_eREATqOzuQ","k":"LlR6gf-QqgJkjLnj955zOQ"},{"kty":"oct","kid":"vFww_J9-Q-WIh6LYp3iKOA","k":"Vb1mmQ-3Rf2JXxqnE5PoHw"}],"type":"temporary"}
+https://livebytsct.vtvprime.vn/livesnv2/THETHAO_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="onsportsplus" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #EXTVLCOPT:http-user-agent="CloudTV"
