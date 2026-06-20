@@ -134,7 +134,6 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_GOLF_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv1-hd-7f2aafec
 https://hoiquan.dpdns.org/VTVGo/?sctv1
 
 #EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD
