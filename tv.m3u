@@ -210,7 +210,6 @@ https://cdnet-cdn-01.onsports.vn/onplus/SCTV15HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv16hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/CMr9xN0/sctv16-hd-BEARTV.png", SCTV16 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv16-dd1535e8
 https://hoiquan.dpdns.org/VTVGo/?sctv16
 
 
@@ -224,13 +223,11 @@ https://cdnet-cdn-01.onsports.vn/onplus/SCTV17/manifest.mpd
 
 #EXTINF:-1 tvg-id="sctv18hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/72PK5Nr/sctv18-hd-BEARTV.png", SCTV18 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv18-398b0b4e
 https://hoiquan.dpdns.org/VTVGo/?sctv18
 
 
 #EXTINF:-1 tvg-id="sctv19hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/gMJ1GRG/sctv19-hd-BEARTV.png", SCTV19 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv19-bf00bd02
 https://hoiquan.dpdns.org/VTVGo/?sctv19
 
 
