@@ -142,13 +142,11 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=201
 
 #EXTINF:-1 tvg-id="sctv3hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/bW9fKGv/sctv3-hd-BEARTV.png", SCTV3 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv3-hd-cf3adaca
 https://hoiquan.dpdns.org/VTVGo/?sctv3
 
 
 #EXTINF:-1 tvg-id="sctv4hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/2N5hVDx/sctv4-hd-BEARTV.png", SCTV4 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv4-ae779f7e
 https://hoiquan.dpdns.org/VTVGo/?sctv4
 
 
@@ -159,55 +157,45 @@ https://hoiquan.dpdns.org/VTVGo/?sctv5
 
 #EXTINF:-1 tvg-id="sctv6hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DDf1zhNX/SCTV6-logo-2011.webp", SCTV6 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv6-202e4566
-#https://hoiquan.dpdns.org/VTVGo/?sctv6
-https://freem3u.xyz/api/live/play.m3u8?vid=232
+https://live.fptplay53.net/epzhd2/film360_vhls.smil/chunklist_b5000000.m3u8
 
 #EXTINF:-1 tvg-id="sctv7hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/X8fCcpx/sctv7-hd-BEARTV.png", SCTV7 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv7-ef7e259a
 https://hoiquan.dpdns.org/VTVGo/?sctv7
 
 
 #EXTINF:-1 tvg-id="sctv8hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/0tVLK8b/sctv8-BEARTV.png", SCTV8 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv8-c12d138b
 https://hoiquan.dpdns.org/VTVGo/?sctv8
 
 
 #EXTINF:-1 tvg-id="sctv9hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/VLJrprr/sctv9-hd-BEARTV.png", SCTV9 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv9-cdd19ab2
 https://hoiquan.dpdns.org/VTVGo/?sctv9
 
 
 #EXTINF:-1 tvg-id="sctv10hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/LhqTgJ6N/SCTV10-logo-2011.webp", SCTV10 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv10-0faf313b
 https://hoiquan.dpdns.org/VTVGo/?sctv10
 
 
 #EXTINF:-1 tvg-id="sctv11hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/Jy3cThG/sctv11-hd-BEARTV.png", SCTV11 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv11-1d565c47
 https://hoiquan.dpdns.org/VTVGo/?sctv11
 
 
 #EXTINF:-1 tvg-id="sctv12hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/nDbnG8h/sctv12-hd-BEARTV.png", SCTV12 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv12-b0d6c023
 https://hoiquan.dpdns.org/VTVGo/?sctv12
 
 
 #EXTINF:-1 tvg-id="sctv13hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/YXt8w8v/sctv13-hd-BEARTV.png", SCTV13 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv13-67f88fcb
 https://hoiquan.dpdns.org/VTVGo/?sctv13
 
 
 #EXTINF:-1 tvg-id="sctv14hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/n8YQ0hB/sctv14-hd-BEARTV.png", SCTV14 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv14-789c9f45
 https://hoiquan.dpdns.org/VTVGo/?sctv14
 
 
