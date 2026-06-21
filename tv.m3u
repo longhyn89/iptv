@@ -44,16 +44,16 @@ https://live.fptplay53.net/fnxhd1/vntoday_vhls.smil/chunklist_b5000000.m3u8
 
 #-*--VTVCAB-*--#
 
-#EXTINF:-1 tvg-id="vtvcab1hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/JF1bm7n/VTVCAB1.png", Vie Giải trí HD
+#EXTINF:-1 tvg-id="onviegiaitri" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/JF1bm7n/VTVCAB1.png", Vie Giải trí HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=180
-#EXTINF:-1 tvg-id="vtvcab2hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SKvqCJR/VTVCAB2.png", ON Phim Việt
+#EXTINF:-1 tvg-id="onphimviet" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SKvqCJR/VTVCAB2.png", ON Phim Việt
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=175
-#EXTINF:-1 tvg-id="vtvcab4hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/pLPBMJ0/tb-cab4.webp", ON Movies
+#EXTINF:-1 tvg-id="onmovies" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/pLPBMJ0/tb-cab4.webp", ON Movies
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=181
-#EXTINF:-1 tvg-id="vtvcab5hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/QQxMjjG/VTVCAB5.png", E Channel
+#EXTINF:-1 tvg-id="onechannel" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/QQxMjjG/VTVCAB5.png", E Channel
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=182
 
