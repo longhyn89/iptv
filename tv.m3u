@@ -575,7 +575,7 @@ https://livevlisctcdnw.seenow.vn/livesnv2/MUSICBOX/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_key=2942ed303e0d40c9b99c94c587bbf509:96cda24109734fb7920d799d58d1a9ae
 https://livevlisctcdnw.seenow.vn/mean/WO/manifest.mpd
 
-#EXTINF:-1 tvg-id="hbo" tvg-logo="https://i.ibb.co/FDRHKwf/hboasia.png" group-title="🇧🌎🇽",HBO (Asia)
+#EXTINF:-1 tvg-id="hbohd" tvg-logo="https://i.ibb.co/FDRHKwf/hboasia.png" group-title="🇧🌎🇽",HBO (Asia)
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
