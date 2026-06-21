@@ -137,7 +137,7 @@ https://livevlisctcdnw.seenow.vn/mean/THETHAO_TINTUC_HD/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"89c7OpuJRi6_eREATqOzuQ","k":"LlR6gf-QqgJkjLnj955zOQ"},{"kty":"oct","kid":"WjI7U-CGRJKw4Exw1ZHFZA","k":"hDWEuvryc2xP0bduHu502A"}],"type":"temporary"}
 https://livevlisctcdnw.seenow.vn/mean/THETHAO_GOLF_HD/manifest.mpd
 
-#EXTINF:-1 tvg-id="ongolf" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF Backup
+#EXTINF:-1 tvg-id="ongolf" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF Dự phòng
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -150,7 +150,13 @@ https://cdnet-cdn-01.onsports.vn/onplus/THETHAO_GOLF_HD/manifest.mpd
 #EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://hoiquan.dpdns.org/VTVGo/?sctv1
-
+#EXTINF:-1 tvg-id="sctv1hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"kSHr4pO8Rs2J5dg6eMGlPA","k":"koVhWkkaQk-wJfno1XG81Q"}],"type":"temporary"}
+https://liveatmvng.vtvprime.vn/live/data8/SCTV1/Live_DASHDRM/SCTV1.mpd
 #EXTINF:-1 tvg-id="sctv2hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=201
