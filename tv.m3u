@@ -47,6 +47,14 @@ https://live.fptplay53.net/fnxhd1/vntoday_vhls.smil/chunklist_b5000000.m3u8
 #EXTINF:-1 tvg-id="onviegiaitri" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/JF1bm7n/VTVCAB1.png", Vie Giải trí HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=180
+#EXTINF:-1 tvg-id="onviegiaitri" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/JF1bm7n/VTVCAB1.png", Vie Giải trí HD Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"xAtqLHuUy9SVix2T2bI67Q","kid":"Phxgd6sDTTufAtCuQ4Je7A"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/GIAITRI_TV_HD/manifest.mpd
+
 #EXTINF:-1 tvg-id="onphimviet" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SKvqCJR/VTVCAB2.png", ON Phim Việt
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=175
