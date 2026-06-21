@@ -58,54 +58,157 @@ https://livevlisctcdnw.seenow.vn/livesnv2/GIAITRI_TV_HD/manifest.mpd
 #EXTINF:-1 tvg-id="onphimviet" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SKvqCJR/VTVCAB2.png", ON Phim Việt
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=175
+#EXTINF:-1 tvg-id="onphimviet" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SKvqCJR/VTVCAB2.png", ON Phim Việt Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"7rtoneEZGuGyB9MvDVyp_g","kid":"dBfbiJKCQ_2k4DWWu9GaJw"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/PHIM_VIET/manifest.mpd
+
 #EXTINF:-1 tvg-id="onmovies" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/pLPBMJ0/tb-cab4.webp", ON Movies
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=181
+#EXTINF:-1 tvg-id="onmovies" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/pLPBMJ0/tb-cab4.webp", ON Movies Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"VTdSd4_g0-p51DS_X4Z_Jg","kid":"L1cfbbYDQOijzDpTldIWEQ"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/VAN_HOA/manifest.mpd
 #EXTINF:-1 tvg-id="onechannel" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/QQxMjjG/VTVCAB5.png", E Channel
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=182
+#EXTINF:-1 tvg-id="onechannel" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/QQxMjjG/VTVCAB5.png", E Channel Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"jfyeoCk-O5Tl9EuNny-snw","kid":"BMjVPJ1PSKeO_f10iI_8OA"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/E_CHANNEL/manifest.mpd
+
 
 #EXTINF:-1 tvg-id="ono2tv" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/8DCZ0sz/tb-vcab7.webp", ON O2TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=136
+#EXTINF:-1 tvg-id="ono2tv" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/8DCZ0sz/tb-vcab7.webp", ON O2TV Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"VUTXweUjpT1ASrKCMTLufg","kid":"G1qRXyZ-QXCF4PaCADlaQQ"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/O2_TV/manifest.mpd
 
 #EXTINF:-1 tvg-id="onbibi" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tpqn2z4/tb-vcab8.webp", ON BiBi
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=178
+#EXTINF:-1 tvg-id="onbibi" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tpqn2z4/tb-vcab8.webp", ON BiBi Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"pSF4zdrxuHJqrfb6aXtb9A","kid":"QZbsjF_KTxy1Do8maMY7EA"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/BIBI/manifest.mpd
 
 #EXTINF:-1 tvg-id="oninfotv" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/Kbjn4zW/VTVCAB9.png", Info TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=189
+#EXTINF:-1 tvg-id="oninfotv" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/Kbjn4zW/VTVCAB9.png", Info TV Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"Y-Oq0rxb7XfllyS6jS6U8A","kid":"OUJfGp9_TbmFteey5l5CCA"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/INFO_TV/manifest.mpd
 
 #EXTINF:-1 tvg-id="oncine" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/hdx4wzX/VTVCAB10.png", ON Cine
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=176
+#EXTINF:-1 tvg-id="oncine" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/hdx4wzX/VTVCAB10.png", ON Cine Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"dVXrQ4IXk427SGZYY7RvoQ","kid":"Cq1UL_8nSyaFJkYDtQdWMg"}]}
+https://livevlisctcdnw.seenow.vn/mean/FILM_TV/manifest.mpd
 
 #EXTINF:-1 tvg-id="onstyle" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/r7pJj3r/VTVCAB12.png", Style TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=184
+#EXTINF:-1 tvg-id="onstyle" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/r7pJj3r/VTVCAB12.png", Style TV Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"MdEsbVYeII9MebSmwoDdWw","kid":"QUooiv49TzmFQH2WE-wh6w"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/STYLE_TV_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="onmusic" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tKQC0TS/tb-vcab15.webp", ON Music
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=185
+#EXTINF:-1 tvg-id="onmusic" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tKQC0TS/tb-vcab15.webp", ON Music Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"tQl1Hx-jxnb0gs3kdmcN1g","kid":"5Ri7t-hhSn2k2Nl01iSG2g"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/M_CHANNEL/manifest.mpd
+
 
 #EXTINF:-1 tvg-id="ontrending" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/zVQ2Qgf/VTVCAB17.png", Yeah1TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=186
+#EXTINF:-1 tvg-id="ontrending" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/zVQ2Qgf/VTVCAB17.png", Yeah1TV Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"KXAxfr-G1w-hFDTqtMWcXQ","kid":"dlyCbDgeTViEl4S7IGyOkA"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/YEAH1_TV/manifest.mpd
+
 #EXTINF:-1 tvg-id="onviedramas" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SxBTCSq/VTVCAB19.png", Vie Dramas
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=177
+#EXTINF:-1 tvg-id="onviedramas" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SxBTCSq/VTVCAB19.png", Vie Dramas Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"9nRlLBMhFTbg4h2eqGDKkA","kid":"8qu3RKzSQ2mUOnljX0-kOg"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/D_DRAMAS_HD/manifest.mpd
 
 #EXTINF:-1 tvg-id="onvfamily" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/fG465Qr/VTVCAB20.png", VFamily
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=187
+#EXTINF:-1 tvg-id="onvfamily" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/fG465Qr/VTVCAB20.png", VFamily Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"j-gameWxzIkbuen4SLbi5w","kid":"wBsixfW0TXK5kCszpMNvtw"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/VFAMILY/manifest.mpd
 
 #EXTINF:-1 tvg-id="onkids" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/KjG1mBZ/tb-vcab21.webp", ON Kids
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=179
+#EXTINF:-1 tvg-id="onkids" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/KjG1mBZ/tb-vcab21.webp", ON Kids Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"6M_PZ4dQ9JQxLfy9ruUTLg","kid":"wHZpIz4HQWWUV3sp1gNypg"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/BIBI_PLUS_clear/manifest.mpd
+
 #EXTINF:-1 tvg-id="onlife" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/jz4HVtt/tb-vcab22.webp" , ON Life
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=188
+#EXTINF:-1 tvg-id="onlife" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/jz4HVtt/tb-vcab22.webp" , ON Life Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"xpwQGEZBOuj6qNNTx5eRIQ","kid":"ypx4GluhQvKwOoAo_Oy4Rw"}]}
+https://livevlisctcdnw.seenow.vn/livesnv2/LIFE_TV/manifest.mpd
 
 #EXTINF:-1 tvg-id="onsports" group-title="💚| VTVcab ON" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS
 #EXTVLCOPT:http-user-agent="CloudTV"
