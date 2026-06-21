@@ -57,45 +57,45 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=181
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=182
 
-#EXTINF:-1 tvg-id="vtvcab7hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/8DCZ0sz/tb-vcab7.webp", ON O2TV
+#EXTINF:-1 tvg-id="ono2tv" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/8DCZ0sz/tb-vcab7.webp", ON O2TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=136
 
-#EXTINF:-1 tvg-id="vtvcab8hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tpqn2z4/tb-vcab8.webp", ON BiBi
+#EXTINF:-1 tvg-id="onbibi" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tpqn2z4/tb-vcab8.webp", ON BiBi
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=178
 
-#EXTINF:-1 tvg-id="vtvcab9hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/Kbjn4zW/VTVCAB9.png", Info TV
+#EXTINF:-1 tvg-id="oninfotv" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/Kbjn4zW/VTVCAB9.png", Info TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=189
 
-#EXTINF:-1 tvg-id="vtvcab10hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/hdx4wzX/VTVCAB10.png", ON Cine
+#EXTINF:-1 tvg-id="oncine" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/hdx4wzX/VTVCAB10.png", ON Cine
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=176
 
-#EXTINF:-1 tvg-id="vtvcab12hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/r7pJj3r/VTVCAB12.png", Style TV
+#EXTINF:-1 tvg-id="onstyle" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/r7pJj3r/VTVCAB12.png", Style TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=184
 
-#EXTINF:-1 tvg-id="vtvcab15hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tKQC0TS/tb-vcab15.webp", ON Music
+#EXTINF:-1 tvg-id="onmusic" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/tKQC0TS/tb-vcab15.webp", ON Music
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=185
 
-#EXTINF:-1 tvg-id="vtvcab17hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/zVQ2Qgf/VTVCAB17.png", Yeah1TV
+#EXTINF:-1 tvg-id="ontrending" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/zVQ2Qgf/VTVCAB17.png", Yeah1TV
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=186
-#EXTINF:-1 tvg-id="vtvcab19hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SxBTCSq/VTVCAB19.png", Vie Dramas
+#EXTINF:-1 tvg-id="onviedramas" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/SxBTCSq/VTVCAB19.png", Vie Dramas
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=177
 
-#EXTINF:-1 tvg-id="vtvcab20hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/fG465Qr/VTVCAB20.png", VFamily
+#EXTINF:-1 tvg-id="onvfamily" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/fG465Qr/VTVCAB20.png", VFamily
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=187
 
-#EXTINF:-1 tvg-id="vtvcab21hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/KjG1mBZ/tb-vcab21.webp", ON Kids
+#EXTINF:-1 tvg-id="onkids" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/KjG1mBZ/tb-vcab21.webp", ON Kids
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=179
-#EXTINF:-1 tvg-id="vtvcab22hd" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/jz4HVtt/tb-vcab22.webp" , ON Life
+#EXTINF:-1 tvg-id="onlife" group-title="💚| VTVcab ON" tvg-logo="https://i.ibb.co/jz4HVtt/tb-vcab22.webp" , ON Life
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=188
 
