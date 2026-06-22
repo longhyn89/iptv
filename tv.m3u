@@ -303,11 +303,17 @@ https://liveatmvng.vtvprime.vn/live/data8/SCTV4/Live_DASHDRM/SCTV4.mpd
 #EXTINF:-1 tvg-id="sctv5hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://hoiquan.dpdns.org/VTVGo/?sctv5
+#EXTINF:-1 tvg-id="sctv5hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv5-a3cdb592
 
 
 #EXTINF:-1 tvg-id="sctv6hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DDf1zhNX/SCTV6-logo-2011.webp", SCTV6 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://live.fptplay53.net/epzhd2/film360_vhls.smil/chunklist_b5000000.m3u8
+#EXTINF:-1 tvg-id="sctv6hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DDf1zhNX/SCTV6-logo-2011.webp", SCTV6 HD Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv6-202e4566
 
 #EXTINF:-1 tvg-id="sctv7hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/X8fCcpx/sctv7-hd-BEARTV.png", SCTV7 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
@@ -345,6 +351,11 @@ https://livevlisctcdnw.seenow.vn/mean/SCTV9/manifest.mpd
 #EXTINF:-1 tvg-id="sctv10hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/LhqTgJ6N/SCTV10-logo-2011.webp", SCTV10 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://hoiquan.dpdns.org/VTVGo/?sctv10
+#EXTINF:-1 tvg-id="sctv10hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/LhqTgJ6N/SCTV10-logo-2011.webp", SCTV10 HD Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://vpsttt.vietanhtv.top/sctv/tv.php?id=sctv10-0faf313b
+
+
 #EXTINF:-1 tvg-id="sctv11hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/Jy3cThG/sctv11-hd-BEARTV.png", SCTV11 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://hoiquan.dpdns.org/VTVGo/?sctv11
