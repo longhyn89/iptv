@@ -579,12 +579,13 @@ https://live.fptplay53.net/epzhd2/vinhlong3_vhls.smil/chunklist_b5000000.m3u8
 
 #EXTINF:-1 tvg-id="vinhlong4hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/F5VZQ8x/THVL4-HD-BEARTV.png", THVL4 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://rd.locket.top/tv360.m3u8?id=thvl4
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=220
 
 
 #EXTINF:-1 tvg-id="vinhlong5hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/B5RPzLYV/thvl5.png", THVL5 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://live.fptplay53.net/epzsd1/vinhlong5_vhls.smil/chunklist_b5000000.m3u8
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=91
+
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -600,12 +601,11 @@ https://live.fptplay53.net/fnxhd1/hntv2_vhls.smil/chunklist_b5000000.m3u8
 #EXTINF:-1 tvg-id="angiang1" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Jz474K1/An-Giang-BEARTV.png", ATV | TH An Giang 1 - Báo và PTTH An Giang
 https://live.fptplay53.net/epzsd1/angiang01_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="angiang2" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Jz474K1/An-Giang-BEARTV.png", ATV | TH An Giang 2 - Báo và PTTH An Giang
-https://live.fptplay53.net/epzsd1/angiang_hls.smil/chunklist.m3u8
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=35
 #EXTINF:-1 tvg-id="angiang3" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Jz474K1/An-Giang-BEARTV.png", ATV | TH An Giang 3 - Báo và PTTH An Giang
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 https://live.fptplay53.net/epzsd1/angiang03_hls.smil/chunklist_b2500000.m3u8
 #EXTINF:-1 tvg-id="baria" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/ZMVBv8X/BRT-BEARTV.png", BRT HD | TH Bà Rịa Vũng Tàu
-https://live.fptplay53.net/epzsd1/bariavungtau_hls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="bacgiang" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Czf1tJc/BACGIANG-BEARTV.png", BGTV HD | TH Bắc Giang
 #https://liveh34.vtvprime.vn/hls/BACGIANGTV/03.m3u8
@@ -633,13 +633,13 @@ https://live.fptplay53.net/fnxsd1/btv9_hls.smil/chunklist_b2500000.m3u8
 #EXTINF:-1 tvg-id="binhduong11" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/6wvyQyv/121.png", BTV11 | TH Bình Dương
 
 #EXTINF:-1 tvg-id="camau" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Xs0nf0N/125.png", CTV HD | TH Cà Mau
-https://live.fptplay53.net/epzsd1/camau_hls.smil/chunklist.m3u8
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=46
 
 
 #EXTINF:-1 tvg-id="cantho" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/0XXxcNv/CANTHO-BEARTV.png", THTPCT 1 HD | TH Cần Thơ
-https://live.fptplay53.net/epzsd1/cantho_hls.smil/chunklist.m3u8
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=47
 #EXTINF:-1 tvg-id="cantho" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/0XXxcNv/CANTHO-BEARTV.png", THTPCT 2 HD | TH Cần Thơ
-https://live.fptplay53.net/epzsd1/cantho02_vhls.smil/chunklist.m3u8
+https://vpsttt.vietanhtv.top/tv360/tv360.php?id=61
 #EXTINF:-1 tvg-id="cantho" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/0XXxcNv/CANTHO-BEARTV.png", THTPCT 3 HD | TH Cần Thơ
 https://live.fptplay53.net/epzsd1/cantho03_hls.smil/chunklist.m3u8
 
