@@ -124,6 +124,13 @@ https://livesct.vtvprime.vn/mean/VTV5_TN/manifest.mpd
 #EXTINF:-1 tvg-id="vietnamtoday" group-title="📦| VTV" tvg-logo="https://i.ibb.co/zTMvHrSm/Vietnam-Today.jpg", Việt Nam Today
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://live.fptplay53.net/fnxhd1/vntoday_vhls.smil/chunklist_b5000000.m3u8
+#EXTINF:-1 tvg-id="vietnamtoday" group-title="📦| VTV" tvg-logo="https://i.ibb.co/zTMvHrSm/Vietnam-Today.jpg", Việt Nam Today Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d8099c6c4ebc4ab88ce6f694f912e26d:ec57977de110995b8fc5d42e4ffdbcc9
+https://livesct.vtvprime.vn/mean/VIETNAMTODAY/manifest.mpd
 
 #-*--VTVCAB-*--#
 
