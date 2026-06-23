@@ -59,7 +59,7 @@ https://live-a.fptplay53.net/live/media/vtv6/live247-hls-avc/vtv6-avc1_5600000=1
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=d8099c6c4ebc4ab88ce6f694f912e26d:ec57977de110995b8fc5d42e4ffdbcc9
-https://livebytsct.vtvprime.vn/livesnv2/VTV6/manifest.mpd
+https://livesct.vtvprime.vn/mean/VTV6/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="vtv7hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/Z89vrHX/VTV7-cc.webp", VTV7
