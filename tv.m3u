@@ -551,9 +551,11 @@ https://live.fptplay53.net/epzhd1/htvcmovieshd_vhls.smil/chunklist.m3u8
 #-*--Thiết yếu-*--#   
 
 #EXTINF:-1 tvg-id="antvhd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/9wxKmLH/ANTV-BEARTV.png", ANTV HD
-https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b5000000.m3u8
+#https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/live/media/antv/live-hls-avc/antv-avc1_2000000=10001-mp4a_131600=20000.m3u8
 #EXTINF:-1 tvg-id="qpvnhd" group-title="🇻🇳| Địa phương" tvg-logo="https://upload.wikimedia.org/wikipedia/vi/5/5d/QPVN.png", QPVN HD
-https://vips-livecdn.fptplay.net/live/media/quocphongvn/live-hls-avc/quocphongvn-avc1_5600000=10000-mp4a_131600=20000.m3u8
+#https://vips-livecdn.fptplay.net/live/media/quocphongvn/live-hls-avc/quocphongvn-avc1_5600000=10000-mp4a_131600=20000.m3u8
+https://live.fptplay53.net/live/media/quocphongvn/live-hls-avc/quocphongvn-avc1_2000000=10001-mp4a_131600=20000.m3u8
 
 #EXTINF:-1 tvg-id="HiTV" group-title="🇻🇳| Địa phương" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823412691/61627b84a612_640_360.png", HiTV
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=32
@@ -579,12 +581,14 @@ https://live.fptplay53.net/epzhd2/vinhlong3_vhls.smil/chunklist_b5000000.m3u8
 
 #EXTINF:-1 tvg-id="vinhlong4hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/F5VZQ8x/THVL4-HD-BEARTV.png", THVL4 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vpsttt.vietanhtv.top/tv360/tv360.php?id=220
+#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=220
+https://live.fptplay53.net/epzhd2/vinhlong4-hd_vhls.smil/chunklist_b2500000.m3u8
 
 
 #EXTINF:-1 tvg-id="vinhlong5hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/B5RPzLYV/thvl5.png", THVL5 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://vpsttt.vietanhtv.top/tv360/tv360.php?id=91
+#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=91
+https://live.fptplay53.net/epzhd2/vinhlong5hd_vhls.smil/chunklist_b2500000.m3u8
 
 
 
