@@ -597,31 +597,31 @@ https://amg01868-amg01868c3-tvbanywhere-us-4491.playouts.now.amagi.tv/playlist10
 #-*--HTV/HTVC-*--#
 
 #EXTINF:-1 tvg-id="htv1" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/TL3rgJd/htv1.webp", HTV1 HD
-https://live.fptplay53.net/epzhd1/htv1_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/epzhd1/htv1_hls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htv2hd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/7rt7fRS/htv2.png", HTV2 HD
-https://live.fptplay53.net/epzhd1/htv2hd_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/epzhd1/htv2hd_vhls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htv3" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/vwSBL1x/htv3.png", HTV3 HD
-https://live.fptplay53.net/epzhd1/htv3_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/epzhd1/htv3_hls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htv4" group-title="💛| HTV/HTVC" tvg-logo="https://i.imgur.com/BcCA0x2.png", HTV4 HD
-https://live.fptplay53.net/epzhd1/htv4_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/epzhd1/htv4_hls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htv5" group-title="💛| HTV/HTVC" tvg-logo="https://i.imgur.com/EI0mJRf.png", HTV5 HD
-https://live.fptplay53.net/fnxsd1/btv9_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxsd1/btv9_hls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htv7hd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/mh1GLfY/HTV7-BEARTV.png", HTV7 HD
 #https://e2.endpoint.cdn.sctvonline.vn/hls/htv7/index.m3u8
-https://live.fptplay53.net/epzhd1/htv7hd_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/epzhd1/htv7hd_vhls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htv9hd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/4VNDzHh/HTV9-BEARTV.png", HTV9 HD
 #https://e2.endpoint.cdn.sctvonline.vn/hls/htv9/index.m3u8
-https://live.fptplay53.net/epzhd1/htv9hd_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/epzhd2/htv9hd_vhls.smil/chunklist.m3u8
 
 
 #EXTINF:-1 tvg-id="htvthethaohd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/Y8mr4Hf/HTV-TT.png" , HTV Thể Thao
-https://live.fptplay53.net/epzhd1/htvcthethao_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/epzhd1/htvcthethao_vhls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="htvcthuanviethd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/y86D94g/thuanviet.webp", HTVC Thuần Việt HD
 https://live.fptplay53.net/epzhd1/htvcthuanviethd_vhls.smil/chunklist.m3u8
@@ -630,22 +630,20 @@ https://live.fptplay53.net/epzhd1/htvcgiadinh_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="htvcphunuhd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/TvZCS24/HTVC-PHUNU.png", HTVC Phụ nữ HD
 https://live.fptplay53.net/epzhd1/htvcphunu_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="htvcdulichhd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/n0r0WJh/HTVC-DLCS.png", HTVC Du lịch Cuộc sống HD
-https://live.fptplay53.net/epzhd1/htvcdulich_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/epzhd1/htvcdulich_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="htvccanhachd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/gwFXPvh/HTVC-CANHAC.png", HTVC Ca nhạc HD
 https://live.fptplay53.net/epzhd1/htvcmusic_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="htvcphimhd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/6BcjWb8/HTVC-PHIM.png", HTVC Phim HD
 https://live.fptplay53.net/epzhd1/htvcmovieshd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="htvcplushd" group-title="💛| HTV/HTVC" tvg-logo="https://i.ibb.co/DpMwrKD/HTVCoop.webp ", HTVC Plus HD
- https://live.fptplay53.net/epzhd1/htvcplus_vhls.smil/chunklist.m3u8
+https://live.fptplay53.net/epzhd1/htvcplus_vhls.smil/chunklist.m3u8
 
 #-*--Thiết yếu-*--#   
 
 #EXTINF:-1 tvg-id="antvhd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/9wxKmLH/ANTV-BEARTV.png", ANTV HD
-#https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist_b5000000.m3u8
-https://live.fptplay53.net/live/media/antv/live-hls-avc/antv-avc1_2000000=10001-mp4a_131600=20000.m3u8
+https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="qpvnhd" group-title="🇻🇳| Địa phương" tvg-logo="https://upload.wikimedia.org/wikipedia/vi/5/5d/QPVN.png", QPVN HD
-#https://vips-livecdn.fptplay.net/live/media/quocphongvn/live-hls-avc/quocphongvn-avc1_5600000=10000-mp4a_131600=20000.m3u8
-https://live.fptplay53.net/live/media/quocphongvn/live-hls-avc/quocphongvn-avc1_2000000=10001-mp4a_131600=20000.m3u8
+https://live.fptplay53.net/fnxhd1/quocphongvnhd_vhls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="HiTV" group-title="🇻🇳| Địa phương" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823412691/61627b84a612_640_360.png", HiTV
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=32
