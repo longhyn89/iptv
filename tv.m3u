@@ -971,7 +971,7 @@ https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/cbb.smil/manifest.mpd
 #EXTINF:-1 tvg-id="" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/mbwghSJ/NICKELODEON.png", NICKELODEON
 
 #EXTINF:-1 tvg-id="davinci" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/7RwmDbp/Da-vinci-learning-21.png", DAVINCI LEARNING
-https://live.fptplay53.net/fnxhd2/davincihd_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/fnxhd2/davincihd_vhls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="animax" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/CmS9nWL/Animax.webp", Animax
 
@@ -995,26 +995,26 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9856
 #EXTINF:-1 tvg-id="davinci" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/BVdwFmN/Da-Vinci-cc.png", Da Vinci HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/DAVINVY/04.m3u8
-https://live.fptplay53.net/fnxhd2/davincihd_vhls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/davincihd_vhls.smil/chunklist.m3u8
 #EXTINF:0 tvg-id="kix" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/Q8NX9GC/kix-BEARTV.png", Kix HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9901
-https://live.fptplay53.net/fnxhd2/kixhd_vhls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/kixhd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="kbsworld" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/8XwH2hS/KBS-World-BEARTV.png", KBS World
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/KBS/03.m3u8
-https://live.fptplay53.net/epzhd2/kbs_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/epzhd2/kbs_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="afnhd" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/yqWvBRY/afn.png", Asian Food Network
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/AFC/03.m3u8
-https://live.fptplay53.net/fnxhd2/afchd_vhls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/afchd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="cnbc" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/ChmR52g/CNBC-BEARTV.png", CNBC
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9855
-https://live.fptplay53.net/fnxsd1/cnbc_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxsd1/cnbc_hls.smil/chunklist.m3u8
 #EXTINF:0 tvg-id="outdoorhd" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/hDhK578/Outdoor-Channel-BEARTV.png", Outdoor Channel
 #EXTVLCOPT:http-user-agent="CloudTV"
-https://live.fptplay53.net/epzhd2/outdoorfhd_vhls.smil/chunklist_b5000000.m3u8
+https://live.fptplay53.net/epzhd2/outdoorfhd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="hgtv" group-title="🌏| Quốc tế"  tvg-logo="https://i.ibb.co/3dTPBnd/cchgtv.png",HGTV
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
@@ -1024,27 +1024,27 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=99
 #EXTINF:-1 tvg-id="tv5monde" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/HnBxLwB/TV5-Monde-BEARTV.png", TV5Monde
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/TV5/03.m3u8
-https://live.fptplay53.net/fnxhd2/tv5_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/tv5_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="arirang" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/HtmBMq6/Arirang-BEARTV.png", Arirang
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/ARIRANG/03.m3u8
-https://live.fptplay53.net/fnxhd2/arirang_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/arirang_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/QPtBrky/NHKW-BEARTV.png", NHK World
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/NHKWORLD/03.m3u8
-https://live.fptplay53.net/fnxhd2/nhkworld_vhls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/nhkworld_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="cna" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/zPZPmHd/CNA-BEARTV.png", CNA
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/CAN/03.m3u8
-https://live.fptplay53.net/fnxhd2/newsasia_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/newsasia_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="dw" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/kGkh233/DWTV-BEARTV.png", DW
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/DW/03.m3u8
-https://live.fptplay53.net/fnxhd2/dwenglish_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/dwenglish_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="france24eng" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/BztxwvZ/FRANCE-24-BEARTV.png", France 24
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/FRANCE24/03.m3u8
-https://live.fptplay53.net/fnxhd2/france24_hls.smil/chunklist_b2500000.m3u8
+https://live.fptplay53.net/fnxhd2/france24_hls.smil/chunklist.m3u8
 
 #EXTINF:-1 tvg-id="axnhd" group-title="🌏| Quốc tế" tvg-logo="https://raw.githubusercontent.com/vuminhthanh12/Logo/refs/heads/main/axn.png" catchup="append" catchup-days="2" catchup-source="https://tshift.fptplay.net/dvr/axnhd_1000.stream/chunks_dvr_range-${start}-${offset}.m3u8", AXN HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
