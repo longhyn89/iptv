@@ -1,18 +1,8 @@
 #EXTM3U url-tvg="https://vnepg.site/epg.xml.gz,https://lichphatsong.site/schedule/epg.xml"
 #EXTINF:-1 tvg-id="vtv1hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/ySDjzg0/VTV1-cc.webp" ,VTV1
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://hoiquan.dpdns.org/VTVGo/?vtv1-hd
-#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=2
-https://live.fptplay53.net/fnxhd1/vtv1hd_vhls.smil/chunklist.m3u8
-#EXTINF:-1 tvg-id="vtv1hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/ySDjzg0/VTV1-cc.webp" ,VTV1 Dự phòng
-#EXTVLCOPT:http-user-agent="CloudTV"
 https://livesct.vtvprime.vn/mean/VTV1_HD/manifest.mpd
 #EXTINF:-1 tvg-id="vtv2hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/G0PXW8r/VTV2-cc.webp", VTV2
-#EXTVLCOPT:http-user-agent="CloudTV"
-#https://hoiquan.dpdns.org/VTVGo/?vtv2-hd
-#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=3
-https://live.fptplay53.net/fnxhd1/vtv2hd_vhls.smil/chunklist.m3u8
-#EXTINF:-1 tvg-id="vtv2hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/G0PXW8r/VTV2-cc.webp", VTV2 Dự phòng
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -20,11 +10,6 @@ https://live.fptplay53.net/fnxhd1/vtv2hd_vhls.smil/chunklist.m3u8
 #KODIPROP:inputstream.adaptive.license_key=d8099c6c4ebc4ab88ce6f694f912e26d:ec57977de110995b8fc5d42e4ffdbcc9
 https://livebytsct.vtvprime.vn/livesnv2/VTV2_HD/manifest.mpd
 #EXTINF:-1 tvg-id="vtv3hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/VNHdbry/VTV3-cc.png", VTV3
-#EXTVLCOPT:http-user-agent="CloudTV"
-#https://hoiquan.dpdns.org/VTVGo/?vtv3-hd
-#https://vpsttt.vietanhtv.top/tv360/tv360.php?id=4
-https://live.fptplay53.net/fnxhd1/vtv3hd_vhls.smil/chunklist.m3u8
-#EXTINF:-1 tvg-id="vtv3hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/VNHdbry/VTV3-cc.png", VTV3 Dự phòng
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
