@@ -756,6 +756,6 @@ https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9868&expires=1783861459&token=9f
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=https://vpsttt.vietanhtv.top/tv/cleankey.php?id=tv360plus7&token=85f28566db96f2730f433f720d04f9b6
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"By8KDU7aQMuwTfrfUhornw","k":"L7ETc7NuAYVz07BxMt8FDg"}],"type":"temporary"}
 https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9869&expires=1783861459&token=4537b533bb3841ff5f8c427bdd35e4ae
 
