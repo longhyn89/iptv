@@ -829,3 +829,10 @@ https://vmttv.dpdns.org/tv360/?id=tv360-14
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c305b22dfd6d55e3998ab279cc98e0d3:12998335c7da89877aa1b1d50f1ec174
 https://vmttv.dpdns.org/tv360/?id=tv360-15
+
+
+#EXTINF:-1 tvg-id="SPOTV" group-title="Dự phòng",SPOTV
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=widevine
+#KODIPROP:inputstream.adaptive.license_key=http://minhghi.vietanhtv.top/mytv2/key.php
+https://s7770.cdn.mytvnet.vn/pkg20/live_dzones/spotv.smil/manifest.mpd
