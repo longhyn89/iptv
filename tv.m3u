@@ -375,7 +375,7 @@ https://liveatmvng.vtvprime.vn/live/data8/SCTV22/Live_DASHDRM/SCTV22.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"kSHr4pO8Rs2J5dg6eMGlPA","k":"koVhWkkaQk-wJfno1XG81Q"}],"type":"temporary"}
 https://liveatmvng.vtvprime.vn/live/data8/SCTVPHIM/Live_DASHDRM/SCTVPHIM.mpd
-#EXTINF:-1 tvg-id="sctv4k" group-title="💚| SCTV" tvg-logo="https://vietanhtv.id.vn/logo/sctv4k.png", SCTV4K
+#EXTINF:-1 tvg-id="sctv4k" group-title="💚| SCTV" tvg-logo="https://imaginary.endpoint.cdn.sctvonline.vn/tenants/none_tenant/photos/logo-sctv4k_e0a24400.jpg?s3_origin=https%3A%2F%2Fsctv-main-2.s3-hcm.cloud.cmctelecom.vn&type=webp&version=10&width=384", SCTV4K
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)
 https://vietanhtv.id.vn/sctv/sctv-4k/index.m3u8
 #EXTINF:-1 tvg-id="tvbvn" group-title="💚| SCTV" tvg-logo="https://tvbaw-na.s3.us-west-1.amazonaws.com/hb/TVB%20Vietnam%20Banner_Side.jpg", TVB VIỆT NAM
