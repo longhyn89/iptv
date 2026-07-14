@@ -908,6 +908,6 @@ https://cdnet-cdn-01.onsports.vn/onplus/ONSPORT10/manifest.mpd
 
 #EXTINF:-1 tvg-id="VTV3" group-title="Dự phòng",VTV3
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=http://minhghi.vietanhtv.top/mytv2/key.php
 https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv262/manifest.mpd
