@@ -929,15 +929,11 @@ https://newidco-babysharktv-1-us.roku.wurl.tv/playlist.m3u8
 https://rightsboosterltd-scl-1-eu.rakuten.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="historyhd" group-title="🌏| Quốc tế" tvg-logo="https://img-zlr1.tv360.vn/image1/2024/06/03/22/1717427367441/869de47c9504_640_360.png", History HD
 https://vmttv.dpdns.org/tv360/?id=history-hd
-
-
-#EXTINF:-1 tvg-id="cg_spotvhd" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Cignal",SPOTV HD
+#EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="MyTV",SPOTV HD Dự phòng
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c5e8a3927d414b609f286a3c5e1d7049:7c5edbd3d090bb6de9a9c3685defa959
 https://spotv.longdn-hyn89.workers.dev/?url=https://ucdn.mediaquest.com.ph/bpk-tv/cg_spotvhd/default/index.mpd
-
-#EXTINF:-1 tvg-id="dr_spotv2hd" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A6A70-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Cignal",SPOTV 2 HD
+#EXTINF:-1 tvg-id="spotv2" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A6A70-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="MyTV",SPOTV 2 HD Dự phòng
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b2d8f6315c494e07a8129f6a3d5c2048:6b4247def21bbd0d08629a3cb4c62ee9
 https://spotv2.longdn-hyn89.workers.dev/?url=https://ucdn.mediaquest.com.ph/bpk-tv/dr_spotv2hd/default/index.mpd
-
