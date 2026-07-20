@@ -958,3 +958,7 @@ https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/playlist.m3u8
 https://amg01935-amg01935c1-amgplt0002.playout.now3.amagi.tv/playlist/amg01935-amg01935c1-amgplt0002/playlist.m3u8
 #EXTINF:-1 tvg-id="TennisChannel.us@Plus2" tvg-logo="https://i.imgur.com/tsljAnY.png" group-title="Sports",TennisChannel 2 (720p)
 https://jmp2.uk/plu-681109b688b9d85d0938c6ba.m3u8
+#EXTINF:-1 tvg-id="ESPN.br@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/960px-ESPN_wordmark.svg.png" group-title="Sports",ESPN (1080p)
+http://181.78.197.59:8000/play/a07z/index.m3u8
+#EXTINF:-1 tvg-id="ESPNews.us@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/ESPNews.svg/960px-ESPNews.svg.png" group-title="News;Sports",ESPNews (720p)
+http://40.160.24.52/ESPN_NEWS/index.m3u8
