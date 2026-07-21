@@ -967,10 +967,10 @@ https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/bfigtl960n/
 
 
 
-#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="TENNIS CHANNEL", bein sport1
+#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="TENNIS CHANNEL", spotv
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=d48b6088253c443eb94d27cb7828f707:e9776141f9e949273a072b0e035070ab
-https://ngtv-live-cbj.gcdn.co/Content/DASH/Live/channel(bein1)/master.mpd
+#KODIPROP:inputstream.adaptive.license_key=5b593bd530f1403a8f3eb9b2cd9236c8:d07c6a7f0b37a4090341e6380ff85060
+https://ngtv-live-cbj.gcdn.co/Content/DASH/Live/channel(spotv)/master.mpd
 
