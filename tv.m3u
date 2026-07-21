@@ -982,3 +982,11 @@ https://aca-live1-ott.izzigo.tv/6/out/u/dash/ESPN-3-HD-H265/default.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=1d2d7f1116eeec62d19943a892d721f7:033b809769a3c248af7383aa817fce72
 https://aca-live1-ott.izzigo.tv/6/out/u/dash/ESPN-4-HD-H265/default.mpd
+
+#EXTINF:-1,Sky Sports
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+#EXTVLCOPT:http-referrer=https://www.izzigo.tv/
+#EXTVLCOPT:http-origin=https://www.izzigo.tv
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=335511dfdf0d03bc06f1fdead5870b5a:1a022fb33ad3de4d4579b04966551488
+https://live1-ott.izzigo.tv/13/out/u/dash/SKY-SPORTS-HD/default.mpd
