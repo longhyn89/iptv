@@ -962,3 +962,23 @@ https://jmp2.uk/plu-681109b688b9d85d0938c6ba.m3u8
 http://181.78.197.59:8000/play/a07z/index.m3u8
 #EXTINF:-1 tvg-id="ESPNews.us@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/ESPNews.svg/960px-ESPNews.svg.png" group-title="News;Sports",ESPNews (720p)
 http://40.160.24.52/ESPN_NEWS/index.m3u8
+
+#EXTINF:-1 ,🇲🇽 ESPN 1
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=3fb8167957692836eca1464b7f952b45:f31042e8167eb4b49ce8117c9e5f1e85
+https://aca-live1-ott.izzigo.tv/6/out/u/dash/ESPN-HD-H265/default.mpd
+
+#EXTINF:-1 ,🇲🇽 ESPN 2
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=faa2d2197cc44dc154650bbacb0dc238:9859d70c856660e20bbe6896f9cd3048
+https://aca-live1-ott.izzigo.tv/7/out/u/dash/ESPN-2-HD-H265/default.mpd
+
+#EXTINF:-1 ,🇲🇽 ESPN 3
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=10580600369dbd7ac029f7e737247917:24ef48adb31daa130675c2a502da6982
+https://aca-live1-ott.izzigo.tv/6/out/u/dash/ESPN-3-HD-H265/default.mpd
+
+#EXTINF:-1 ,🇲🇽 ESPN 4
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1d2d7f1116eeec62d19943a892d721f7:033b809769a3c248af7383aa817fce72
+https://aca-live1-ott.izzigo.tv/6/out/u/dash/ESPN-4-HD-H265/default.mpd
