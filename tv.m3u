@@ -480,8 +480,7 @@ https://live.fptplay53.net/epzsd1/dongnai1_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="dongnai2" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/6B0LCKJ/dongnai2-BEARTV.png", ĐNRTV2 HD | TH Đồng Nai 2
 https://live.fptplay53.net/epzsd1/dongnai2_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="dongnai3" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/t3vKMfg/135.png", ĐNRTV3 | TH Đồng Nai 3
-#https://vpsttt.vietanhtv.top/vieon/vieon.php?id=dong-nai-3
-https://1.org.vn/dnrtv3
+https://tv.vietanhtv.top/vieon/vieon.php?id=dong-nai-3
 #EXTINF:-1 tvg-id="dongthap1" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/3N22Nd4/TH-T-BEARTV.png", THĐT1 HD | TH Đồng Tháp
 #https://vpsttt.vietanhtv.top/tv360/tv360.php?id=54
 https://live.fptplay53.net/epzhd2/dongthap01_vhls.smil/chunklist.m3u8
@@ -941,7 +940,8 @@ https://livevlisctcdnw.seenow.vn/livesnv2/ONSPORT9/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_key=a7c942778e874d43be92b8d0a0cd11b4:6d54358306571658ffdb952c6560688b
 https://livevlisctcdnw.seenow.vn/livesnv2/ONSPORT10/manifest.mpd
 #EXTINF:-1 tvg-id="SuperTennis.it@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/it/thumb/6/6a/SuperTennis_-_Logo_2016.svg/960px-SuperTennis_-_Logo_2016.svg.png" group-title="Sports",SuperTennis
-https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/outgest/aa3673f1-e178-44a9-a947-ef41db73211a/manifest.m3u8
+#https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/outgest/aa3673f1-e178-44a9-a947-ef41db73211a/manifest.m3u8
+http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=228924&extension=ts&play_token=YXZGHgbJdF
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
