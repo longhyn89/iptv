@@ -968,7 +968,6 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=941612&e
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=941613&extension=ts&play_token=nURG4jRPRn
 #EXTINF:-1 group-title="Sports" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKAXYHH1YHH4x-YoeSYl1XIN9Dh6Pi1RO6-aDt4hIs&s=10", Eurosport 360 5
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=941614&extension=ts&play_token=GysMHcE2LJ
-
 #EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="Sports", Tennis Channel 2 HD
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858522&extension=ts&play_token=6rK14VGj5p
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 1
@@ -989,7 +988,6 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858682&e
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858681&extension=ts&play_token=ANrNTG8nyF
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858680&extension=ts&play_token=vKaQfBPA3Y
-
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXF-24wJ6cmsyjRg3IZMQ19YTzlNoM-KcjyIv09MRaNg&s=10" group-title="Sports",Channel 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944671&extension=ts&play_token=6sYMVtNGXi
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Event 1
@@ -1034,7 +1032,3 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944829&e
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944830&extension=ts&play_token=LBTsZElU9I
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Event 21
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944831&extension=ts&play_token=7vWJz6GIf4
-
-
-
-
