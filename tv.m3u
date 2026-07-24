@@ -990,4 +990,7 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858681&e
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858680&extension=ts&play_token=vKaQfBPA3Y
 
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXF-24wJ6cmsyjRg3IZMQ19YTzlNoM-KcjyIv09MRaNg&s=10" group-title="Sports",Channel 9
+http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944671&extension=ts&play_token=6sYMVtNGXi
+
 
