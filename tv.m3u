@@ -992,5 +992,7 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858680&e
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXF-24wJ6cmsyjRg3IZMQ19YTzlNoM-KcjyIv09MRaNg&s=10" group-title="Sports",Channel 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944671&extension=ts&play_token=6sYMVtNGXi
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Event 1
+http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944811&extension=ts&play_token=IeTYxOw0gn
 
 
