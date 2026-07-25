@@ -1049,6 +1049,8 @@ https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/8m8cd46i1t/
 https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/out/v1/18de6d3e65934f3a8de4358e69eab86c/cenc.mpd
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 Asia
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944685&extension=ts&play_token=L2lxgvAGjw
+#EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 Asia Dự phòng
+http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901323&extension=ts&play_token=IcqisqC1u2
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 2 Asia
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944686&extension=ts&play_token=bHaIqOCHC4
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 3 Asia
