@@ -248,8 +248,8 @@ https://liveatmvng.vtvprime.vn/live/data8/SCTV3/Live_DASHDRM/SCTV3.mpd
 https://liveatmvng.vtvprime.vn/live/data8/SCTV4/Live_DASHDRM/SCTV4.mpd
 #EXTINF:-1 tvg-id="sctv5hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vietanhtv.id.vn/sctv/sctv5-a3cdb592/index.m3u8
-https://vmttv.dpdns.org/VTVGo/?sctv5
+#https://vmttv.dpdns.org/VTVGo/?sctv5
+https://vietanhtv.id.vn/sctv/sctv5-a3cdb592/index.m3u8
 #EXTINF:-1 tvg-id="sctv6hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/DDf1zhNX/SCTV6-logo-2011.webp", SCTV6 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://vietanhtv.id.vn/sctv/sctv6-202e4566/index.m3u8
