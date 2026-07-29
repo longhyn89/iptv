@@ -67,18 +67,10 @@ https://liveatmvng.vtvprime.vn/live/data8/VTV9_HD/Live_DASHDRM/VTV9_HD.mpd
 https://livebytsctbu.vtvprime.vn/mean/VTV6_HD/manifest.mpd
 #EXTINF:-1 tvg-id="vtv5hdtnb" group-title="📦| VTV" tvg-logo="https://i.ibb.co/Qrt7Qmp/ccvtv5-TNB.webp", VTV5 Tây Nam Bộ
 #EXTVLCOPT:http-user-agent="CloudTV"
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=a7c942778e874d43be92b8d0a0cd11b4:6d54358306571658ffdb952c6560688b
-https://liveatmvng.vtvprime.vn/live/data8/VTV5_TNB/Live_DASHDRM/VTV5_TNB.mpd
+https://vmttv.dpdns.org/VTVGo/?vtv5-tay-nam-bo
 #EXTINF:-1 tvg-id="vtv5hdtn" group-title="📦| VTV" tvg-logo="https://i.ibb.co/Fxzdz7v/ccvtv5TN.webp", VTV5 Tây Nguyên
 #EXTVLCOPT:http-user-agent="CloudTV"
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=a7c942778e874d43be92b8d0a0cd11b4:6d54358306571658ffdb952c6560688b
-https://livesct.vtvprime.vn/mean/VTV5_TN/manifest.mpd
+https://vmttv.dpdns.org/VTVGo/?vtv5-tay-nguyen
 #EXTINF:-1 tvg-id="vietnamtoday" group-title="📦| VTV" tvg-logo="https://i.ibb.co/zTMvHrSm/Vietnam-Today.jpg", Việt Nam Today
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
