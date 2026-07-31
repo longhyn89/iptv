@@ -960,8 +960,6 @@ http://line.krishka.xyz/live/AdemSarikaya/16A525/1829909.ts
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=1312186&extension=ts&play_token=xjtMZI8kDk
 #EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="Sports", T2 Channel HD
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858522&extension=ts&play_token=6rK14VGj5p
-
-
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 1
 http://xtreamview.net/live/Chris1234/Chris1234/1393870.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 2
@@ -996,10 +994,18 @@ http://xtreamview.net/live/Chris1234/Chris1234/1393884.ts
 http://xtreamview.net/live/Chris1234/Chris1234/1393885.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 17
 http://xtreamview.net/live/Chris1234/Chris1234/1393886.ts
-
-
-
-
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 18
+http://xtreamview.net/live/Chris1234/Chris1234/1393887.ts
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 19
+http://xtreamview.net/live/Chris1234/Chris1234/1393888.ts
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 20
+http://xtreamview.net/live/Chris1234/Chris1234/1393889.ts
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 21
+http://xtreamview.net/live/Chris1234/Chris1234/1393890.ts
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 22
+http://xtreamview.net/live/Chris1234/Chris1234/1393891.ts
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 23
+http://xtreamview.net/live/Chris1234/Chris1234/1393892.ts
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 1
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858688&extension=ts&play_token=NsHqnbzLVj
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 2
