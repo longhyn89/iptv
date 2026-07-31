@@ -2,6 +2,9 @@
 #EXTINF:-1 tvg-id="vtv1hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/ySDjzg0/VTV1-cc.webp" ,VTV1
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://livesct.vtvprime.vn/mean/VTV1_HD/manifest.mpd
+#EXTINF:-1 tvg-id="vtv1hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/ySDjzg0/VTV1-cc.webp" ,VTV1 Dự phòng
+#EXTVLCOPT:http-user-agent="CloudTV"
+https://live.fptplay53.net/live/media/vtv1/live247-hls-avc/vtv1-avc1_5600000=10000-mp4a_131600=20000.m3u8
 #EXTINF:-1 tvg-id="vtv2hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/G0PXW8r/VTV2-cc.webp", VTV2
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
@@ -774,9 +777,11 @@ https://vmttv.dpdns.org/tv360/?id=history-hd
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://i.imgur.com/HaoVsm5.png" group-title="MyTV",SPOTV (720p)
 #http://line.krishka.xyz/live/AdemSarikaya/16A525/1505814.ts
 #https://thinkkast.dpdns.org/tkk-ph/i7/cg_spotvhd/spotv-hd.m3u8
+#http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941564&extension=ts&play_token=Cip8lmqEkR
 #EXTINF:-1 tvg-id="spotv2" tvg-logo="https://i.imgur.com/YD8fbTH.png" group-title="MyTV",SPOTV 2 (720p)
 #http://line.krishka.xyz/live/AdemSarikaya/16A525/1505815.ts
 #https://thinkkast.dpdns.org/tkk-ph/i7/dr_spotv2hd/spotv-2-hd.m3u8
+#http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941563&extension=ts&play_token=huQFvc3bgn
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="MyTV",SPOTV HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c5e8a3927d414b609f286a3c5e1d7049:7c5edbd3d090bb6de9a9c3685defa959
