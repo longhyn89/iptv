@@ -288,8 +288,9 @@ https://liveatmvng.vtvprime.vn/live/data8/SCTV8/Live_DASHDRM/SCTV8.mpd
 https://livevlisctcdnw.seenow.vn/mean/SCTV9/manifest.mpd
 #EXTINF:-1 tvg-id="sctv10hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/LhqTgJ6N/SCTV10-logo-2011.webp", SCTV10 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://vmttv.dpdns.org/VTVGo/?sctv10
-https://vietanhtv.id.vn/sctv/sctv10-0faf313b/index.m3u8
+#https://vietanhtv.id.vn/sctv/sctv10-0faf313b/index.m3u8
+https://vmttv.dpdns.org/VTVGo/?sctv10
+
 #EXTINF:-1 tvg-id="sctv11hd" group-title="💚| SCTV" tvg-logo="https://i.ibb.co/Jy3cThG/sctv11-hd-BEARTV.png", SCTV11 HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
