@@ -791,10 +791,12 @@ https://vmttv.dpdns.org/tv360/?id=history-hd
 #http://line.krishka.xyz/live/CedricEsserTV/60697A/1505814.ts
 #https://thinkkast.dpdns.org/thinkkast/cg_spotvhd/versiglia/index.m3u8
 #http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941564&extension=ts&play_token=Cip8lmqEkR
+#http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1856441&extension=ts&play_token=ZEAmfwTxoK
 #EXTINF:-1 tvg-id="spotv2" tvg-logo="https://i.imgur.com/YD8fbTH.png" group-title="MyTV",SPOTV 2 (720p)
 #http://line.krishka.xyz/live/CedricEsserTV/60697A/1505815.ts
 #https://thinkkast.dpdns.org/thinkkast/dr_spotv2hd/versiglia/index.m3u8
 #http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941563&extension=ts&play_token=huQFvc3bgn
+#http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1548696&extension=ts&play_token=dDdaX0VbSu
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="MyTV",SPOTV HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c5e8a3927d414b609f286a3c5e1d7049:7c5edbd3d090bb6de9a9c3685defa959
