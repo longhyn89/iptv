@@ -1014,8 +1014,6 @@ https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/playlist.m3u8
 http://line.godofiptv.com/play/live.php?mac=00:1B:79:48:81:CA&stream=1912894&extension=ts&play_token=r7KVbEwLjt
 #EXTINF:-1 group-title="Sports" tvg-id="skytennis" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYesSuSeeJDhkQ2CjDAUyR1LX8xVGlQVKYxrezIS9O&s=10",Sky Sports Tennis
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=1312186&extension=ts&play_token=xjtMZI8kDk
-#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="Sports", T2 Channel HD
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858522&extension=ts&play_token=6rK14VGj5p
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 1
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881741&extension=ts&play_token=KM5AbVrybM
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 2
@@ -1076,23 +1074,25 @@ http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881714&extension
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881713&extension=ts&play_token=2mZwRHcq8I
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 30
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881712&extension=ts&play_token=CZwzSVMoOn
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 1
+#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="Sports", Tennis Channel 31
+http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858522&extension=ts&play_token=6rK14VGj5p
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 32
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858688&extension=ts&play_token=NsHqnbzLVj
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 2
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 33
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858687&extension=ts&play_token=ztvK76ZoVL
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 3
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 34
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858686&extension=ts&play_token=UaR9Cazrf1
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 4
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 35
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858685&extension=ts&play_token=rRvKzwJ4ef
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 5
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 36
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858684&extension=ts&play_token=pDIkU5zueF
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 6
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 37
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858683&extension=ts&play_token=LBrKkezz3E
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 7
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 38
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858682&extension=ts&play_token=bWQQLhlKmE
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 8
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 39
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858681&extension=ts&play_token=ANrNTG8nyF
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel Plus 9
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel 40
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858680&extension=ts&play_token=vKaQfBPA3Y
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXF-24wJ6cmsyjRg3IZMQ19YTzlNoM-KcjyIv09MRaNg&s=10" group-title="Sports",Channel 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944671&extension=ts&play_token=6sYMVtNGXi
