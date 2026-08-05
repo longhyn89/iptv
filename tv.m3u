@@ -788,7 +788,6 @@ https://rightsboosterltd-scl-1-eu.rakuten.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="historyhd" group-title="🌏| Quốc tế" tvg-logo="https://img-zlr1.tv360.vn/image1/2024/06/03/22/1717427367441/869de47c9504_640_360.png", History HD
 https://vmttv.dpdns.org/tv360/?id=history-hd
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://i.imgur.com/HaoVsm5.png" group-title="MyTV",SPOTV (720p)
-#http://line.krishka.xyz/live/CedricEsserTV/60697A/1505814.ts
 #https://thinkkast.dpdns.org/thinkkast/cg_spotvhd/versiglia/index.m3u8
 #http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941564&extension=ts&play_token=Cip8lmqEkR
 #http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1856441&extension=ts&play_token=ZEAmfwTxoK
@@ -1011,6 +1010,7 @@ https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/bfigtl960n/
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLIhFir_z0TLRKKW3fb6Ltu2JSJwWBXHxZg4U8AS65gw&s=10" group-title="Sports",Tennis+
 https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8iY7aXKjCiL4EwnSJ-cZ4m-tgQ8xB9ZqVoCsJAy5dcw&s=10" group-title="Sports", Arena Tenis
+#http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1523618&extension=ts&play_token=CF3aFvwGSw
 http://line.godofiptv.com/play/live.php?mac=00:1B:79:48:81:CA&stream=1912894&extension=ts&play_token=r7KVbEwLjt
 #EXTINF:-1 group-title="Sports" tvg-id="skytennis" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYesSuSeeJDhkQ2CjDAUyR1LX8xVGlQVKYxrezIS9O&s=10",Sky Sports Tennis
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=1312186&extension=ts&play_token=xjtMZI8kDk
