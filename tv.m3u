@@ -1009,6 +1009,11 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858523&e
 https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/bfigtl960n/out/v1/5ba5484550e84681bff2e8ca994266c1/cenc.mpd
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLIhFir_z0TLRKKW3fb6Ltu2JSJwWBXHxZg4U8AS65gw&s=10" group-title="Sports",Tennis+
 https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGU3nezdAiUBsI95KVylkENLe5_cK_ktmTCkqf7ziJEQ&s=10" group-title="Sports",Tennis TV
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=946801&extension=ts&play_token=Qwzxk4aVQv
+
+
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8iY7aXKjCiL4EwnSJ-cZ4m-tgQ8xB9ZqVoCsJAy5dcw&s=10" group-title="Sports", Arena Tenis
 #http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1523618&extension=ts&play_token=CF3aFvwGSw
 http://line.godofiptv.com/play/live.php?mac=00:1B:79:48:81:CA&stream=1912894&extension=ts&play_token=r7KVbEwLjt
@@ -1074,26 +1079,7 @@ http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881714&extension
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881713&extension=ts&play_token=2mZwRHcq8I
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 30
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881712&extension=ts&play_token=CZwzSVMoOn
-#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 31
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858522&extension=ts&play_token=6rK14VGj5p
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 32
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858688&extension=ts&play_token=NsHqnbzLVj
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 33
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858687&extension=ts&play_token=ztvK76ZoVL
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 34
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858686&extension=ts&play_token=UaR9Cazrf1
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 35
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858685&extension=ts&play_token=rRvKzwJ4ef
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 36
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858684&extension=ts&play_token=pDIkU5zueF
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 37
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858683&extension=ts&play_token=LBrKkezz3E
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 38
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858682&extension=ts&play_token=bWQQLhlKmE
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 39
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858681&extension=ts&play_token=ANrNTG8nyF
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 40
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858680&extension=ts&play_token=vKaQfBPA3Y
+
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXF-24wJ6cmsyjRg3IZMQ19YTzlNoM-KcjyIv09MRaNg&s=10" group-title="Sports",Channel 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944671&extension=ts&play_token=6sYMVtNGXi
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Sport 1
