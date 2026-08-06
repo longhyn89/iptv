@@ -1034,59 +1034,130 @@ http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500747&exten
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 5
 #http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881737&extension=ts&play_token=PXtxbfmmIy
-
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500746&extension=ts&play_token=1VZjOmIV9C
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 6
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881736&extension=ts&play_token=3ORxP4f5rM
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 7
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881735&extension=ts&play_token=MT7QRXKFmM
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 8
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881734&extension=ts&play_token=vjXFSRKKlG
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 9
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881733&extension=ts&play_token=blQssCL9Wn
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 10
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881732&extension=ts&play_token=DGe7fFDxbW
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 11
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881731&extension=ts&play_token=eL5OxykMYS
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 12
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881730&extension=ts&play_token=nxDLl7lltE
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 13
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881729&extension=ts&play_token=imQwsLiqKX
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 14
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881728&extension=ts&play_token=0NXHCy45Sc
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 15
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881727&extension=ts&play_token=3cCKi5ksFJ
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 16
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881726&extension=ts&play_token=EfyQPGpFBK
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 17
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881725&extension=ts&play_token=eSDZ1QscBh
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 18
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881724&extension=ts&play_token=9SUwLZ9HVX
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 19
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881723&extension=ts&play_token=Uo8RQnrQIs
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 20
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881722&extension=ts&play_token=dAj9XOv1lF
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 21
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881721&extension=ts&play_token=yuazYalw2P
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 22
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881720&extension=ts&play_token=OnB1IXYAXz
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 23
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881719&extension=ts&play_token=Mmss85AREj
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 24
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881718&extension=ts&play_token=Qj4eiIrmoc
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 25
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881717&extension=ts&play_token=qNh3WsgOa4
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 26
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881716&extension=ts&play_token=XKRIkTL5ot
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 27
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881715&extension=ts&play_token=peV1rGGWSq
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 28
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881714&extension=ts&play_token=6Pr1ZnVfnd
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 29
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881713&extension=ts&play_token=2mZwRHcq8I
-#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 30
-http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881712&extension=ts&play_token=CZwzSVMoOn
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881736&extension=ts&play_token=3ORxP4f5rM
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500745&extension=ts&play_token=0WECOqeKnV
 
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 7
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881735&extension=ts&play_token=MT7QRXKFmM
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500744&extension=ts&play_token=J2KnR2T8Hp
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 8
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881734&extension=ts&play_token=vjXFSRKKlG
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500743&extension=ts&play_token=ZBw1lI84Tx
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 9
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881733&extension=ts&play_token=blQssCL9Wn
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500742&extension=ts&play_token=TwPPib99HE
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 10
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881732&extension=ts&play_token=DGe7fFDxbW
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500741&extension=ts&play_token=dr0XP3V92X
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 11
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881731&extension=ts&play_token=eL5OxykMYS
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500740&extension=ts&play_token=ukM0agiB5L
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 12
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881730&extension=ts&play_token=nxDLl7lltE
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500739&extension=ts&play_token=j5VdxX2P2P
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 13
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881729&extension=ts&play_token=imQwsLiqKX
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500738&extension=ts&play_token=kLfhJWTn5r
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 14
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881728&extension=ts&play_token=0NXHCy45Sc
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500737&extension=ts&play_token=Ku9diABfd1
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 15
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881727&extension=ts&play_token=3cCKi5ksFJ
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500736&extension=ts&play_token=LoQuYSzdGk
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 16
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881726&extension=ts&play_token=EfyQPGpFBK
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500735&extension=ts&play_token=wK9KAMrN2H
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 17
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881725&extension=ts&play_token=eSDZ1QscBh
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500734&extension=ts&play_token=qCtaq35jAs
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 18
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881724&extension=ts&play_token=9SUwLZ9HVX
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500733&extension=ts&play_token=tIkfDxVdyN
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 19
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881723&extension=ts&play_token=Uo8RQnrQIs
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500732&extension=ts&play_token=ROiBuHYyWx
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 20
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881722&extension=ts&play_token=dAj9XOv1lF
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500731&extension=ts&play_token=lry0qRhMei
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 21
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881721&extension=ts&play_token=yuazYalw2P
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500730&extension=ts&play_token=r0MK839f46
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 22
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881720&extension=ts&play_token=OnB1IXYAXz
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500729&extension=ts&play_token=JnyJNHpom3
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 23
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881719&extension=ts&play_token=Mmss85AREj
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500728&extension=ts&play_token=Oa8oi3ITIj
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 24
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881718&extension=ts&play_token=Qj4eiIrmoc
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500727&extension=ts&play_token=FQSSkU2Qqb
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 25
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881717&extension=ts&play_token=qNh3WsgOa4
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500726&extension=ts&play_token=sa5dzaP8o4
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 26
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881716&extension=ts&play_token=XKRIkTL5ot
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500725&extension=ts&play_token=cndsnWuKhl
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 27
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881715&extension=ts&play_token=peV1rGGWSq
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500724&extension=ts&play_token=2szdDOa2WT
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 28
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881714&extension=ts&play_token=6Pr1ZnVfnd
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500723&extension=ts&play_token=Q2o0uhlxnr
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 29
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881713&extension=ts&play_token=2mZwRHcq8I
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500722&extension=ts&play_token=Dcc23guWdT
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 30
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881712&extension=ts&play_token=CZwzSVMoOn
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1500721&extension=ts&play_token=3deglfUwfd
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 31
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501837&extension=ts&play_token=lFBdcp4Vda
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 32
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501836&extension=ts&play_token=YlHzlydVAo
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 33
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501835&extension=ts&play_token=QI4BoXnpGj
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 34
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501834&extension=ts&play_token=hAnADrhuX0
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 35
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501833&extension=ts&play_token=2PnuI22AoD
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 36
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501832&extension=ts&play_token=POpMG97F4F
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 37
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501831&extension=ts&play_token=49Rge8vsMj
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 38
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501830&extension=ts&play_token=lgdJ9YR3E7
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 39
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501829&extension=ts&play_token=BoPzSkTYTZ
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 40
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501828&extension=ts&play_token=ZrxCj0qQ0w
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 41
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501827&extension=ts&play_token=Dz7YQWPxW3
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 42
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501826&extension=ts&play_token=CpnwCVvdOP
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 43
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501825&extension=ts&play_token=iWQkuAzbk4
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 44
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501824&extension=ts&play_token=Wf1vRaODzG
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 45
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501823&extension=ts&play_token=sRZvDUYr9p
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 46
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501822&extension=ts&play_token=okktClFBjK
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 47
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501821&extension=ts&play_token=SGGVT7eCRR
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 48
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501820&extension=ts&play_token=oUvpwS4qXV
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 49
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501819&extension=ts&play_token=j4XeC7Tzzh
+#EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 50
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1501818&extension=ts&play_token=dMYdb6F92G
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXF-24wJ6cmsyjRg3IZMQ19YTzlNoM-KcjyIv09MRaNg&s=10" group-title="Sports",Channel 9
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944671&extension=ts&play_token=6sYMVtNGXi
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Sport 1
