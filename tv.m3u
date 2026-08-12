@@ -56,7 +56,7 @@ https://livesct.vtvprime.vn/mean/VTV7_HD/manifest.mpd
 #EXTINF:-1 tvg-id="vtv8hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/RyBxx0F/VTV8-cc.webp", VTV8
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://vips-livecdn.fptplay.net/live/media/vtv8/live-hls-avc/vtv8-avc1_4000000=10000-mp4a_131600=20000.m3u8
-https://vmttv.dpdns.org/VTVGo/?vtv8-hd
+https://livesct.vtvprime.vn/mean/VTV8_HD/manifest.mpd
 #EXTINF:-1 tvg-id="vtv9hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/HVRdGVT/VTV9-cc.webp", VTV9
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
@@ -72,15 +72,13 @@ https://liveatmvng.vtvprime.vn/live/data8/VTV9_HD/Live_DASHDRM/VTV9_HD.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=a7c942778e874d43be92b8d0a0cd11b4:6d54358306571658ffdb952c6560688b
 #https://vips-livecdn.fptplay.net/live/media/vtv10/live247-hls-avc/vtv10-avc1_5600000=10000-mp4a_131600=20000.m3u8
-https://livebytsctbu.vtvprime.vn/mean/VTV6_HD/manifest.mpd
+https://livesct.vtvprime.vn/mean/VTV6_HD/manifest.mpd
 #EXTINF:-1 tvg-id="vtv5hdtnb" group-title="📦| VTV" tvg-logo="https://i.ibb.co/Qrt7Qmp/ccvtv5-TNB.webp", VTV5 Tây Nam Bộ
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://live.fptplay53.net/live/media/vtv5tnb/live-hls-avc/vtv5tnb-avc1_4000000=10000-mp4a_131600=20000.m3u8
-https://vmttv.dpdns.org/VTVGo/?vtv5-tay-nam-bo
+https://live.fptplay53.net/live/media/vtv5tnb/live-hls-avc/vtv5tnb-avc1_4000000=10000-mp4a_131600=20000.m3u8
 #EXTINF:-1 tvg-id="vtv5hdtn" group-title="📦| VTV" tvg-logo="https://i.ibb.co/Fxzdz7v/ccvtv5TN.webp", VTV5 Tây Nguyên
 #EXTVLCOPT:http-user-agent="CloudTV"
-#https://live.fptplay53.net/live/media/vtv5tn/live-hls-avc/vtv5tn-avc1_4000000=10000-mp4a_131600=20000.m3u8
-https://vmttv.dpdns.org/VTVGo/?vtv5-tay-nguyen
+https://live.fptplay53.net/live/media/vtv5tn/live-hls-avc/vtv5tn-avc1_4000000=10000-mp4a_131600=20000.m3u8
 #EXTINF:-1 tvg-id="vietnamtoday" group-title="📦| VTV" tvg-logo="https://i.ibb.co/zTMvHrSm/Vietnam-Today.jpg", Việt Nam Today
 #EXTVLCOPT:http-user-agent="CloudTV"
 #KODIPROP:inputstream=inputstream.adaptive
