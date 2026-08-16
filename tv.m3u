@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://vnepg.site/epg.xml.gz,https://lichphatsong.site/schedule/epg.xml"
+#EXTM3U url-tvg="https://lichphatsong.io.vn/epg.xml"
 #EXTINF:-1 tvg-id="vtv1hd" group-title="📦| VTV" tvg-logo="https://i.ibb.co/ySDjzg0/VTV1-cc.webp" ,VTV1
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://livesct.vtvprime.vn/mean/VTV1_HD/manifest.mpd
