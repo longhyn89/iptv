@@ -13,7 +13,7 @@ function getManifest() {
         "type": "MOVIE",
         popuphtml: popuphtm,
         "author": "Alokillgtv",
-        "playerType": "embedtoexoplay"
+        "playerType": "auto"
     });
 }
 
