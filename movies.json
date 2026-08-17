@@ -28,6 +28,13 @@
             "version": "1.9.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/onflix.js",
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/onflix.png"
+        },
+        {
+            "id": "nguoncnew",
+            "name": "Phim NguonC VIP",
+            "version": "1.5.5",
+            "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/nguonc.js",
+            "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/nguoncnew.png"
         }
         
     ]
