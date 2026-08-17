@@ -11,7 +11,7 @@ function getManifest() {
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
         "isEnabled": true,
         "type": "MOVIE",
-        "playerType": "embedtoexoplay" // Cho phép chuyển đổi linh hoạt giữa ExoPlayer và WebView Embed
+        "playerType": "embedtoexoplay" // Báo cho App hỗ trợ linh hoạt cả ExoPlayer và WebView
     });
 }
 
@@ -243,7 +243,7 @@ function parseMovieDetail(apiResponseJson) {
     }
 }
 
-// Trả về cấu hình Sniffer cho WebView ẩn
+// Cấu hình WebView ẩn dùng để Sniff M3U8
 function parseDetailResponse(html, url) {
     try {
         var customjs = runJS();
@@ -269,7 +269,7 @@ function parseDetailResponse(html, url) {
     }
 }
 
-// Đoạn Script Injected: Ưu tiên bắt Blob M3U8 -> Nếu thất bại (sau 10s) thì chuyển sang phát Embed WebView
+// Injected Script: Bắt M3U8 từ RAM Blob -> Chuẩn hóa URL -> Gửi ExoPlayer (Fallback sang Embed WebView nếu thất bại)
 function runJS() {
     return `
 function bridgeLog(msg, check) {
@@ -306,25 +306,62 @@ function bridgeLog(msg, check) {
     var isFinished = 0;
     var timeoutTimer = null;
 
-    bridgeLog("Đang tìm link M3U8 cho ExoPlayer...", true);
+    bridgeLog("Đang quét link M3U8 cho ExoPlayer...", true);
 
-    // Timeout 10 giay: Khong bat duoc M3U8 -> Fallback sang phat WebView Embed
+    // Chuyển relative URL thành absolute URL đầy đủ protocol/domain
+    function resolveRelativeUrls(m3u8Text, baseUrl) {
+        if (!m3u8Text) return m3u8Text;
+        var lines = m3u8Text.split('\\n');
+        var baseDir = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1);
+        
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            if (line.length > 0 && !line.startsWith('#')) {
+                if (!line.startsWith('http://') && !line.startsWith('https://')) {
+                    if (line.startsWith('/')) {
+                        try {
+                            var origin = new URL(baseUrl).origin;
+                            lines[i] = origin + line;
+                        } catch(e) {
+                            lines[i] = baseDir + line;
+                        }
+                    } else {
+                        lines[i] = baseDir + line;
+                    }
+                }
+            }
+        }
+        return lines.join('\\n');
+    }
+
+    function dispatchM3u8ToApp(m3u8Content) {
+        if (!m3u8Content || hasDispatchedAny === 1) return;
+        hasDispatchedAny = 1;
+        isFinished = 1;
+        if (timeoutTimer) clearTimeout(timeoutTimer);
+
+        bridgeLog("Bắt M3U8 thành công! Đang khởi chạy ExoPlayer...", true);
+
+        // Biến đổi các link tương đối trong M3U8 thành link tuyệt đối
+        var fixedM3u8 = resolveRelativeUrls(m3u8Content, window.location.href);
+
+        try {
+            if (window.SnifferBridge && typeof window.SnifferBridge.playM3u8Content === 'function') {
+                window.SnifferBridge.playM3u8Content(fixedM3u8, window.location.href);
+            }
+        } catch(e) {}
+    }
+
+    // Timeout 8 giây: Không tìm thấy M3U8 -> Tự động chuyển sang WebView Embed
     timeoutTimer = setTimeout(function() {
         if (hasDispatchedAny === 0 && isFinished === 0) {
             isFinished = 1;
-            bridgeLog("Chuyển sang chế độ phát Webview Embed...", true);
+            bridgeLog("Chuyển sang chế độ WebView Embed...", true);
             if (window.SnifferBridge && typeof window.SnifferBridge.play === 'function') {
                 window.SnifferBridge.play(window.location.href, "");
             }
         }
-    }, 10000);
-
-    function stopTimeout() {
-        if (timeoutTimer) {
-            clearTimeout(timeoutTimer);
-            timeoutTimer = null;
-        }
-    }
+    }, 8000);
 
     function isValidM3U8(content) {
         if (typeof content !== 'string') return false;
@@ -333,22 +370,7 @@ function bridgeLog(msg, check) {
               (trimmed.indexOf('#EXTINF') !== -1 || trimmed.indexOf('#EXT-X-STREAM-INF') !== -1);
     }
 
-    function dispatchM3u8ToApp(m3u8Content) {
-        if (!m3u8Content || hasDispatchedAny === 1) return;
-        hasDispatchedAny = 1;
-        isFinished = 1;
-        stopTimeout();
-
-        bridgeLog("Bắt M3U8 thành công! Đang phát qua ExoPlayer...", true);
-
-        try {
-            if (window.SnifferBridge && typeof window.SnifferBridge.playM3u8Content === 'function') {
-                window.SnifferBridge.playM3u8Content(m3u8Content, window.location.href);
-            }
-        } catch(e) {}
-    }
-
-    // Hook RAM Blob de bat link M3U8 dong
+    // Hook Blob RAM để bắt dữ liệu M3U8 động
     try {
         if (typeof URL !== 'undefined' && URL.createObjectURL) {
             var originalCreateObjectURL = URL.createObjectURL;
