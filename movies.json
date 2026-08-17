@@ -26,7 +26,7 @@
             "id": "onflix",
             "name": "Onflix",
             "version": "1.9.1",
-            "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/nguonc.js",
+            "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/onflix.js",
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/onflix.png"
         }
         
