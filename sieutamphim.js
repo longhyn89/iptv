@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED YEAR & SERVER CONNECT)
+// SIÊU TẦM PHIM VAAPP PLUGIN (RESTORED ORIGINAL & FIXED)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.3.5",
+    "version": "1.1.6",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -69,6 +69,10 @@ function getFilterConfig() {
   return JSON.stringify({ sort: [], category: [] });
 }
 
+// ========================================================
+// URL GENERATION
+// ========================================================
+
 function getUrlList(slug, filtersJson) {
   var filters = JSON.parse(filtersJson || "{}");
   var page = filters.page || 1;
@@ -82,7 +86,6 @@ function getUrlSearch(keyword, filtersJson) {
   return BASE_URL + "/page/" + page + "?s=" + encodeURIComponent(keyword);
 }
 
-// GIỮ REST API CHO APP NÀO CẦN, NHƯNG LÀM LINK CHUẨN
 function getUrlDetail(id) {
   log("Resolving Detail ID: " + id);
   if (!id) return BASE_URL;
@@ -140,7 +143,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL (SỬA CHUẨN CẢ NĂM PHÁT HÀNH & SERVER EPISODES)
+// PARSE DETAIL
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -152,27 +155,21 @@ function parseMovieDetail(html, url) {
     var contentHtml = html;
     var year = "";
 
-    // Thử parse dạng REST API trước
     if (url && url.includes("/wp-json/wp/v2/posts")) {
-      try {
-        var posts = JSON.parse(html);
-        if (posts && posts.length > 0) {
-          var post = posts[0];
-          title = post.title ? post.title.rendered : "";
-          movieUrl = post.link || url;
-          contentHtml = post.content ? post.content.rendered : "";
-          description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
-          poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
-          
-          if (post.date) {
-            year = post.date.substring(0, 4);
-          }
-        }
-      } catch (err) {}
-    }
-
-    // Fallback bóc tách từ HTML chuẩn nếu không phải REST API hoặc REST API thiếu thông tin
-    if (!title) {
+      var posts = JSON.parse(html);
+      if (!posts || posts.length === 0) return JSON.stringify({ servers: [] });
+      var post = posts[0];
+      title = post.title ? post.title.rendered : "";
+      movieUrl = post.link || url;
+      contentHtml = post.content ? post.content.rendered : "";
+      description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
+      poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
+      
+      // Lấy năm phát hành từ bài viết WordPress
+      if (post.date) {
+        year = post.date.substring(0, 4);
+      }
+    } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
       poster = ogImageMatch ? ogImageMatch[1] : "";
@@ -180,25 +177,17 @@ function parseMovieDetail(html, url) {
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
     }
 
-    // BẮT NĂM PHÁT HÀNH CHÍNH XÁC
-    if (!year || year === "") {
-      var yMatch = html.match(/class=['"]year['"][^>]*>(\d{4})</i) ||
-                   html.match(/(?:Năm|Year|Phát hành)[:\s]*(\d{4})/i) ||
-                   title.match(/\((\d{4})\)/) ||
-                   movieUrl.match(/[\/-](\d{4})[\/-]/) ||
-                   html.match(/"datePublished":\s*"(\d{4})/i);
-      if (yMatch && yMatch[1]) {
-        year = yMatch[1];
-      } else {
-        year = "2024"; // Fallback năm thực tế thay vì 2026
-      }
+    // Sửa lỗi Năm: Quét linh hoạt từ nội dung/tiêu đề/URL nếu chưa có năm
+    if (!year) {
+      var yearMatch = contentHtml.match(/(?:Năm|Year|Phát hành)[:\s]*(\d{4})/i) || 
+                        movieUrl.match(/[\/-](\d{4})[\/-]/) ||
+                        title.match(/\((\d{4})\)/);
+      year = yearMatch ? yearMatch[1] : "2024";
     }
 
-    var filmSlug = getSlugFromUrl(movieUrl);
     var servers = [];
     var usedServer = {};
 
-    // Sửa Regex quét Server cực linh hoạt
     var groupRegex = /data-server=['"]([^'"]+)['"]/gi;
     var m;
     while ((m = groupRegex.exec(contentHtml)) !== null) {
@@ -206,7 +195,7 @@ function parseMovieDetail(html, url) {
       if (usedServer[serverId]) continue;
       usedServer[serverId] = true;
 
-      // Hỗ trợ cả quote đơn, quote đôi và khoảng trắng
+      // Sửa Regex quét episodes chuẩn xác
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
@@ -223,10 +212,7 @@ function parseMovieDetail(html, url) {
 
       var episodes = [];
       for (var j = 1; j <= epCount; j++) {
-        // Tạo streamId chuẩn chứa cả URL HTML chính xác của phim
-        var cleanMovieUrl = movieUrl.includes("/wp-json") ? (BASE_URL + "/" + filmSlug + ".html") : movieUrl;
-        var streamId = cleanMovieUrl + (cleanMovieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
-        
+        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
         episodes.push({
           id: streamId,
           name: epCount === 1 ? "Full" : "Tập " + j,
@@ -241,7 +227,7 @@ function parseMovieDetail(html, url) {
     }
 
     return JSON.stringify({
-      id: filmSlug,
+      id: getSlugFromUrl(movieUrl),
       title: decodeHtmlEntities(title.replace(" - Siêu Tầm Phim", "").trim()),
       posterUrl: poster,
       backdropUrl: poster,
@@ -259,7 +245,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (KẾT NỐI SERVER KHÔNG LỖI)
+// PARSE STREAM
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -301,10 +287,9 @@ function parseDetailResponse(html, url) {
                 
                 return JSON.stringify({
                   url: stream,
-                  isEmbed: false,
+                  isEmbed: true,
                   headers: {
-                    "Referer": "https://sc.k-20.xyz/",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                    "Referer": "https://www.sieutamphim.pro/"
                   },
                   datasend: "true"
                 });
@@ -316,32 +301,26 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    return JSON.stringify({ url: url, isEmbed: true, headers: { "Referer": BASE_URL } });
+    return JSON.stringify({ url: url, isEmbed: true });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
   }
 }
 
-// ========================================================
-// PARSE EMBED RESPONSE
-// ========================================================
-
 function parseEmbedResponse(html, sourceUrl, datasend) {
   if (datasend == "true") {
     try {
       var $data = JSON.parse(html);
-      if ($data && $data.streams && $data.streams.length > 0) {
-        var directUrl = $data.streams[0].url;
-        
-        return JSON.stringify({
-          url: directUrl,
-          headers: {
-            "Referer": "https://sc.k-20.xyz/",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-          },
-          isEmbed: false
-        });
-      }
+      var stream = $data.streams[0].url;
+      return JSON.stringify({
+        url: stream + "#.m3u8",
+        mimeType: "video/mp4",
+        isEmbed: false,
+        headers: {
+          "Referer": "https://sc.k-20.xyz",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+      });
     } catch(e){}
   }
   return parseDetailResponse(html, sourceUrl);
