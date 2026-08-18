@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (Bản sửa lỗi Stream Link)
+// SIÊU TẦM PHIM VAAPP PLUGIN (Bản 1.1.2 - Sửa lỗi Stream & API)
 // ========================================================
 
 const BASE_URL = "https://www.sieutamphim.pro";
@@ -12,7 +12,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "sieutamphim",
         "name": "Sưu Tầm Phim",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "baseUrl": BASE_URL,
         "iconUrl": BASE_URL + "/posts/2024/06/cropped-logosieutamphim-192x192.png",
         "isEnabled": true,
@@ -99,9 +99,10 @@ function getUrlDetail(id) {
     if (id.startsWith("http")) {
         return id;
     }
-    var wpUrl = BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
-    log("Resolved Slug to WP REST API: " + wpUrl);
-    return wpUrl;
+    // Trả về trực tiếp URL web HTML thay vì gọi API để giữ nguyên cấu trúc DOM phát video
+    var webUrl = BASE_URL + "/" + id + ".html";
+    log("Resolved Slug to Web HTML: " + webUrl);
+    return webUrl;
 }
 
 // ========================================================
@@ -160,55 +161,37 @@ function parseMovieDetail(html, url) {
         return JSON.stringify({ id: url, servers: [] });
     }
     try {
-        var isWpApi = url && url.includes("/wp-json/wp/v2/posts");
+        var contentHtml = html;
         var title = "";
         var poster = "";
         var description = "";
         var movieUrl = url;
-        var postId = "";
-        var contentHtml = html;
 
-        if (isWpApi) {
-            log("Parsing detail from WP REST API JSON response");
-            var posts = JSON.parse(html);
-            if (!posts || posts.length === 0) {
-                return JSON.stringify({ servers: [] });
-            }
-            var post = posts[0];
-            title = post.title ? post.title.rendered : "";
-            movieUrl = post.link || url;
-            postId = String(post.id || "");
-            contentHtml = post.content ? post.content.rendered : "";
-            description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
-            
-            if (post.jetpack_featured_media_url) {
-                poster = post.jetpack_featured_media_url;
-            } else if (post.featured_media_src_url) {
-                poster = post.featured_media_src_url;
-            } else if (post.yoast_head_json && post.yoast_head_json.og_image && post.yoast_head_json.og_image.length > 0) {
-                poster = post.yoast_head_json.og_image[0].url;
-            } else {
-                var imgMatch = contentHtml.match(/<img[^>]*src="([^"]+)"/i);
-                poster = imgMatch ? imgMatch[1] : "";
-            }
-        } else {
-            title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
-            var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i) || 
-                               html.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/i) ||
-                               html.match(/<meta[^>]+name="twitter:image"[^>]+content="([^"]+)"/i);
-            poster = ogImageMatch ? ogImageMatch[1] : "";
-            
-            if (!poster) {
-                var fallbackImgMatch = html.match(/<img[^>]+(?:src|data-src)="([^"]+\.(?:jpg|jpeg|png|webp)[^"]*)"/i);
-                if (fallbackImgMatch) poster = fallbackImgMatch[1];
-            }
-            
-            description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
-            movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
-            
-            var postIdMatch = html.match(/\/\?p=(\d+)/) || html.match(/post-id=["'](\d+)/) || html.match(/postId\s*:\s*(\d+)/) || html.match(/post-id:(\d+)/);
-            postId = postIdMatch ? postIdMatch[1] : "";
+        // Nếu dữ liệu trả về từ WordPress REST API
+        if (html.trim().startsWith("[") || html.trim().startsWith("{")) {
+            try {
+                var posts = JSON.parse(html);
+                var post = Array.isArray(posts) ? posts[0] : posts;
+                if (post) {
+                    title = post.title ? post.title.rendered : "";
+                    movieUrl = post.link || url;
+                    contentHtml = post.content ? post.content.rendered : html;
+                    description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
+                    if (post.jetpack_featured_media_url) poster = post.jetpack_featured_media_url;
+                }
+            } catch (err) {}
         }
+
+        if (!title) {
+            title = (contentHtml.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
+            var ogImageMatch = contentHtml.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i) || 
+                               contentHtml.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/i);
+            poster = ogImageMatch ? ogImageMatch[1] : "";
+            description = (contentHtml.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
+        }
+
+        var postIdMatch = contentHtml.match(/\/\?p=(\d+)/) || contentHtml.match(/post-id=["'](\d+)/) || contentHtml.match(/postId\s*:\s*(\d+)/);
+        var postId = postIdMatch ? postIdMatch[1] : "";
 
         var servers = [];
         var usedServer = {};
@@ -249,14 +232,12 @@ function parseMovieDetail(html, url) {
             });
         }
 
+        // Tạo server fallback nếu không quét được data-server
         if (servers.length === 0) {
-            var hasPlayableFallback = /data-episodes\s*=|<iframe\b|https?:\/\/[^"'\s]+\.m3u8/i.test(contentHtml);
-            if (hasPlayableFallback) {
-                servers.push({
-                    name: "HX",
-                    episodes: [{ id: "play-" + movieUrl + "?id=" + postId + "&server=hx&tap=1", name: "Full", slug: "full" }]
-                });
-            }
+            servers.push({
+                name: "VIP",
+                episodes: [{ id: "play-" + movieUrl + "?id=" + postId + "&server=vip&tap=1", name: "Full", slug: "full" }]
+            });
         }
 
         return JSON.stringify({
@@ -276,20 +257,33 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE VIDEO (STREAM) - ĐÃ SỬA LỖI LẤY LINK
+// PARSE STREAM (LINK PHÁT)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-    log("Parsing Stream for: " + url);
+    log("Parsing Stream for URL: " + url);
     try {
+        var rawContent = html;
+
+        // Nếu nội dung trả về là JSON từ API WP, trích xuất chuỗi rendered HTML
+        if (html.trim().startsWith("[") || html.trim().startsWith("{")) {
+            try {
+                var parsedJson = JSON.parse(html);
+                var item = Array.isArray(parsedJson) ? parsedJson[0] : parsedJson;
+                if (item && item.content) {
+                    rawContent = item.content.rendered;
+                }
+            } catch (err) {}
+        }
+
         if (url.includes("?id=") && url.includes("&server=")) {
             var server = (url.match(/server=([^&]+)/) || [])[1];
             var tapStr = (url.match(/tap=(\d+)/) || [])[1];
-            var tap = parseInt(tapStr, 10);
+            var tap = parseInt(tapStr, 10) || 1;
 
-            if (server && tap) {
+            if (server) {
                 var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
-                var epBlockMatch = html.match(epBlockRegex);
+                var epBlockMatch = rawContent.match(epBlockRegex);
 
                 if (epBlockMatch) {
                     var rawEpisodes = epBlockMatch[2];
@@ -300,18 +294,18 @@ function parseDetailResponse(html, url) {
                     while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
                         if (currentIndex === tap) {
                             var rawSrc = epMatch[1];
-                            
-                            // GIẢI MÃ XOR CHÍNH XÁC
                             var decrypted = "";
+                            
+                            // Xử lý Giải mã XOR 42
                             for (var i = 0; i < rawSrc.length; i++) {
                                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
                             }
                             
-                            // Thay thế domain rút gọn thành link xem trực tiếp
+                            // Tự động điều chỉnh URL nhúng
                             decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
-                            log("Decrypted Stream URL: " + decrypted);
+                            
+                            log("Successfully extracted decrypted URL: " + decrypted);
 
-                            // Nếu tìm thấy file M3U8 trực tiếp
                             if (decrypted.indexOf(".m3u8") !== -1) {
                                 return JSON.stringify({
                                     url: decrypted,
@@ -319,9 +313,8 @@ function parseDetailResponse(html, url) {
                                     isEmbed: false,
                                     headers: { "Referer": BASE_URL + "/" }
                                 });
-                            } 
-                            
-                            // Trả về trực tiếp URL nhúng WebView (loại bỏ bọc Base64 gây lỗi Player)
+                            }
+
                             return JSON.stringify({
                                 url: decrypted,
                                 isEmbed: true,
@@ -337,12 +330,12 @@ function parseDetailResponse(html, url) {
             }
         }
 
-        // Tìm iframe nhúng sẵn trên trang
-        var iframeMatch = html.match(/<iframe[^>]*src="([^"]+)"/i);
+        // --- DỰ PHÒNG 1: Quét trực tiếp iframe từ HTML ---
+        var iframeMatch = rawContent.match(/<iframe[^>]*src=["']([^"']+)["']/i);
         if (iframeMatch) {
             var embedUrl = iframeMatch[1];
             if (embedUrl.startsWith("//")) embedUrl = "https:" + embedUrl;
-            log("Found iframe URL: " + embedUrl);
+            log("Fallback 1 - Found iframe: " + embedUrl);
             return JSON.stringify({ 
                 url: embedUrl, 
                 isEmbed: true, 
@@ -350,10 +343,22 @@ function parseDetailResponse(html, url) {
             });
         }
 
-        // Tìm link M3U8 trực tiếp trên trang
-        var m3u8Match = html.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+        // --- DỰ PHÒNG 2: Quét URL Abyss / Short / Blogger trực tiếp ---
+        var directUrlMatch = rawContent.match(/(https?:\/\/(?:abyssplayer\.com|abyss\.to|short\.ink|short\.icu|www\.blogger\.com)\/[^"'\s<>]+)/i);
+        if (directUrlMatch) {
+            var directUrl = directUrlMatch[1].replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
+            log("Fallback 2 - Found direct player URL: " + directUrl);
+            return JSON.stringify({
+                url: directUrl,
+                isEmbed: true,
+                headers: { "Referer": BASE_URL + "/" }
+            });
+        }
+
+        // --- DỰ PHÒNG 3: Quét link file M3U8 trực tiếp ---
+        var m3u8Match = rawContent.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
         if (m3u8Match) {
-            log("Found direct M3U8: " + m3u8Match[1]);
+            log("Fallback 3 - Found M3U8: " + m3u8Match[1]);
             return JSON.stringify({ 
                 url: m3u8Match[1], 
                 mimeType: "application/x-mpegURL", 
@@ -362,10 +367,18 @@ function parseDetailResponse(html, url) {
             });
         }
 
-        return JSON.stringify({ url: url, isEmbed: true, headers: { "Referer": BASE_URL + "/" } });
+        // Nếu tất cả thất bại, mở chính URL phim bằng WebView embed
+        log("No stream extracted, sending raw URL to player");
+        var finalFallback = url.split("?")[0];
+        return JSON.stringify({ 
+            url: finalFallback, 
+            isEmbed: true, 
+            headers: { "Referer": BASE_URL + "/" } 
+        });
+
     } catch (e) {
         log("Error in parseDetailResponse: " + e.message);
-        return JSON.stringify({ url: "", isEmbed: false });
+        return JSON.stringify({ url: url, isEmbed: true });
     }
 }
 
