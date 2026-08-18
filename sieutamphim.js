@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED LINK STREAM FOR APP 1)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: YEAR & DETAIL URL)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -87,13 +87,13 @@ function getUrlSearch(keyword, filtersJson) {
 }
 
 function getUrlDetail(id) {
-  log("Resolving ID: " + id);
-  if (!id) return "";
-  if (id.startsWith("http")) {
+  log("Resolving Detail ID: " + id);
+  if (!id) return BASE_URL;
+  if (id.startsWith("http://") || id.startsWith("https://")) {
     return id;
   }
-  // Đảm bảo tạo URL web hợp lệ để App gửi Request lấy HTML
-  return BASE_URL + "/" + id + ".html";
+  // Sửa lỗi kết nối: Tạo đường dẫn URL WordPress REST API chuẩn
+  return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
 }
 
 // ========================================================
@@ -154,6 +154,7 @@ function parseMovieDetail(html, url) {
     var description = "";
     var movieUrl = url;
     var contentHtml = html;
+    var year = "2026"; // Mặc định năm hiện tại nếu không cào được
 
     if (url && url.includes("/wp-json/wp/v2/posts")) {
       var posts = JSON.parse(html);
@@ -164,12 +165,20 @@ function parseMovieDetail(html, url) {
       contentHtml = post.content ? post.content.rendered : "";
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
+      
+      // Lấy năm phát hành từ ngày đăng bài (WordPress REST API)
+      if (post.date) {
+        year = post.date.substring(0, 4);
+      }
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
       poster = ogImageMatch ? ogImageMatch[1] : "";
       description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
+      
+      var yearMatch = html.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/\/(\d{4})\//);
+      if (yearMatch) year = yearMatch[1];
     }
 
     var servers = [];
@@ -198,7 +207,6 @@ function parseMovieDetail(html, url) {
 
       var episodes = [];
       for (var j = 1; j <= epCount; j++) {
-        // TẠO URL CHUẨN DẠNG HTTP ĐỂ CẢ 2 APP ĐỀU TRIGGER FETCH LINK
         var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
         episodes.push({
           id: streamId,
@@ -213,12 +221,16 @@ function parseMovieDetail(html, url) {
       });
     }
 
+    // Đã thêm các trường year, category, country để hiển thị thông tin đầy đủ
     return JSON.stringify({
-      id: "",
+      id: getSlugFromUrl(movieUrl),
       title: decodeHtmlEntities(title.replace(" - Siêu Tầm Phim", "").trim()),
       posterUrl: poster,
       backdropUrl: poster,
       description: description,
+      year: year,
+      category: "Phim Hay",
+      country: "Tổng Hợp",
       servers: servers,
       quality: "HD",
       status: "Hoàn thành"
