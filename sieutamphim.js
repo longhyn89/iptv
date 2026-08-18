@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (STABLE - ORIGINAL MECHANISM)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED YEAR & API STREAM)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.9",
+    "version": "1.3.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -133,6 +133,7 @@ function parseSearchResponse(html) {
   return parseListResponse(html);
 }
 
+// FIX TRIỆT ĐỂ LỖI NĂM PHÁT HÀNH
 function parseMovieDetail(html, url) {
   try {
     var title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
@@ -141,8 +142,8 @@ function parseMovieDetail(html, url) {
     var description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
     var movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
     
-    // XỬ LÝ NĂM PHÁT HÀNH CHUẨN
-    var year = "2026";
+    // Bóc tách năm từ nhiều nguồn khác nhau trong HTML
+    var year = "";
     var yearMatch = html.match(/class=['"]year['"][^>]*>(\d{4})</i) ||
                       html.match(/(?:Năm|Year|Phát hành)[:\s]*(\d{4})/i) ||
                       title.match(/\((\d{4})\)/) ||
@@ -152,7 +153,7 @@ function parseMovieDetail(html, url) {
       year = yearMatch[1];
     } else {
       var dateMatch = html.match(/"datePublished":\s*"(\d{4})/i);
-      if (dateMatch) year = dateMatch[1];
+      year = dateMatch ? dateMatch[1] : "2026";
     }
     
     var filmSlug = getSlugFromUrl(movieUrl);
@@ -184,7 +185,7 @@ function parseMovieDetail(html, url) {
       var episodes = [];
       for (var j = 1; j <= epCount; j++) {
         var sep = movieUrl.includes("?") ? "&" : "?";
-        var streamId = movieUrl + sep + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
+        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "id=" + filmSlug + "&server=" + encodeURIComponent(serverId) + "&tap=" + j;
         
         episodes.push({
           id: streamId,
@@ -218,30 +219,135 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (KHÔI PHỤC LUỒNG CŨ - TRẢ EMBED CHO APP TỰ LOAD)
+// PARSE VIDEO (STREAM) - CODE GỐC ĐÃ SỬA HEADERS CHO APP 1
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  return JSON.stringify({
-    url: url,
-    isEmbed: true,
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "Referer": BASE_URL
+  log("Parsing Stream for: " + url);
+  try {
+    if (url.includes("&server=")) {
+      var server = (url.match(/server=([^&]+)/) || [])[1];
+      var tapStr = (url.match(/tap=(\d+)/) || [])[1];
+      var tap = parseInt(tapStr, 10);
+
+      if (server && tap) {
+        var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
+        var epBlockMatch = html.match(epBlockRegex);
+
+        if (epBlockMatch) {
+          var rawEpisodes = epBlockMatch[2];
+          var epRegex = /{"([^"]+)","([^"]+)"}/g;
+          var epMatch;
+          var currentIndex = 1;
+          while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+            if (currentIndex === tap) {
+              var rawSrc = epMatch[1];
+              var decrypted = "";
+              for (var i = 0; i < rawSrc.length; i++) {
+                decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+              }
+              decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
+              log("Decrypted Stream URL: " + decrypted);
+
+              if (decrypted.indexOf(".m3u8") !== -1) {
+                return JSON.stringify({
+                  url: decrypted,
+                  mimeType: "application/x-mpegURL",
+                  isEmbed: false
+                });
+              } else {
+                var isAbyss = decrypted.indexOf("abyssplayer.com") !== -1 ||
+                  decrypted.indexOf("abyss.to") !== -1 ||
+                  decrypted.indexOf("short.ink") !== -1 ||
+                  decrypted.indexOf("short.icu") !== -1;
+
+                if (isAbyss) {
+                  var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+                  var videoId = vMatch ? vMatch[1] : "";
+                  var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+                  return JSON.stringify({
+                    url: stream,
+                    isEmbed: false,
+                    headers: {
+                      "Referer": "https://sc.k-20.xyz/",
+                      "Origin": "https://sc.k-20.xyz",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                    },
+                    datasend: "true"
+                  });
+                } else {
+                  return JSON.stringify({
+                    url: decrypted,
+                    isEmbed: true,
+                    headers: {
+                      "Referer": BASE_URL + "/"
+                    }
+                  });
+                }
+              }
+            }
+            currentIndex++;
+          }
+        }
+      }
     }
-  });
+
+    var iframeMatch = html.match(/<iframe[^>]*src="([^"]+)"/i);
+    if (iframeMatch) {
+      var embedUrl = iframeMatch[1];
+      if (embedUrl.startsWith("//")) embedUrl = "https:" + embedUrl;
+      return JSON.stringify({
+        url: embedUrl,
+        headers: { "Referer": BASE_URL },
+        isEmbed: true
+      });
+    }
+
+    var m3u8 = html.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+    if (m3u8) {
+      return JSON.stringify({
+        url: m3u8[1],
+        mimeType: "application/x-mpegURL",
+        isEmbed: false
+      });
+    }
+
+    return JSON.stringify({
+      url: url,
+      isEmbed: true,
+      headers: { "Referer": BASE_URL }
+    });
+  } catch (e) {
+    return JSON.stringify({ url: "", isEmbed: false });
+  }
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  return JSON.stringify({
-    url: sourceUrl,
-    isEmbed: true,
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "Referer": BASE_URL
-    }
-  });
+  if (datasend == "true") {
+    try {
+      var $data = JSON.parse(html);
+      if ($data && $data.streams && $data.streams.length > 0) {
+        var stream = $data.streams[0].url;
+        var isM3u8 = stream.includes(".m3u8");
+        return JSON.stringify({
+          url: stream,
+          mimeType: isM3u8 ? "application/x-mpegURL" : "video/mp4",
+          isEmbed: false,
+          headers: {
+            "Referer": "https://sc.k-20.xyz/",
+            "Origin": "https://sc.k-20.xyz",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        });
+      }
+    } catch (e) {}
+  }
+  return parseDetailResponse(html, sourceUrl);
 }
+
+// ========================================================
+// HELPERS
+// ========================================================
 
 function decodeHtmlEntities(str) {
   if (!str) return "";
