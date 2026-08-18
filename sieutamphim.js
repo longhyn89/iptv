@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (RESTORED ORIGINAL & FIXED)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED REGEX & LOOP ISSUE)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.6",
+    "version": "1.2.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -164,11 +164,6 @@ function parseMovieDetail(html, url) {
       contentHtml = post.content ? post.content.rendered : "";
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
-      
-      // Lấy năm phát hành từ bài viết WordPress
-      if (post.date) {
-        year = post.date.substring(0, 4);
-      }
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
@@ -177,12 +172,14 @@ function parseMovieDetail(html, url) {
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
     }
 
-    // Sửa lỗi Năm: Quét linh hoạt từ nội dung/tiêu đề/URL nếu chưa có năm
-    if (!year) {
-      var yearMatch = contentHtml.match(/(?:Năm|Year|Phát hành)[:\s]*(\d{4})/i) || 
-                        movieUrl.match(/[\/-](\d{4})[\/-]/) ||
-                        title.match(/\((\d{4})\)/);
-      year = yearMatch ? yearMatch[1] : "2024";
+    // Bóc tách năm phát hành chuẩn theo ảnh HTML (ví dụ: Hoắc Nguyên Giáp (2006))
+    var yearMatch = contentHtml.match(/\((\d{4})\)/) || contentHtml.match(/Năm\s*:\s*(\d{4})/i) || movieUrl.match(/[\/-](\d{4})[\/-]/);
+    if (yearMatch) {
+      year = yearMatch[1];
+    } else if (url && url.includes("/wp-json") && posts && posts[0] && posts[0].date) {
+      year = posts[0].date.substring(0, 4);
+    } else {
+      year = "2024";
     }
 
     var servers = [];
@@ -195,14 +192,15 @@ function parseMovieDetail(html, url) {
       if (usedServer[serverId]) continue;
       usedServer[serverId] = true;
 
-      // Sửa Regex quét episodes chuẩn xác
+      // Quét chính xác đoạn chứa data-episodes='[...]'
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
       var epCount = 0;
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
-        var epRegex = /{"([^"]+)","([^"]+)"}/g;
+        // REGEX ĐÃ SỬA: Bắt mọi chuỗi mã hóa kể cả chứa ký tự đặc biệt ^, #, @...
+        var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
         while (epRegex.exec(rawEpisodes) !== null) {
           epCount++;
         }
@@ -245,7 +243,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM
+// PARSE STREAM (THOÁT VÒNG LẶP NẾU LỖI)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -262,7 +260,9 @@ function parseDetailResponse(html, url) {
 
         if (epBlockMatch) {
           var rawEpisodes = epBlockMatch[2];
-          var epRegex = /{"([^"]+)","([^"]+)"}/g;
+          
+          // REGEX MỚI FLEXIBLE: Bắt cặp giá trị trong { "mã_xor", "tên_tập" }
+          var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
           var epMatch;
           var currentIndex = 1;
           while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
@@ -285,6 +285,7 @@ function parseDetailResponse(html, url) {
                 var videoId = vMatch ? vMatch[1] : "";
                 var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
+                // Trả về đúng link sc.k-20.xyz
                 return JSON.stringify({
                   url: stream,
                   isEmbed: true,
@@ -301,7 +302,8 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    return JSON.stringify({ url: url, isEmbed: true });
+    // NẾU KHÔNG TÌM THẤY TẬP: Trả về isEmbed: false để dừng vòng lặp GET/HEAD
+    return JSON.stringify({ url: "", isEmbed: false });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
   }
@@ -311,16 +313,18 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
   if (datasend == "true") {
     try {
       var $data = JSON.parse(html);
-      var stream = $data.streams[0].url;
-      return JSON.stringify({
-        url: stream + "#.m3u8",
-        mimeType: "video/mp4",
-        isEmbed: false,
-        headers: {
-          "Referer": "https://sc.k-20.xyz",
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-      });
+      if ($data && $data.streams && $data.streams[0]) {
+        var stream = $data.streams[0].url;
+        return JSON.stringify({
+          url: stream + "#.m3u8",
+          mimeType: "video/mp4",
+          isEmbed: false,
+          headers: {
+            "Referer": "https://sc.k-20.xyz",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        });
+      }
     } catch(e){}
   }
   return parseDetailResponse(html, sourceUrl);
