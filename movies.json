@@ -28,6 +28,13 @@
             "version": "1.9.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/onflix.js",
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/onflix.png"
+        },
+        {
+            "id": "sieutamphim",
+            "name": "Sưu Tầm Phim",
+            "version": "1.1.1",
+            "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/sieutamphim.js",
+            "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png"
         }
         
         
