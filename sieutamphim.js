@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED WORDPRESS POST ID)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED STREAM FOR APP 1)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.3",
+    "version": "1.2.5",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -163,7 +163,7 @@ function parseMovieDetail(html, url) {
       var yearMatch = html.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/\/(\d{4})\//);
       if (yearMatch) year = yearMatch[1];
       
-      var idMatch = html.match(/post-?id-(\d+)/i) || html.match(/p=(\d+)/i);
+      var idMatch = html.match(/post-?id-(\d+)/i) || html.match(/p=(\d+)/i) || html.match(/class=['"][^'"]*post-(\d+)/i);
       if (idMatch) postId = idMatch[1];
     }
 
@@ -228,9 +228,9 @@ function parseMovieDetail(html, url) {
   }
 }
 
-// ========================================================
-// PARSE STREAM (GIẢI MÃ NGUỒN STREAM CHUẨN)
-// ========================================================
+// ==========================================================
+// PARSE STREAM (GIẢI MÃ NGUỒN PHIM THỰC SỰ CHO APP 1 EXOPLAYER)
+// ==========================================================
 
 function parseDetailResponse(html, url) {
   try {
@@ -256,6 +256,7 @@ function parseDetailResponse(html, url) {
                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
               }
 
+              // Nếu chứa link M3U8 trực tiếp
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
@@ -268,6 +269,7 @@ function parseDetailResponse(html, url) {
                 });
               }
 
+              // Trích xuất ID video để gọi API Proxy Stream
               var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
               if (vMatch && vMatch[1]) {
                 var videoId = vMatch[1];
