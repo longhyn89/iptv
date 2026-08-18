@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED STREAM & KEEP POST ID)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED YEAR & SERVER CONNECTION)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.7",
+    "version": "1.2.8",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -140,8 +140,20 @@ function parseMovieDetail(html, url) {
     var poster = ogImageMatch ? ogImageMatch[1] : "";
     var description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
     var movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
-    var yearMatch = html.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/\/(\d{4})\//);
-    var year = yearMatch ? yearMatch[1] : "2026";
+    
+    // BẮT NĂM PHÁT HÀNH CHUẨN TỪ THẺ HTML HOẶC NĂM TRONG TIÊU ĐỀ
+    var year = "";
+    var yearMatch = html.match(/class=['"]year['"][^>]*>(\d{4})</i) ||
+                      html.match(/(?:Năm|Year|Phát hành)[:\s]*(\d{4})/i) ||
+                      title.match(/\((\d{4})\)/) ||
+                      movieUrl.match(/[\/-](\d{4})[\/-]/);
+    
+    if (yearMatch && yearMatch[1]) {
+      year = yearMatch[1];
+    } else {
+      var dateMatch = html.match(/"datePublished":\s*"(\d{4})/i);
+      year = dateMatch ? dateMatch[1] : "";
+    }
     
     var filmSlug = getSlugFromUrl(movieUrl);
 
@@ -206,7 +218,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (SỬA LỖI GIẢI MÃ & BẮT ÉP APP 1 PHÁT STREAM)
+// PARSE STREAM (SỬA LỖI KẾT NỐI SERVER & HEADERS)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -216,7 +228,6 @@ function parseDetailResponse(html, url) {
     var tap = tapStr ? parseInt(tapStr, 10) : 1;
 
     if (server) {
-      // Tìm khối chứa dữ liệu episode của Server đang chọn
       var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = html.match(epBlockRegex);
 
@@ -224,7 +235,6 @@ function parseDetailResponse(html, url) {
       if (epBlockMatch) {
         rawEpisodes = epBlockMatch[2];
       } else {
-        // Fallback quét trực tiếp nếu DOM hơi khác
         var fallbackMatch = html.match(/data-episodes=(['"])([\s\S]*?)\1/i);
         if (fallbackMatch) rawEpisodes = fallbackMatch[2];
       }
@@ -237,25 +247,23 @@ function parseDetailResponse(html, url) {
           if (currentIndex === tap) {
             var rawSrc = epMatch[1];
             
-            // Thực hiện giải mã XOR 42
             var decrypted = "";
             for (var i = 0; i < rawSrc.length; i++) {
               decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
             }
 
-            // Nếu trả về link m3u8 trực tiếp
             if (decrypted.indexOf(".m3u8") !== -1) {
               return JSON.stringify({
                 url: decrypted,
                 mimeType: "application/x-mpegURL",
                 headers: {
                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                  "Referer": BASE_URL
+                  "Referer": BASE_URL,
+                  "Origin": BASE_URL
                 }
               });
             }
 
-            // Trích xuất ID stream k-20
             var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
             if (vMatch && vMatch[1]) {
               var videoId = vMatch[1];
@@ -264,20 +272,20 @@ function parseDetailResponse(html, url) {
               return JSON.stringify({
                 url: streamApi,
                 headers: {
-                  "Referer": BASE_URL,
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                  "Referer": "https://sc.k-20.xyz/",
+                  "Origin": "https://sc.k-20.xyz"
                 },
                 datasend: "true"
               });
             }
 
-            // Nếu decrypted ra iframe/link khác
             if (decrypted.startsWith("http")) {
               return JSON.stringify({
                 url: decrypted,
                 headers: {
-                  "Referer": BASE_URL,
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                  "Referer": BASE_URL
                 }
               });
             }
@@ -302,10 +310,11 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
 
         return JSON.stringify({
           url: directProxyUrl,
-          mimeType: "video/mp4",
+          mimeType: directProxyUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
           headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://sc.k-20.xyz/"
+            "Referer": "https://sc.k-20.xyz/",
+            "Origin": "https://sc.k-20.xyz"
           }
         });
       }
