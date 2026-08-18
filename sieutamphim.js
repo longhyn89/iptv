@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN
+// SIÊU TẦM PHIM VAAPP PLUGIN (Cấu hình hoàn chỉnh ExoPlayer + WebView)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.3",
+    "version": "1.2.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -379,50 +379,58 @@ function parseDetailResponse(html, url) {
           while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
             if (currentIndex === tap) {
               var rawSrc = epMatch[1];
+              
+              // Giải mã XOR với khóa 42
               var decrypted = "";
               for (var i = 0; i < rawSrc.length; i++) {
                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
               }
-              decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
               log("Decrypted Stream URL: " + decrypted);
 
+              // 1. Nếu tìm thấy link M3U8 trực tiếp -> Phát bằng ExoPlayer
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
                   mimeType: "application/x-mpegURL",
-                  isEmbed: false
+                  isEmbed: false,
+                  headers: {
+                    "Referer": BASE_URL + "/",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                  }
                 });
-              } else {
-                var isAbyss = decrypted.indexOf("abyssplayer.com") !== -1 ||
-                  decrypted.indexOf("abyss.to") !== -1 ||
-                  decrypted.indexOf("short.ink") !== -1 ||
-                  decrypted.indexOf("short.icu") !== -1;
-
-                if (isAbyss) {
-                  log("Link Abyss: " + decrypted);
-                  var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-                  var videoId = vMatch ? vMatch[1] : "";
-                  var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-                  return JSON.stringify({
-                    url: stream,
-                    isEmbed: true,
-                    headers: {
-                      "Referer": BASE_URL + "/",
-                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                    },
-                    datasend: "true"
-                  });
-                } else {
-                  return JSON.stringify({
-                    url: decrypted,
-                    isEmbed: true,
-                    headers: {
-                      "Referer": BASE_URL + "/",
-                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                    }
-                  });
-                }
               }
+
+              // 2. Xử lý link Abyss Player -> Chuyển về Embed Iframe WebView chuẩn
+              var isAbyss = decrypted.indexOf("abyssplayer.com") !== -1 ||
+                decrypted.indexOf("abyss.to") !== -1 ||
+                decrypted.indexOf("short.ink") !== -1 ||
+                decrypted.indexOf("short.icu") !== -1;
+
+              if (isAbyss) {
+                var vMatch = decrypted.match(/(?:[?&]v=|\/|embed\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+                var videoId = vMatch ? vMatch[1] : "";
+                var embedUrl = videoId ? ("https://abyssplayer.com/e/" + videoId) : decrypted;
+
+                log("Playing via Abyss WebView Embed: " + embedUrl);
+                return JSON.stringify({
+                  url: embedUrl,
+                  isEmbed: true,
+                  headers: {
+                    "Referer": BASE_URL + "/",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                  }
+                });
+              }
+
+              // 3. Các link Embed khác (Blogger, Hydrax, v.v.)
+              return JSON.stringify({
+                url: decrypted,
+                isEmbed: true,
+                headers: {
+                  "Referer": BASE_URL + "/",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                }
+              });
             }
             currentIndex++;
           }
@@ -430,45 +438,44 @@ function parseDetailResponse(html, url) {
       }
     }
 
+    // Fallback 1: Tìm Iframe trực tiếp trong HTML
     var iframeMatch = html.match(/<iframe[^>]*src="([^"]+)"/i);
     if (iframeMatch) {
       var embedUrl = iframeMatch[1];
-      log("Found iframe in HTML: " + embedUrl);
       if (embedUrl.startsWith("//")) embedUrl = "https:" + embedUrl;
-      if (embedUrl === url || embedUrl.length < 5) {
-        return JSON.stringify({
-          url: url,
-          isEmbed: true,
-          headers: {
-            "Referer": BASE_URL
-          }
-        });
-      }
+      log("Found fallback iframe: " + embedUrl);
       return JSON.stringify({
         url: embedUrl,
+        isEmbed: true,
         headers: {
-          "Referer": BASE_URL
-        },
-        isEmbed: true
+          "Referer": BASE_URL,
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
       });
     }
 
+    // Fallback 2: Quét M3U8 trực tiếp trong HTML
     var m3u8 = html.match(/(https?:\/\/[^"'\s]+\.m3u8[^"'\s]*)/i);
     if (m3u8) {
-      log("Found direct M3U8: " + m3u8[1]);
+      log("Found direct M3U8 in HTML: " + m3u8[1]);
       return JSON.stringify({
         url: m3u8[1],
         mimeType: "application/x-mpegURL",
-        isEmbed: false
+        isEmbed: false,
+        headers: {
+          "Referer": BASE_URL,
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
       });
     }
 
-    log("No stream found, returning fallback URL");
+    // Fallback cuối cùng
     return JSON.stringify({
       url: url,
       isEmbed: true,
       headers: {
-        "Referer": BASE_URL
+        "Referer": BASE_URL,
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
       }
     });
   } catch (e) {
@@ -481,26 +488,7 @@ function parseDetailResponse(html, url) {
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  try {
-    if (datasend == "true" || datasend === true) {
-      var $data = JSON.parse(html);
-      if ($data && $data.streams && $data.streams.length > 0) {
-        var stream = $data.streams[0].url;
-        log("Stream resolved: " + stream);
-        return JSON.stringify({
-          url: stream.endsWith(".m3u8") ? stream : stream + "#.m3u8",
-          mimeType: "application/x-mpegURL",
-          isEmbed: false,
-          headers: {
-            "Referer": "https://sc.k-20.xyz",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-          }
-        });
-      }
-    }
-  } catch (e) {
-    log("Error in parseEmbedResponse: " + e.message);
-  }
+  // Trả về luồng qua parseDetailResponse
   return parseDetailResponse(html, sourceUrl);
 }
 
