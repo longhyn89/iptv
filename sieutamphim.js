@@ -1,20 +1,15 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN - FIX LỖI KẾT NỐI SERVER
+// SIÊU TẦM PHIM VAAPP PLUGIN - FIX LỖI KẾT NỐI SERVER & LINK PHÁT
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
-var DEFAULT_HEADERS = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  "Referer": BASE_URL + "/"
-};
-
 var popup_html = "<div class='donate-container'><h2 class='donate-heading'>DONATE</h2><p class='donate-description'>Mời nhóm phát triển 2 ly cà phê để duy trì Plugin nhé!</p></div>";
 
 function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -22,8 +17,7 @@ function getManifest() {
     "type": "MOVIE",
     popup_html: popup_html,
     "layoutType": "VERTICAL",
-    "playerType": "exoplayer",
-    "headers": DEFAULT_HEADERS
+    "playerType": "exoplayer"
   });
 }
 
@@ -82,21 +76,12 @@ function getUrlSearch(keyword, filtersJson) {
   return BASE_URL + "/page/" + page + "?s=" + encodeURIComponent(keyword);
 }
 
+// Dùng API wp-json gốc để không bị chặn kết nối Server
 function getUrlDetail(id) {
   if (!id) return "";
-  
-  // Lấy link tập phim nếu nhấp từ danh sách tập
-  if (id.startsWith("play-")) {
-    var raw = id.replace("play-", "");
-    var parts = raw.split("::");
-    var slug = parts[0];
-    return BASE_URL + "/" + slug + ".html";
-  }
-  
+  if (id.startsWith("play-")) return id.replace("play-", "");
   if (id.startsWith("http")) return id;
-  
-  // Link trang chi tiết phim chuẩn
-  return BASE_URL + "/" + id + ".html";
+  return BASE_URL + "/wp-json/wp/v2/posts?slug=" + id;
 }
 
 // ========================================================
@@ -141,40 +126,51 @@ function parseListResponse(html) {
 function parseSearchResponse(html) { return parseListResponse(html); }
 
 // ========================================================
-// PARSE MOVIE DETAIL
+// PARSE MOVIE DETAIL (XỬ LÝ API WP-JSON)
 // ========================================================
 
-function parseMovieDetail(html, url) {
+function parseMovieDetail(jsonStr, url) {
+  // Nếu là response của trang phát phim
+  if (url && url.includes("server=")) {
+    return JSON.stringify({ id: url, servers: [] });
+  }
+
   try {
-    var title = "", poster = "", description = "", releaseYear = "2024";
+    var data = JSON.parse(jsonStr);
+    var post = Array.isArray(data) ? data[0] : data;
+    if (!post) return JSON.stringify({ servers: [] });
 
-    title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
-    if (!title) {
-      var tMatch = html.match(/<h1[^>]*class="[^"]*entry-title[^"]*"[^>]*>([\s\S]*?)<\/h1>/i);
-      title = tMatch ? tMatch[1].replace(/<[^>]*>/g, "").trim() : "";
+    var title = post.title && post.title.rendered ? post.title.rendered : "";
+    var content = post.content && post.content.rendered ? post.content.rendered : "";
+    var link = post.link || "";
+    var postId = post.id ? post.id.toString() : ""; // ID chính xác từ WordPress API
+
+    // Lấy Năm phát hành từ ngày đăng bài (format YYYY-MM-DD)
+    var releaseYear = "2024";
+    if (post.date) {
+      releaseYear = post.date.substring(0, 4);
     }
 
-    poster = (html.match(/<meta property="og:image" content="([^"]+)"/i) || [])[1] || "";
-    description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
+    // Lấy Poster
+    var poster = "";
+    var imgMatch = content.match(/src=["']([^"']+)["']/i);
+    if (imgMatch) poster = imgMatch[1];
 
-    var yearMatch = html.match(/\b(19\d\d|20\d\d)\b/);
-    if (yearMatch) {
-      releaseYear = yearMatch[1];
-    }
+    // Lấy Mô tả
+    var description = post.excerpt && post.excerpt.rendered ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
 
-    var slug = getSlugFromUrl(url);
     var servers = [];
     var usedServer = {};
 
     var groupRegex = /data-server=['"]([^'"]+)['"]/gi;
     var m;
-    while ((m = groupRegex.exec(html)) !== null) {
+    while ((m = groupRegex.exec(content)) !== null) {
       var serverId = m[1];
       if (usedServer[serverId]) continue;
       usedServer[serverId] = true;
 
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
-      var epBlockMatch = html.match(epBlockRegex);
+      var epBlockMatch = content.match(epBlockRegex);
 
       var epCount = 0;
       if (epBlockMatch) {
@@ -186,9 +182,10 @@ function parseMovieDetail(html, url) {
 
       var episodes = [];
       for (var j = 1; j <= epCount; j++) {
-        // Cấu trúc ID gọn: play-slug::server::tap
+        // Tạo URL gọi giải mã chứa chính xác postId từ API
+        var playUrl = BASE_URL + "/wp-admin/admin-ajax.php?action=get_player_html&id=" + postId + "&server=" + encodeURIComponent(serverId) + "&tap=" + j;
         episodes.push({
-          id: "play-" + slug + "::" + encodeURIComponent(serverId) + "::" + j,
+          id: "play-" + playUrl,
           name: epCount === 1 ? "Full" : "Tập " + j,
           slug: "tap-" + j
         });
@@ -201,7 +198,7 @@ function parseMovieDetail(html, url) {
       servers.push({
         name: "DEFAULT",
         episodes: [{
-          id: "play-" + slug + "::default::1",
+          id: "play-" + BASE_URL + "/wp-admin/admin-ajax.php?action=get_player_html&id=" + postId + "&server=default&tap=1",
           name: "Full",
           slug: "full"
         }]
@@ -209,8 +206,8 @@ function parseMovieDetail(html, url) {
     }
 
     return JSON.stringify({
-      id: slug,
-      title: decodeHtmlEntities(title.replace(" - Siêu Tầm Phim", "").trim()),
+      id: getSlugFromUrl(link),
+      title: decodeHtmlEntities(title.replace("&#8211;", "-").trim()),
       posterUrl: poster,
       backdropUrl: poster,
       description: description,
@@ -224,70 +221,34 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (LẤY LINK PHÁT VIDEO)
+// PARSE STREAM
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Processing video stream for: " + url);
   try {
-    var targetTap = 1;
-    var parts = url.split("::");
-    if (parts.length >= 3) {
-      targetTap = parseInt(parts[2], 10) || 1;
+    // Nếu nội dung nhận về chứa iframe player
+    var iframeMatch = html.match(/src=["']([^"']+)["']/i);
+    var decrypted = iframeMatch ? iframeMatch[1] : html;
+
+    if (decrypted.startsWith("//")) decrypted = "https:" + decrypted;
+
+    log("Stream URL: " + decrypted);
+
+    if (decrypted.indexOf(".m3u8") !== -1) {
+      return JSON.stringify({
+        url: decrypted,
+        mimeType: "application/x-mpegURL",
+        isEmbed: false,
+        headers: { "Referer": BASE_URL + "/" }
+      });
     }
 
-    var epBlocks = html.match(/data-episodes=(['"])([\s\S]*?)\1/gi) || [];
-    
-    for (var b = 0; b < epBlocks.length; b++) {
-      var blockContent = epBlocks[b];
-      var matches = blockContent.match(/\{"([^"]+)","([^"]+)"\}/g) || [];
-
-      if (matches.length >= targetTap) {
-        var targetEp = matches[targetTap - 1];
-        var rawSrcMatch = targetEp.match(/\{"([^"]+)"/);
-        
-        if (rawSrcMatch) {
-          var rawSrc = rawSrcMatch[1];
-
-          // Giải mã XOR Key 42
-          var decrypted = "";
-          for (var i = 0; i < rawSrc.length; i++) {
-            decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-          }
-
-          log("Decrypted Stream URL: " + decrypted);
-
-          if (decrypted.indexOf(".m3u8") !== -1) {
-            return JSON.stringify({
-              url: decrypted,
-              mimeType: "application/x-mpegURL",
-              isEmbed: false,
-              headers: DEFAULT_HEADERS
-            });
-          }
-
-          var vMatch = decrypted.match(/(?:[?&]v=|\/|embed\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-          var videoId = vMatch ? vMatch[1] : "";
-          var finalUrl = videoId ? ("https://abyssplayer.com/e/" + videoId) : decrypted;
-
-          return JSON.stringify({
-            url: finalUrl,
-            isEmbed: true,
-            headers: DEFAULT_HEADERS
-          });
-        }
-      }
-    }
-
-    // Dự phòng mở Webview trực tiếp
     return JSON.stringify({
-      url: BASE_URL,
+      url: decrypted,
       isEmbed: true,
-      headers: DEFAULT_HEADERS
+      headers: { "Referer": BASE_URL + "/" }
     });
-
   } catch (e) {
-    log("Error parseDetailResponse: " + e.message);
     return JSON.stringify({ url: "", isEmbed: false });
   }
 }
@@ -304,8 +265,6 @@ function decodeHtmlEntities(str) {
   if (!str) return "";
   return str
     .replace(/&#8211;/g, "-").replace(/&#8212;/g, "-")
-    .replace(/&#8220;/g, '"').replace(/&#8221;/g, '"')
-    .replace(/&#8216;/g, "'").replace(/&#8217;/g, "'")
     .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
     .replace(/&nbsp;/g, " ").trim();
 }
