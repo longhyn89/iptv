@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: YEAR & DETAIL URL)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: EXOPLAYER & EMBED ADS)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -92,7 +92,6 @@ function getUrlDetail(id) {
   if (id.startsWith("http://") || id.startsWith("https://")) {
     return id;
   }
-  // Sửa lỗi kết nối: Tạo đường dẫn URL WordPress REST API chuẩn
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
 }
 
@@ -154,7 +153,7 @@ function parseMovieDetail(html, url) {
     var description = "";
     var movieUrl = url;
     var contentHtml = html;
-    var year = "2026"; // Mặc định năm hiện tại nếu không cào được
+    var year = "2026";
 
     if (url && url.includes("/wp-json/wp/v2/posts")) {
       var posts = JSON.parse(html);
@@ -165,18 +164,13 @@ function parseMovieDetail(html, url) {
       contentHtml = post.content ? post.content.rendered : "";
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
-      
-      // Lấy năm phát hành từ ngày đăng bài (WordPress REST API)
-      if (post.date) {
-        year = post.date.substring(0, 4);
-      }
+      if (post.date) year = post.date.substring(0, 4);
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
       poster = ogImageMatch ? ogImageMatch[1] : "";
       description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
-      
       var yearMatch = html.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/\/(\d{4})\//);
       if (yearMatch) year = yearMatch[1];
     }
@@ -221,7 +215,6 @@ function parseMovieDetail(html, url) {
       });
     }
 
-    // Đã thêm các trường year, category, country để hiển thị thông tin đầy đủ
     return JSON.stringify({
       id: getSlugFromUrl(movieUrl),
       title: decodeHtmlEntities(title.replace(" - Siêu Tầm Phim", "").trim()),
@@ -241,7 +234,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM
+// PARSE STREAM (HỖ TRỢ EXOPLAYER TỐI ĐA & CHẶN ADS WEBVIEW)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -268,28 +261,48 @@ function parseDetailResponse(html, url) {
               for (var i = 0; i < rawSrc.length; i++) {
                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
               }
+              
+              // Chuẩn hóa link player
               decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
 
+              // Trường hợp 1: Có link m3u8 trực tiếp -> Ưu tiên chạy ExoPlayer
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
                   mimeType: "application/x-mpegURL",
-                  isEmbed: false
+                  isEmbed: false,
+                  headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    "Referer": BASE_URL
+                  }
                 });
-              } else {
-                var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-                var videoId = vMatch ? vMatch[1] : "";
-                var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+              } 
+              
+              // Trường hợp 2: Link chứa ID video (Cần qua server k-20 lấy stream m3u8)
+              var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+              if (vMatch && vMatch[1]) {
+                var videoId = vMatch[1];
+                var streamApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
                 return JSON.stringify({
-                  url: stream,
-                  isEmbed: true,
+                  url: streamApi,
+                  isEmbed: false, // Ép ExoPlayer đọc qua parseEmbedResponse
                   headers: {
-                    "Referer": "https://www.sieutamphim.pro/"
+                    "Referer": BASE_URL,
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
                   },
                   datasend: "true"
                 });
               }
+
+              // Trường hợp 3: Trả về link Embed sạch đã lọc bớt ads
+              return JSON.stringify({
+                url: decrypted,
+                isEmbed: true,
+                headers: {
+                  "Referer": BASE_URL
+                }
+              });
             }
             currentIndex++;
           }
@@ -297,7 +310,7 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    return JSON.stringify({ url: url, isEmbed: true });
+    return JSON.stringify({ url: url, isEmbed: false });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
   }
@@ -307,19 +320,23 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
   if (datasend == "true") {
     try {
       var $data = JSON.parse(html);
-      var stream = $data.streams[0].url;
-      return JSON.stringify({
-        url: stream + "#.m3u8",
-        mimeType: "video/mp4",
-        isEmbed: false,
-        headers: {
-          "Referer": "https://sc.k-20.xyz",
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-      });
+      if ($data && $data.streams && $data.streams.length > 0) {
+        var streamUrl = $data.streams[0].url;
+        
+        // Trả về luồng HLS m3u8 trực tiếp cho ExoPlayer
+        return JSON.stringify({
+          url: streamUrl,
+          mimeType: streamUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
+          isEmbed: false,
+          headers: {
+            "Referer": "https://sc.k-20.xyz/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        });
+      }
     } catch(e){}
   }
-  return parseDetailResponse(html, sourceUrl);
+  return JSON.stringify({ url: sourceUrl, isEmbed: false });
 }
 
 // ========================================================
