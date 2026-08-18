@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (Code thêm từ bản của bạn ʚʚ Ƭ Ɗųƴ ɞɞ)
+// SIÊU TẦM PHIM VAAPP PLUGIN (Code đã fix luồng lấy Stream)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -163,12 +163,10 @@ function parseListResponse(html) {
     var items = [];
     var used = {};
 
-    // Tách từng item phim để tránh regex chạy sai giữa các item
     var chunks = html.split('class="col post-item"');
     for (var i = 1; i < chunks.length; i++) {
       var blockHtml = chunks[i];
 
-      // link phim
       var urlMatch = blockHtml.match(/href="([^"]+\.html)"/i);
       if (!urlMatch) continue;
 
@@ -177,7 +175,6 @@ function parseListResponse(html) {
       if (used[url]) continue;
       used[url] = true;
 
-      // title & poster
       var titleMatch = blockHtml.match(/post-title[^>]*?>([\s\S]*?)<\/a>/i) || blockHtml.match(/alt="([^"]+)"/i);
       var title = titleMatch ? decodeHtmlEntities(titleMatch[1].replace(/<[^>]*>/g, "")) : "Unknown";
 
@@ -220,8 +217,6 @@ function parseSearchResponse(html) {
 // ========================================================
 
 function parseMovieDetail(html, url) {
-  // Nếu URL chứa 'server=', đây là link lấy stream, không phải lấy detail.
-  // Trả về kết quả rỗng để App không push thêm màn hình Detail.
   if (url && url.includes("server=")) {
     return JSON.stringify({
       id: url,
@@ -248,13 +243,12 @@ function parseMovieDetail(html, url) {
       }
       var post = posts[0];
       title = post.title ? post.title.rendered : "";
-      movieUrl = post.link || url;
+      movieUrl = post.link || url; // <--- LẤY LINK WEB CHÍNH XÁC TỪ WP API
       postId = String(post.id || "");
       contentHtml = post.content ? post.content.rendered : "";
 
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
 
-      // Cải tiến lấy ảnh bìa Featured Image của WordPress API
       if (post.jetpack_featured_media_url) {
         poster = post.jetpack_featured_media_url;
       } else if (post.featured_media_src_url) {
@@ -269,7 +263,6 @@ function parseMovieDetail(html, url) {
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
 
-      // Cải tiến regex để quét meta og:image linh hoạt bất kể thứ tự content/property
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i) ||
         html.match(/<meta[^>]+content="([^"]+)"[^>]+property="og:image"/i) ||
         html.match(/<meta[^>]+name="twitter:image"[^>]+content="([^"]+)"/i);
@@ -288,11 +281,9 @@ function parseMovieDetail(html, url) {
       log("Parsed Title from HTML: " + title + " (PostID: " + postId + ")");
     }
 
-    var slugId = getSlugFromUrl(movieUrl);
     var servers = [];
     var usedServer = {};
 
-    // Quét toàn bộ HTML/Content để tìm server
     var groupRegex = /data-server=['"]([^'"]+)['"]/gi;
     var m;
     while ((m = groupRegex.exec(contentHtml)) !== null) {
@@ -300,14 +291,12 @@ function parseMovieDetail(html, url) {
       if (usedServer[serverId]) continue;
       usedServer[serverId] = true;
 
-      // Tìm block chứa data-episodes của server này (hỗ trợ bọc bởi cả nháy đơn lẫn nháy kép)
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
       var epCount = 0;
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
-        // Sử dụng regex trích xuất các tập phim theo cú pháp {"value1","value2"} của web nguồn
         var epRegex = /{"([^"]+)","([^"]+)"}/g;
         var epMatch;
         while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
@@ -320,7 +309,6 @@ function parseMovieDetail(html, url) {
       var episodes = [];
       for (var j = 1; j <= epCount; j++) {
         episodes.push({
-          // QUAN TRỌNG: Không dùng :// để App nhảy vào getUrlDetail
           id: "play-" + movieUrl + "?id=" + postId + "&server=" + encodeURIComponent(serverId) + "&tap=" + j,
           name: epCount === 1 ? "Full" : "Tập " + j,
           slug: "tap-" + j
@@ -333,23 +321,17 @@ function parseMovieDetail(html, url) {
       });
     }
 
-    // Fallback chỉ dành cho phim lẻ thực sự có dữ liệu phát. Trước đây mọi
-    // bài viết không parse được data-server đều bị tạo server "Mặc định",
-    // khiến app ghép thành "Mặc định - Sưu Tầm Phim" dù không có nguồn phim.
+    // FIX CHÍNH: Nếu từ WordPress API không parse được danh sách server, 
+    // trả về 1 server mặc định trỏ tới URL trang Web HTML gốc để App tiếp tục fetch HTML.
     if (servers.length === 0) {
-      var hasPlayableFallback = /data-episodes\s*=|<iframe\b|https?:\/\/[^"'\s]+\.m3u8/i.test(contentHtml);
-      if (hasPlayableFallback) {
-        servers.push({
-          name: "HX",
-          episodes: [{
-            id: "play-" + movieUrl + "?id=" + postId + "&server=hx&tap=1",
-            name: "Full",
-            slug: "full"
-          }]
-        });
-      } else {
-        log("No playable server found; skip fallback for: " + movieUrl);
-      }
+      servers.push({
+        name: "DEFAULT",
+        episodes: [{
+          id: "play-" + movieUrl + "?id=" + postId + "&server=hx&tap=1",
+          name: "Full",
+          slug: "full"
+        }]
+      });
     }
 
     return JSON.stringify({
@@ -377,13 +359,31 @@ function parseMovieDetail(html, url) {
 function parseDetailResponse(html, url) {
   log("Parsing Stream for: " + url);
   try {
+    // FIX CHÍNH: Nếu HTML nhận vào là JSON của WP API (chưa có dữ liệu player),
+    // trả về link web HTML gốc kèm Header Referer để App tiếp tục crawl trang Web HTML.
+    if (html.trim().startsWith("[") || html.trim().startsWith("{")) {
+      try {
+        var jsonData = JSON.parse(html);
+        if (Array.isArray(jsonData) && jsonData.length > 0 && jsonData[0].link) {
+          log("Redirecting WP API response to real web HTML: " + jsonData[0].link);
+          return JSON.stringify({
+            url: jsonData[0].link,
+            isEmbed: true,
+            headers: {
+              "Referer": BASE_URL + "/",
+              "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
+            }
+          });
+        }
+      } catch (err) {}
+    }
+
     if (url.includes("?id=") && url.includes("&server=")) {
       var server = (url.match(/server=([^&]+)/) || [])[1];
       var tapStr = (url.match(/tap=(\d+)/) || [])[1];
       var tap = parseInt(tapStr, 10);
 
       if (server && tap) {
-        // Tìm block chứa data-episodes của server tương ứng
         var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
         var epBlockMatch = html.match(epBlockRegex);
 
@@ -395,7 +395,6 @@ function parseDetailResponse(html, url) {
           while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
             if (currentIndex === tap) {
               var rawSrc = epMatch[1];
-              // Giải mã XOR với khóa 42 để lấy link abyssplayer.com thật
               var decrypted = "";
               for (var i = 0; i < rawSrc.length; i++) {
                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
@@ -416,7 +415,6 @@ function parseDetailResponse(html, url) {
                   decrypted.indexOf("short.icu") !== -1;
 
                 if (isAbyss) {
-                  console.log("Link Abyss:" + decrypted);
                   var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
                   var videoId = vMatch ? vMatch[1] : "";
                   var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
@@ -424,17 +422,18 @@ function parseDetailResponse(html, url) {
                     url: stream,
                     isEmbed: true,
                     headers: {
-                      "Referer": BASE_URL + "/"
+                      "Referer": BASE_URL + "/",
+                      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
                     },
                     datasend: "true"
                   });
                 } else {
-                  // Các link khác (như blogger.com) trả về trực tiếp để tránh WebView chặn load data URL
                   return JSON.stringify({
                     url: decrypted,
                     isEmbed: true,
                     headers: {
-                      "Referer": BASE_URL + "/"
+                      "Referer": BASE_URL + "/",
+                      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
                     }
                   });
                 }
@@ -451,19 +450,11 @@ function parseDetailResponse(html, url) {
       var embedUrl = iframeMatch[1];
       log("Found iframe in HTML: " + embedUrl);
       if (embedUrl.startsWith("//")) embedUrl = "https:" + embedUrl;
-      if (embedUrl === url || embedUrl.length < 5) {
-        return JSON.stringify({
-          url: url,
-          isEmbed: true,
-          headers: {
-            "Referer": BASE_URL
-          }
-        });
-      }
       return JSON.stringify({
         url: embedUrl,
         headers: {
-          "Referer": BASE_URL
+          "Referer": BASE_URL + "/",
+          "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
         },
         isEmbed: true
       });
@@ -484,7 +475,8 @@ function parseDetailResponse(html, url) {
       url: url,
       isEmbed: true,
       headers: {
-        "Referer": BASE_URL
+        "Referer": BASE_URL + "/",
+        "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
       }
     });
   } catch (e) {
@@ -500,14 +492,13 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
   if (datasend == "true") {
     var $data = JSON.parse(html);
     var stream = $data.streams[0].url;
-    console.log("Stream " + stream)
     return JSON.stringify({
       url: stream + "#.m3u8" || "",
       mimeType: "video/mp4",
       isEmbed: false,
       headers: {
         "Referer": "https://sc.k-20.xyz",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
       }
     });
   }
@@ -547,14 +538,6 @@ function base64Encode(str) {
   return encoded;
 }
 
-function parseCategoriesResponse(html) {
-  return "[]";
-}
-
-function parseCountriesResponse(html) {
-  return "[]";
-}
-
-function parseYearsResponse(html) {
-  return "[]";
-}
+function parseCategoriesResponse(html) { return "[]"; }
+function parseCountriesResponse(html) { return "[]"; }
+function parseYearsResponse(html) { return "[]"; }
