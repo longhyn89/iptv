@@ -32,7 +32,7 @@
         {
             "id": "sieutamphim",
             "name": "Sưu Tầm Phim",
-            "version": "8.0.0",
+            "version": "9.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/sieutamphim.js",
             "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png"
         }
