@@ -17,7 +17,7 @@ function getManifest() {
     "type": "MOVIE",
     popup_html: popup_html,
     "layoutType": "VERTICAL",
-    "playerType": "exoplayer"
+    "playerType": "auto"
   });
 }
 
