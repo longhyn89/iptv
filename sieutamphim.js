@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN - FIX FULL TẬP & WEBVIEW PLAYER V4.0.0
+// SIÊU TẦM PHIM VAAPP PLUGIN - BẢN FIX CLEAN IFRAME & EXTRACTOR V5.0.0
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "4.0.0",
+    "version": "5.0.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -17,7 +17,7 @@ function getManifest() {
     "type": "MOVIE",
     popup_html: popup_html,
     "layoutType": "VERTICAL",
-    "playerType": "webview" // Chuyển sang webview để tối ưu phát các nguồn Player dạng Iframe
+    "playerType": "exoplayer"
   });
 }
 
@@ -29,7 +29,7 @@ function log(msg) {
 
 function getStandardHeaders(refererUrl) {
   return {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
     "Referer": refererUrl || (BASE_URL + "/"),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
   };
@@ -123,14 +123,14 @@ function parseListResponse(html) {
 function parseSearchResponse(html) { return parseListResponse(html); }
 
 // ========================================================
-// PARSE MOVIE DETAIL (QUÉT VÀ BẮT TẬP TỰ ĐỘNG)
+// PARSE MOVIE DETAIL (BẮT TOÀN BỘ DANH SÁCH TẬP)
 // ========================================================
 
 function parseMovieDetail(html, url) {
   try {
     var title = "", poster = "", description = "", releaseYear = "2026";
 
-    // 1. Lấy năm phát hành
+    // Lấy năm phát hành
     var urlYearMatch = url.match(/\/([12]\d{3})\/(\d{2})\//);
     if (urlYearMatch) {
       releaseYear = urlYearMatch[1];
@@ -139,7 +139,6 @@ function parseMovieDetail(html, url) {
       if (metaYearMatch) releaseYear = metaYearMatch[1];
     }
 
-    // 2. Tiêu đề & Ảnh
     title = (html.match(/<meta property=["']og:title["'] content=["']([^"']+)["']/i) || [])[1] || "";
     if (!title) {
       var tMatch = html.match(/<h1[^>]*class=["'][^"']*entry-title[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i);
@@ -153,60 +152,44 @@ function parseMovieDetail(html, url) {
     var episodes = [];
     var usedEp = {};
 
-    // CƠ CHẾ 1: Tìm nút tập trong danh sách li/span/a
-    var listBlockMatch = html.match(/class=["'](?:list-episode|episodes-list|server-list|halim-list-eps)[^"']*["']>([\s\S]*?)<\/ul>/i) ||
-                       html.match(/class=["'](?:list-episode|episodes-list|server-list|halim-list-eps)[^"']*["']>([\s\S]*?)<\/div>/i);
-    var searchArea = listBlockMatch ? listBlockMatch[1] : html;
-
-    var epRegex = /(?:href=["']([^"']+)["'][^>]*>|data-id=["']([^"']+)["'][^>]*>|data-href=["']([^"']+)["'][^>]*>)([\s\S]*?)<\/(?:a|span|li|button)>/gi;
+    // CƠ CHẾ 1: Bắt danh sách tập từ các thuộc tính data-link / data-embed / data-sv
+    var epDataRegex = /(?:data-link|data-embed|data-src|data-url)=["']([^"']+)["'][^>]*>(.*?)<\/(?:a|span|li|button)>/gi;
     var match;
+    while ((match = epDataRegex.exec(html)) !== null) {
+      var embedUrl = match[1];
+      var epName = match[2].replace(/<[^>]*>/g, "").trim() || ("Tập " + (episodes.length + 1));
 
-    while ((match = epRegex.exec(searchArea)) !== null) {
-      var epUrl = match[1] || match[2] || match[3] || "";
-      var epName = match[4].replace(/<[^>]*>/g, "").trim();
+      if (embedUrl && !usedEp[embedUrl]) {
+        usedEp[embedUrl] = true;
+        episodes.push({
+          id: embedUrl.startsWith("//") ? ("https:" + embedUrl) : embedUrl,
+          name: epName,
+          slug: "tap-" + (episodes.length + 1)
+        });
+      }
+    }
 
-      if (epName && (epName.match(/Tập|\d+/i) || epName === "Full")) {
-        if (epUrl && !epUrl.startsWith("http") && !epUrl.startsWith("#") && !epUrl.startsWith("javascript")) {
-          epUrl = BASE_URL + (epUrl.startsWith("/") ? "" : "/") + epUrl;
-        } else if (!epUrl || epUrl.startsWith("#") || epUrl.startsWith("javascript")) {
-          var epNumMatch = epName.match(/\d+/);
-          var epNum = epNumMatch ? epNumMatch[0] : (episodes.length + 1);
-          epUrl = cleanUrl + "?tap=" + epNum;
-        }
-
-        if (!usedEp[epUrl]) {
-          usedEp[epUrl] = true;
-          episodes.push({
-            id: epUrl,
-            name: epName.length > 20 ? ("Tập " + (episodes.length + 1)) : epName,
-            slug: "tap-" + (episodes.length + 1)
-          });
+    // CƠ CHẾ 2: Nếu không thấy data-link, trích xuất tất cả iframe nhúng sẵn trong khối tập
+    if (episodes.length === 0) {
+      var iframes = html.match(/<iframe[^>]+src=["']([^"']+)["']/gi) || [];
+      for (var k = 0; k < iframes.length; k++) {
+        var srcMatch = iframes[k].match(/src=["']([^"']+)["']/i);
+        if (srcMatch) {
+          var src = srcMatch[1];
+          if (src.startsWith("//")) src = "https:" + src;
+          if (!src.includes("facebook.com") && !src.includes("googletag") && !usedEp[src]) {
+            usedEp[src] = true;
+            episodes.push({
+              id: src,
+              name: "Tập " + (episodes.length + 1),
+              slug: "tap-" + (episodes.length + 1)
+            });
+          }
         }
       }
     }
 
-    // CƠ CHẾ 2: Nếu chỉ tìm thấy <= 1 tập, quét xem phim có tổng số tập (VD: Tập 12/12, Tập 24) không
-    if (episodes.length <= 1) {
-      var totalEpsMatch = html.match(/(?:Tập|Episode)\s*(\d+)\s*\/\s*(\d+)/i) || html.match(/(\d+)\s*Tập/i);
-      var totalEps = 1;
-      if (totalEpsMatch) {
-        totalEps = parseInt(totalEpsMatch[2] || totalEpsMatch[1]);
-      }
-
-      if (totalEps > 1) {
-        episodes = [];
-        for (var e = 1; e <= totalEps; e++) {
-          var targetEpUrl = cleanUrl + "?tap=" + e;
-          episodes.push({
-            id: targetEpUrl,
-            name: "Tập " + e,
-            slug: "tap-" + e
-          });
-        }
-      }
-    }
-
-    // CƠ CHẾ 3: Dự phòng cho Phim lẻ
+    // CƠ CHẾ 3: Dự phòng nếu chỉ có 1 tập duy nhất
     if (episodes.length === 0) {
       episodes.push({
         id: url,
@@ -223,7 +206,7 @@ function parseMovieDetail(html, url) {
       description: description,
       releaseYear: releaseYear,
       year: releaseYear,
-      servers: [{ name: "SERVER VIP", episodes: episodes }]
+      servers: [{ name: "SERVER CHÍNH", episodes: episodes }]
     });
   } catch (e) {
     return JSON.stringify({ servers: [] });
@@ -231,45 +214,49 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (TRÍCH XUẤT NGUỒN PHÁT WEBVIEW)
+// PARSE STREAM (CHỈ TRẢ VỀ KHUNG TRÌNH PHÁT EMBED LỌC QUẢNG CÁO)
 // ========================================================
 
 function parseDetailResponse(html, url) {
   try {
-    var headers = getStandardHeaders(url);
-
-    // 1. Lấy link IFRAME trực tiếp
-    var iframeMatch = html.match(/<iframe[^>]+src=["']([^"']+)["']/i);
-    if (iframeMatch) {
-      var embedUrl = iframeMatch[1];
-      if (embedUrl.startsWith("//")) embedUrl = "https:" + embedUrl;
-      
-      // Nếu có Iframe player (dạng Hxfile, Doodstream, Hydrax, Okru, v.v...)
-      if (!embedUrl.includes("facebook.com") && !embedUrl.includes("googletagmanager")) {
-        return JSON.stringify({
-          url: embedUrl,
-          isEmbed: true,
-          headers: getStandardHeaders(embedUrl)
-        });
-      }
+    // 1. Nếu URL chính là link Embed/Player đã bắt ở bước parseMovieDetail
+    if (url.includes("player") || url.includes("embed") || url.includes("hxfile") || url.includes("dood") || url.includes("ok.ru") || url.includes("hydrax")) {
+      return JSON.stringify({
+        url: url,
+        isEmbed: true,
+        headers: getStandardHeaders(url)
+      });
     }
 
-    // 2. Lấy link M3U8 trực tiếp nếu có
+    // 2. Tìm link M3U8 trực tiếp
     var m3u8Match = html.match(/(https?:\/\/[^"'\s]+\.m3u8[^"'\s]*)/i);
     if (m3u8Match) {
       return JSON.stringify({
         url: m3u8Match[1],
         mimeType: "application/x-mpegURL",
         isEmbed: false,
-        headers: headers
+        headers: getStandardHeaders(m3u8Match[1])
       });
     }
 
-    // 3. Trả về chính URL tập phim
+    // 3. Trích xuất thẻ Iframe chứa video player thực sự
+    var iframeMatch = html.match(/<iframe[^>]+src=["']([^"']+)["']/i);
+    if (iframeMatch) {
+      var embedSrc = iframeMatch[1];
+      if (embedSrc.startsWith("//")) embedSrc = "https:" + embedSrc;
+
+      return JSON.stringify({
+        url: embedSrc,
+        isEmbed: true,
+        headers: getStandardHeaders(embedSrc)
+      });
+    }
+
+    // Fallback nếu không bóc tách được
     return JSON.stringify({
       url: url,
       isEmbed: true,
-      headers: headers
+      headers: getStandardHeaders(url)
     });
 
   } catch (e) {
