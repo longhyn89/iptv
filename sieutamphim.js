@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - WORDPRESS NATIVE REST API V11.0.0
+// SIÊU TẦM PHIM - NATIVE EXOPLAYER K-20 API V12.0.0
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,8 +9,8 @@ var popup_html = "<div class='donate-container'><h2 class='donate-heading'>DONAT
 function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
-    "name": "Sưu Tầm Phim API",
-    "version": "11.0.0",
+    "name": "Sưu Tầm Phim",
+    "version": "12.0.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -25,12 +25,13 @@ function getManifest() {
 function getStandardHeaders(refererUrl) {
   return {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept": "application/json"
+    "Referer": refererUrl || BASE_URL,
+    "Accept": "*/*"
   };
 }
 
 // ========================================================
-// HOME & CATEGORIES (GỌI API)
+// HOME & SEARCH (SỬ DỤNG WP REST API)
 // ========================================================
 
 function getHomeSections() {
@@ -55,26 +56,27 @@ function getFilterConfig() { return JSON.stringify({ sort: [], category: [] }); 
 function getUrlList(slug, filtersJson) {
   var filters = JSON.parse(filtersJson || "{}");
   var page = filters.page || 1;
-  // Dùng API bài viết theo trang
   return API_URL + "/posts?per_page=18&page=" + page;
 }
 
 function getUrlSearch(keyword, filtersJson) {
   var filters = JSON.parse(filtersJson || "{}");
   var page = filters.page || 1;
-  // Dùng API Search
   return API_URL + "/posts?search=" + encodeURIComponent(keyword) + "&per_page=18&page=" + page;
 }
 
 function getUrlDetail(id) {
   if (!id) return "";
-  if (id.startsWith("http")) return id;
-  // Lấy chi tiết bằng Slug hoặc ID qua API
+  if (id.startsWith("http")) {
+    var slugMatch = id.match(/\/([^\/]+)\.html/);
+    if (slugMatch) return API_URL + "/posts?slug=" + slugMatch[1];
+    return id;
+  }
   return API_URL + "/posts?slug=" + id;
 }
 
 // ========================================================
-// PARSE API RESPONSE (LIST & DETAIL)
+// PARSE API RESPONSE & MOVIE DETAIL
 // ========================================================
 
 function parseListResponse(jsonStr) {
@@ -86,8 +88,8 @@ function parseListResponse(jsonStr) {
       var post = posts[i];
       var title = post.title && post.title.rendered ? post.title.rendered : "Phim";
       var slug = post.slug || "";
+      var link = post.link || (BASE_URL + "/" + slug + ".html");
       
-      // Bóc tách ảnh featured image nếu có, hoặc dùng fallback Regex
       var posterUrl = "";
       if (post.jetpack_featured_media_url) {
         posterUrl = post.jetpack_featured_media_url;
@@ -113,10 +115,6 @@ function parseListResponse(jsonStr) {
 
 function parseSearchResponse(jsonStr) { return parseListResponse(jsonStr); }
 
-// ========================================================
-// PARSE DETAIL & BÓC TÁCH FULL TẬP TỪ API CONTENT
-// ========================================================
-
 function parseMovieDetail(jsonStr, url) {
   try {
     var posts = JSON.parse(jsonStr);
@@ -127,53 +125,55 @@ function parseMovieDetail(jsonStr, url) {
     var title = post.title && post.title.rendered ? post.title.rendered : "Phim";
     var contentHtml = post.content && post.content.rendered ? post.content.rendered : "";
     var slug = post.slug || "";
+    var webLink = post.link || (BASE_URL + "/" + slug + ".html");
 
     var episodes = [];
     var usedEp = {};
 
-    // 1. Quét các thẻ Link Tập trong content HTML từ API
-    var epRegex = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
-    var match;
+    // 1. Tìm liên kết iframe/server sc.k-20.xyz hoặc abyssplayer từ content HTML
+    var streamRegex = /(https?:\/\/(?:sc\.k-20\.xyz|abyssplayer\.com)[^"'\s<>]+)/gi;
+    var matchStream;
+    var epIndex = 1;
 
-    while ((match = epRegex.exec(contentHtml)) !== null) {
-      var href = match[1].replace(/&amp;/g, "&");
-      var text = match[2].replace(/<[^>]*>/g, "").trim();
-
-      if (text && (text.match(/^(?:Tập|Ep|Tap)\s*\d+/i) || href.match(/\/(?:tap|episode)[-\=]\d+/i))) {
-        if (!usedEp[href]) {
-          usedEp[href] = true;
-          episodes.push({
-            id: href,
-            name: text,
-            slug: "tap-" + (episodes.length + 1)
-          });
-        }
+    while ((matchStream = streamRegex.exec(contentHtml)) !== null) {
+      var streamLink = matchStream[1].replace(/&amp;/g, "&");
+      if (!usedEp[streamLink]) {
+        usedEp[streamLink] = true;
+        episodes.push({
+          id: streamLink,
+          name: "Tập " + epIndex,
+          slug: "tap-" + epIndex
+        });
+        epIndex++;
       }
     }
 
-    // 2. Quét iframe trực tiếp có sẵn trong content nếu không có thẻ link danh sách
+    // 2. Tìm thẻ tập dạng HTML truyền thống trong content
     if (episodes.length === 0) {
-      var iframeMatches = contentHtml.match(/<iframe[^>]+src=["']([^"']+)["']/gi) || [];
-      for (var k = 0; k < iframeMatches.length; k++) {
-        var srcMatch = iframeMatches[k].match(/src=["']([^"']+)["']/i);
-        if (srcMatch) {
-          var iframeUrl = srcMatch[1];
-          if (!iframeUrl.includes("facebook") && !iframeUrl.includes("googletag")) {
+      var epRegex = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+      var match;
+      while ((match = epRegex.exec(contentHtml)) !== null) {
+        var href = match[1].replace(/&amp;/g, "&");
+        var text = match[2].replace(/<[^>]*>/g, "").trim();
+
+        if (text && (text.match(/^(?:Tập|Ep|Tap)\s*\d+/i) || href.match(/\/(?:tap|episode)[-\=]\d+/i))) {
+          if (!usedEp[href]) {
+            usedEp[href] = true;
             episodes.push({
-              id: iframeUrl,
-              name: "Tập " + (k + 1),
-              slug: "tap-" + (k + 1)
+              id: href,
+              name: text,
+              slug: "tap-" + (episodes.length + 1)
             });
           }
         }
       }
     }
 
-    // Fallback 1 tập nếu là phim lẻ
+    // Fallback nếu không bóc tách được tập lẻ
     if (episodes.length === 0) {
       episodes.push({
-        id: BASE_URL + "/" + slug + ".html",
-        name: "Phim Full",
+        id: webLink,
+        name: "Xem Phim Full",
         slug: "full"
       });
     }
@@ -185,7 +185,7 @@ function parseMovieDetail(jsonStr, url) {
       backdropUrl: "",
       description: "",
       releaseYear: "2026",
-      servers: [{ name: "VIP ExoPlayer API", episodes: episodes }]
+      servers: [{ name: "Server ExoPlayer Native", episodes: episodes }]
     });
   } catch (e) {
     return JSON.stringify({ servers: [] });
@@ -193,18 +193,38 @@ function parseMovieDetail(jsonStr, url) {
 }
 
 // ========================================================
-// PARSE STREAM (TRUYỀN TRỰC TIẾP CHO EXOPLAYER)
+// PARSE STREAM (GỬI TRỰC TIẾP LUỒNG SC.K-20 CHO EXOPLAYER)
 // ========================================================
 
 function parseDetailResponse(htmlOrUrl, url) {
   var targetUrl = (typeof htmlOrUrl === "string" && htmlOrUrl.startsWith("http")) ? htmlOrUrl : url;
-  var headers = getStandardHeaders(targetUrl);
+  
+  // Nếu là đường dẫn server stream trực tiếp
+  if (targetUrl.includes("sc.k-20.xyz") || targetUrl.includes("hx-mp4") || targetUrl.includes(".m3u8") || targetUrl.includes(".mp4")) {
+    return JSON.stringify({
+      url: targetUrl,
+      isEmbed: false, // Ép ExoPlayer phát stream trực tiếp Status 206
+      headers: getStandardHeaders(targetUrl)
+    });
+  }
 
-  // Bắt link iframe/m3u8 phát thẳng qua ExoPlayer
+  // Nếu trong nội dung HTML trả về có chứa link server sc.k-20.xyz
+  if (typeof htmlOrUrl === "string") {
+    var k20Match = htmlOrUrl.match(/(https?:\/\/sc\.k-20\.xyz\/[^\s"'<>]+)/i) ||
+                   htmlOrUrl.match(/(https?:\/\/[^"'\s]+\.m3u8[^"'\s]*)/i);
+    if (k20Match) {
+      return JSON.stringify({
+        url: k20Match[1],
+        isEmbed: false,
+        headers: getStandardHeaders(k20Match[1])
+      });
+    }
+  }
+
   return JSON.stringify({
     url: targetUrl,
-    isEmbed: false, // Bắt buộc ExoPlayer mở trực tiếp
-    headers: headers
+    isEmbed: false,
+    headers: getStandardHeaders(targetUrl)
   });
 }
 
