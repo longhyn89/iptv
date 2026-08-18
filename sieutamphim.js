@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN - BẢN FIX CHUYÊN BIỆT V6.0.0
+// SIÊU TẦM PHIM VAAPP PLUGIN - BẢN FIX FULL TẬP CHÍNH XÁC V7.0.0
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "6.0.0",
+    "version": "7.0.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -123,7 +123,7 @@ function parseListResponse(html) {
 function parseSearchResponse(html) { return parseListResponse(html); }
 
 // ========================================================
-// PARSE MOVIE DETAIL (QUÉT FULL TẬP TỪ BẢNG VÀ LINK TẬP)
+// PARSE MOVIE DETAIL (KHOAN VÙNG CHÍNH XÁC KHỐI NỘI DUNG TẬP)
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -153,49 +153,54 @@ function parseMovieDetail(html, url) {
     var episodes = [];
     var usedEp = {};
 
-    // CƠ CHẾ 1: Bắt tất cả thẻ <a> chứa liên kết tập phim (dạng /tap-X, ?tap=X, hoặc bài viết tập lẻ)
+    // 3. Khoanh vùng KHỐI NỘI DUNG BÀI VIẾT để tránh quét nhầm menu/sidebar
+    var bodyMatch = html.match(/class=["'](?:post-body|entry-content|post-content)[^"']*["']>([\s\S]*?)<\/div>/i) ||
+                    html.match(/<article[\s\S]*?>([\s\S]*?)<\/article>/i);
+    var contentArea = bodyMatch ? bodyMatch[1] : html;
+
+    // CƠ CHẾ 1: Tìm danh sách các nút/thẻ tập trong khối bài viết
     var epRegex = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
     var match;
-    while ((match = epRegex.exec(html)) !== null) {
+
+    while ((match = epRegex.exec(contentArea)) !== null) {
       var href = match[1].replace(/&amp;/g, "&");
       var text = match[2].replace(/<[^>]*>/g, "").trim();
 
-      // Kiểm tra xem liên kết có thuộc danh sách tập không
-      if (text && (text.match(/Tập\s*\d+|Full|\b\d+\b/i) || href.includes("tap") || href.includes("episode"))) {
+      // Chỉ lấy liên kết có định dạng tập cụ thể (Tập X, Ep X, Tap X)
+      if (text && (text.match(/^Tập\s*\d+/i) || text.match(/^Ep\s*\d+/i) || href.match(/\/tap-\d+\.html/i) || href.match(/\?tap=\d+/i))) {
         if (!href.startsWith("http")) href = BASE_URL + (href.startsWith("/") ? "" : "/") + href;
 
-        // Bỏ qua các liên kết trang chủ, nhãn chung
-        if (!href.includes("/search/label/") && !usedEp[href]) {
+        if (!usedEp[href]) {
           usedEp[href] = true;
           episodes.push({
             id: href,
-            name: text.length > 25 ? ("Tập " + (episodes.length + 1)) : text,
+            name: text.length > 15 ? ("Tập " + (episodes.length + 1)) : text,
             slug: "tap-" + (episodes.length + 1)
           });
         }
       }
     }
 
-    // CƠ CHẾ 2: Quét trực tiếp các thuộc tính data-tap, data-num nếu có nút chuyển tập JS
-    if (episodes.length <= 1) {
-      var dataEpRegex = /data-(?:tap|num|episode)=["']([^"']+)["'][^>]*>([\s\S]*?)<\/(?:span|a|li|button)>/gi;
-      while ((match = dataEpRegex.exec(html)) !== null) {
-        var num = match[1];
-        var label = match[2].replace(/<[^>]*>/g, "").trim() || ("Tập " + num);
-        var customUrl = cleanUrl + "?tap=" + num;
+    // CƠ CHẾ 2: Nếu không thấy thẻ a chuẩn, quét mã data-tap hoặc danh sách server
+    if (episodes.length === 0) {
+      var dataTapRegex = /data-(?:tap|episode|id)=["']([^"']+)["'][^>]*>([\s\S]*?)<\/(?:span|a|li|button)>/gi;
+      while ((match = dataTapRegex.exec(contentArea)) !== null) {
+        var epId = match[1];
+        var epName = match[2].replace(/<[^>]*>/g, "").trim() || ("Tập " + epId);
+        var customEpUrl = cleanUrl + "?tap=" + epId;
 
-        if (!usedEp[customUrl]) {
-          usedEp[customUrl] = true;
+        if (!usedEp[customEpUrl]) {
+          usedEp[customEpUrl] = true;
           episodes.push({
-            id: customUrl,
-            name: label,
-            slug: "tap-" + num
+            id: customEpUrl,
+            name: epName,
+            slug: "tap-" + epId
           });
         }
       }
     }
 
-    // CƠ CHẾ 3: Dự phòng nếu chỉ có 1 tập
+    // CƠ CHẾ 3: Nếu là phim lẻ hoặc chưa trích xuất được danh sách
     if (episodes.length === 0) {
       episodes.push({
         id: url,
@@ -220,14 +225,14 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (CHỈ LẤY ĐÚNG KHUNG IFRAME PLAYER CHÍNH)
+// PARSE STREAM (CHỈ BẮT NGUỒN PHÁT IFRAME SẠCH)
 // ========================================================
 
 function parseDetailResponse(html, url) {
   try {
     var headers = getStandardHeaders(url);
 
-    // 1. Tìm luồng m3u8 phát trực tiếp nếu có
+    // 1. Quét tìm luồng m3u8 phát trực tiếp
     var m3u8Match = html.match(/(https?:\/\/[^"'\s]+\.m3u8[^"'\s]*)/i);
     if (m3u8Match) {
       return JSON.stringify({
@@ -238,7 +243,7 @@ function parseDetailResponse(html, url) {
       });
     }
 
-    // 2. Lấy liên kết Iframe của Player (Lọc bỏ các Iframe không phải trình phát như Facebook, Widget, QC)
+    // 2. Lấy liên kết IFRAME trình phát video thực tế (Bỏ qua Facebook, Widget, Google Ads)
     var iframeRegex = /<iframe[^>]+src=["']([^"']+)["']/gi;
     var iframeMatch;
     while ((iframeMatch = iframeRegex.exec(html)) !== null) {
@@ -250,7 +255,6 @@ function parseDetailResponse(html, url) {
           !embedSrc.includes("disqus") &&
           !embedSrc.includes("widgets")) {
         
-        // Trả về duy nhất liên kết Player này để WebView chỉ tải khung video
         return JSON.stringify({
           url: embedSrc,
           isEmbed: true,
@@ -259,8 +263,8 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    // 3. Nếu URL truyền vào đã là link Iframe trực tiếp
-    if (url.includes("embed") || url.includes("player") || url.includes("hxfile") || url.includes("ok.ru")) {
+    // 3. Trường hợp URL truyền vào đã là liên kết Iframe trực tiếp
+    if (url.includes("embed") || url.includes("player") || url.includes("hxfile") || url.includes("ok.ru") || url.includes("hydrax")) {
       return JSON.stringify({
         url: url,
         isEmbed: true,
@@ -268,7 +272,7 @@ function parseDetailResponse(html, url) {
       });
     }
 
-    // Fallback nếu không tách được iframe
+    // Fallback
     return JSON.stringify({
       url: url,
       isEmbed: true,
