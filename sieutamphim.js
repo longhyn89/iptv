@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED ENGINE INTERACTION)
+// SIÊU TẦM PHIM VAAPP PLUGIN (DIRECT STREAM - NO EMBED)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -177,7 +177,6 @@ function parseMovieDetail(html, url) {
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
     }
 
-    // Bóc tách năm chính xác
     var yearMatch = title.match(/\((\d{4})\)/) || contentHtml.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/[\/-](\d{4})[\/-]/);
     year = yearMatch ? yearMatch[1] : "2024";
 
@@ -240,11 +239,11 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (KÍCH HOẠT REQUEST SANG SC.K-20.XYZ)
+// PARSE STREAM DIRECTLY (TRẢ THẲNG STREAM CHO APP PHÁT)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Parsing Stream for: " + url);
+  log("Parsing Stream Directly for: " + url);
   try {
     var contentHtml = html;
     
@@ -280,28 +279,31 @@ function parseDetailResponse(html, url) {
               for (var i = 0; i < rawSrc.length; i++) {
                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
               }
-              decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
 
+              // Nếu đã là link m3u8 trực tiếp
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
                   mimeType: "application/x-mpegURL",
                   isEmbed: false
                 });
-              } else {
-                var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-                var videoId = vMatch ? vMatch[1] : "";
-                var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-                
-                // KÍCH HOẠT ENGINE: datasend = "true" và ép App thực hiện fetch API
+              }
+
+              // Trích xuất videoId và trả trực tiếp đường dẫn hx-mp4
+              var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+              var videoId = vMatch ? vMatch[1] : "";
+              
+              if (videoId) {
+                var directStreamUrl = "https://hx-mp4.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".mp4";
+
                 return JSON.stringify({
-                  url: stream,
-                  isEmbed: false, // Ép App dùng FetchEngine thay vì WebView Embed
+                  url: directStreamUrl,
+                  mimeType: "video/mp4",
+                  isEmbed: false,
                   headers: {
-                    "Referer": "https://sc.k-20.xyz/",
+                    "Referer": "https://hx-mp4.k-20.xyz/",
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                  },
-                  datasend: "true"
+                  }
                 });
               }
             }
@@ -317,24 +319,8 @@ function parseDetailResponse(html, url) {
   }
 }
 
+// Bỏ qua parseEmbedResponse bằng cách trả trực tiếp kết quả parseDetailResponse
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  if (datasend == "true" || sourceUrl.includes("sc.k-20.xyz")) {
-    try {
-      var $data = JSON.parse(html);
-      if ($data && $data.streams && $data.streams[0]) {
-        var streamUrl = $data.streams[0].url;
-        return JSON.stringify({
-          url: streamUrl,
-          mimeType: streamUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
-          isEmbed: false,
-          headers: {
-            "Referer": "https://sc.k-20.xyz",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-          }
-        });
-      }
-    } catch(e){}
-  }
   return parseDetailResponse(html, sourceUrl);
 }
 
