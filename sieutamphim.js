@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: LOOP & STREAM DECODE)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED ENGINE INTERACTION)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.5",
+    "version": "1.3.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -177,7 +177,7 @@ function parseMovieDetail(html, url) {
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
     }
 
-    // Bóc tách năm từ tiêu đề (Ví dụ: Hoắc Nguyên Giáp (2006))
+    // Bóc tách năm chính xác
     var yearMatch = title.match(/\((\d{4})\)/) || contentHtml.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/[\/-](\d{4})[\/-]/);
     year = yearMatch ? yearMatch[1] : "2024";
 
@@ -240,7 +240,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (THOÁT VÒNG LẶP LIÊN TỤC GET/HEAD)
+// PARSE STREAM (KÍCH HOẠT REQUEST SANG SC.K-20.XYZ)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -248,7 +248,6 @@ function parseDetailResponse(html, url) {
   try {
     var contentHtml = html;
     
-    // Nếu html nhận vào là JSON của REST API, trích xuất chuỗi rendered content
     if (html.trim().startsWith("[") || html.trim().startsWith("{")) {
       try {
         var parsedObj = JSON.parse(html);
@@ -271,7 +270,6 @@ function parseDetailResponse(html, url) {
 
         if (epBlockMatch) {
           var rawEpisodes = epBlockMatch[2];
-          // REGEX MỚI: Bắt cặp giá trị trong {"mã_xor","Full"} hỗ trợ cả ký tự ^
           var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
           var epMatch;
           var currentIndex = 1;
@@ -295,11 +293,13 @@ function parseDetailResponse(html, url) {
                 var videoId = vMatch ? vMatch[1] : "";
                 var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
+                // KÍCH HOẠT ENGINE: datasend = "true" và ép App thực hiện fetch API
                 return JSON.stringify({
                   url: stream,
-                  isEmbed: true,
+                  isEmbed: false, // Ép App dùng FetchEngine thay vì WebView Embed
                   headers: {
-                    "Referer": "https://www.sieutamphim.pro/"
+                    "Referer": "https://sc.k-20.xyz/",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
                   },
                   datasend: "true"
                 });
@@ -311,7 +311,6 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    // Trả về isEmbed: false để ngắt hoàn toàn vòng lặp GET/HEAD vô tận
     return JSON.stringify({ url: "", isEmbed: false });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
@@ -319,14 +318,14 @@ function parseDetailResponse(html, url) {
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  if (datasend == "true") {
+  if (datasend == "true" || sourceUrl.includes("sc.k-20.xyz")) {
     try {
       var $data = JSON.parse(html);
       if ($data && $data.streams && $data.streams[0]) {
-        var stream = $data.streams[0].url;
+        var streamUrl = $data.streams[0].url;
         return JSON.stringify({
-          url: stream + "#.m3u8",
-          mimeType: "video/mp4",
+          url: streamUrl,
+          mimeType: streamUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
           isEmbed: false,
           headers: {
             "Referer": "https://sc.k-20.xyz",
