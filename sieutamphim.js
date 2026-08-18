@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (Bản 1.1.4 - Fix Triệt Để Lỗi Kết Nối Server)
+// SIÊU TẦM PHIM VAAPP PLUGIN (Bản 1.1.5 - Fix Triệt Để Lỗi Kết Nối Server)
 // ========================================================
 
 const BASE_URL = "https://www.sieutamphim.pro";
@@ -12,7 +12,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "sieutamphim",
         "name": "Sưu Tầm Phim",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "baseUrl": BASE_URL,
         "iconUrl": BASE_URL + "/posts/2024/06/cropped-logosieutamphim-192x192.png",
         "isEnabled": true,
@@ -91,20 +91,17 @@ function getUrlSearch(keyword, filtersJson) {
 function getUrlDetail(id) {
     log("Resolving ID: " + id);
     if (!id) return "";
+    
+    // Nếu là ID stream đã xử lý, trả về nguyên mẫu để player nhận dạng
     if (id.startsWith("play-")) {
-        var resolved = id.replace("play-", "");
-        log("Resolved Stream ID to: " + resolved);
-        return resolved;
+        return id.replace("play-", "");
     }
     
-    // Nếu truyền ID dạng link full hoặc slug, tạo link HTML trực tiếp
     if (id.startsWith("http")) {
         return id;
     }
     
-    var directWebUrl = BASE_URL + "/" + id + ".html";
-    log("Resolved Slug directly to Web URL: " + directWebUrl);
-    return directWebUrl;
+    return BASE_URL + "/" + id + ".html";
 }
 
 // ========================================================
@@ -159,7 +156,8 @@ function parseSearchResponse(html) {
 // ========================================================
 
 function parseMovieDetail(html, url) {
-    if (url && url.includes("server=")) {
+    // Tránh parse lại khi URL là link stream
+    if (url && (url.includes("play-") || url.includes("server="))) {
         return JSON.stringify({ id: url, servers: [] });
     }
     try {
@@ -176,13 +174,11 @@ function parseMovieDetail(html, url) {
         
         var description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
         var movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
-        
-        var postIdMatch = html.match(/\/\?p=(\d+)/) || html.match(/post-id=["'](\d+)/) || html.match(/postId\s*:\s*(\d+)/) || html.match(/post-id:(\d+)/);
-        var postId = postIdMatch ? postIdMatch[1] : "";
 
         var servers = [];
         var usedServer = {};
 
+        // Quét tất cả các server được định nghĩa
         var groupRegex = /data-server=['"]([^'"]+)['"]/gi;
         var m;
 
@@ -208,7 +204,8 @@ function parseMovieDetail(html, url) {
             var episodes = [];
             for (var j = 1; j <= epCount; j++) {
                 episodes.push({
-                    id: "play-" + movieUrl + "?id=" + postId + "&server=" + encodeURIComponent(serverId) + "&tap=" + j,
+                    // Truyền thẳng URL HTML gốc kèm tham số để parseDetailResponse tự giải mã
+                    id: "play-" + movieUrl + "#server=" + encodeURIComponent(serverId) + "&tap=" + j,
                     name: epCount === 1 ? "Full" : "Tập " + j,
                     slug: "tap-" + j
                 });
@@ -220,10 +217,11 @@ function parseMovieDetail(html, url) {
             });
         }
 
+        // Dự phòng server mặc định
         if (servers.length === 0) {
             servers.push({
                 name: "VIP",
-                episodes: [{ id: "play-" + movieUrl + "?id=" + postId + "&server=vip&tap=1", name: "Full", slug: "full" }]
+                episodes: [{ id: "play-" + movieUrl, name: "Full", slug: "full" }]
             });
         }
 
@@ -255,60 +253,60 @@ function parseDetailResponse(html, url) {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
         };
 
-        if (url.includes("?id=") && url.includes("&server=")) {
-            var server = (url.match(/server=([^&]+)/) || [])[1];
-            var tapStr = (url.match(/tap=(\d+)/) || [])[1];
-            var tap = parseInt(tapStr, 10) || 1;
+        // 1. Giải mã link từ dữ liệu XOR 42
+        if (url.includes("server=") || html.includes("data-episodes")) {
+            var serverMatch = url.match(/server=([^&]+)/);
+            var tapMatch = url.match(/tap=(\d+)/);
+            var server = serverMatch ? serverMatch[1] : "";
+            var tap = tapMatch ? parseInt(tapMatch[1], 10) : 1;
 
-            if (server) {
-                var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
-                var epBlockMatch = html.match(epBlockRegex);
+            var epBlockRegex = server ? new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i") : /data-episodes=([\'"])([\\s\\S]*?)\1/i;
+            var epBlockMatch = html.match(epBlockRegex);
 
-                if (epBlockMatch) {
-                    var rawEpisodes = epBlockMatch[2];
-                    var epRegex = /{"([^"]+)","([^"]+)"}/g;
-                    var epMatch;
-                    var currentIndex = 1;
+            if (epBlockMatch) {
+                var rawEpisodes = epBlockMatch[2] || epBlockMatch[1];
+                var epRegex = /{"([^"]+)","([^"]+)"}/g;
+                var epMatch;
+                var currentIndex = 1;
 
-                    while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-                        if (currentIndex === tap) {
-                            var rawSrc = epMatch[1];
-                            var decrypted = "";
-                            
-                            // Giải mã XOR 42
-                            for (var i = 0; i < rawSrc.length; i++) {
-                                decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-                            }
-                            
-                            decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
-                            log("Decrypted Stream URL: " + decrypted);
+                while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+                    if (currentIndex === tap || !server) {
+                        var rawSrc = epMatch[1];
+                        var decrypted = "";
+                        
+                        for (var i = 0; i < rawSrc.length; i++) {
+                            decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+                        }
+                        
+                        decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
+                        log("Decrypted Stream URL: " + decrypted);
 
-                            if (decrypted.indexOf(".m3u8") !== -1) {
-                                return JSON.stringify({
-                                    url: decrypted,
-                                    mimeType: "application/x-mpegURL",
-                                    isEmbed: false,
-                                    headers: defaultHeaders
-                                });
-                            }
-
+                        if (decrypted.indexOf(".m3u8") !== -1) {
                             return JSON.stringify({
                                 url: decrypted,
-                                isEmbed: true,
+                                mimeType: "application/x-mpegURL",
+                                isEmbed: false,
                                 headers: defaultHeaders
                             });
                         }
-                        currentIndex++;
+
+                        return JSON.stringify({
+                            url: decrypted,
+                            isEmbed: true,
+                            headers: defaultHeaders
+                        });
                     }
+                    currentIndex++;
                 }
             }
         }
 
-        // Quét iframe trực tiếp từ HTML
+        // 2. Tìm iframe phát trực tiếp
         var iframeMatch = html.match(/<iframe[^>]*src=["']([^"']+)["']/i);
         if (iframeMatch) {
             var embedUrl = iframeMatch[1];
             if (embedUrl.startsWith("//")) embedUrl = "https:" + embedUrl;
+            log("Found direct iframe URL: " + embedUrl);
             return JSON.stringify({ 
                 url: embedUrl, 
                 isEmbed: true, 
@@ -316,10 +314,11 @@ function parseDetailResponse(html, url) {
             });
         }
 
-        // Quét link Abyss / Blogger trực tiếp
+        // 3. Tìm link Player trực tiếp
         var directUrlMatch = html.match(/(https?:\/\/(?:abyssplayer\.com|abyss\.to|short\.ink|short\.icu|www\.blogger\.com)\/[^\s"']+)/i);
         if (directUrlMatch) {
             var directUrl = directUrlMatch[1].replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
+            log("Found direct Player URL: " + directUrl);
             return JSON.stringify({
                 url: directUrl,
                 isEmbed: true,
@@ -327,12 +326,18 @@ function parseDetailResponse(html, url) {
             });
         }
 
-        var cleanUrl = url.split("?")[0];
-        return JSON.stringify({ url: cleanUrl, isEmbed: true, headers: defaultHeaders });
+        // 4. Nếu không trích xuất được link nhúng, phát trực tiếp URL web bằng Embed WebView
+        var cleanUrl = url.split("#")[0].split("?")[0];
+        log("Fallback to clean URL: " + cleanUrl);
+        return JSON.stringify({ 
+            url: cleanUrl, 
+            isEmbed: true, 
+            headers: defaultHeaders 
+        });
 
     } catch (e) {
         log("Error in parseDetailResponse: " + e.message);
-        return JSON.stringify({ url: url, isEmbed: true });
+        return JSON.stringify({ url: BASE_URL, isEmbed: true });
     }
 }
 
