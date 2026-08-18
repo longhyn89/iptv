@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED PROXY DIRECT STREAM)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED FOR APP 2 STREAMING)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.9",
+    "version": "1.2.2",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -17,7 +17,7 @@ function getManifest() {
     "type": "MOVIE",
     popup_html: popup_html,
     "layoutType": "VERTICAL",
-    "playerType": "auto"
+    "playerType": "exoplayer"
   });
 }
 
@@ -69,10 +69,6 @@ function getFilterConfig() {
   return JSON.stringify({ sort: [], category: [] });
 }
 
-// ========================================================
-// URL GENERATION
-// ========================================================
-
 function getUrlList(slug, filtersJson) {
   var filters = JSON.parse(filtersJson || "{}");
   var page = filters.page || 1;
@@ -87,17 +83,12 @@ function getUrlSearch(keyword, filtersJson) {
 }
 
 function getUrlDetail(id) {
-  log("Resolving Detail ID: " + id);
   if (!id) return BASE_URL;
   if (id.startsWith("http://") || id.startsWith("https://")) {
     return id;
   }
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
 }
-
-// ========================================================
-// PARSE LIST
-// ========================================================
 
 function parseListResponse(html) {
   try {
@@ -141,10 +132,6 @@ function parseListResponse(html) {
 function parseSearchResponse(html) {
   return parseListResponse(html);
 }
-
-// ========================================================
-// PARSE DETAIL
-// ========================================================
 
 function parseMovieDetail(html, url) {
   try {
@@ -234,11 +221,10 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM
+// PARSE STREAM (GIẢI MÃ NGUỒN STREAM CHUẨN APP 2)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Parsing Stream for: " + url);
   try {
     if (url.includes("server=") && url.includes("tap=")) {
       var server = (url.match(/server=([^&]+)/) || [])[1];
@@ -307,7 +293,6 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
     try {
       var $data = JSON.parse(html);
       if ($data && $data.streams && $data.streams.length > 0) {
-        // Lấy link Proxy trực tiếp từ JSON (ví dụ: https://sc.k-20.xyz/hx-mp4?embed=...)
         var directProxyUrl = $data.streams[0].url;
 
         return JSON.stringify({
@@ -315,7 +300,7 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
           mimeType: "video/mp4",
           isEmbed: false,
           headers: {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Referer": "https://sc.k-20.xyz/"
           }
         });
@@ -324,10 +309,6 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
   }
   return JSON.stringify({ url: sourceUrl, isEmbed: false });
 }
-
-// ========================================================
-// HELPERS
-// ========================================================
 
 function decodeHtmlEntities(str) {
   if (!str) return "";
