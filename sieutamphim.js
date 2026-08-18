@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED REGEX & LOOP ISSUE)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: LOOP & STREAM DECODE)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.0",
+    "version": "1.2.5",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -156,15 +156,20 @@ function parseMovieDetail(html, url) {
     var year = "";
 
     if (url && url.includes("/wp-json/wp/v2/posts")) {
-      var posts = JSON.parse(html);
-      if (!posts || posts.length === 0) return JSON.stringify({ servers: [] });
-      var post = posts[0];
-      title = post.title ? post.title.rendered : "";
-      movieUrl = post.link || url;
-      contentHtml = post.content ? post.content.rendered : "";
-      description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
-      poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
-    } else {
+      try {
+        var posts = JSON.parse(html);
+        if (posts && posts.length > 0) {
+          var post = posts[0];
+          title = post.title ? post.title.rendered : "";
+          movieUrl = post.link || url;
+          contentHtml = post.content ? post.content.rendered : "";
+          description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
+          poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
+        }
+      } catch (e) {}
+    }
+
+    if (!title) {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
       poster = ogImageMatch ? ogImageMatch[1] : "";
@@ -172,15 +177,9 @@ function parseMovieDetail(html, url) {
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
     }
 
-    // Bóc tách năm phát hành chuẩn theo ảnh HTML (ví dụ: Hoắc Nguyên Giáp (2006))
-    var yearMatch = contentHtml.match(/\((\d{4})\)/) || contentHtml.match(/Năm\s*:\s*(\d{4})/i) || movieUrl.match(/[\/-](\d{4})[\/-]/);
-    if (yearMatch) {
-      year = yearMatch[1];
-    } else if (url && url.includes("/wp-json") && posts && posts[0] && posts[0].date) {
-      year = posts[0].date.substring(0, 4);
-    } else {
-      year = "2024";
-    }
+    // Bóc tách năm từ tiêu đề (Ví dụ: Hoắc Nguyên Giáp (2006))
+    var yearMatch = title.match(/\((\d{4})\)/) || contentHtml.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/[\/-](\d{4})[\/-]/);
+    year = yearMatch ? yearMatch[1] : "2024";
 
     var servers = [];
     var usedServer = {};
@@ -192,14 +191,12 @@ function parseMovieDetail(html, url) {
       if (usedServer[serverId]) continue;
       usedServer[serverId] = true;
 
-      // Quét chính xác đoạn chứa data-episodes='[...]'
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
       var epCount = 0;
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
-        // REGEX ĐÃ SỬA: Bắt mọi chuỗi mã hóa kể cả chứa ký tự đặc biệt ^, #, @...
         var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
         while (epRegex.exec(rawEpisodes) !== null) {
           epCount++;
@@ -243,12 +240,26 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (THOÁT VÒNG LẶP NẾU LỖI)
+// PARSE STREAM (THOÁT VÒNG LẶP LIÊN TỤC GET/HEAD)
 // ========================================================
 
 function parseDetailResponse(html, url) {
   log("Parsing Stream for: " + url);
   try {
+    var contentHtml = html;
+    
+    // Nếu html nhận vào là JSON của REST API, trích xuất chuỗi rendered content
+    if (html.trim().startsWith("[") || html.trim().startsWith("{")) {
+      try {
+        var parsedObj = JSON.parse(html);
+        if (Array.isArray(parsedObj) && parsedObj.length > 0) {
+          contentHtml = parsedObj[0].content ? parsedObj[0].content.rendered : html;
+        } else if (parsedObj.content) {
+          contentHtml = parsedObj.content.rendered;
+        }
+      } catch (e) {}
+    }
+
     if (url.includes("server=") && url.includes("tap=")) {
       var server = (url.match(/server=([^&]+)/) || [])[1];
       var tapStr = (url.match(/tap=(\d+)/) || [])[1];
@@ -256,12 +267,11 @@ function parseDetailResponse(html, url) {
 
       if (server && tap) {
         var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
-        var epBlockMatch = html.match(epBlockRegex);
+        var epBlockMatch = contentHtml.match(epBlockRegex);
 
         if (epBlockMatch) {
           var rawEpisodes = epBlockMatch[2];
-          
-          // REGEX MỚI FLEXIBLE: Bắt cặp giá trị trong { "mã_xor", "tên_tập" }
+          // REGEX MỚI: Bắt cặp giá trị trong {"mã_xor","Full"} hỗ trợ cả ký tự ^
           var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
           var epMatch;
           var currentIndex = 1;
@@ -285,7 +295,6 @@ function parseDetailResponse(html, url) {
                 var videoId = vMatch ? vMatch[1] : "";
                 var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
-                // Trả về đúng link sc.k-20.xyz
                 return JSON.stringify({
                   url: stream,
                   isEmbed: true,
@@ -302,7 +311,7 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    // NẾU KHÔNG TÌM THẤY TẬP: Trả về isEmbed: false để dừng vòng lặp GET/HEAD
+    // Trả về isEmbed: false để ngắt hoàn toàn vòng lặp GET/HEAD vô tận
     return JSON.stringify({ url: "", isEmbed: false });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
