@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED FOR APP 2 STREAMING)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED WORDPRESS POST ID)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -141,11 +141,13 @@ function parseMovieDetail(html, url) {
     var movieUrl = url;
     var contentHtml = html;
     var year = "2026";
+    var postId = "";
 
     if (url && url.includes("/wp-json/wp/v2/posts")) {
       var posts = JSON.parse(html);
       if (!posts || posts.length === 0) return JSON.stringify({ servers: [] });
       var post = posts[0];
+      postId = post.id ? post.id.toString() : "";
       title = post.title ? post.title.rendered : "";
       movieUrl = post.link || url;
       contentHtml = post.content ? post.content.rendered : "";
@@ -160,6 +162,9 @@ function parseMovieDetail(html, url) {
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
       var yearMatch = html.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/\/(\d{4})\//);
       if (yearMatch) year = yearMatch[1];
+      
+      var idMatch = html.match(/post-?id-(\d+)/i) || html.match(/p=(\d+)/i);
+      if (idMatch) postId = idMatch[1];
     }
 
     var servers = [];
@@ -188,7 +193,10 @@ function parseMovieDetail(html, url) {
 
       var episodes = [];
       for (var j = 1; j <= epCount; j++) {
-        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
+        var sep = movieUrl.includes("?") ? "&" : "?";
+        var idParam = postId ? "id=" + postId + "&" : "";
+        var streamId = movieUrl + sep + idParam + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
+        
         episodes.push({
           id: streamId,
           name: epCount === 1 ? "Full" : "Tập " + j,
@@ -221,7 +229,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (GIẢI MÃ NGUỒN STREAM CHUẨN APP 2)
+// PARSE STREAM (GIẢI MÃ NGUỒN STREAM CHUẨN)
 // ========================================================
 
 function parseDetailResponse(html, url) {
