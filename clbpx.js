@@ -68,37 +68,21 @@ function getFilterConfig() {
 
 function getUrlList(slug, filtersJson) {
   var filters = {};
-  try {
-    filters = JSON.parse(filtersJson || "{}");
-  } catch(e) {}
-  
+  try { filters = JSON.parse(filtersJson || "{}"); } catch(e) {}
   var page = filters.page || 1;
   var baseUrl = BASEURL;
 
   if (!slug || slug === '' || slug === 'home') {
-    if (page > 1) {
-      return baseUrl + "/page/" + page + "/";
-    }
-    return baseUrl + "/";
+    return page > 1 ? baseUrl + "/page/" + page + "/" : baseUrl + "/";
   }
-
-  if (page > 1) {
-    return baseUrl + "/category/" + slug + "/page/" + page + "/";
-  }
-  return baseUrl + "/category/" + slug + "/";
+  return page > 1 ? baseUrl + "/category/" + slug + "/page/" + page + "/" : baseUrl + "/category/" + slug + "/";
 }
 
 function getUrlSearch(keyword, filtersJson) {
   var filters = {};
-  try {
-    filters = JSON.parse(filtersJson || "{}");
-  } catch(e) {}
-  
+  try { filters = JSON.parse(filtersJson || "{}"); } catch(e) {}
   var page = filters.page || 1;
-  if (page > 1) {
-    return BASEURL + "/page/" + page + "/?s=" + encodeURIComponent(keyword);
-  }
-  return BASEURL + "/?s=" + encodeURIComponent(keyword);
+  return page > 1 ? BASEURL + "/page/" + page + "/?s=" + encodeURIComponent(keyword) : BASEURL + "/?s=" + encodeURIComponent(keyword);
 }
 
 function getUrlDetail(slug) {
@@ -137,9 +121,7 @@ function parseListResponse(htmlResponse, url) {
 
     var year = 0;
     var yearMatch = title.match(/19\d{2}|20\d{2}/);
-    if (yearMatch) {
-      year = parseInt(yearMatch[0], 10);
-    }
+    if (yearMatch) year = parseInt(yearMatch[0], 10);
 
     items.push({
       id: slug,
@@ -184,8 +166,6 @@ function parseMovieDetail(htmlResponse) {
     var title = "";
     var posterUrl = "";
     var description = "";
-    var saveSV = [];
-    var nameMV = "";
     
     var slugMatch = htmlResponse.match(/<link rel="canonical" href="([^"]+)"/i);
     if (slugMatch) {
@@ -199,153 +179,45 @@ function parseMovieDetail(htmlResponse) {
     var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i);
     if (titleMatch) title = titleMatch[1].trim();
     title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
-    nameMV = title;
     
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
-    if (!posterMatch) {
-      posterMatch = htmlResponse.match(/<img[^>]*src="([^"]+)"[^>]*class="[^"]*wp-post-image[^"]*"/i);
-    }
-    if (!posterMatch) {
-      posterMatch = htmlResponse.match(/<article[^>]*>[\s\S]*?<figure>\s*<img[^>]*src="([^"]+)"/i);
-    }
+    if (!posterMatch) posterMatch = htmlResponse.match(/<img[^>]*src="([^"]+)"[^>]*class="[^"]*wp-post-image[^"]*"/i);
+    if (!posterMatch) posterMatch = htmlResponse.match(/<article[^>]*>[\s\S]*?<figure>\s*<img[^>]*src="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
-    else {
-      var ogImg = htmlResponse.match(/<meta property="og:image" content="([^"]+)"/i);
-      if (ogImg) posterUrl = ogImg[1];
-    }
-
-    var descMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<a href/i);
-    if (descMatch) {
-      description = descMatch[1].replace(/<[^>]+>/g, '').trim();
-    }
 
     var year = 0;
     var yearMatch = title.match(/(19\d{2}|20\d{2})/);
     if (yearMatch) year = parseInt(yearMatch[1], 10);
 
     var servers = [];
-    var contentArea = "";
-    var contentMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
-    contentArea = contentMatch ? contentMatch[1] : htmlResponse;
+    var episodes = [];
+    var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=([a-zA-Z0-9_-]+))"[^>]*>([\s\S]*?)<\/a>/gi;
+    var lMatch;
 
-    var serverPatterns = [
-      { pattern: /\(L\u1ed3ng Ti\u1ebfng\)/gi, name: "Lồng Tiếng" },
-      { pattern: /\(L&#7891;ng Ti&#7871;ng\)/gi, name: "Lồng Tiếng" },
-      { pattern: /\(Ph\u1ee5 \u0110\u1ec1\)/gi, name: "Phụ Đề" },
-      { pattern: /\(Ph&#7909; &#272;&#7873;\)/gi, name: "Phụ Đề" },
-      { pattern: /\(Thuy\u1ebft Minh\)/gi, name: "Thuyết Minh" },
-      { pattern: /\(Thuy&#7871;t Minh\)/gi, name: "Thuyết Minh" }
-    ];
+    while ((lMatch = allLinksRegex.exec(htmlResponse)) !== null) {
+      var videoId = lMatch[2] || "";
+      var epLabel = lMatch[3].replace(/<[^>]+>/g, '').trim();
 
-    var boldSections = [];
-    var boldRegex = /<b[^>]*>([\s\S]*?)<\/b>/gi;
-    var bMatch;
-    while ((bMatch = boldRegex.exec(contentArea)) !== null) {
-      boldSections.push(bMatch[1]);
+      if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(lMatch[3])) {
+        epLabel = "Tập " + (episodes.length + 1);
+      }
+
+      // Chuẩn hóa link request stream tuyệt đối hợp lệ dạng URL
+      var streamJsonUrl = "https://sc.k-20.xyz/stream/series/" + encodeURIComponent("clbpx:lo2b09rr074-2q1390mfi:" + videoId) + ".json";
+
+      episodes.push({
+        id: streamJsonUrl,
+        url: streamJsonUrl,
+        name: epLabel,
+        slug: videoId
+      });
     }
 
-    function normalizeEpUrl(rawUrl) {
-      if (!rawUrl) return "";
-      var pathAndQuery = rawUrl.replace(/^https?:\/\/[^\/]+/i, '');
-      if (pathAndQuery.indexOf('/') !== 0) {
-        pathAndQuery = '/' + pathAndQuery;
-      }
-      return "https://example.com" + pathAndQuery;
-    }
-
-    if (boldSections.length > 0) {
-      for (var si = 0; si < boldSections.length; si++) {
-        var section = boldSections[si];
-        var serverName = "";
-
-        for (var pi = 0; pi < serverPatterns.length; pi++) {
-          serverPatterns[pi].pattern.lastIndex = 0;
-          if (serverPatterns[pi].pattern.test(section)) {
-            serverName = serverPatterns[pi].name;
-            break;
-          }
-        }
-
-        if (!serverName) {
-          var headerMatch = section.match(/^\s*\(([^)]+)\)/);
-          if (headerMatch) serverName = headerMatch[1].trim();
-        }
-
-        var sectionEpisodes = [];
-        var sectionLinkRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=[a-zA-Z0-9_-]+)"[^>]*>([\s\S]*?)<\/a>/gi;
-        var slMatch;
-        var saveEp = [];
-
-        while ((slMatch = sectionLinkRegex.exec(section)) !== null) {
-          var epUrl = normalizeEpUrl(slMatch[1]);
-          var epLabel = slMatch[2].replace(/<[^>]+>/g, '').trim();
-
-          if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(slMatch[2])) {
-            epLabel = sectionEpisodes.length === 0 && boldSections.length === 1 ? "Xem phim" : "Tập " + (sectionEpisodes.length + 1);
-          }
-
-          var vMatch = epUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
-          var videoId = vMatch ? vMatch[1] : "";
-          if (videoId) saveEp.push(videoId);
-          var link = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-          sectionEpisodes.push({
-            id: link,
-            name: epLabel,
-            slug: epUrl
-          });
-        }
-
-        if (sectionEpisodes.length > 0) {
-          var finalServerName = serverName || ("Server " + (servers.length + 1));
-          saveSV.push({
-            nameMV: nameMV,
-            name: finalServerName,
-            episodes: saveEp
-          });
-          servers.push({
-            name: finalServerName,
-            episodes: sectionEpisodes
-          });
-        }
-      }
-    }
-
-    if (servers.length === 0) {
-      var episodes = [];
-      var fallbackSaveEp = [];
-      var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=[a-zA-Z0-9_-]+)"[^>]*>([\s\S]*?)<\/a>/gi;
-      var lMatch;
-
-      while ((lMatch = allLinksRegex.exec(htmlResponse)) !== null) {
-        var epUrl = normalizeEpUrl(lMatch[1]);
-        var epLabel = lMatch[2].replace(/<[^>]+>/g, '').trim();
-
-        if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(lMatch[2])) {
-          epLabel = "Tập " + (episodes.length + 1);
-        }
-
-        var vMatch = epUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
-        var videoId = vMatch ? vMatch[1] : "";
-        if (videoId) fallbackSaveEp.push(videoId);
-        var link = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-        episodes.push({
-          id: link,
-          name: epLabel,
-          slug: epUrl
-        });
-      }
-
-      if (episodes.length > 0) {
-        saveSV.push({
-          nameMV: nameMV,
-          name: "Thuyết Minh",
-          episodes: fallbackSaveEp
-        });
-        servers.push({
-          name: "Thuyết Minh",
-          episodes: episodes
-        });
-      }
+    if (episodes.length > 0) {
+      servers.push({
+        name: "Server SV VIP",
+        episodes: episodes
+      });
     }
 
     return JSON.stringify({
@@ -355,14 +227,8 @@ function parseMovieDetail(htmlResponse) {
       backdropUrl: posterUrl,
       description: description,
       year: year,
-      rating: 0,
       quality: "HD",
-      servers: servers,
-      category: "",
-      country: "",
-      director: "",
-      casts: "",
-      datasend: ""
+      servers: servers
     });
 
   } catch (error) {
@@ -375,32 +241,23 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     var $data = JSON.parse(htmlResponse);
     var streamUrl = "";
 
-    // Lấy URL từ mảng streams trả về từ server sc.k-20.xyz
     if ($data && $data.streams && $data.streams.length > 0) {
       streamUrl = $data.streams[0].url || "";
     } else if ($data && $data.url) {
       streamUrl = $data.url;
     }
 
-    if (!streamUrl) {
-      streamUrl = fallbackUrl || "";
-    }
-
+    if (!streamUrl) streamUrl = fallbackUrl || "";
     streamUrl = streamUrl.trim();
 
-    if (!streamUrl) {
-      return JSON.stringify({ url: "" });
-    }
-
-    // Trả về Object tương thích đa App (url, playUrl, link) và không cố định mimeType
     return JSON.stringify({
       url: streamUrl,
       playUrl: streamUrl,
       link: streamUrl,
+      mimeType: "video/mp4",
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "*/*",
-        "Connection": "keep-alive"
+        "Accept": "*/*"
       }
     });
 
