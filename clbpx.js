@@ -1,7 +1,6 @@
 var BASEURL = "https://clbpx.alokillgtv.workers.dev";
 var BASESOURCE = "";
 
-var popup_html = "<div class='donate-container'><h2 class='donate-heading'>DONATE</h2><p class='donate-description'>Anh em yêu quý có thể mời bọn mình 2 ly cà phê nhé. Để có động lực duy trì App, cập nhật plugin và tìm thêm nhiều nguồn mới và hay cho anh em. Một chút lòng thành cũng làm bọn mình tiếp tục hoạt động tốt hơn, cám ơn anh em.</p><div class='donate-grid'><div class='donate-card'><div class='donate-title'>Donate Tác giả Plugin</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qrht.png' alt='Donate Tác giả Plugin' /></div></div><div class='donate-card'><div class='donate-title'>Donate Tác giả App</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qryb.png' alt='Donate Tác giả App' /></div></div></div></div><style>.donate-container{max-width:800px;margin:0 auto;padding:10px;box-sizing:border-box;font-family:Arial,sans-serif;text-align:center;color:#eee}.donate-heading{font-size:22px;font-weight:bold;margin:0 0 12px 0;color:#fff;text-transform:uppercase;letter-spacing:1px}.donate-description{font-size:14px;line-height:1.5;margin-bottom:18px;color:#ccc}.donate-grid{display:flex;flex-direction:row;justify-content:center;align-items:stretch;gap:16px}.donate-card{flex:1;min-width:0;background:#22252a;border-radius:12px;padding:14px;border:1px solid #33373e;display:flex;flex-direction:column;align-items:center}.donate-title{font-weight:bold;font-size:15px;margin-bottom:12px;color:#fff}.qr-wrapper{width:100%;max-width:240px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#181a1d;border-radius:8px;padding:8px;box-sizing:border-box}.qr-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:4px}@media(max-width:600px){.donate-grid{flex-direction:column}.donate-heading{font-size:18px;margin-bottom:8px}.donate-description{font-size:13px;margin-bottom:12px}.qr-wrapper{max-width:180px}}</style>";
 
 function getManifest() {
   return JSON.stringify({
@@ -17,8 +16,8 @@ function getManifest() {
     "type": "MOVIE",
     "author": "alokillgtv",
     "playerType": "exoplayer",
-    "layoutType": "HORIZONTAL",
-    "popup_html": popup_html
+    "layoutType": "HORIZONTAL"
+    
   });
 }
 
@@ -116,14 +115,12 @@ function getUrlYears() { return ""; }
 // =============================================================================
 
 function parseListResponse(htmlResponse, url) {
-  console.log("list url: " + url);
   var items = [];
-  
   if (!htmlResponse) {
     return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
   }
 
-  // Regex bắt bài viết linh hoạt hơn
+  // Regex nhận diện linh hoạt thẻ article và ảnh/link
   var regex = /<article[^>]*>[\s\S]*?<a\s+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/gi;
   var match;
 
@@ -134,9 +131,11 @@ function parseListResponse(htmlResponse, url) {
 
     title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
 
-    var slugMatch = link.match(/(?:clbphimxua\.com|[^\/]+)\/([^\/]+)\/?$/);
-    var slug = slugMatch ? slugMatch[1] : link;
-    
+    // Lấy Slug linh hoạt cho cả URL có domain hoặc không
+    var cleanLink = link.replace(/\/$/, "");
+    var parts = cleanLink.split('/');
+    var slug = parts[parts.length - 1] || link;
+
     var year = 0;
     var yearMatch = title.match(/19\d{2}|20\d{2}/);
     if (yearMatch) {
@@ -180,12 +179,6 @@ function parseSearchResponse(htmlResponse) {
   return parseListResponse(htmlResponse);
 }
 
-function extractVideoId(url) {
-  if (!url) return "";
-  var match = url.match(/[?&]v=([^&]+)/);
-  return match ? match[1] : url;
-}
-
 function parseMovieDetail(htmlResponse) {
   try {
     var id = "";
@@ -197,8 +190,8 @@ function parseMovieDetail(htmlResponse) {
     
     var slugMatch = htmlResponse.match(/<link rel="canonical" href="([^"]+)"/i);
     if (slugMatch) {
-      var canonicalUrl = slugMatch[1];
-      var parts = canonicalUrl.split('/').filter(Boolean);
+      var canonicalUrl = slugMatch[1].replace(/\/$/, "");
+      var parts = canonicalUrl.split('/');
       id = parts[parts.length - 1] || "unknown_movie";
     } else {
       id = "movie_" + new Date().getTime();
