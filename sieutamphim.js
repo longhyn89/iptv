@@ -1,55 +1,15 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (ADVANCED OVERLAY & POPUP BLOCK)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: NATIVE STREAM & NO-ADS)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
 var popup_html = "<div class='donate-container'><h2 class='donate-heading'>DONATE</h2><p class='donate-description'>Anh em yêu quý có thể mời bọn mình 2 ly cà phê nhé. Để có động lực duy trì App, cập nhật plugin và tìm thêm nhiều nguồn mới và hay cho anh em. Một chút lòng thành cũng làm bọn mình tiếp tục hoạt động tốt hơn, cám ơn anh em.</p><div class='donate-grid'><div class='donate-card'><div class='donate-title'>Donate Tác giả Plugin</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qrht.png' alt='Donate Tác giả Plugin' /></div></div><div class='donate-card'><div class='donate-title'>Donate Tác giả App</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qryb.png' alt='Donate Tác giả App' /></div></div></div></div><style>.donate-container{max-width:800px;margin:0 auto;padding:10px;box-sizing:border-box;font-family:Arial,sans-serif;text-align:center;color:#eee}.donate-heading{font-size:22px;font-weight:bold;margin:0 0 12px 0;color:#fff;text-transform:uppercase;letter-spacing:1px}.donate-description{font-size:14px;line-height:1.5;margin-bottom:18px;color:#ccc}.donate-grid{display:flex;flex-direction:row;justify-content:center;align-items:stretch;gap:16px}.donate-card{flex:1;min-width:0;background:#22252a;border-radius:12px;padding:14px;border:1px solid #33373e;display:flex;flex-direction:column;align-items:center}.donate-title{font-weight:bold;font-size:15px;margin-bottom:12px;color:#fff}.qr-wrapper{width:100%;max-width:240px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#181a1d;border-radius:8px;padding:8px;box-sizing:border-box}.qr-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:4px}@media(max-width:600px){.donate-grid{flex-direction:column}.donate-heading{font-size:18px;margin-bottom:8px}.donate-description{font-size:13px;margin-bottom:12px}.qr-wrapper{max-width:180px}}</style>";
 
-// SCRIPT NÂNG CẤP: TIÊM VÀO WEBVIEW ĐỂ DIỆT OVERLAY VÀ KHÓA POPUP
-var AD_BLOCK_ENGINE = "<script>" +
-  "(function() {" +
-    "/* 1. Triệt hạ Popup & Redirect */" +
-    "window.open = function() { return null; };" +
-    "window.alert = function() {};" +
-    "Object.defineProperty(window, 'onbeforeunload', { get: function() { return null; }, set: function() {} });" +
-
-    "/* 2. Xóa các lớp đè (Overlay/Ads) và cưỡng chế bấm Play */" +
-    "function purgeAds() {" +
-      "var selectors = ['[class*=\"overlay\"]', '[id*=\"overlay\"]', '[class*=\"popup\"]', '[id*=\"popup\"]', '[class*=\"ad\"]', '[id*=\"ad\"]', 'a[target=\"_blank\"]', 'div[style*=\"z-index: 2147483647\"]', 'div[style*=\"position: absolute\"][style*=\"top: 0\"]'];" +
-      "selectors.forEach(function(s) {" +
-        "document.querySelectorAll(s).forEach(function(el) {" +
-          "if (el.tagName !== 'VIDEO' && !el.querySelector('video')) {" +
-            "el.remove();" +
-          "}" +
-        "});" +
-      "});" +
-    "}" +
-
-    "/* 3. Bắt sự kiện Click và chặn không cho nhảy trang ngoài */" +
-    "document.addEventListener('click', function(e) {" +
-      "var target = e.target;" +
-      "if (target && target.tagName === 'A' && target.href && !target.href.includes(location.hostname)) {" +
-        "e.preventDefault();" +
-        "e.stopPropagation();" +
-        "return false;" +
-      "}" +
-    "}, true);" +
-
-    "/* Quét liên tục để diệt quảng cáo nạp chậm */" +
-    "setInterval(purgeAds, 500);" +
-  "})();" +
-  "</script>" +
-  "<style>" +
-    "/* Chặn hiển thị các khung quảng cáo qua CSS */" +
-    "[class*='ad-'], [id*='ad-'], [class*='pop-'], [id*='pop-'], iframe[src*='bet'], iframe[src*='ads'] { display: none !important; opacity: 0 !important; pointer-events: none !important; }" +
-    "html, body { overflow: auto !important; position: static !important; }" +
-  "</style>";
-
 function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.5",
+    "version": "1.3.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -65,13 +25,6 @@ function log(msg) {
   if (typeof nativeLog !== 'undefined') {
     nativeLog("[STPhim] " + msg);
   }
-}
-
-function cleanAdHtml(html) {
-  if (!html) return "";
-  var cleaned = html.replace(/<script[\s\S]*?(popads|adsterra|histats|google-analytics|doubleclick|bet|onclick)[^>]*?>[\s\S]*?<\/script>/gi, "");
-  cleaned = cleaned.replace(/<iframe[\s\S]*?(bet|ads|doubleclick|popunder)[\s\S]*?<\/iframe>/gi, "");
-  return cleaned;
 }
 
 function getSlugFromUrl(url) {
@@ -143,7 +96,7 @@ function getUrlDetail(id) {
 }
 
 // ========================================================
-// PARSE LIST & DETAIL
+// PARSE LIST
 // ========================================================
 
 function parseListResponse(html) {
@@ -189,6 +142,10 @@ function parseSearchResponse(html) {
   return parseListResponse(html);
 }
 
+// ========================================================
+// PARSE DETAIL
+// ========================================================
+
 function parseMovieDetail(html, url) {
   try {
     var title = "";
@@ -208,7 +165,9 @@ function parseMovieDetail(html, url) {
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
       
-      if (post.date) year = post.date.substring(0, 4);
+      if (post.date) {
+        year = post.date.substring(0, 4);
+      }
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
@@ -237,7 +196,9 @@ function parseMovieDetail(html, url) {
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
         var epRegex = /{"([^"]+)","([^"]+)"}/g;
-        while (epRegex.exec(rawEpisodes) !== null) epCount++;
+        while (epRegex.exec(rawEpisodes) !== null) {
+          epCount++;
+        }
       }
 
       if (epCount === 0) epCount = 1;
@@ -277,7 +238,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (INJECT AD-BLOCK ENGINE)
+// PARSE STREAM (NATIVE PLAYER - BỎ WEBVIEW CHẶN POPUP)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -306,6 +267,7 @@ function parseDetailResponse(html, url) {
               }
               decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
 
+              // Nếu giải mã ra trực tiếp luồng HLS m3u8
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
@@ -313,13 +275,14 @@ function parseDetailResponse(html, url) {
                   isEmbed: false
                 });
               } else {
+                // Ép App gửi Request ngầm đến API k-20 để lấy JSON chứa link media
                 var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
                 var videoId = vMatch ? vMatch[1] : "";
-                var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+                var streamApiUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
                 return JSON.stringify({
-                  url: stream,
-                  isEmbed: true,
+                  url: streamApiUrl,
+                  isEmbed: true, 
                   headers: {
                     "Referer": "https://www.sieutamphim.pro/",
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -334,44 +297,37 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    var cleanContent = cleanAdHtml(html);
-    cleanContent = AD_BLOCK_ENGINE + cleanContent;
-
-    return JSON.stringify({
-      url: url,
-      isEmbed: true,
-      html: cleanContent
-    });
+    return JSON.stringify({ url: url, isEmbed: true });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
   }
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  if (datasend == "true") {
+  // Bóc tách JSON trả về từ sc.k-20.xyz
+  if (datasend === "true" || sourceUrl.includes("sc.k-20.xyz")) {
     try {
-      var $data = JSON.parse(html);
-      var stream = $data.streams[0].url;
-      return JSON.stringify({
-        url: stream + "#.m3u8",
-        mimeType: "video/mp4",
-        isEmbed: false,
-        headers: {
-          "Referer": "https://sc.k-20.xyz",
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-      });
-    } catch(e){}
+      var data = JSON.parse(html);
+      if (data && data.streams && data.streams.length > 0) {
+        // Lấy luồng video stream trực tiếp (phần tử đầu tiên)
+        var directMediaUrl = data.streams[0].url;
+
+        return JSON.stringify({
+          url: directMediaUrl,
+          mimeType: "video/mp4",
+          isEmbed: false, // BẮT BUỘC false: Ép dùng Native ExoPlayer, hoàn toàn không mở WebView
+          headers: {
+            "Referer": "https://sc.k-20.xyz/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        });
+      }
+    } catch(e) {
+      log("Lỗi bóc tách JSON stream: " + e.message);
+    }
   }
 
-  var cleanContent = cleanAdHtml(html);
-  cleanContent = AD_BLOCK_ENGINE + cleanContent;
-
-  return JSON.stringify({
-    url: sourceUrl,
-    isEmbed: true,
-    html: cleanContent
-  });
+  return parseDetailResponse(html, sourceUrl);
 }
 
 // ========================================================
