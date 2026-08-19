@@ -182,22 +182,46 @@ function parseMovieDetail(htmlResponse) {
   } catch (error) { return "null"; }
 }
 
+// =============================================================================
+// STREAM PARSER VỚI XHR SYNC FETCH LẤY TRỰC TIẾP MP4 LINK
+// =============================================================================
+
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  return extractStreamSync(htmlResponse, fallbackUrl);
+  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
 }
 
-function getStream(htmlResponse, fallbackUrl) {
-  return extractStreamSync(htmlResponse, fallbackUrl);
+function getStream(htmlResponse, fallbackUrl, datasend) {
+  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
 }
 
-function extractStreamSync(htmlResponse, fallbackUrl) {
+function fetchJsonSync(targetUrl) {
   try {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", targetUrl, false); // Fetch đồng bộ 100%
+    xhr.send(null);
+    if (xhr.status === 200) {
+      return xhr.responseText;
+    }
+  } catch (e) {}
+  return "";
+}
+
+function extractStreamSync(htmlResponse, fallbackUrl, datasend) {
+  try {
+    var rawText = htmlResponse;
+    var targetUrl = fallbackUrl || datasend || "";
+
+    // Nếu App truyền sang chuỗi rỗng hoặc URL chứ chưa fetch JSON
+    if ((!rawText || typeof rawText !== 'string' || rawText.indexOf("streams") === -1) && targetUrl && targetUrl.indexOf("http") === 0) {
+      rawText = fetchJsonSync(targetUrl);
+    }
+
     var $data = {};
 
-    if (typeof htmlResponse === 'object' && htmlResponse !== null) {
-      $data = htmlResponse;
-    } else if (typeof htmlResponse === 'string') {
-      var cleanJson = htmlResponse.trim();
+    if (typeof rawText === 'object' && rawText !== null) {
+      $data = rawText;
+    } else if (typeof rawText === 'string') {
+      var cleanJson = rawText.trim();
       var firstBrace = cleanJson.indexOf('{');
       var lastBrace = cleanJson.lastIndexOf('}');
       if (firstBrace !== -1 && lastBrace !== -1) {
@@ -208,13 +232,14 @@ function extractStreamSync(htmlResponse, fallbackUrl) {
 
     var streamUrl = "";
 
+    // Bóc tách trực tiếp link video mp4
     if ($data && $data.streams && $data.streams.length > 0) {
       streamUrl = $data.streams[0].url || "";
     } else if ($data && $data.url) {
       streamUrl = $data.url;
     }
 
-    if (!streamUrl) streamUrl = fallbackUrl || "";
+    if (!streamUrl) streamUrl = targetUrl;
     streamUrl = streamUrl.trim();
 
     var result = {
@@ -233,8 +258,8 @@ function extractStreamSync(htmlResponse, fallbackUrl) {
     return JSON.stringify(result);
   } catch (error) {
     return JSON.stringify({
-      url: fallbackUrl || "",
-      playUrl: fallbackUrl || "",
+      url: fallbackUrl || datasend || "",
+      playUrl: fallbackUrl || datasend || "",
       headers: {}
     });
   }
