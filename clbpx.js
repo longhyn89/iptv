@@ -375,7 +375,7 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     var $data = JSON.parse(htmlResponse);
     var streamUrl = "";
 
-    // Đọc URL từ mảng streams trả về từ server sc.k-20.xyz
+    // Lấy URL từ mảng streams trả về từ server sc.k-20.xyz
     if ($data && $data.streams && $data.streams.length > 0) {
       streamUrl = $data.streams[0].url || "";
     } else if ($data && $data.url) {
@@ -388,24 +388,26 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
 
     streamUrl = streamUrl.trim();
 
-    // Chuẩn hóa MimeType chính xác cho MP4 Direct Stream
-    var mimeType = "video/mp4";
-    if (streamUrl.indexOf(".m3u8") !== -1) {
-      mimeType = "application/x-mpegURL";
+    if (!streamUrl) {
+      return JSON.stringify({ url: "" });
     }
 
+    // Trả về Object tương thích đa App (url, playUrl, link) và không cố định mimeType
     return JSON.stringify({
       url: streamUrl,
-      mimeType: mimeType,
+      playUrl: streamUrl,
+      link: streamUrl,
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "*/*"
+        "Accept": "*/*",
+        "Connection": "keep-alive"
       }
     });
 
   } catch (error) {
     return JSON.stringify({
       url: fallbackUrl || "",
+      playUrl: fallbackUrl || "",
       headers: {}
     });
   }
