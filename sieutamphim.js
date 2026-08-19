@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: STREAM JSON PARSING)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: NATIVE STREAM FETCHING)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -143,7 +143,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL & YEAR PARSER
+// PARSE DETAIL
 // ========================================================
 
 function extractYearFromText(str) {
@@ -185,7 +185,7 @@ function parseMovieDetail(html, url) {
         detectedYear = post.date.substring(0, 4);
       }
       
-      if (!detectedYear || parseInt(detectedYear, 10) > 2025) {
+      if (!detectedYear) {
         detectedYear = extractYearFromText(contentHtml) || extractYearFromText(title);
       }
     } else {
@@ -198,7 +198,7 @@ function parseMovieDetail(html, url) {
       detectedYear = extractYearFromText(html) || extractYearFromText(title) || extractYearFromText(movieUrl);
     }
 
-    if (!detectedYear || isNaN(parseInt(detectedYear, 10)) || parseInt(detectedYear, 10) > 2025) {
+    if (!detectedYear || isNaN(parseInt(detectedYear, 10))) {
       detectedYear = new Date().getFullYear().toString();
     }
 
@@ -261,7 +261,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (FIXED: BÓC TÁCH LINK DIRECT TỪ API)
+// PARSE STREAM & EMBED (BẮT BUỘC HTTP REQUEST BỞI NATIVE APP)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -290,7 +290,7 @@ function parseDetailResponse(html, url) {
               }
               decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
 
-              // Nếu chứa đuôi m3u8 -> Trả về link phát trực tiếp luôn
+              // Nếu là file M3U8 trực tiếp
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
@@ -298,15 +298,19 @@ function parseDetailResponse(html, url) {
                   isEmbed: false
                 });
               } else {
-                // Link k-20 API JSON -> Đánh dấu datasend="true" để App thực hiện GET request nội dung JSON
+                // Ép Native App gọi HTTP GET tải file JSON của sc.k-20.xyz về
                 var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
                 var videoId = vMatch ? vMatch[1] : "";
-                var streamApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+                var streamApiUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
                 return JSON.stringify({
-                  url: streamApi,
-                  isEmbed: false,
-                  datasend: "true"
+                  url: streamApiUrl,
+                  isEmbed: false,        // Bắt buộc FALSE để không mở WebView
+                  datasend: "true",       // Bắt buộc TRUE để App tự thực hiện Request
+                  headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    "Referer": "https://www.sieutamphim.pro/"
+                  }
                 });
               }
             }
@@ -316,24 +320,25 @@ function parseDetailResponse(html, url) {
       }
     }
 
-    return JSON.stringify({ url: url, isEmbed: true });
+    return JSON.stringify({ url: url, isEmbed: false });
   } catch (e) {
     return JSON.stringify({ url: "", isEmbed: false });
   }
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  // Khi App tải dữ liệu từ URL API JSON về, hàm này sẽ tự phân tích chuỗi JSON đó
-  if (datasend == "true" || html.trim().startsWith("{")) {
-    try {
-      var data = JSON.parse(html);
+  // Khi Native App thực hiện request thành công, kết quả HTML chính là chuỗi JSON trả về
+  try {
+    var jsonText = html.trim();
+    if (jsonText.startsWith("{")) {
+      var data = JSON.parse(jsonText);
       if (data && data.streams && data.streams.length > 0) {
-        // Lấy link phát chất lượng cao nhất (thường là phần tử đầu tiên)
-        var streamUrl = data.streams[0].url;
-        
+        // Lấy link MP4/M3U8 trong mảng streams
+        var directMediaUrl = data.streams[0].url;
+
         return JSON.stringify({
-          url: streamUrl,
-          mimeType: streamUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
+          url: directMediaUrl,
+          mimeType: directMediaUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
           isEmbed: false,
           headers: {
             "Referer": "https://sc.k-20.xyz/",
@@ -341,9 +346,16 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
           }
         });
       }
-    } catch(e) {}
+    }
+  } catch (e) {
+    log("Error parsing JSON stream response: " + e.message);
   }
-  return parseDetailResponse(html, sourceUrl);
+
+  // Fallback nếu không parse được
+  return JSON.stringify({
+    url: sourceUrl,
+    isEmbed: false
+  });
 }
 
 // ========================================================
