@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - NATIVE DIRECT URL FIX
+// SIÊU TẦM PHIM - DIRECT STREAM NO-FETCH FIX
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "2.3.0",
+    "version": "2.4.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -84,8 +84,8 @@ function getUrlSearch(keyword, filtersJson) {
 
 function getUrlDetail(id) {
   if (!id) return BASE_URL;
-  // BẮT BỘC: Nếu id đã là URL http(s) -> Trả về chính nó để App fetch thẳng link stream
-  if (id.startsWith("http://") || id.startsWith("https://")) {
+  // Nếu id đã bắt đầu bằng http/https (Link stream từ tập phim) -> Ép App gọi request đến chính link đó
+  if (id.indexOf("http://") === 0 || id.indexOf("https://") === 0) {
     return id;
   }
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
@@ -139,25 +139,24 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// DECODER
+// DECODER HELPER
 // ========================================================
 
 function decodeStreamUrl(rawSrc) {
   if (!rawSrc) return "";
-  if (rawSrc.startsWith("http://") || rawSrc.startsWith("https://")) return rawSrc;
-  if (rawSrc.startsWith("//")) return "https:" + rawSrc;
+  if (rawSrc.indexOf("http://") === 0 || rawSrc.indexOf("https://") === 0) return rawSrc;
+  if (rawSrc.indexOf("//") === 0) return "https:" + rawSrc;
 
-  // Thử các Key XOR thông dụng
   var keys = [42, 33, 15, 27, 88];
   for (var k = 0; k < keys.length; k++) {
     var decrypted = "";
     for (var i = 0; i < rawSrc.length; i++) {
       decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ keys[k]);
     }
-    if (decrypted.startsWith("http://") || decrypted.startsWith("https://")) {
+    if (decrypted.indexOf("http://") === 0 || decrypted.indexOf("https://") === 0) {
       return decrypted;
     }
-    if (decrypted.startsWith("//")) {
+    if (decrypted.indexOf("//") === 0) {
       return "https:" + decrypted;
     }
   }
@@ -177,7 +176,7 @@ function parseMovieDetail(html, url) {
     var contentHtml = html;
     var year = "2026";
 
-    if (url && url.includes("/wp-json/wp/v2/posts")) {
+    if (url && url.indexOf("/wp-json/wp/v2/posts") !== -1) {
       var posts = JSON.parse(html);
       if (!posts || posts.length === 0) return JSON.stringify({ servers: [] });
       var post = posts[0];
@@ -221,7 +220,7 @@ function parseMovieDetail(html, url) {
 
           if (playUrl) {
             episodes.push({
-              id: playUrl, // Gán thẳng URL chuẩn HTTP/HTTPS vào id
+              id: playUrl,
               name: epMatch[2] || ("Tập " + count),
               slug: "tap-" + count
             });
@@ -257,31 +256,25 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// STREAM RESOLVER
+// STREAM RESOLVER (SỬA LỖI KHÔNG PHÁT REQUEST)
 // ========================================================
 
 function parseDetailResponse(html, url) {
   try {
-    var target = url || html || "";
-    
-    if (target.startsWith("http://") || target.startsWith("https://")) {
-      // 1. Nếu là file video m3u8/mp4
-      if (target.indexOf(".m3u8") !== -1 || target.indexOf(".mp4") !== -1) {
-        return JSON.stringify({
-          url: target,
-          headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://www.sieutamphim.pro/"
-          }
-        });
-      }
+    // Tìm URL đích từ tham số url hoặc tự trích xuất nếu App truyền html
+    var playTarget = url || "";
+    if (!playTarget && html && (html.indexOf("http://") === 0 || html.indexOf("https://") === 0)) {
+      playTarget = html;
+    }
 
-      // 2. Nếu là link Embed Player/Iframe
+    if (playTarget) {
+      var isDirectFile = playTarget.indexOf(".m3u8") !== -1 || playTarget.indexOf(".mp4") !== -1;
+      
       return JSON.stringify({
-        url: target,
-        isEmbed: true,
+        url: playTarget,
+        isEmbed: !isDirectFile, // Nếu không phải m3u8/mp4 thì coi là link Embed
         headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
           "Referer": "https://www.sieutamphim.pro/"
         }
       });
