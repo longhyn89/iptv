@@ -54,11 +54,16 @@ function getFilterConfig() {
   });
 }
 
+// =============================================================================
+// URL GENERATION
+// =============================================================================
+
 function getUrlList(slug, filtersJson) {
   var filters = {};
   try { filters = JSON.parse(filtersJson || "{}"); } catch(e) {}
   var page = filters.page || 1;
   var baseUrl = BASEURL;
+
   if (!slug || slug === '' || slug === 'home') {
     return page > 1 ? baseUrl + "/page/" + page + "/" : baseUrl + "/";
   }
@@ -81,6 +86,10 @@ function getUrlDetail(slug) {
 function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
+
+// =============================================================================
+// PARSERS
+// =============================================================================
 
 function parseListResponse(htmlResponse, url) {
   var items = [];
@@ -157,7 +166,7 @@ function parseMovieDetail(htmlResponse) {
       var streamJsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
 
       episodes.push({
-        id: videoId, // Dùng ID gọn nhẹ thay vì gán cả URL
+        id: streamJsonUrl,
         url: streamJsonUrl,
         file: streamJsonUrl,
         link: streamJsonUrl,
@@ -185,36 +194,25 @@ function parseMovieDetail(htmlResponse) {
 }
 
 // =============================================================================
-// STREAM PARSER VỚI TỰ ĐỘNG FETCH NẾU APP KHÔNG TỰ GỬI REQUEST
+// STREAM PARSER (CHUẨN ES5 ĐỒNG BỘ 100%)
 // =============================================================================
 
-async function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  return await extractStreamAsync(htmlResponse, fallbackUrl, datasend);
+function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
+  return extractStreamSync(htmlResponse, fallbackUrl);
 }
 
-async function getStream(htmlResponse, fallbackUrl, datasend) {
-  return await extractStreamAsync(htmlResponse, fallbackUrl, datasend);
+function getStream(htmlResponse, fallbackUrl) {
+  return extractStreamSync(htmlResponse, fallbackUrl);
 }
 
-async function extractStreamAsync(htmlResponse, fallbackUrl, datasend) {
+function extractStreamSync(htmlResponse, fallbackUrl) {
   try {
-    var rawText = htmlResponse;
-    var targetUrl = fallbackUrl || datasend || "";
-
-    // Trường hợp App truyền thẳng HTML/rỗng mà không gửi Request fetch nội dung JSON
-    if ((!rawText || typeof rawText !== 'string' || rawText.indexOf("streams") === -1) && targetUrl && targetUrl.indexOf("http") === 0) {
-      try {
-        var res = await fetch(targetUrl);
-        rawText = await res.text();
-      } catch (e) {}
-    }
-
     var $data = {};
 
-    if (typeof rawText === 'object') {
-      $data = rawText;
-    } else if (typeof rawText === 'string') {
-      var cleanJson = rawText.trim();
+    if (typeof htmlResponse === 'object' && htmlResponse !== null) {
+      $data = htmlResponse;
+    } else if (typeof htmlResponse === 'string') {
+      var cleanJson = htmlResponse.trim();
       var firstBrace = cleanJson.indexOf('{');
       var lastBrace = cleanJson.lastIndexOf('}');
       if (firstBrace !== -1 && lastBrace !== -1) {
@@ -231,7 +229,7 @@ async function extractStreamAsync(htmlResponse, fallbackUrl, datasend) {
       streamUrl = $data.url;
     }
 
-    if (!streamUrl) streamUrl = targetUrl;
+    if (!streamUrl) streamUrl = fallbackUrl || "";
     streamUrl = streamUrl.trim();
 
     var result = {
@@ -250,8 +248,8 @@ async function extractStreamAsync(htmlResponse, fallbackUrl, datasend) {
     return JSON.stringify(result);
   } catch (error) {
     return JSON.stringify({
-      url: fallbackUrl || datasend || "",
-      playUrl: fallbackUrl || datasend || "",
+      url: fallbackUrl || "",
+      playUrl: fallbackUrl || "",
       headers: {}
     });
   }
