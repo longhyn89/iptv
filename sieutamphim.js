@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: NATIVE STREAM & NO-ADS)
+// SIÊU TẦM PHIM VAAPP PLUGIN (OPTIMIZED FOR SINGLE-REQUEST APP)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.3.0",
+    "version": "1.3.5",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -238,7 +238,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (NATIVE PLAYER - BỎ WEBVIEW CHẶN POPUP)
+// PARSE STREAM (DIRECT HYBRID EMBED FOR SINGLE-PASS APPS)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -267,29 +267,27 @@ function parseDetailResponse(html, url) {
               }
               decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
 
-              // Nếu giải mã ra trực tiếp luồng HLS m3u8
+              // TH1: Nếu link chứa đuôi .m3u8 trực tiếp -> Phát ExoPlayer Native
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
                   mimeType: "application/x-mpegURL",
                   isEmbed: false
                 });
-              } else {
-                // Ép App gửi Request ngầm đến API k-20 để lấy JSON chứa link media
-                var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-                var videoId = vMatch ? vMatch[1] : "";
-                var streamApiUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-                
-                return JSON.stringify({
-                  url: streamApiUrl,
-                  isEmbed: true, 
-                  headers: {
-                    "Referer": "https://www.sieutamphim.pro/",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                  },
-                  datasend: "true"
-                });
-              }
+              } 
+              
+              // TH2: Trả về link Embed trực tiếp tới k-20 Player
+              // Bỏ qua trang sieutamphim trung gian để cắt bỏ 90% quảng cáo
+              var embedUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(decrypted);
+
+              return JSON.stringify({
+                url: embedUrl,
+                isEmbed: true,
+                headers: {
+                  "Referer": "https://www.sieutamphim.pro/",
+                  "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
+                }
+              });
             }
             currentIndex++;
           }
@@ -304,30 +302,11 @@ function parseDetailResponse(html, url) {
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  // Bóc tách JSON trả về từ sc.k-20.xyz
-  if (datasend === "true" || sourceUrl.includes("sc.k-20.xyz")) {
-    try {
-      var data = JSON.parse(html);
-      if (data && data.streams && data.streams.length > 0) {
-        // Lấy luồng video stream trực tiếp (phần tử đầu tiên)
-        var directMediaUrl = data.streams[0].url;
-
-        return JSON.stringify({
-          url: directMediaUrl,
-          mimeType: "video/mp4",
-          isEmbed: false, // BẮT BUỘC false: Ép dùng Native ExoPlayer, hoàn toàn không mở WebView
-          headers: {
-            "Referer": "https://sc.k-20.xyz/",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-          }
-        });
-      }
-    } catch(e) {
-      log("Lỗi bóc tách JSON stream: " + e.message);
-    }
-  }
-
-  return parseDetailResponse(html, sourceUrl);
+  // Dự phòng cho trường hợp App có gọi hàm này
+  return JSON.stringify({
+    url: sourceUrl,
+    isEmbed: true
+  });
 }
 
 // ========================================================
