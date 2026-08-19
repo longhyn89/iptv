@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - DEFINITIVE NO-LOOP FIX
+// SIÊU TẦM PHIM - ULTIMATE EMBED & DIRECT STREAM FIX
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -84,7 +84,6 @@ function getUrlSearch(keyword, filtersJson) {
 
 function getUrlDetail(id) {
   if (!id) return BASE_URL;
-  // Nếu ID bắt đầu bằng PLAY_PAYLOAD -> Trả lại chính nó để ngắt kết nối HTTP
   if (id.startsWith("PLAY_PAYLOAD_")) return id;
   if (id.startsWith("http://") || id.startsWith("https://")) return id;
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
@@ -138,7 +137,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL (ĐÓNG GÓI LINK GIẢI MÃ SẴN)
+// PARSE DETAIL & BÓC TÁCH LINK STREAM
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -192,25 +191,38 @@ function parseMovieDetail(html, url) {
           var rawSrc = epMatch[1];
           var playUrl = "";
 
-          // Giải mã XOR 42
+          // 1. Giải mã XOR Key 42
+          var dec42 = "";
           for (var i = 0; i < rawSrc.length; i++) {
-            playUrl += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+            dec42 += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
           }
 
-          if (!playUrl.startsWith("http")) {
-            playUrl = rawSrc;
+          if (dec42.startsWith("http://") || dec42.startsWith("https://")) {
+            playUrl = dec42;
+          } else {
+            // 2. Thử giải mã XOR Key 33 nếu Key 42 không ra URL
+            var dec33 = "";
+            for (var j = 0; j < rawSrc.length; j++) {
+              dec33 += String.fromCharCode(rawSrc.charCodeAt(j) ^ 33);
+            }
+            if (dec33.startsWith("http://") || dec33.startsWith("https://")) {
+              playUrl = dec33;
+            } else if (rawSrc.startsWith("http://") || rawSrc.startsWith("https://")) {
+              playUrl = rawSrc;
+            }
           }
 
-          // Tạo chuỗi Payload trực tiếp ngắt hoàn toàn Request
-          var payloadId = "PLAY_PAYLOAD_" + JSON.stringify({
-            streamUrl: playUrl
-          });
+          if (playUrl) {
+            var payloadId = "PLAY_PAYLOAD_" + JSON.stringify({
+              streamUrl: playUrl
+            });
 
-          episodes.push({
-            id: payloadId,
-            name: epMatch[2] || ("Tập " + count),
-            slug: "tap-" + count
-          });
+            episodes.push({
+              id: payloadId,
+              name: epMatch[2] || ("Tập " + count),
+              slug: "tap-" + count
+            });
+          }
           count++;
         }
       }
@@ -242,7 +254,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// STREAM RESOLVER (UNPACK PAYLOAD KHÔNG QUA HTTP REQUEST)
+// STREAM RESOLVER
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -253,27 +265,34 @@ function parseDetailResponse(html, url) {
       var data = JSON.parse(jsonStr);
       var streamUrl = data.streamUrl;
 
-      if (streamUrl.includes(".m3u8") || streamUrl.includes(".mp4")) {
+      // Chuẩn hóa đường dẫn URL
+      if (streamUrl.startsWith("//")) {
+        streamUrl = "https:" + streamUrl;
+      }
+
+      // 1. Link M3U8/MP4 phát trực tiếp
+      if (streamUrl.indexOf(".m3u8") !== -1 || streamUrl.indexOf(".mp4") !== -1) {
         return JSON.stringify({
           url: streamUrl,
           headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
             "Referer": "https://www.sieutamphim.pro/"
           }
         });
       }
 
-      // Trả về WebView Embed nếu là Player iframe
+      // 2. Link Iframe nhúng -> Mở qua Embed Player
       return JSON.stringify({
         url: streamUrl,
         isEmbed: true,
         headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
           "Referer": "https://www.sieutamphim.pro/"
         }
       });
     }
 
+    // Nếu không khớp payload -> Trả về rỗng ngắt hoàn toàn request
     return JSON.stringify({ url: "" });
   } catch (e) {
     return JSON.stringify({ url: "" });
