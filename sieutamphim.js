@@ -1,19 +1,35 @@
 // ========================================================
-// SIÊU TẦM PHIM - DIRECT STREAM NO-FETCH FIX
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED & AD-BLOCKED)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
+var popup_html = "<div class='donate-container'><h2 class='donate-heading'>DONATE</h2><p class='donate-description'>Anh em yêu quý có thể mời bọn mình 2 ly cà phê nhé. Để có động lực duy trì App, cập nhật plugin và tìm thêm nhiều nguồn mới và hay cho anh em. Một chút lòng thành cũng làm bọn mình tiếp tục hoạt động tốt hơn, cám ơn anh em.</p><div class='donate-grid'><div class='donate-card'><div class='donate-title'>Donate Tác giả Plugin</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qrht.png' alt='Donate Tác giả Plugin' /></div></div><div class='donate-card'><div class='donate-title'>Donate Tác giả App</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qryb.png' alt='Donate Tác giả App' /></div></div></div></div><style>.donate-container{max-width:800px;margin:0 auto;padding:10px;box-sizing:border-box;font-family:Arial,sans-serif;text-align:center;color:#eee}.donate-heading{font-size:22px;font-weight:bold;margin:0 0 12px 0;color:#fff;text-transform:uppercase;letter-spacing:1px}.donate-description{font-size:14px;line-height:1.5;margin-bottom:18px;color:#ccc}.donate-grid{display:flex;flex-direction:row;justify-content:center;align-items:stretch;gap:16px}.donate-card{flex:1;min-width:0;background:#22252a;border-radius:12px;padding:14px;border:1px solid #33373e;display:flex;flex-direction:column;align-items:center}.donate-title{font-weight:bold;font-size:15px;margin-bottom:12px;color:#fff}.qr-wrapper{width:100%;max-width:240px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#181a1d;border-radius:8px;padding:8px;box-sizing:border-box}.qr-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:4px}@media(max-width:600px){.donate-grid{flex-direction:column}.donate-heading{font-size:18px;margin-bottom:8px}.donate-description{font-size:13px;margin-bottom:12px}.qr-wrapper{max-width:180px}}</style>";
+
+// Script dùng để tiêm trực tiếp vào WebView chặn Pop-up và Redirect quảng cáo
+var AD_BLOCK_SCRIPT = "<script>" +
+  "window.open = function(){ return null; };" +
+  "Object.defineProperty(window, 'onbeforeunload', { configurable: false, get: function() { return null; }, set: function() {} });" +
+  "document.addEventListener('DOMContentLoaded', function() {" +
+    "var badSelectors = ['[id*=\"pop\"]', '[class*=\"ad\"]', '[id*=\"ad\"]', 'iframe[src*=\"bet\"]', 'iframe[src*=\"ads\"]', 'a[target=\"_blank\"]'];" +
+    "badSelectors.forEach(function(s){" +
+      "document.querySelectorAll(s).forEach(function(el){ el.remove(); });" +
+    "});" +
+  "});" +
+  "</script>";
 
 function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "2.4.0",
+    "version": "1.2.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
-    "author": "Youngbi",
-    "type": "MOVIE"
+    "isAdult": false,
+    "type": "MOVIE",
+    popup_html: popup_html,
+    "layoutType": "VERTICAL",
+    "playerType": "exoplayer"
   });
 }
 
@@ -21,6 +37,15 @@ function log(msg) {
   if (typeof nativeLog !== 'undefined') {
     nativeLog("[STPhim] " + msg);
   }
+}
+
+function cleanAdHtml(html) {
+  if (!html) return "";
+  // Xóa script quảng cáo thông dụng
+  var cleaned = html.replace(/<script[\s\S]*?(popads|adsterra|histats|google-analytics|doubleclick|bet)[^>]*?>[\s\S]*?<\/script>/gi, "");
+  // Xóa iframe quảng cáo
+  cleaned = cleaned.replace(/<iframe[\s\S]*?(bet|ads|doubleclick|popunder)[\s\S]*?<\/iframe>/gi, "");
+  return cleaned;
 }
 
 function getSlugFromUrl(url) {
@@ -83,9 +108,9 @@ function getUrlSearch(keyword, filtersJson) {
 }
 
 function getUrlDetail(id) {
+  log("Resolving Detail ID: " + id);
   if (!id) return BASE_URL;
-  // Nếu id đã bắt đầu bằng http/https (Link stream từ tập phim) -> Ép App gọi request đến chính link đó
-  if (id.indexOf("http://") === 0 || id.indexOf("https://") === 0) {
+  if (id.startsWith("http://") || id.startsWith("https://")) {
     return id;
   }
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
@@ -139,31 +164,6 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// DECODER HELPER
-// ========================================================
-
-function decodeStreamUrl(rawSrc) {
-  if (!rawSrc) return "";
-  if (rawSrc.indexOf("http://") === 0 || rawSrc.indexOf("https://") === 0) return rawSrc;
-  if (rawSrc.indexOf("//") === 0) return "https:" + rawSrc;
-
-  var keys = [42, 33, 15, 27, 88];
-  for (var k = 0; k < keys.length; k++) {
-    var decrypted = "";
-    for (var i = 0; i < rawSrc.length; i++) {
-      decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ keys[k]);
-    }
-    if (decrypted.indexOf("http://") === 0 || decrypted.indexOf("https://") === 0) {
-      return decrypted;
-    }
-    if (decrypted.indexOf("//") === 0) {
-      return "https:" + decrypted;
-    }
-  }
-  return "";
-}
-
-// ========================================================
 // PARSE DETAIL
 // ========================================================
 
@@ -176,7 +176,7 @@ function parseMovieDetail(html, url) {
     var contentHtml = html;
     var year = "2026";
 
-    if (url && url.indexOf("/wp-json/wp/v2/posts") !== -1) {
+    if (url && url.includes("/wp-json/wp/v2/posts")) {
       var posts = JSON.parse(html);
       if (!posts || posts.length === 0) return JSON.stringify({ servers: [] });
       var post = posts[0];
@@ -185,13 +185,19 @@ function parseMovieDetail(html, url) {
       contentHtml = post.content ? post.content.rendered : "";
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
-      if (post.date) year = post.date.substring(0, 4);
+      
+      if (post.date) {
+        year = post.date.substring(0, 4);
+      }
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
       var ogImageMatch = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i);
       poster = ogImageMatch ? ogImageMatch[1] : "";
       description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
+      
+      var yearMatch = html.match(/(?:Năm|Year)[:\s]*(\d{4})/i) || movieUrl.match(/\/(\d{4})\//);
+      if (yearMatch) year = yearMatch[1];
     }
 
     var servers = [];
@@ -204,37 +210,34 @@ function parseMovieDetail(html, url) {
       if (usedServer[serverId]) continue;
       usedServer[serverId] = true;
 
-      var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
+      var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
-      var episodes = [];
+      var epCount = 0;
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
-        var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
-        var epMatch;
-        var count = 1;
-
-        while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-          var rawSrc = epMatch[1];
-          var playUrl = decodeStreamUrl(rawSrc);
-
-          if (playUrl) {
-            episodes.push({
-              id: playUrl,
-              name: epMatch[2] || ("Tập " + count),
-              slug: "tap-" + count
-            });
-          }
-          count++;
+        var epRegex = /{"([^"]+)","([^"]+)"}/g;
+        while (epRegex.exec(rawEpisodes) !== null) {
+          epCount++;
         }
       }
 
-      if (episodes.length > 0) {
-        servers.push({
-          name: serverId.toUpperCase(),
-          episodes: episodes
+      if (epCount === 0) epCount = 1;
+
+      var episodes = [];
+      for (var j = 1; j <= epCount; j++) {
+        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
+        episodes.push({
+          id: streamId,
+          name: epCount === 1 ? "Full" : "Tập " + j,
+          slug: "tap-" + j
         });
       }
+
+      servers.push({
+        name: serverId.toUpperCase(),
+        episodes: episodes
+      });
     }
 
     return JSON.stringify({
@@ -256,38 +259,107 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// STREAM RESOLVER (SỬA LỖI KHÔNG PHÁT REQUEST)
+// PARSE STREAM (AD-BLOCK ENHANCED)
 // ========================================================
 
 function parseDetailResponse(html, url) {
+  log("Parsing Stream for: " + url);
   try {
-    // Tìm URL đích từ tham số url hoặc tự trích xuất nếu App truyền html
-    var playTarget = url || "";
-    if (!playTarget && html && (html.indexOf("http://") === 0 || html.indexOf("https://") === 0)) {
-      playTarget = html;
-    }
+    if (url.includes("server=") && url.includes("tap=")) {
+      var server = (url.match(/server=([^&]+)/) || [])[1];
+      var tapStr = (url.match(/tap=(\d+)/) || [])[1];
+      var tap = parseInt(tapStr, 10);
 
-    if (playTarget) {
-      var isDirectFile = playTarget.indexOf(".m3u8") !== -1 || playTarget.indexOf(".mp4") !== -1;
-      
-      return JSON.stringify({
-        url: playTarget,
-        isEmbed: !isDirectFile, // Nếu không phải m3u8/mp4 thì coi là link Embed
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-          "Referer": "https://www.sieutamphim.pro/"
+      if (server && tap) {
+        var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
+        var epBlockMatch = html.match(epBlockRegex);
+
+        if (epBlockMatch) {
+          var rawEpisodes = epBlockMatch[2];
+          var epRegex = /{"([^"]+)","([^"]+)"}/g;
+          var epMatch;
+          var currentIndex = 1;
+          while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+            if (currentIndex === tap) {
+              var rawSrc = epMatch[1];
+              var decrypted = "";
+              for (var i = 0; i < rawSrc.length; i++) {
+                decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+              }
+              decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
+
+              if (decrypted.indexOf(".m3u8") !== -1) {
+                return JSON.stringify({
+                  url: decrypted,
+                  mimeType: "application/x-mpegURL",
+                  isEmbed: false
+                });
+              } else {
+                var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+                var videoId = vMatch ? vMatch[1] : "";
+                var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+                
+                return JSON.stringify({
+                  url: stream,
+                  isEmbed: true,
+                  headers: {
+                    "Referer": "https://www.sieutamphim.pro/",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                  },
+                  datasend: "true"
+                });
+              }
+            }
+            currentIndex++;
+          }
         }
-      });
+      }
     }
 
-    return JSON.stringify({ url: "" });
+    // Nếu phải load qua Embed/WebView -> Lọc HTML sạch + Tiêm Script diệt Quảng cáo
+    var cleanContent = cleanAdHtml(html);
+    if (cleanContent.includes("<head>")) {
+      cleanContent = cleanContent.replace("<head>", "<head>" + AD_BLOCK_SCRIPT);
+    } else {
+      cleanContent = AD_BLOCK_SCRIPT + cleanContent;
+    }
+
+    return JSON.stringify({
+      url: url,
+      isEmbed: true,
+      html: cleanContent
+    });
   } catch (e) {
-    return JSON.stringify({ url: "" });
+    return JSON.stringify({ url: "", isEmbed: false });
   }
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  return JSON.stringify({ url: "" });
+  if (datasend == "true") {
+    try {
+      var $data = JSON.parse(html);
+      var stream = $data.streams[0].url;
+      return JSON.stringify({
+        url: stream + "#.m3u8",
+        mimeType: "video/mp4",
+        isEmbed: false,
+        headers: {
+          "Referer": "https://sc.k-20.xyz",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+      });
+    } catch(e){}
+  }
+
+  // Trường hợp fallback WebView: tiếp tục lọc HTML và tiêm Script chặn Pop-up
+  var cleanContent = cleanAdHtml(html);
+  cleanContent = AD_BLOCK_SCRIPT + cleanContent;
+
+  return JSON.stringify({
+    url: sourceUrl,
+    isEmbed: true,
+    html: cleanContent
+  });
 }
 
 // ========================================================
