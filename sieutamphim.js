@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: ACCURATE YEAR PARSING)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: STREAM JSON PARSING)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -148,18 +148,14 @@ function parseSearchResponse(html) {
 
 function extractYearFromText(str) {
   if (!str) return "";
-
-  // 1. Tìm năm từ định dạng văn bản HTML (ví dụ: "Năm phát hành: 2023", "Năm: 2022")
   var textMatch = str.match(/(?:Năm|Year|Release|Phát hành)[:\s]*<[^>]*>?\s*(19\d\d|20[0-2]\d)/i) ||
                   str.match(/(?:Năm|Year|Release|Phát hành)[:\s]*(19\d\d|20[0-2]\d)/i);
   if (textMatch) return textMatch[1];
 
-  // 2. Tìm năm trong thẻ Meta / OpenGraph Date
   var metaMatch = str.match(/property="(?:article:published_time|og:updated_time)"\s+content="(19\d\d|20[0-2]\d)/i) ||
                   str.match(/content="(19\d\d|20[0-2]\d)[-\/]\d{2}[-\/]\d{2}/i);
   if (metaMatch) return metaMatch[1];
 
-  // 3. Tìm năm ghi trong ngoặc đơn/ngoặc vuông ở Tiêu đề (ví dụ: "Phim A (2021)")
   var titleMatch = str.match(/[\(\[\s](19\d\d|20[0-2]\d)[\)\]\s]/);
   if (titleMatch) return titleMatch[1];
 
@@ -185,12 +181,10 @@ function parseMovieDetail(html, url) {
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
       
-      // Lấy năm xuất bản trực tiếp từ thuộc tính post.date của WordPress API
       if (post.date && post.date.length >= 4) {
         detectedYear = post.date.substring(0, 4);
       }
       
-      // Nếu chưa quét được từ post.date, trích xuất từ nội dung/tiêu đề
       if (!detectedYear || parseInt(detectedYear, 10) > 2025) {
         detectedYear = extractYearFromText(contentHtml) || extractYearFromText(title);
       }
@@ -201,11 +195,9 @@ function parseMovieDetail(html, url) {
       description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
       
-      // Trích xuất năm từ nội dung HTML hoặc từ URL
       detectedYear = extractYearFromText(html) || extractYearFromText(title) || extractYearFromText(movieUrl);
     }
 
-    // Nếu không quét được năm hợp lệ, tự động lấy năm phát hành/đăng bài tính đến thời điểm hiện tại
     if (!detectedYear || isNaN(parseInt(detectedYear, 10)) || parseInt(detectedYear, 10) > 2025) {
       detectedYear = new Date().getFullYear().toString();
     }
@@ -269,7 +261,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM
+// PARSE STREAM (FIXED: BÓC TÁCH LINK DIRECT TỪ API)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -298,6 +290,7 @@ function parseDetailResponse(html, url) {
               }
               decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
 
+              // Nếu chứa đuôi m3u8 -> Trả về link phát trực tiếp luôn
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
@@ -305,16 +298,14 @@ function parseDetailResponse(html, url) {
                   isEmbed: false
                 });
               } else {
+                // Link k-20 API JSON -> Đánh dấu datasend="true" để App thực hiện GET request nội dung JSON
                 var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
                 var videoId = vMatch ? vMatch[1] : "";
-                var stream = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+                var streamApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
                 
                 return JSON.stringify({
-                  url: stream,
-                  isEmbed: true,
-                  headers: {
-                    "Referer": "https://www.sieutamphim.pro/"
-                  },
+                  url: streamApi,
+                  isEmbed: false,
                   datasend: "true"
                 });
               }
@@ -332,20 +323,25 @@ function parseDetailResponse(html, url) {
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  if (datasend == "true") {
+  // Khi App tải dữ liệu từ URL API JSON về, hàm này sẽ tự phân tích chuỗi JSON đó
+  if (datasend == "true" || html.trim().startsWith("{")) {
     try {
-      var $data = JSON.parse(html);
-      var stream = $data.streams[0].url;
-      return JSON.stringify({
-        url: stream + "#.m3u8",
-        mimeType: "video/mp4",
-        isEmbed: false,
-        headers: {
-          "Referer": "https://sc.k-20.xyz",
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-      });
-    } catch(e){}
+      var data = JSON.parse(html);
+      if (data && data.streams && data.streams.length > 0) {
+        // Lấy link phát chất lượng cao nhất (thường là phần tử đầu tiên)
+        var streamUrl = data.streams[0].url;
+        
+        return JSON.stringify({
+          url: streamUrl,
+          mimeType: streamUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
+          isEmbed: false,
+          headers: {
+            "Referer": "https://sc.k-20.xyz/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        });
+      }
+    } catch(e) {}
   }
   return parseDetailResponse(html, sourceUrl);
 }
