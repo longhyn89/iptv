@@ -121,22 +121,6 @@ function parseListResponse(htmlResponse, url) {
 
 function parseSearchResponse(htmlResponse) { return parseListResponse(htmlResponse); }
 
-// Hàm hỗ trợ Fetch đồng bộ lấy link MP4 chuẩn
-function fetchDirectMp4UrlSync(streamJsonUrl) {
-  try {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", streamJsonUrl, false);
-    xhr.send(null);
-    if (xhr.status === 200) {
-      var resData = JSON.parse(xhr.responseText);
-      if (resData && resData.streams && resData.streams.length > 0) {
-        return resData.streams[0].url || "";
-      }
-    }
-  } catch (e) {}
-  return "";
-}
-
 function parseMovieDetail(htmlResponse) {
   try {
     var id = "", title = "", posterUrl = "", description = "";
@@ -169,19 +153,13 @@ function parseMovieDetail(htmlResponse) {
       }
 
       var streamJsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-      
-      // Bóc tách trước link direct có kèm đủ param res & size từ JSON
-      var finalMp4Url = fetchDirectMp4UrlSync(streamJsonUrl);
-      if (!finalMp4Url) {
-        finalMp4Url = streamJsonUrl;
-      }
 
       episodes.push({
-        id: finalMp4Url,
-        url: finalMp4Url,
-        file: finalMp4Url,
-        link: finalMp4Url,
-        datasend: finalMp4Url,
+        id: streamJsonUrl,
+        url: streamJsonUrl,
+        file: streamJsonUrl,
+        link: streamJsonUrl,
+        datasend: streamJsonUrl,
         name: epLabel,
         slug: videoId
       });
@@ -204,27 +182,67 @@ function parseMovieDetail(htmlResponse) {
   } catch (error) { return "null"; }
 }
 
-function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = fallbackUrl || datasend || "";
-  
-  if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
-    streamUrl = htmlResponse.trim();
-  }
+// =============================================================================
+// PARSE STREAM (Trích xuất URL hx-mp4 chuẩn có đủ res & size)
+// =============================================================================
 
-  return JSON.stringify({
-    url: streamUrl,
-    playUrl: streamUrl,
-    file: streamUrl,
-    link: streamUrl,
-    mimeType: "video/mp4",
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "Referer": "https://sc.k-20.xyz/",
-      "Accept": "*/*"
-    }
-  });
+function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
+  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
 }
 
 function getStream(htmlResponse, fallbackUrl, datasend) {
-  return parseDetailResponse(htmlResponse, fallbackUrl, datasend);
+  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
+}
+
+function extractStreamSync(htmlResponse, fallbackUrl, datasend) {
+  try {
+    var rawText = htmlResponse;
+    var streamUrl = "";
+
+    if (typeof rawText === 'string' && rawText.length > 0) {
+      var cleanJson = rawText.trim();
+      var firstBrace = cleanJson.indexOf('{');
+      var lastBrace = cleanJson.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1) {
+        cleanJson = cleanJson.substring(firstBrace, lastBrace + 1);
+        try {
+          var parsed = JSON.parse(cleanJson);
+          if (parsed && parsed.streams && parsed.streams.length > 0) {
+            streamUrl = parsed.streams[0].url || "";
+          } else if (parsed && parsed.url) {
+            streamUrl = parsed.url;
+          }
+        } catch(e) {}
+      }
+    }
+
+    // Nếu không parse được JSON, kiểm tra xem htmlResponse có phải là link direct không
+    if (!streamUrl && typeof rawText === 'string' && rawText.indexOf("http") === 0) {
+      streamUrl = rawText.trim();
+    }
+
+    if (!streamUrl) {
+      streamUrl = fallbackUrl || datasend || "";
+    }
+
+    return JSON.stringify({
+      url: streamUrl,
+      playUrl: streamUrl,
+      file: streamUrl,
+      link: streamUrl,
+      mimeType: "video/mp4",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://sc.k-20.xyz/",
+        "Accept": "*/*"
+      }
+    });
+  } catch (error) {
+    var defaultUrl = fallbackUrl || datasend || "";
+    return JSON.stringify({
+      url: defaultUrl,
+      playUrl: defaultUrl,
+      headers: {}
+    });
+  }
 }
