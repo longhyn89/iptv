@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - NO-LOOP FIX
+// SIÊU TẦM PHIM - COMPREHENSIVE STREAM FIX
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -84,10 +84,6 @@ function getUrlSearch(keyword, filtersJson) {
 
 function getUrlDetail(id) {
   if (!id) return BASE_URL;
-  // Nếu ID là chuỗi JSON mã hóa stream (Do parseMovieDetail tạo ra)
-  if (id.startsWith("STREAM_DATA_")) {
-    return id; // Trả nguyên để App đưa thẳng vào parseDetailResponse mà KHÔNG TẠO HTTP REQUEST NỮA
-  }
   if (id.startsWith("http://") || id.startsWith("https://")) return id;
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
 }
@@ -140,7 +136,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL (BÓC MÃ STREAM LUÔN TẠI ĐÂY)
+// PARSE DETAIL
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -184,46 +180,21 @@ function parseMovieDetail(html, url) {
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
       var episodes = [];
-      if (epBlockRegex) {
+      if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
         var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
         var epMatch;
         var count = 1;
 
         while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-          var rawSrc = epMatch[1];
-          var decrypted = "";
-          for (var i = 0; i < rawSrc.length; i++) {
-            decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-          }
-
-          var finalTarget = "";
-          var isApiCall = false;
-
-          if (decrypted.indexOf(".m3u8") !== -1) {
-            finalTarget = decrypted;
-          } else {
-            var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-            var videoId = vMatch ? vMatch[1] : "";
-            if (videoId) {
-              finalTarget = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-              isApiCall = true;
-            }
-          }
-
-          if (finalTarget) {
-            // Đóng gói dữ liệu stream để chuyển thẳng sang parseDetailResponse
-            var streamPayload = "STREAM_DATA_" + JSON.stringify({
-              target: finalTarget,
-              isApiCall: isApiCall
-            });
-
-            episodes.push({
-              id: streamPayload,
-              name: epMatch[2] || ("Tập " + count),
-              slug: "tap-" + count
-            });
-          }
+          // Tạo URL chuẩn bao gồm tham số server và số tập
+          var epUrl = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + count;
+          
+          episodes.push({
+            id: epUrl,
+            name: epMatch[2] || ("Tập " + count),
+            slug: "tap-" + count
+          });
           count++;
         }
       }
@@ -255,36 +226,68 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// STREAM RESOLVER (TRẢ TRỰC TIẾP URL - CHẶN TIẾP CỤC LOOP)
+// PARSE STREAM (BÓC TÁCH & BẮT DỮ LIỆU CHÍNH XÁC)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Resolving Stream for Payload: " + url);
+  log("Processing Stream Page: " + url);
   try {
-    var payloadStr = url || html;
-    if (payloadStr && payloadStr.includes("STREAM_DATA_")) {
-      var jsonStr = payloadStr.substring(payloadStr.indexOf("STREAM_DATA_") + 12);
-      var payload = JSON.parse(jsonStr);
+    var server = (url.match(/server=([^&]+)/) || [])[1];
+    var tapStr = (url.match(/tap=(\d+)/) || [])[1];
+    var targetTap = tapStr ? parseInt(tapStr, 10) : 1;
 
-      if (payload.isApiCall) {
-        // App sẽ gửi Request đến k-20 API để lấy stream thật
-        return JSON.stringify({
-          url: payload.target,
-          headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://www.sieutamphim.pro/"
-          },
-          datasend: "true"
-        });
-      } else {
-        // Link m3u8 trực tiếp -> Trả cho Player phát ngay
-        return JSON.stringify({
-          url: payload.target,
-          headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://www.sieutamphim.pro/"
+    if (server) {
+      var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
+      var epBlockMatch = html.match(epBlockRegex);
+
+      if (epBlockMatch) {
+        var rawEpisodes = epBlockMatch[2];
+        var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
+        var epMatch;
+        var currentIndex = 1;
+
+        while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+          if (currentIndex === targetTap) {
+            var rawSrc = epMatch[1];
+            
+            // Giải mã XOR Key 42
+            var decrypted = "";
+            for (var i = 0; i < rawSrc.length; i++) {
+              decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+            }
+
+            // Trường hợp 1: M3U8 Trực tiếp
+            if (decrypted.indexOf(".m3u8") !== -1) {
+              return JSON.stringify({
+                url: decrypted,
+                headers: {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                  "Referer": "https://www.sieutamphim.pro/"
+                }
+              });
+            }
+
+            // Trường hợp 2: Bóc lấy ID để gọi API Stream của k-20/hx-mp4
+            var videoId = "";
+            var idMatch = decrypted.match(/(?:v=|embed\/|video\/|file\/|\/)([a-zA-Z0-9_-]{8,})/);
+            if (idMatch) {
+              videoId = idMatch[1];
+            }
+
+            if (videoId) {
+              var apiUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+              return JSON.stringify({
+                url: apiUrl,
+                headers: {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                  "Referer": "https://www.sieutamphim.pro/"
+                },
+                datasend: "true"
+              });
+            }
           }
-        });
+          currentIndex++;
+        }
       }
     }
 
@@ -297,18 +300,17 @@ function parseDetailResponse(html, url) {
 function parseEmbedResponse(html, sourceUrl, datasend) {
   if (datasend === "true" || datasend === true) {
     try {
-      var $data = JSON.parse(html);
-      if ($data && $data.streams && $data.streams.length > 0) {
-        var stream = $data.streams[0].url;
+      var data = JSON.parse(html);
+      if (data && data.streams && data.streams.length > 0) {
         return JSON.stringify({
-          url: stream,
+          url: data.streams[0].url,
           headers: {
-            "Referer": "https://sc.k-20.xyz",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Referer": "https://sc.k-20.xyz/"
           }
         });
       }
-    } catch(e){}
+    } catch (e) {}
   }
   return JSON.stringify({ url: "" });
 }
