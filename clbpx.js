@@ -23,12 +23,7 @@ function getManifest() {
 }
 
 function getHomeSections() {
-  return JSON.stringify([{
-    slug: 'home',
-    title: 'Mới Cập Nhật',
-    type: 'Grid',
-    path: ''
-  }]);
+  return JSON.stringify([{ slug: 'home', title: 'Mới Cập Nhật', type: 'Grid', path: '' }]);
 }
 
 function getPrimaryCategories() {
@@ -55,23 +50,15 @@ function getPrimaryCategories() {
 
 function getFilterConfig() {
   return JSON.stringify({
-    sort: [
-      { name: 'Cũ nhất', value: 'oldest' },
-      { name: 'Mới nhất', value: 'newest' }
-    ]
+    sort: [{ name: 'Cũ nhất', value: 'oldest' }, { name: 'Mới nhất', value: 'newest' }]
   });
 }
-
-// =============================================================================
-// URL GENERATION
-// =============================================================================
 
 function getUrlList(slug, filtersJson) {
   var filters = {};
   try { filters = JSON.parse(filtersJson || "{}"); } catch(e) {}
   var page = filters.page || 1;
   var baseUrl = BASEURL;
-
   if (!slug || slug === '' || slug === 'home') {
     return page > 1 ? baseUrl + "/page/" + page + "/" : baseUrl + "/";
   }
@@ -95,12 +82,146 @@ function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
-// =============================================================================
-// PARSERS
-// =============================================================================
-
 function parseListResponse(htmlResponse, url) {
   var items = [];
+  if (!htmlResponse) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
+
+  var regex = /<article[^>]*>[\s\S]*?<a\s+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/gi;
+  var match;
+
+  while ((match = regex.exec(htmlResponse)) !== null) {
+    var link = match[1] || "";
+    var thumb = match[2] || "";
+    var title = match[3] || "";
+    title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
+
+    var cleanLink = link.replace(/\/$/, "");
+    var parts = cleanLink.split('/');
+    var slug = parts[parts.length - 1] || link;
+
+    var year = 0;
+    var yearMatch = title.match(/19\d{2}|20\d{2}/);
+    if (yearMatch) year = parseInt(yearMatch[0], 10);
+
+    items.push({ id: slug, title: title.trim(), posterUrl: thumb, backdropUrl: thumb, year: year });
+  }
+
+  var totalPages = 1, currentPage = 1;
+  var pageRegex = /<a class="page-numbers".*?>(\d+)<\/a>/gi, pm;
+  while ((pm = pageRegex.exec(htmlResponse)) !== null) {
+    var pNum = parseInt(pm[1], 10);
+    if (pNum > totalPages) totalPages = pNum;
+  }
+  var curPageMatch = htmlResponse.match(/<span aria-current="page" class="page-numbers current">(\d+)<\/span>/i);
+  if (curPageMatch) {
+    currentPage = parseInt(curPageMatch[1], 10);
+    if (currentPage > totalPages) totalPages = currentPage;
+  }
+
+  return JSON.stringify({ items: items, pagination: { currentPage: currentPage, totalPages: totalPages } });
+}
+
+function parseSearchResponse(htmlResponse) { return parseListResponse(htmlResponse); }
+
+function parseMovieDetail(htmlResponse) {
+  try {
+    var id = "", title = "", posterUrl = "", description = "";
+    var slugMatch = htmlResponse.match(/<link rel="canonical" href="([^"]+)"/i);
+    if (slugMatch) {
+      var parts = slugMatch[1].replace(/\/$/, "").split('/');
+      id = parts[parts.length - 1] || "movie";
+    } else id = "movie_" + new Date().getTime();
+
+    var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i);
+    if (titleMatch) title = titleMatch[1].trim().replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
+    
+    var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
+    if (posterMatch) posterUrl = posterMatch[1];
+
+    var year = 0;
+    var yearMatch = title.match(/(19\d{2}|20\d{2})/);
+    if (yearMatch) year = parseInt(yearMatch[1], 10);
+
+    var servers = [];
+    var episodes = [];
+    var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=([a-zA-Z0-9_-]+))"[^>]*>([\s\S]*?)<\/a>/gi;
+    var lMatch;
+
+    while ((lMatch = allLinksRegex.exec(htmlResponse)) !== null) {
+      var videoId = lMatch[2] || "";
+      var epLabel = lMatch[3].replace(/<[^>]+>/g, '').trim();
+      if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(lMatch[3])) {
+        epLabel = "Tập " + (episodes.length + 1);
+      }
+
+      var streamJsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+
+      episodes.push({
+        id: streamJsonUrl,
+        url: streamJsonUrl,
+        file: streamJsonUrl,
+        link: streamJsonUrl,
+        name: epLabel,
+        slug: videoId
+      });
+    }
+
+    if (episodes.length > 0) {
+      servers.push({ name: "Server SV VIP", episodes: episodes });
+    }
+
+    return JSON.stringify({
+      id: id,
+      title: title,
+      posterUrl: posterUrl,
+      backdropUrl: posterUrl,
+      description: description,
+      year: year,
+      quality: "HD",
+      servers: servers
+    });
+  } catch (error) { return "null"; }
+}
+
+// Bổ sung Alias Handler cho cả 2 loại Engine của App
+function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
+  return extractStream(htmlResponse, fallbackUrl);
+}
+
+function getStream(htmlResponse, fallbackUrl) {
+  return extractStream(htmlResponse, fallbackUrl);
+}
+
+function extractStream(htmlResponse, fallbackUrl) {
+  try {
+    var $data = (typeof htmlResponse === 'object') ? htmlResponse : JSON.parse(htmlResponse);
+    var streamUrl = "";
+
+    if ($data && $data.streams && $data.streams.length > 0) {
+      streamUrl = $data.streams[0].url || "";
+    } else if ($data && $data.url) {
+      streamUrl = $data.url;
+    }
+
+    if (!streamUrl) streamUrl = fallbackUrl || "";
+    streamUrl = streamUrl.trim();
+
+    var result = {
+      url: streamUrl,
+      playUrl: streamUrl,
+      file: streamUrl,
+      link: streamUrl,
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept": "*/*"
+      }
+    };
+
+    return typeof htmlResponse === 'string' ? JSON.stringify(result) : result;
+  } catch (error) {
+    return JSON.stringify({ url: fallbackUrl || "", playUrl: fallbackUrl || "" });
+  }
+}
   if (!htmlResponse) {
     return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
   }
