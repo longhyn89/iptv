@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - CHUẨN HÓA THEO LUỒNG KKPHIM
+// SIÊU TẦM PHIM - STABLE ENGINE FIX
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.5.0",
+    "version": "1.2.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -136,7 +136,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL (GIẢI MÃ VÀ GÁN TRỰC TIẾP STREAM VÀO EPISODES.ID)
+// PARSE DETAIL
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -179,48 +179,31 @@ function parseMovieDetail(html, url) {
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
-      var episodes = [];
+      var epCount = 0;
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
         var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
-        var epMatch;
-        var count = 1;
-
-        while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-          var rawSrc = epMatch[1];
-          var decrypted = "";
-          for (var i = 0; i < rawSrc.length; i++) {
-            decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-          }
-
-          var streamUrl = "";
-          if (decrypted.indexOf(".m3u8") !== -1) {
-            streamUrl = decrypted;
-          } else {
-            var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-            var videoId = vMatch ? vMatch[1] : "";
-            if (videoId) {
-              streamUrl = "https://hx-mp4.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".mp4";
-            }
-          }
-
-          if (streamUrl) {
-            episodes.push({
-              id: streamUrl, // Gán trực tiếp URL Stream như KKPhim
-              name: epMatch[2] || ("Tập " + count),
-              slug: "tap-" + count
-            });
-          }
-          count++;
+        while (epRegex.exec(rawEpisodes) !== null) {
+          epCount++;
         }
       }
+      if (epCount === 0) epCount = 1;
 
-      if (episodes.length > 0) {
-        servers.push({
-          name: serverId.toUpperCase(),
-          episodes: episodes
+      var episodes = [];
+      for (var j = 1; j <= epCount; j++) {
+        // Tạo đường dẫn ID kích hoạt hàm parseDetailResponse của App
+        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
+        episodes.push({
+          id: streamId,
+          name: epCount === 1 ? "Full" : "Tập " + j,
+          slug: "tap-" + j
         });
       }
+
+      servers.push({
+        name: serverId.toUpperCase(),
+        episodes: episodes
+      });
     }
 
     return JSON.stringify({
@@ -242,22 +225,98 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// STREAM PARSER (MÔ PHỎNG GIỐNG KKPHIM)
+// PARSE STREAM (SỬA LỖI ĐỂ TẠO HTTP REQUEST THẬT)
 // ========================================================
 
-function parseDetailResponse(apiResponseJson) {
-  return JSON.stringify({
-    url: "",
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-      "Referer": "https://hx-mp4.k-20.xyz/"
-    },
-    subtitles: []
-  });
+function parseDetailResponse(html, url) {
+  log("Parsing Stream for: " + url);
+  try {
+    if (url && url.includes("server=") && url.includes("tap=")) {
+      var server = (url.match(/server=([^&]+)/) || [])[1];
+      var tapStr = (url.match(/tap=(\d+)/) || [])[1];
+      var tap = parseInt(tapStr, 10);
+
+      if (server && tap) {
+        var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
+        var epBlockMatch = html.match(epBlockRegex);
+
+        if (epBlockMatch) {
+          var rawEpisodes = epBlockMatch[2];
+          var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
+          var epMatch;
+          var currentIndex = 1;
+          
+          while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+            if (currentIndex === tap) {
+              var rawSrc = epMatch[1];
+              var decrypted = "";
+              for (var i = 0; i < rawSrc.length; i++) {
+                decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+              }
+              
+              decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
+
+              // Trường hợp 1: Link m3u8 phát trực tiếp
+              if (decrypted.indexOf(".m3u8") !== -1) {
+                return JSON.stringify({
+                  url: decrypted,
+                  headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    "Referer": "https://www.sieutamphim.pro/"
+                  }
+                });
+              } 
+              // Trường hợp 2: Bóc tách Video ID để gọi API Stream k-20
+              else {
+                var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+                var videoId = vMatch ? vMatch[1] : "";
+                var streamApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+                
+                return JSON.stringify({
+                  url: streamApi,
+                  headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    "Referer": "https://www.sieutamphim.pro/"
+                  },
+                  datasend: "true"
+                });
+              }
+            }
+            currentIndex++;
+          }
+        }
+      }
+    }
+
+    // Fallback: Trả về chính URL truyền vào để App tự Request web
+    return JSON.stringify({
+      url: url,
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+      }
+    });
+  } catch (e) {
+    return JSON.stringify({ url: "" });
+  }
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  return parseDetailResponse(html);
+  if (datasend === "true" || datasend === true) {
+    try {
+      var $data = JSON.parse(html);
+      if ($data && $data.streams && $data.streams.length > 0) {
+        var stream = $data.streams[0].url;
+        return JSON.stringify({
+          url: stream,
+          headers: {
+            "Referer": "https://sc.k-20.xyz",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        });
+      }
+    } catch(e){}
+  }
+  return parseDetailResponse(html, sourceUrl);
 }
 
 // ========================================================
