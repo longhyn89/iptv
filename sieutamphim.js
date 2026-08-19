@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - STABLE ENGINE FIX
+// SIÊU TẦM PHIM - NO-LOOP FIX
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -84,6 +84,10 @@ function getUrlSearch(keyword, filtersJson) {
 
 function getUrlDetail(id) {
   if (!id) return BASE_URL;
+  // Nếu ID là chuỗi JSON mã hóa stream (Do parseMovieDetail tạo ra)
+  if (id.startsWith("STREAM_DATA_")) {
+    return id; // Trả nguyên để App đưa thẳng vào parseDetailResponse mà KHÔNG TẠO HTTP REQUEST NỮA
+  }
   if (id.startsWith("http://") || id.startsWith("https://")) return id;
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
 }
@@ -136,7 +140,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL
+// PARSE DETAIL (BÓC MÃ STREAM LUÔN TẠI ĐÂY)
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -179,31 +183,57 @@ function parseMovieDetail(html, url) {
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
-      var epCount = 0;
-      if (epBlockMatch) {
+      var episodes = [];
+      if (epBlockRegex) {
         var rawEpisodes = epBlockMatch[2];
         var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
-        while (epRegex.exec(rawEpisodes) !== null) {
-          epCount++;
+        var epMatch;
+        var count = 1;
+
+        while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+          var rawSrc = epMatch[1];
+          var decrypted = "";
+          for (var i = 0; i < rawSrc.length; i++) {
+            decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+          }
+
+          var finalTarget = "";
+          var isApiCall = false;
+
+          if (decrypted.indexOf(".m3u8") !== -1) {
+            finalTarget = decrypted;
+          } else {
+            var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
+            var videoId = vMatch ? vMatch[1] : "";
+            if (videoId) {
+              finalTarget = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+              isApiCall = true;
+            }
+          }
+
+          if (finalTarget) {
+            // Đóng gói dữ liệu stream để chuyển thẳng sang parseDetailResponse
+            var streamPayload = "STREAM_DATA_" + JSON.stringify({
+              target: finalTarget,
+              isApiCall: isApiCall
+            });
+
+            episodes.push({
+              id: streamPayload,
+              name: epMatch[2] || ("Tập " + count),
+              slug: "tap-" + count
+            });
+          }
+          count++;
         }
       }
-      if (epCount === 0) epCount = 1;
 
-      var episodes = [];
-      for (var j = 1; j <= epCount; j++) {
-        // Tạo đường dẫn ID kích hoạt hàm parseDetailResponse của App
-        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
-        episodes.push({
-          id: streamId,
-          name: epCount === 1 ? "Full" : "Tập " + j,
-          slug: "tap-" + j
+      if (episodes.length > 0) {
+        servers.push({
+          name: serverId.toUpperCase(),
+          episodes: episodes
         });
       }
-
-      servers.push({
-        name: serverId.toUpperCase(),
-        episodes: episodes
-      });
     }
 
     return JSON.stringify({
@@ -225,76 +255,40 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (SỬA LỖI ĐỂ TẠO HTTP REQUEST THẬT)
+// STREAM RESOLVER (TRẢ TRỰC TIẾP URL - CHẶN TIẾP CỤC LOOP)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Parsing Stream for: " + url);
+  log("Resolving Stream for Payload: " + url);
   try {
-    if (url && url.includes("server=") && url.includes("tap=")) {
-      var server = (url.match(/server=([^&]+)/) || [])[1];
-      var tapStr = (url.match(/tap=(\d+)/) || [])[1];
-      var tap = parseInt(tapStr, 10);
+    var payloadStr = url || html;
+    if (payloadStr && payloadStr.includes("STREAM_DATA_")) {
+      var jsonStr = payloadStr.substring(payloadStr.indexOf("STREAM_DATA_") + 12);
+      var payload = JSON.parse(jsonStr);
 
-      if (server && tap) {
-        var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
-        var epBlockMatch = html.match(epBlockRegex);
-
-        if (epBlockMatch) {
-          var rawEpisodes = epBlockMatch[2];
-          var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
-          var epMatch;
-          var currentIndex = 1;
-          
-          while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-            if (currentIndex === tap) {
-              var rawSrc = epMatch[1];
-              var decrypted = "";
-              for (var i = 0; i < rawSrc.length; i++) {
-                decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-              }
-              
-              decrypted = decrypted.replace(/https?:\/\/(short\.ink|short\.icu)\//g, "https://abyssplayer.com/");
-
-              // Trường hợp 1: Link m3u8 phát trực tiếp
-              if (decrypted.indexOf(".m3u8") !== -1) {
-                return JSON.stringify({
-                  url: decrypted,
-                  headers: {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                    "Referer": "https://www.sieutamphim.pro/"
-                  }
-                });
-              } 
-              // Trường hợp 2: Bóc tách Video ID để gọi API Stream k-20
-              else {
-                var vMatch = decrypted.match(/(?:[?&]v=|\/)([a-zA-Z0-9_-]+)(?:[?&]|$)/);
-                var videoId = vMatch ? vMatch[1] : "";
-                var streamApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-                
-                return JSON.stringify({
-                  url: streamApi,
-                  headers: {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                    "Referer": "https://www.sieutamphim.pro/"
-                  },
-                  datasend: "true"
-                });
-              }
-            }
-            currentIndex++;
+      if (payload.isApiCall) {
+        // App sẽ gửi Request đến k-20 API để lấy stream thật
+        return JSON.stringify({
+          url: payload.target,
+          headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Referer": "https://www.sieutamphim.pro/"
+          },
+          datasend: "true"
+        });
+      } else {
+        // Link m3u8 trực tiếp -> Trả cho Player phát ngay
+        return JSON.stringify({
+          url: payload.target,
+          headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Referer": "https://www.sieutamphim.pro/"
           }
-        }
+        });
       }
     }
 
-    // Fallback: Trả về chính URL truyền vào để App tự Request web
-    return JSON.stringify({
-      url: url,
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-      }
-    });
+    return JSON.stringify({ url: "" });
   } catch (e) {
     return JSON.stringify({ url: "" });
   }
@@ -316,7 +310,7 @@ function parseEmbedResponse(html, sourceUrl, datasend) {
       }
     } catch(e){}
   }
-  return parseDetailResponse(html, sourceUrl);
+  return JSON.stringify({ url: "" });
 }
 
 // ========================================================
