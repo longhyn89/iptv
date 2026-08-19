@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - WEBVIEW EMBED ENGINE
+// SIÊU TẦM PHIM - UNIVERSAL AUTO-DETECT STREAM ENGINE
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -225,12 +225,13 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (WEBVIEW ENGINE FIX)
+// PARSE STREAM (MULTI-DECODER & SCANNER)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Processing Embed for: " + url);
+  log("Analyzing Stream Page: " + url);
   try {
+    var targetUrl = "";
     var server = (url.match(/server=([^&]+)/) || [])[1];
     var tapStr = (url.match(/tap=(\d+)/) || [])[1];
     var targetTap = tapStr ? parseInt(tapStr, 10) : 1;
@@ -249,38 +250,69 @@ function parseDetailResponse(html, url) {
           if (currentIndex === targetTap) {
             var rawSrc = epMatch[1];
             
-            // Giải mã XOR Key 42
+            // 1. Thử giải mã XOR Key 42
             var decrypted = "";
             for (var i = 0; i < rawSrc.length; i++) {
               decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
             }
 
-            // M3U8 trực tiếp
-            if (decrypted.indexOf(".m3u8") !== -1) {
-              return JSON.stringify({
-                url: decrypted,
-                headers: {
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                  "Referer": "https://www.sieutamphim.pro/"
-                }
-              });
+            if (decrypted.startsWith("http://") || decrypted.startsWith("https://") || decrypted.includes(".m3u8")) {
+              targetUrl = decrypted;
+              break;
             }
 
-            // Link Player Nhúng -> Trả về isEmbed để App bật WebViewSniffer tự bắt m3u8
-            if (decrypted.startsWith("http://") || decrypted.startsWith("https://")) {
-              return JSON.stringify({
-                url: decrypted,
-                isEmbed: true,
-                headers: {
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                  "Referer": "https://www.sieutamphim.pro/"
-                }
-              });
+            // 2. Thử giải mã XOR Key 33 (Nếu web đổi key)
+            var decrypted33 = "";
+            for (var j = 0; j < rawSrc.length; j++) {
+              decrypted33 += String.fromCharCode(rawSrc.charCodeAt(j) ^ 33);
+            }
+            if (decrypted33.startsWith("http://") || decrypted33.startsWith("https://")) {
+              targetUrl = decrypted33;
+              break;
             }
           }
           currentIndex++;
         }
       }
+    }
+
+    // 3. Fallback: Dò quét trực tiếp trong toàn bộ mã HTML/JS của trang
+    if (!targetUrl) {
+      var iframeMatch = html.match(/<iframe[^>]+src=["\']([^"\'\s>]+)["\']/i);
+      if (iframeMatch) {
+        targetUrl = iframeMatch[1];
+      } else {
+        var directMediaMatch = html.match(/(https?:\/\/[^\s"'\\]+\.(?:m3u8|mp4)[^\s"'\\]*)/i);
+        if (directMediaMatch) {
+          targetUrl = directMediaMatch[1];
+        }
+      }
+    }
+
+    // Xử lý đầu ra stream
+    if (targetUrl) {
+      targetUrl = targetUrl.replace(/\\\/|\\/g, "/");
+      
+      // Nếu là link m3u8 direct
+      if (targetUrl.indexOf(".m3u8") !== -1 || targetUrl.indexOf(".mp4") !== -1) {
+        return JSON.stringify({
+          url: targetUrl,
+          headers: {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Referer": "https://www.sieutamphim.pro/"
+          }
+        });
+      }
+
+      // Nếu là link Player iframe -> Chuyển WebView bắt link
+      return JSON.stringify({
+        url: targetUrl,
+        isEmbed: true,
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+          "Referer": "https://www.sieutamphim.pro/"
+        }
+      });
     }
 
     return JSON.stringify({ url: "" });
