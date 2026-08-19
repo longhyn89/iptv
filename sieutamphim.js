@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - ULTIMATE EMBED & DIRECT STREAM FIX
+// SIÊU TẦM PHIM - UNIVERSAL STREAM DECODER & FIX LOOP
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -137,7 +137,33 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL & BÓC TÁCH LINK STREAM
+// DECODER HELPER (XOR & MULTI-KEY SCAN)
+// ========================================================
+
+function tryDecodeStream(rawSrc) {
+  if (!rawSrc) return "";
+  if (rawSrc.startsWith("http://") || rawSrc.startsWith("https://") || rawSrc.startsWith("//")) {
+    return rawSrc.startsWith("//") ? "https:" + rawSrc : rawSrc;
+  }
+
+  // Thử danh sách các Key XOR phổ biến của các trang phim Blogger/WordPress
+  var keys = [42, 33, 15, 27, 88];
+  for (var k = 0; k < keys.length; k++) {
+    var key = keys[k];
+    var decrypted = "";
+    for (var i = 0; i < rawSrc.length; i++) {
+      decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ key);
+    }
+    if (decrypted.startsWith("http://") || decrypted.startsWith("https://") || decrypted.startsWith("//")) {
+      return decrypted.startsWith("//") ? "https:" + decrypted : decrypted;
+    }
+  }
+
+  return "";
+}
+
+// ========================================================
+// PARSE DETAIL
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -189,28 +215,7 @@ function parseMovieDetail(html, url) {
 
         while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
           var rawSrc = epMatch[1];
-          var playUrl = "";
-
-          // 1. Giải mã XOR Key 42
-          var dec42 = "";
-          for (var i = 0; i < rawSrc.length; i++) {
-            dec42 += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-          }
-
-          if (dec42.startsWith("http://") || dec42.startsWith("https://")) {
-            playUrl = dec42;
-          } else {
-            // 2. Thử giải mã XOR Key 33 nếu Key 42 không ra URL
-            var dec33 = "";
-            for (var j = 0; j < rawSrc.length; j++) {
-              dec33 += String.fromCharCode(rawSrc.charCodeAt(j) ^ 33);
-            }
-            if (dec33.startsWith("http://") || dec33.startsWith("https://")) {
-              playUrl = dec33;
-            } else if (rawSrc.startsWith("http://") || rawSrc.startsWith("https://")) {
-              playUrl = rawSrc;
-            }
-          }
+          var playUrl = tryDecodeStream(rawSrc);
 
           if (playUrl) {
             var payloadId = "PLAY_PAYLOAD_" + JSON.stringify({
@@ -254,7 +259,7 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// STREAM RESOLVER
+// STREAM RESOLVER (DIRECT STREAM UNPACKING)
 // ========================================================
 
 function parseDetailResponse(html, url) {
@@ -265,12 +270,11 @@ function parseDetailResponse(html, url) {
       var data = JSON.parse(jsonStr);
       var streamUrl = data.streamUrl;
 
-      // Chuẩn hóa đường dẫn URL
       if (streamUrl.startsWith("//")) {
         streamUrl = "https:" + streamUrl;
       }
 
-      // 1. Link M3U8/MP4 phát trực tiếp
+      // Trường hợp 1: M3U8 hoặc MP4 trực tiếp
       if (streamUrl.indexOf(".m3u8") !== -1 || streamUrl.indexOf(".mp4") !== -1) {
         return JSON.stringify({
           url: streamUrl,
@@ -281,7 +285,7 @@ function parseDetailResponse(html, url) {
         });
       }
 
-      // 2. Link Iframe nhúng -> Mở qua Embed Player
+      // Trường hợp 2: Link Embed Player (Bổ sung User-Agent và Referer chuẩn để Player Native nhận diện)
       return JSON.stringify({
         url: streamUrl,
         isEmbed: true,
@@ -292,7 +296,6 @@ function parseDetailResponse(html, url) {
       });
     }
 
-    // Nếu không khớp payload -> Trả về rỗng ngắt hoàn toàn request
     return JSON.stringify({ url: "" });
   } catch (e) {
     return JSON.stringify({ url: "" });
