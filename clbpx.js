@@ -152,14 +152,15 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      var streamJsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      // Xây dựng thẳng URL hx-mp4 MP4 Proxy cho ExoPlayer
+      var directMp4Url = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent("https://abyssplayer.com/" + videoId) + "&res=5";
 
       episodes.push({
-        id: streamJsonUrl,
-        url: streamJsonUrl,
-        file: streamJsonUrl,
-        link: streamJsonUrl,
-        datasend: streamJsonUrl,
+        id: directMp4Url,
+        url: directMp4Url,
+        file: directMp4Url,
+        link: directMp4Url,
+        datasend: directMp4Url,
         name: epLabel,
         slug: videoId
       });
@@ -182,85 +183,27 @@ function parseMovieDetail(htmlResponse) {
   } catch (error) { return "null"; }
 }
 
-// =============================================================================
-// STREAM PARSER VỚI XHR SYNC FETCH LẤY TRỰC TIẾP MP4 LINK
-// =============================================================================
-
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
+  var streamUrl = fallbackUrl || datasend || "";
+  
+  if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
+    streamUrl = htmlResponse.trim();
+  }
+
+  return JSON.stringify({
+    url: streamUrl,
+    playUrl: streamUrl,
+    file: streamUrl,
+    link: streamUrl,
+    mimeType: "video/mp4",
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Referer": "https://sc.k-20.xyz/",
+      "Accept": "*/*"
+    }
+  });
 }
 
 function getStream(htmlResponse, fallbackUrl, datasend) {
-  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
-}
-
-function fetchJsonSync(targetUrl) {
-  try {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", targetUrl, false); // Fetch đồng bộ 100%
-    xhr.send(null);
-    if (xhr.status === 200) {
-      return xhr.responseText;
-    }
-  } catch (e) {}
-  return "";
-}
-
-function extractStreamSync(htmlResponse, fallbackUrl, datasend) {
-  try {
-    var rawText = htmlResponse;
-    var targetUrl = fallbackUrl || datasend || "";
-
-    // Nếu App truyền sang chuỗi rỗng hoặc URL chứ chưa fetch JSON
-    if ((!rawText || typeof rawText !== 'string' || rawText.indexOf("streams") === -1) && targetUrl && targetUrl.indexOf("http") === 0) {
-      rawText = fetchJsonSync(targetUrl);
-    }
-
-    var $data = {};
-
-    if (typeof rawText === 'object' && rawText !== null) {
-      $data = rawText;
-    } else if (typeof rawText === 'string') {
-      var cleanJson = rawText.trim();
-      var firstBrace = cleanJson.indexOf('{');
-      var lastBrace = cleanJson.lastIndexOf('}');
-      if (firstBrace !== -1 && lastBrace !== -1) {
-        cleanJson = cleanJson.substring(firstBrace, lastBrace + 1);
-      }
-      $data = JSON.parse(cleanJson);
-    }
-
-    var streamUrl = "";
-
-    // Bóc tách trực tiếp link video mp4
-    if ($data && $data.streams && $data.streams.length > 0) {
-      streamUrl = $data.streams[0].url || "";
-    } else if ($data && $data.url) {
-      streamUrl = $data.url;
-    }
-
-    if (!streamUrl) streamUrl = targetUrl;
-    streamUrl = streamUrl.trim();
-
-    var result = {
-      url: streamUrl,
-      playUrl: streamUrl,
-      file: streamUrl,
-      link: streamUrl,
-      mimeType: "video/mp4",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": "https://sc.k-20.xyz/",
-        "Accept": "*/*"
-      }
-    };
-
-    return JSON.stringify(result);
-  } catch (error) {
-    return JSON.stringify({
-      url: fallbackUrl || datasend || "",
-      playUrl: fallbackUrl || datasend || "",
-      headers: {}
-    });
-  }
+  return parseDetailResponse(htmlResponse, fallbackUrl, datasend);
 }
