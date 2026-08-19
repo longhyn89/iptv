@@ -1,5 +1,8 @@
 var BASEURL = "https://clbpx.alokillgtv.workers.dev";
 var BASESOURCE = "";
+
+var popup_html = "<div class='donate-container'><h2 class='donate-heading'>DONATE</h2><p class='donate-description'>Anh em yêu quý có thể mời bọn mình 2 ly cà phê nhé. Để có động lực duy trì App, cập nhật plugin và tìm thêm nhiều nguồn mới và hay cho anh em. Một chút lòng thành cũng làm bọn mình tiếp tục hoạt động tốt hơn, cám ơn anh em.</p><div class='donate-grid'><div class='donate-card'><div class='donate-title'>Donate Tác giả Plugin</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qrht.png' alt='Donate Tác giả Plugin' /></div></div><div class='donate-card'><div class='donate-title'>Donate Tác giả App</div><div class='qr-wrapper'><img src='https://vaxplugin.alokillgtv.workers.dev/img/qryb.png' alt='Donate Tác giả App' /></div></div></div></div><style>.donate-container{max-width:800px;margin:0 auto;padding:10px;box-sizing:border-box;font-family:Arial,sans-serif;text-align:center;color:#eee}.donate-heading{font-size:22px;font-weight:bold;margin:0 0 12px 0;color:#fff;text-transform:uppercase;letter-spacing:1px}.donate-description{font-size:14px;line-height:1.5;margin-bottom:18px;color:#ccc}.donate-grid{display:flex;flex-direction:row;justify-content:center;align-items:stretch;gap:16px}.donate-card{flex:1;min-width:0;background:#22252a;border-radius:12px;padding:14px;border:1px solid #33373e;display:flex;flex-direction:column;align-items:center}.donate-title{font-weight:bold;font-size:15px;margin-bottom:12px;color:#fff}.qr-wrapper{width:100%;max-width:240px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#181a1d;border-radius:8px;padding:8px;box-sizing:border-box}.qr-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:4px}@media(max-width:600px){.donate-grid{flex-direction:column}.donate-heading{font-size:18px;margin-bottom:8px}.donate-description{font-size:13px;margin-bottom:12px}.qr-wrapper{max-width:180px}}</style>";
+
 function getManifest() {
   return JSON.stringify({
     "id": "clbpxVIP",
@@ -14,8 +17,8 @@ function getManifest() {
     "type": "MOVIE",
     "author": "alokillgtv",
     "playerType": "exoplayer",
-    "layoutType": "HORIZONTAL"
-    
+    "layoutType": "HORIZONTAL",
+    "popup_html": popup_html
   });
 }
 
@@ -118,7 +121,6 @@ function parseListResponse(htmlResponse, url) {
     return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
   }
 
-  // Regex nhận diện linh hoạt thẻ article và ảnh/link
   var regex = /<article[^>]*>[\s\S]*?<a\s+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/gi;
   var match;
 
@@ -129,7 +131,6 @@ function parseListResponse(htmlResponse, url) {
 
     title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
 
-    // Lấy Slug linh hoạt cho cả URL có domain hoặc không
     var cleanLink = link.replace(/\/$/, "");
     var parts = cleanLink.split('/');
     var slug = parts[parts.length - 1] || link;
@@ -372,14 +373,36 @@ function parseMovieDetail(htmlResponse) {
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
   try {
     var $data = JSON.parse(htmlResponse);
-    var stream = $data.streams[0].url;
+    var streamUrl = "";
+
+    // Đọc URL từ mảng streams trả về từ server sc.k-20.xyz
+    if ($data && $data.streams && $data.streams.length > 0) {
+      streamUrl = $data.streams[0].url || "";
+    } else if ($data && $data.url) {
+      streamUrl = $data.url;
+    }
+
+    if (!streamUrl) {
+      streamUrl = fallbackUrl || "";
+    }
+
+    streamUrl = streamUrl.trim();
+
+    // Chuẩn hóa MimeType chính xác cho MP4 Direct Stream
+    var mimeType = "video/mp4";
+    if (streamUrl.indexOf(".m3u8") !== -1) {
+      mimeType = "application/x-mpegURL";
+    }
+
     return JSON.stringify({
-      url: stream + "#.m3u8" || "",
-      mimeType: "video/mp4",
+      url: streamUrl,
+      mimeType: mimeType,
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "*/*"
       }
     });
+
   } catch (error) {
     return JSON.stringify({
       url: fallbackUrl || "",
