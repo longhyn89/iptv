@@ -121,6 +121,22 @@ function parseListResponse(htmlResponse, url) {
 
 function parseSearchResponse(htmlResponse) { return parseListResponse(htmlResponse); }
 
+// Hàm hỗ trợ Fetch đồng bộ lấy link MP4 chuẩn
+function fetchDirectMp4UrlSync(streamJsonUrl) {
+  try {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", streamJsonUrl, false);
+    xhr.send(null);
+    if (xhr.status === 200) {
+      var resData = JSON.parse(xhr.responseText);
+      if (resData && resData.streams && resData.streams.length > 0) {
+        return resData.streams[0].url || "";
+      }
+    }
+  } catch (e) {}
+  return "";
+}
+
 function parseMovieDetail(htmlResponse) {
   try {
     var id = "", title = "", posterUrl = "", description = "";
@@ -152,15 +168,20 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // Xây dựng thẳng URL hx-mp4 MP4 Proxy cho ExoPlayer
-      var directMp4Url = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent("https://abyssplayer.com/" + videoId) + "&res=5";
+      var streamJsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      
+      // Bóc tách trước link direct có kèm đủ param res & size từ JSON
+      var finalMp4Url = fetchDirectMp4UrlSync(streamJsonUrl);
+      if (!finalMp4Url) {
+        finalMp4Url = streamJsonUrl;
+      }
 
       episodes.push({
-        id: directMp4Url,
-        url: directMp4Url,
-        file: directMp4Url,
-        link: directMp4Url,
-        datasend: directMp4Url,
+        id: finalMp4Url,
+        url: finalMp4Url,
+        file: finalMp4Url,
+        link: finalMp4Url,
+        datasend: finalMp4Url,
         name: epLabel,
         slug: videoId
       });
