@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED STREAM & YEAR PARSING)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED 2-STEP STREAM EXTRACTION)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -143,18 +143,15 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL (SỬA LỖI NĂM PHÁT HÀNH)
+// PARSE DETAIL
 // ========================================================
 
 function extractYearFromText(str) {
   if (!str) return "";
-
-  // Bắt cụm từ chỉ năm phát hành tiếng Việt / Anh
   var labelMatch = str.match(/(?:Năm phát hành|Năm sản xuất|Phát hành|Năm|Year|Release)[:\s]*<[^>]*>?\s*(19\d\d|20[0-2]\d)/i) ||
                    str.match(/(?:Năm phát hành|Năm sản xuất|Phát hành|Năm|Year|Release)[:\s]*(19\d\d|20[0-2]\d)/i);
   if (labelMatch) return labelMatch[1];
 
-  // Bắt tiêu đề dạng (2023) hoặc [2024]
   var titleMatch = str.match(/[\(\[\s](19\d\d|20[0-2]\d)[\)\]\s]/);
   if (titleMatch) return titleMatch[1];
 
@@ -174,7 +171,6 @@ function parseMovieDetail(html, url) {
       var posts = JSON.parse(html);
       if (!posts || posts.length === 0) return JSON.stringify({ servers: [] });
       
-      // Chọn post khớp slug nhất
       var post = posts[0];
       for (var p = 0; p < posts.length; p++) {
         if (url.includes(posts[p].slug)) {
@@ -189,9 +185,7 @@ function parseMovieDetail(html, url) {
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
       
-      // Ưu tiên trích xuất năm từ Nội dung/Tiêu đề trước ngày tạo Post
       detectedYear = extractYearFromText(contentHtml) || extractYearFromText(title);
-      
       if (!detectedYear && post.date && post.date.length >= 4) {
         detectedYear = post.date.substring(0, 4);
       }
@@ -205,7 +199,6 @@ function parseMovieDetail(html, url) {
       detectedYear = extractYearFromText(html) || extractYearFromText(title);
     }
 
-    // Giá trị fallback an toàn
     if (!detectedYear || isNaN(parseInt(detectedYear, 10)) || parseInt(detectedYear, 10) > 2026) {
       detectedYear = "2024";
     }
@@ -269,22 +262,8 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (SỬA LỖI EXTRACT API K-20 CHÍNH XÁC)
+// PARSE STREAM (BẮT BUỘC TẢI HTML EMBED TRƯỚC KHI TRÍCH STREAM)
 // ========================================================
-
-function extractK20VideoId(decryptedUrl) {
-  if (!decryptedUrl) return "";
-  
-  // Trường hợp 1: Chứa param v=
-  var vMatch = decryptedUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
-  if (vMatch) return vMatch[1];
-  
-  // Trường hợp 2: Trực tiếp dạng path /stream/.../id
-  var pathMatch = decryptedUrl.match(/\/([a-zA-Z0-9_-]{8,})/);
-  if (pathMatch) return pathMatch[1];
-
-  return "";
-}
 
 function parseDetailResponse(html, url) {
   log("Parsing Stream for: " + url);
@@ -311,7 +290,7 @@ function parseDetailResponse(html, url) {
                 decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
               }
 
-              // Nếu chứa link direct M3U8
+              // Nếu chứa trực tiếp link m3u8
               if (decrypted.indexOf(".m3u8") !== -1) {
                 return JSON.stringify({
                   url: decrypted,
@@ -320,26 +299,17 @@ function parseDetailResponse(html, url) {
                 });
               }
 
-              // Xử lý nạp JSON Stream từ k-20.xyz
-              var videoId = extractK20VideoId(decrypted);
-              if (videoId) {
-                var streamApiUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
-                return JSON.stringify({
-                  url: streamApiUrl,
-                  isEmbed: false,
-                  datasend: "true",
-                  headers: {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                    "Referer": "https://sc.k-20.xyz/"
-                  }
-                });
-              } else {
-                // Nếu không bóc tách được ID, sử dụng link player trực tiếp
-                return JSON.stringify({
-                  url: decrypted,
-                  isEmbed: true
-                });
-              }
+              // Yêu cầu Native App thực hiện GET Request đến URL Player đã giải mã
+              // Điều này ép App phải tải HTML của Player chứ không dùng WebView
+              return JSON.stringify({
+                url: decrypted,
+                isEmbed: false,
+                datasend: "true",
+                headers: {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                  "Referer": BASE_URL
+                }
+              });
             }
             currentIndex++;
           }
@@ -354,27 +324,63 @@ function parseDetailResponse(html, url) {
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
+  log("Parsing Embed HTML payload...");
   try {
-    var jsonText = html ? html.trim() : "";
-    if (jsonText.startsWith("{")) {
-      var data = JSON.parse(jsonText);
+    if (!html) return JSON.stringify({ url: sourceUrl, isEmbed: false });
+
+    // 1. Tìm trực tiếp URL m3u8 hoặc mp4 trong HTML của trang Player
+    var directMediaMatch = html.match(/(https?:\/\/[^"'\s\\]+?\.(?:m3u8|mp4)[^"'\s\\]*)/i);
+    if (directMediaMatch) {
+      var directUrl = directMediaMatch[1].replace(/\\/g, '');
+      return JSON.stringify({
+        url: directUrl,
+        mimeType: directUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
+        isEmbed: false,
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+          "Referer": sourceUrl
+        }
+      });
+    }
+
+    // 2. Tìm API JSON k-20.xyz nhúng trong HTML Player
+    var k20ApiMatch = html.match(/(https?:\/\/sc\.k-20\.xyz\/stream\/[^\s"'\\]+)/i);
+    if (k20ApiMatch) {
+      var apiUrl = k20ApiMatch[1].replace(/\\/g, '');
+      
+      // Trả về URL API này với datasend: "true" để App tiếp tục Fetch JSON
+      return JSON.stringify({
+        url: apiUrl,
+        isEmbed: false,
+        datasend: "true",
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+          "Referer": "https://sc.k-20.xyz/"
+        }
+      });
+    }
+
+    // 3. Nếu Dữ liệu gửi về là JSON trả về từ k-20.xyz
+    if (html.trim().startsWith("{")) {
+      var data = JSON.parse(html);
       if (data && data.streams && data.streams.length > 0) {
-        var directUrl = data.streams[0].url;
+        var finalMediaUrl = data.streams[0].url;
         return JSON.stringify({
-          url: directUrl,
-          mimeType: directUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
+          url: finalMediaUrl,
+          mimeType: finalMediaUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
           isEmbed: false,
           headers: {
-            "Referer": "https://sc.k-20.xyz/",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Referer": "https://sc.k-20.xyz/"
           }
         });
       }
     }
   } catch (e) {
-    log("Error parsing JSON: " + e.message);
+    log("Error parsing embed: " + e.message);
   }
 
+  // Nếu không trích xuất được link direct, giữ isEmbed: false để không đẩy ra WebView
   return JSON.stringify({
     url: sourceUrl,
     isEmbed: false
