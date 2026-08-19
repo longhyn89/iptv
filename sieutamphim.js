@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - COMPREHENSIVE STREAM FIX
+// SIÊU TẦM PHIM - WEBVIEW EMBED ENGINE
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -187,7 +187,6 @@ function parseMovieDetail(html, url) {
         var count = 1;
 
         while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-          // Tạo URL chuẩn bao gồm tham số server và số tập
           var epUrl = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + count;
           
           episodes.push({
@@ -226,11 +225,11 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (BÓC TÁCH & BẮT DỮ LIỆU CHÍNH XÁC)
+// PARSE STREAM (WEBVIEW ENGINE FIX)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Processing Stream Page: " + url);
+  log("Processing Embed for: " + url);
   try {
     var server = (url.match(/server=([^&]+)/) || [])[1];
     var tapStr = (url.match(/tap=(\d+)/) || [])[1];
@@ -256,7 +255,7 @@ function parseDetailResponse(html, url) {
               decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
             }
 
-            // Trường hợp 1: M3U8 Trực tiếp
+            // M3U8 trực tiếp
             if (decrypted.indexOf(".m3u8") !== -1) {
               return JSON.stringify({
                 url: decrypted,
@@ -267,22 +266,15 @@ function parseDetailResponse(html, url) {
               });
             }
 
-            // Trường hợp 2: Bóc lấy ID để gọi API Stream của k-20/hx-mp4
-            var videoId = "";
-            var idMatch = decrypted.match(/(?:v=|embed\/|video\/|file\/|\/)([a-zA-Z0-9_-]{8,})/);
-            if (idMatch) {
-              videoId = idMatch[1];
-            }
-
-            if (videoId) {
-              var apiUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+            // Link Player Nhúng -> Trả về isEmbed để App bật WebViewSniffer tự bắt m3u8
+            if (decrypted.startsWith("http://") || decrypted.startsWith("https://")) {
               return JSON.stringify({
-                url: apiUrl,
+                url: decrypted,
+                isEmbed: true,
                 headers: {
                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
                   "Referer": "https://www.sieutamphim.pro/"
-                },
-                datasend: "true"
+                }
               });
             }
           }
@@ -298,20 +290,6 @@ function parseDetailResponse(html, url) {
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  if (datasend === "true" || datasend === true) {
-    try {
-      var data = JSON.parse(html);
-      if (data && data.streams && data.streams.length > 0) {
-        return JSON.stringify({
-          url: data.streams[0].url,
-          headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://sc.k-20.xyz/"
-          }
-        });
-      }
-    } catch (e) {}
-  }
   return JSON.stringify({ url: "" });
 }
 
