@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: YEAR & DETAIL URL)
+// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED: ACCURATE YEAR PARSING)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -143,28 +143,25 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL
+// PARSE DETAIL & YEAR PARSER
 // ========================================================
 
-function extractYear(content, title, url) {
-  // 1. Tìm năm dạng 4 chữ số trong khoảng 1900-2099 từ các nhãn thông tin HTML
-  var metaMatch = content.match(/(?:Năm|Năm phát hành|Year|Release)[:\s]*<[^>]*>?\s*(19\d\d|20\d\d)/i) ||
-                  content.match(/(?:Năm|Năm phát hành|Year|Release)[:\s]*(19\d\d|20\d\d)/i);
+function extractYearFromText(str) {
+  if (!str) return "";
+
+  // 1. Tìm năm từ định dạng văn bản HTML (ví dụ: "Năm phát hành: 2023", "Năm: 2022")
+  var textMatch = str.match(/(?:Năm|Year|Release|Phát hành)[:\s]*<[^>]*>?\s*(19\d\d|20[0-2]\d)/i) ||
+                  str.match(/(?:Năm|Year|Release|Phát hành)[:\s]*(19\d\d|20[0-2]\d)/i);
+  if (textMatch) return textMatch[1];
+
+  // 2. Tìm năm trong thẻ Meta / OpenGraph Date
+  var metaMatch = str.match(/property="(?:article:published_time|og:updated_time)"\s+content="(19\d\d|20[0-2]\d)/i) ||
+                  str.match(/content="(19\d\d|20[0-2]\d)[-\/]\d{2}[-\/]\d{2}/i);
   if (metaMatch) return metaMatch[1];
 
-  // 2. Tìm năm trong thẻ meta release_date
-  var dateMetaMatch = content.match(/property="movie:release_date"[^>]+content="(19\d\d|20\d\d)/i);
-  if (dateMetaMatch) return dateMetaMatch[1];
-
-  // 3. Tìm năm trong tiêu đề phim, ví dụ: "Tên Phim (2023)" hoặc "Tên Phim 2022"
-  var titleMatch = title.match(/[\(\[\s](19\d\d|20\d\d)[\)\]\s]?/);
+  // 3. Tìm năm ghi trong ngoặc đơn/ngoặc vuông ở Tiêu đề (ví dụ: "Phim A (2021)")
+  var titleMatch = str.match(/[\(\[\s](19\d\d|20[0-2]\d)[\)\]\s]/);
   if (titleMatch) return titleMatch[1];
-
-  // 4. Tìm năm trong đường dẫn URL
-  if (url) {
-    var urlMatch = url.match(/\/([12]\d{3})\//) || url.match(/-(19\d\d|20\d\d)(?:\.html)?$/);
-    if (urlMatch) return urlMatch[1];
-  }
 
   return "";
 }
@@ -176,7 +173,7 @@ function parseMovieDetail(html, url) {
     var description = "";
     var movieUrl = url;
     var contentHtml = html;
-    var year = "";
+    var detectedYear = "";
 
     if (url && url.includes("/wp-json/wp/v2/posts")) {
       var posts = JSON.parse(html);
@@ -188,12 +185,14 @@ function parseMovieDetail(html, url) {
       description = post.excerpt ? post.excerpt.rendered.replace(/<[^>]*>/g, "").trim() : "";
       poster = post.jetpack_featured_media_url || post.featured_media_src_url || "";
       
-      // Thử lấy năm từ nội dung / tiêu đề trước
-      year = extractYear(contentHtml, title, movieUrl);
+      // Lấy năm xuất bản trực tiếp từ thuộc tính post.date của WordPress API
+      if (post.date && post.date.length >= 4) {
+        detectedYear = post.date.substring(0, 4);
+      }
       
-      // Nếu không tìm thấy trong nội dung, mới lấy năm từ ngày đăng bài viết
-      if (!year && post.date) {
-        year = post.date.substring(0, 4);
+      // Nếu chưa quét được từ post.date, trích xuất từ nội dung/tiêu đề
+      if (!detectedYear || parseInt(detectedYear, 10) > 2025) {
+        detectedYear = extractYearFromText(contentHtml) || extractYearFromText(title);
       }
     } else {
       title = (html.match(/<meta property="og:title" content="([^"]+)"/i) || [])[1] || "";
@@ -202,8 +201,13 @@ function parseMovieDetail(html, url) {
       description = (html.match(/<meta property="og:description" content="([^"]+)"/i) || [])[1] || "";
       movieUrl = (html.match(/<meta property="og:url" content="([^"]+)"/i) || [])[1] || url;
       
-      // Bóc tách năm từ các nguồn thông tin trên trang HTML
-      year = extractYear(html, title, movieUrl);
+      // Trích xuất năm từ nội dung HTML hoặc từ URL
+      detectedYear = extractYearFromText(html) || extractYearFromText(title) || extractYearFromText(movieUrl);
+    }
+
+    // Nếu không quét được năm hợp lệ, tự động lấy năm phát hành/đăng bài tính đến thời điểm hiện tại
+    if (!detectedYear || isNaN(parseInt(detectedYear, 10)) || parseInt(detectedYear, 10) > 2025) {
+      detectedYear = new Date().getFullYear().toString();
     }
 
     var servers = [];
@@ -252,7 +256,7 @@ function parseMovieDetail(html, url) {
       posterUrl: poster,
       backdropUrl: poster,
       description: description,
-      year: year,
+      year: detectedYear,
       category: "Phim Hay",
       country: "Tổng Hợp",
       servers: servers,
