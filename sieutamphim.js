@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM - UNIVERSAL AUTO-DETECT STREAM ENGINE
+// SIÊU TẦM PHIM - DIRECT STREAM FIX (NO RETRY LOOP)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -8,7 +8,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
@@ -84,7 +84,10 @@ function getUrlSearch(keyword, filtersJson) {
 
 function getUrlDetail(id) {
   if (!id) return BASE_URL;
-  if (id.startsWith("http://") || id.startsWith("https://")) return id;
+  // Nếu id đã chứa URL stream/embed (bắt đầu bằng http) -> Trả về chính nó để KHÔNG gọi API WordPress lại nữa
+  if (id.startsWith("http://") || id.startsWith("https://")) {
+    return id;
+  }
   return BASE_URL + "/wp-json/wp/v2/posts?slug=" + encodeURIComponent(id);
 }
 
@@ -136,7 +139,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL
+// PARSE DETAIL (GIẢI MÃ STREAM VÀ GÁN TRỰC TIẾP VÀO ID EPISODE)
 // ========================================================
 
 function parseMovieDetail(html, url) {
@@ -187,13 +190,40 @@ function parseMovieDetail(html, url) {
         var count = 1;
 
         while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-          var epUrl = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + count;
-          
-          episodes.push({
-            id: epUrl,
-            name: epMatch[2] || ("Tập " + count),
-            slug: "tap-" + count
-          });
+          var rawSrc = epMatch[1];
+          var playUrl = "";
+
+          // 1. Thử giải mã XOR Key 42
+          var decrypted = "";
+          for (var i = 0; i < rawSrc.length; i++) {
+            decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
+          }
+
+          if (decrypted.startsWith("http://") || decrypted.startsWith("https://")) {
+            playUrl = decrypted;
+          } else {
+            // 2. Thử giải mã XOR Key 33
+            var decrypted33 = "";
+            for (var j = 0; j < rawSrc.length; j++) {
+              decrypted33 += String.fromCharCode(rawSrc.charCodeAt(j) ^ 33);
+            }
+            if (decrypted33.startsWith("http://") || decrypted33.startsWith("https://")) {
+              playUrl = decrypted33;
+            }
+          }
+
+          // Fallback nếu không mã hóa XOR
+          if (!playUrl && (rawSrc.startsWith("http://") || rawSrc.startsWith("https://"))) {
+            playUrl = rawSrc;
+          }
+
+          if (playUrl) {
+            episodes.push({
+              id: playUrl, // Gán trực tiếp URL Stream/Embed vào id của tập
+              name: epMatch[2] || ("Tập " + count),
+              slug: "tap-" + count
+            });
+          }
           count++;
         }
       }
@@ -225,78 +255,19 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (MULTI-DECODER & SCANNER)
+// PARSE STREAM (TRẢ BẢN TIN TRỰC TIẾP CHO PLAYER/WEBVIEW)
 // ========================================================
 
 function parseDetailResponse(html, url) {
-  log("Analyzing Stream Page: " + url);
+  log("Playing Stream Target: " + url);
   try {
-    var targetUrl = "";
-    var server = (url.match(/server=([^&]+)/) || [])[1];
-    var tapStr = (url.match(/tap=(\d+)/) || [])[1];
-    var targetTap = tapStr ? parseInt(tapStr, 10) : 1;
-
-    if (server) {
-      var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=(["\'])([\\s\\S]*?)\\1', "i");
-      var epBlockMatch = html.match(epBlockRegex);
-
-      if (epBlockMatch) {
-        var rawEpisodes = epBlockMatch[2];
-        var epRegex = /\{"([^"]+)","([^"]+)"\}/g;
-        var epMatch;
-        var currentIndex = 1;
-
-        while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-          if (currentIndex === targetTap) {
-            var rawSrc = epMatch[1];
-            
-            // 1. Thử giải mã XOR Key 42
-            var decrypted = "";
-            for (var i = 0; i < rawSrc.length; i++) {
-              decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-            }
-
-            if (decrypted.startsWith("http://") || decrypted.startsWith("https://") || decrypted.includes(".m3u8")) {
-              targetUrl = decrypted;
-              break;
-            }
-
-            // 2. Thử giải mã XOR Key 33 (Nếu web đổi key)
-            var decrypted33 = "";
-            for (var j = 0; j < rawSrc.length; j++) {
-              decrypted33 += String.fromCharCode(rawSrc.charCodeAt(j) ^ 33);
-            }
-            if (decrypted33.startsWith("http://") || decrypted33.startsWith("https://")) {
-              targetUrl = decrypted33;
-              break;
-            }
-          }
-          currentIndex++;
-        }
-      }
-    }
-
-    // 3. Fallback: Dò quét trực tiếp trong toàn bộ mã HTML/JS của trang
-    if (!targetUrl) {
-      var iframeMatch = html.match(/<iframe[^>]+src=["\']([^"\'\s>]+)["\']/i);
-      if (iframeMatch) {
-        targetUrl = iframeMatch[1];
-      } else {
-        var directMediaMatch = html.match(/(https?:\/\/[^\s"'\\]+\.(?:m3u8|mp4)[^\s"'\\]*)/i);
-        if (directMediaMatch) {
-          targetUrl = directMediaMatch[1];
-        }
-      }
-    }
-
-    // Xử lý đầu ra stream
-    if (targetUrl) {
-      targetUrl = targetUrl.replace(/\\\/|\\/g, "/");
-      
-      // Nếu là link m3u8 direct
-      if (targetUrl.indexOf(".m3u8") !== -1 || targetUrl.indexOf(".mp4") !== -1) {
+    var target = url || html;
+    
+    if (target && (target.startsWith("http://") || target.startsWith("https://"))) {
+      // Nếu là file video direct (.m3u8 hoặc .mp4)
+      if (target.indexOf(".m3u8") !== -1 || target.indexOf(".mp4") !== -1) {
         return JSON.stringify({
-          url: targetUrl,
+          url: target,
           headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Referer": "https://www.sieutamphim.pro/"
@@ -304,9 +275,9 @@ function parseDetailResponse(html, url) {
         });
       }
 
-      // Nếu là link Player iframe -> Chuyển WebView bắt link
+      // Nếu là trang nhúng (iframe/embed player) -> Bật WebViewSniffer
       return JSON.stringify({
-        url: targetUrl,
+        url: target,
         isEmbed: true,
         headers: {
           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
