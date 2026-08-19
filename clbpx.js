@@ -152,14 +152,16 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      var streamJsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      // Tạo đường dẫn MP4 Proxy hoàn chỉnh mà ExoPlayer bắt buộc phát sinh Request ngay
+      var embedUrl = "https://abyssplayer.com/" + videoId;
+      var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2879240765";
 
       episodes.push({
-        id: streamJsonUrl,
-        url: streamJsonUrl,
-        file: streamJsonUrl,
-        link: streamJsonUrl,
-        datasend: streamJsonUrl,
+        id: directMp4,
+        url: directMp4,
+        file: directMp4,
+        link: directMp4,
+        datasend: directMp4,
         name: epLabel,
         slug: videoId
       });
@@ -182,67 +184,27 @@ function parseMovieDetail(htmlResponse) {
   } catch (error) { return "null"; }
 }
 
-// =============================================================================
-// PARSE STREAM (Trích xuất URL hx-mp4 chuẩn có đủ res & size)
-// =============================================================================
-
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
+  var streamUrl = fallbackUrl || datasend || "";
+
+  if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
+    streamUrl = htmlResponse.trim();
+  }
+
+  return JSON.stringify({
+    url: streamUrl,
+    playUrl: streamUrl,
+    file: streamUrl,
+    link: streamUrl,
+    mimeType: "video/mp4",
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Referer": "https://sc.k-20.xyz/",
+      "Accept": "*/*"
+    }
+  });
 }
 
 function getStream(htmlResponse, fallbackUrl, datasend) {
-  return extractStreamSync(htmlResponse, fallbackUrl, datasend);
-}
-
-function extractStreamSync(htmlResponse, fallbackUrl, datasend) {
-  try {
-    var rawText = htmlResponse;
-    var streamUrl = "";
-
-    if (typeof rawText === 'string' && rawText.length > 0) {
-      var cleanJson = rawText.trim();
-      var firstBrace = cleanJson.indexOf('{');
-      var lastBrace = cleanJson.lastIndexOf('}');
-      if (firstBrace !== -1 && lastBrace !== -1) {
-        cleanJson = cleanJson.substring(firstBrace, lastBrace + 1);
-        try {
-          var parsed = JSON.parse(cleanJson);
-          if (parsed && parsed.streams && parsed.streams.length > 0) {
-            streamUrl = parsed.streams[0].url || "";
-          } else if (parsed && parsed.url) {
-            streamUrl = parsed.url;
-          }
-        } catch(e) {}
-      }
-    }
-
-    // Nếu không parse được JSON, kiểm tra xem htmlResponse có phải là link direct không
-    if (!streamUrl && typeof rawText === 'string' && rawText.indexOf("http") === 0) {
-      streamUrl = rawText.trim();
-    }
-
-    if (!streamUrl) {
-      streamUrl = fallbackUrl || datasend || "";
-    }
-
-    return JSON.stringify({
-      url: streamUrl,
-      playUrl: streamUrl,
-      file: streamUrl,
-      link: streamUrl,
-      mimeType: "video/mp4",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": "https://sc.k-20.xyz/",
-        "Accept": "*/*"
-      }
-    });
-  } catch (error) {
-    var defaultUrl = fallbackUrl || datasend || "";
-    return JSON.stringify({
-      url: defaultUrl,
-      playUrl: defaultUrl,
-      headers: {}
-    });
-  }
+  return parseDetailResponse(htmlResponse, fallbackUrl, datasend);
 }
