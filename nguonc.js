@@ -11,7 +11,7 @@ function getManifest() {
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
         "isEnabled": true,
         "type": "MOVIE",
-        "playerType": "exoplayer"
+        "playerType": "webview" // Chuyển playerType sang webview để app khởi tạo engine trình duyệt
     });
 }
 
@@ -186,23 +186,7 @@ function parseMovieDetail(apiResponseJson) {
                         var embed = ep.embed || ep.link_embed || "";
                         var m3u8 = ep.m3u8 || ep.link_m3u8 || "";
 
-                        var playTarget = "";
-
-                        // CASE 1: Lấy m3u8 trực tiếp nếu API có
-                        if (m3u8 && m3u8.indexOf(".m3u8") !== -1) {
-                            playTarget = m3u8;
-                        } 
-                        // CASE 2: Nếu chỉ có embed, tự động bóc tách hash thành stream endpoint dành cho ExoPlayer
-                        else if (embed) {
-                            var hashMatch = embed.match(/hash=([a-zA-Z0-9_-]+)/i);
-                            if (hashMatch) {
-                                var hash = hashMatch[1];
-                                // Tự động reroute qua Proxy HLS Stream Resolver để các app thường phát thẳng m3u8
-                                playTarget = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embed) + "&res=4";
-                            } else {
-                                playTarget = embed;
-                            }
-                        }
+                        var playTarget = embed || m3u8;
 
                         if (playTarget) {
                             episodes.push({
@@ -210,6 +194,7 @@ function parseMovieDetail(apiResponseJson) {
                                 url: playTarget,
                                 file: playTarget,
                                 link: playTarget,
+                                embedUrl: embed,
                                 datasend: playTarget,
                                 name: ep.name || ep.episode_name || "Tập",
                                 slug: ep.slug || ep.episode_slug || ""
@@ -265,31 +250,24 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// STREAM PARSER
+// STREAM RESOLVER (CẤU HÌNH WEBVIEW HTML RENDERING)
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var rawUrl = fallbackUrl || datasend || "";
-        var finalUrl = rawUrl;
-
-        if (htmlResponse && typeof htmlResponse === 'string') {
-            var match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
-            if (match) {
-                finalUrl = match[1];
-            }
-        }
+        var targetUrl = fallbackUrl || datasend || "";
 
         return JSON.stringify({
-            url: finalUrl,
-            playUrl: finalUrl,
-            file: finalUrl,
-            link: finalUrl,
-            mimeType: finalUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
+            url: targetUrl,
+            playUrl: targetUrl,
+            file: targetUrl,
+            embedUrl: targetUrl,
+            isEmbed: true,
+            useWebView: true,
             headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                "Referer": "https://embed14.streamc.xyz/",
-                "Origin": "https://embed14.streamc.xyz"
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+                "Referer": "https://phim.nguonc.com/",
+                "Origin": "https://phim.nguonc.com"
             }
         });
     } catch (error) {
