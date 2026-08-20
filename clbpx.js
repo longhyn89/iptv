@@ -136,6 +136,12 @@ function parseMovieDetail(htmlResponse) {
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
+    // Bổ sung Regex lấy Mô Tả Phim
+    var descMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
+    if (descMatch) {
+      description = descMatch[1].replace(/<[^>]+>/g, '').trim();
+    }
+
     var year = 0;
     var yearMatch = title.match(/(19\d{2}|20\d{2})/);
     if (yearMatch) year = parseInt(yearMatch[1], 10);
@@ -152,16 +158,15 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // Luồng mặc định duy nhất (res=5 tương đương 1080p)
-      var embedUrl = "https://abyssplayer.com/" + videoId;
-      var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2879240765";
+      // Đường dẫn API JSON để lấy danh sách stream thực tế của server
+      var jsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
 
       episodes.push({
-        id: directMp4,
-        url: directMp4,
-        file: directMp4,
-        link: directMp4,
-        datasend: directMp4,
+        id: jsonUrl,
+        url: jsonUrl,
+        file: jsonUrl,
+        link: jsonUrl,
+        datasend: jsonUrl,
         name: epLabel,
         slug: videoId
       });
@@ -185,18 +190,22 @@ function parseMovieDetail(htmlResponse) {
 }
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = fallbackUrl || datasend || "";
+  var streamUrl = "";
 
-  // Bóc tách luồng đầu tiên nếu kết quả trả về là JSON
+  // Bóc tách JSON để lấy duy nhất luồng đầu tiên [0] chuẩn nhất do server cung cấp
   if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
     try {
       var $data = JSON.parse(htmlResponse);
       if ($data && $data.streams && $data.streams.length > 0) {
-        streamUrl = $data.streams[0].url || streamUrl;
+        streamUrl = $data.streams[0].url || "";
       }
     } catch (e) {}
   } else if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
     streamUrl = htmlResponse.trim();
+  }
+
+  if (!streamUrl) {
+    streamUrl = fallbackUrl || datasend || "";
   }
 
   return JSON.stringify({
