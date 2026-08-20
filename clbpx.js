@@ -1,3 +1,7 @@
+// ========================================================
+// CLB PHIM XƯA VIP PLUGIN (FIXED DESCRIPTION & DIRECT STREAM)
+// ========================================================
+
 var BASEURL = "https://clbpx.alokillgtv.workers.dev";
 var BASESOURCE = "";
 
@@ -80,6 +84,22 @@ function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
+function cleanHtmlText(str) {
+  if (!str) return "";
+  return str
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&#8211;/g, '-').replace(/&#8212;/g, '-')
+    .replace(/&#8220;/g, '"').replace(/&#8221;/g, '"')
+    .replace(/&#8216;/g, "'").replace(/&#8217;/g, "'")
+    .replace(/&#038;/g, "&").replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function parseListResponse(htmlResponse, url) {
   var items = [];
   if (!htmlResponse) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
@@ -124,22 +144,50 @@ function parseSearchResponse(htmlResponse) { return parseListResponse(htmlRespon
 function parseMovieDetail(htmlResponse) {
   try {
     var id = "", title = "", posterUrl = "", description = "";
+
+    // 1. Lấy ID
     var slugMatch = htmlResponse.match(/<link rel="canonical" href="([^"]+)"/i);
     if (slugMatch) {
       var parts = slugMatch[1].replace(/\/$/, "").split('/');
       id = parts[parts.length - 1] || "movie";
     } else id = "movie_" + new Date().getTime();
 
-    var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i);
+    // 2. Lấy Tên Phim
+    var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i) || htmlResponse.match(/<h1[^>]*>([^<]+)<\/h1>/i);
     if (titleMatch) title = titleMatch[1].trim().replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
-    
-    var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
+
+    // 3. Lấy Ảnh Poster
+    var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i) || htmlResponse.match(/<meta property="og:image" content="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
+    // 4. BÓC TÁCH MÔ TẢ PHIM (DESCRIPTION)
+    var descMatch = htmlResponse.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i) || htmlResponse.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
+    if (descMatch && descMatch[1].trim().length > 10) {
+      description = descMatch[1];
+    } else {
+      var contentMatch = htmlResponse.match(/<div class="entry-content[^"]*">([\s\S]*?)<\/div>/i) || htmlResponse.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
+      if (contentMatch) {
+        var paragraphs = contentMatch[1].match(/<p>([\s\S]*?)<\/p>/gi);
+        if (paragraphs && paragraphs.length > 0) {
+          var filteredText = [];
+          for (var i = 0; i < paragraphs.length; i++) {
+            var pText = cleanHtmlText(paragraphs[i]);
+            if (pText && !pText.includes("http") && pText.length > 15) {
+              filteredText.push(pText);
+            }
+          }
+          description = filteredText.join("\n\n");
+        }
+      }
+    }
+    description = cleanHtmlText(description);
+
+    // 5. Lấy Năm Phát Hành
     var year = 0;
     var yearMatch = title.match(/(19\d{2}|20\d{2})/);
     if (yearMatch) year = parseInt(yearMatch[1], 10);
 
+    // 6. Bóc Tách Tập Phim & Link MP4 Direct
     var servers = [];
     var episodes = [];
     var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=([a-zA-Z0-9_-]+))"[^>]*>([\s\S]*?)<\/a>/gi;
@@ -152,7 +200,6 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // Đã đổi res=5 thành res=4 (tương đương 720p)
       var embedUrl = "https://abyssplayer.com/" + videoId;
       var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=4&size=2879240765";
 
@@ -187,7 +234,6 @@ function parseMovieDetail(htmlResponse) {
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
   var streamUrl = fallbackUrl || datasend || "";
 
-  // Bóc tách luồng đầu tiên nếu kết quả trả về là JSON
   if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
     try {
       var $data = JSON.parse(htmlResponse);
