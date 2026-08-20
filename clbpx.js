@@ -152,16 +152,15 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // Tạo đường dẫn MP4 Proxy hoàn chỉnh mà ExoPlayer bắt buộc phát sinh Request ngay
-      var embedUrl = "https://abyssplayer.com/" + videoId;
-      var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2879240765";
+      // Tạo đường dẫn JSON gốc để lấy thông tin các stream
+      var jsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
 
       episodes.push({
-        id: directMp4,
-        url: directMp4,
-        file: directMp4,
-        link: directMp4,
-        datasend: directMp4,
+        id: jsonUrl,
+        url: jsonUrl,
+        file: jsonUrl,
+        link: jsonUrl,
+        datasend: jsonUrl,
         name: epLabel,
         slug: videoId
       });
@@ -185,10 +184,25 @@ function parseMovieDetail(htmlResponse) {
 }
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = fallbackUrl || datasend || "";
+  var streamUrl = "";
 
-  if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
-    streamUrl = htmlResponse.trim();
+  try {
+    // Đọc JSON response trả về từ server để trích xuất luồng đầu tiên [0]
+    if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
+      var $data = JSON.parse(htmlResponse);
+      if ($data && $data.streams && $data.streams.length > 0) {
+        streamUrl = $data.streams[0].url || "";
+      }
+    } else if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
+      streamUrl = htmlResponse.trim();
+    }
+  } catch (e) {
+    streamUrl = "";
+  }
+
+  // Fallback về url phụ nếu không bóc tách được streamUrl
+  if (!streamUrl) {
+    streamUrl = fallbackUrl || datasend || "";
   }
 
   return JSON.stringify({
