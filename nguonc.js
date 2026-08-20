@@ -249,56 +249,45 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// MULTI-STEP REQUEST SOLVER (TỰ TẠO REQUEST NHƯ WEBVIEW)
+// HARDCODED DECODER (GIẢI MÃ TRỰC TIẾP HASH SANG M3U8 NATIVE)
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var embedUrl = fallbackUrl || datasend || "";
-        var finalM3u8Url = "";
+        var rawUrl = fallbackUrl || datasend || "";
+        var hashParam = "";
 
+        // Lấy tham số hash từ URL
+        var hashMatch = rawUrl.match(/hash=([a-zA-Z0-9]+)/i);
+        if (hashMatch) {
+            hashParam = hashMatch[1];
+        }
+
+        var finalM3u8 = "";
+
+        // 1. Kiểm tra xem trong htmlResponse có chứa sẵn link playlist .m3u8 không
         if (htmlResponse && typeof htmlResponse === 'string') {
-            // Bước 1: Trích xuất Token Base64 (eyJ...) nằm trong HTML embed.php
-            var tokenMatch = htmlResponse.match(/["'](eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+|eyJ[a-zA-Z0-9_-]+)["']/i) ||
-                             htmlResponse.match(/embed14\.streamc\.xyz\/(eyJ[a-zA-Z0-9_-]+)/i);
-
-            if (tokenMatch && tokenMatch[1]) {
-                var token = tokenMatch[1];
-                var tokenApiUrl = "https://embed14.streamc.xyz/" + token;
-
-                // Bước 2: Bắt App/Core gửi HTTP Request thứ 2 trực tiếp lên API Token
-                return JSON.stringify({
-                    nextUrl: tokenApiUrl, // Yêu cầu core gửi tiếp request lấy m3u8
-                    url: tokenApiUrl,
-                    headers: {
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "Referer": embedUrl,
-                        "Origin": "https://embed14.streamc.xyz",
-                        "Accept": "application/json, text/plain, */*"
-                    }
-                });
-            }
-
-            // Bước Fallback: Nếu htmlResponse trả về chính là kết quả JSON của request Token
-            try {
-                var jsonResp = JSON.parse(htmlResponse);
-                if (jsonResp.file || jsonResp.url || jsonResp.data) {
-                    finalM3u8Url = jsonResp.file || jsonResp.url || jsonResp.data;
-                }
-            } catch(e) {
-                // Regex trực tiếp nếu file HTML có sẵn m3u8
-                var directM3u8 = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
-                if (directM3u8) finalM3u8Url = directM3u8[1];
+            var directMatch = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+            if (directMatch) {
+                finalM3u8 = directMatch[1];
             }
         }
 
-        if (!finalM3u8Url) finalM3u8Url = embedUrl;
+        // 2. Nếu không tìm thấy trong HTML, tự động dựng cấu hình CDN Direct Stream từ hash
+        if (!finalM3u8 && hashParam) {
+            // Định dạng Endpoint M3U8 chuẩn của hệ thống StreamC / NguonC CDN
+            finalM3u8 = "https://jps14.hihihoho4.top/hls/" + hashParam + "/index.m3u8";
+        }
 
-        // Bước 3: Trả về URL m3u8 cuối cùng cho ExoPlayer
+        if (!finalM3u8) {
+            finalM3u8 = rawUrl;
+        }
+
         return JSON.stringify({
-            url: finalM3u8Url,
-            playUrl: finalM3u8Url,
-            file: finalM3u8Url,
+            url: finalM3u8,
+            playUrl: finalM3u8,
+            file: finalM3u8,
+            link: finalM3u8,
             mimeType: "application/x-mpegURL",
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
