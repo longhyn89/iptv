@@ -1,5 +1,5 @@
 // ========================================================
-// SIÊU TẦM PHIM VAAPP PLUGIN (FIXED 2-STEP STREAM EXTRACTION)
+// SIÊU TẦM PHIM VAAPP PLUGIN (DIRECT PROXY STREAM FIX)
 // ========================================================
 
 var BASE_URL = "https://www.sieutamphim.pro";
@@ -143,7 +143,7 @@ function parseSearchResponse(html) {
 }
 
 // ========================================================
-// PARSE DETAIL
+// PARSE DETAIL (TỰ GIẢI MÃ VÀ DỰNG MP4 PROXY TRỰC TIẾP)
 // ========================================================
 
 function extractYearFromText(str) {
@@ -216,31 +216,55 @@ function parseMovieDetail(html, url) {
       var epBlockRegex = new RegExp('data-server=["\']' + serverId + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
       var epBlockMatch = contentHtml.match(epBlockRegex);
 
-      var epCount = 0;
+      var episodes = [];
+
       if (epBlockMatch) {
         var rawEpisodes = epBlockMatch[2];
         var epRegex = /{"([^"]+)","([^"]+)"}/g;
-        while (epRegex.exec(rawEpisodes) !== null) {
+        var epMatch;
+        var epCount = 1;
+
+        while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
+          var rawSrc = epMatch[1];
+          var epName = epMatch[2] || ("Tập " + epCount);
+
+          // 1. Giải mã chuỗi mã hóa XOR 42
+          var decrypted = "";
+          for (var k = 0; k < rawSrc.length; k++) {
+            decrypted += String.fromCharCode(rawSrc.charCodeAt(k) ^ 42);
+          }
+
+          var finalDirectUrl = decrypted;
+
+          // 2. Nếu là link Embed (chứa abyssplayer.com) -> Chuyển thành link MP4 Proxy 720p (res=4) trực tiếp
+          if (decrypted.indexOf(".m3u8") === -1 && decrypted.indexOf(".mp4") === -1) {
+            var embedUrl = decrypted;
+            if (!embedUrl.startsWith("http")) {
+              embedUrl = "https://abyssplayer.com/" + embedUrl.replace(/^\//, "");
+            }
+            finalDirectUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=4&size=2879240765";
+          }
+
+          episodes.push({
+            id: finalDirectUrl,
+            url: finalDirectUrl,
+            file: finalDirectUrl,
+            link: finalDirectUrl,
+            datasend: finalDirectUrl,
+            name: epName,
+            slug: "tap-" + epCount
+          });
+
           epCount++;
         }
       }
 
-      if (epCount === 0) epCount = 1;
-
-      var episodes = [];
-      for (var j = 1; j <= epCount; j++) {
-        var streamId = movieUrl + (movieUrl.includes("?") ? "&" : "?") + "server=" + encodeURIComponent(serverId) + "&tap=" + j;
-        episodes.push({
-          id: streamId,
-          name: epCount === 1 ? "Full" : "Tập " + j,
-          slug: "tap-" + j
+      if (episodes.length > 0) {
+        servers.push({
+          name: serverId.toUpperCase(),
+          episodes: episodes
         });
       }
-
-      servers.push({
-        name: serverId.toUpperCase(),
-        episodes: episodes
-      });
     }
 
     return JSON.stringify({
@@ -262,129 +286,29 @@ function parseMovieDetail(html, url) {
 }
 
 // ========================================================
-// PARSE STREAM (BẮT BUỘC TẢI HTML EMBED TRƯỚC KHI TRÍCH STREAM)
+// STREAM HANDLER (BẢO HIỂM LẠI LINK MP4 PROXY)
 // ========================================================
 
-function parseDetailResponse(html, url) {
-  log("Parsing Stream for: " + url);
-  try {
-    if (url.includes("server=") && url.includes("tap=")) {
-      var server = (url.match(/server=([^&]+)/) || [])[1];
-      var tapStr = (url.match(/tap=(\d+)/) || [])[1];
-      var tap = parseInt(tapStr, 10);
+function parseDetailResponse(html, fallbackUrl, datasend) {
+  var streamUrl = fallbackUrl || datasend || html || "";
+  if (typeof streamUrl === 'string') streamUrl = streamUrl.trim();
 
-      if (server && tap) {
-        var epBlockRegex = new RegExp('data-server=["\']' + server + '["\'][\\s\\S]*?data-episodes=([\'"])([\\s\\S]*?)\\1', "i");
-        var epBlockMatch = html.match(epBlockRegex);
-
-        if (epBlockMatch) {
-          var rawEpisodes = epBlockMatch[2];
-          var epRegex = /{"([^"]+)","([^"]+)"}/g;
-          var epMatch;
-          var currentIndex = 1;
-          while ((epMatch = epRegex.exec(rawEpisodes)) !== null) {
-            if (currentIndex === tap) {
-              var rawSrc = epMatch[1];
-              var decrypted = "";
-              for (var i = 0; i < rawSrc.length; i++) {
-                decrypted += String.fromCharCode(rawSrc.charCodeAt(i) ^ 42);
-              }
-
-              // Nếu chứa trực tiếp link m3u8
-              if (decrypted.indexOf(".m3u8") !== -1) {
-                return JSON.stringify({
-                  url: decrypted,
-                  mimeType: "application/x-mpegURL",
-                  isEmbed: false
-                });
-              }
-
-              // Yêu cầu Native App thực hiện GET Request đến URL Player đã giải mã
-              // Điều này ép App phải tải HTML của Player chứ không dùng WebView
-              return JSON.stringify({
-                url: decrypted,
-                isEmbed: false,
-                datasend: "true",
-                headers: {
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                  "Referer": BASE_URL
-                }
-              });
-            }
-            currentIndex++;
-          }
-        }
-      }
+  return JSON.stringify({
+    url: streamUrl,
+    playUrl: streamUrl,
+    file: streamUrl,
+    link: streamUrl,
+    mimeType: streamUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Referer": "https://sc.k-20.xyz/",
+      "Accept": "*/*"
     }
-
-    return JSON.stringify({ url: url, isEmbed: false });
-  } catch (e) {
-    return JSON.stringify({ url: "", isEmbed: false });
-  }
+  });
 }
 
 function parseEmbedResponse(html, sourceUrl, datasend) {
-  log("Parsing Embed HTML payload...");
-  try {
-    if (!html) return JSON.stringify({ url: sourceUrl, isEmbed: false });
-
-    // 1. Tìm trực tiếp URL m3u8 hoặc mp4 trong HTML của trang Player
-    var directMediaMatch = html.match(/(https?:\/\/[^"'\s\\]+?\.(?:m3u8|mp4)[^"'\s\\]*)/i);
-    if (directMediaMatch) {
-      var directUrl = directMediaMatch[1].replace(/\\/g, '');
-      return JSON.stringify({
-        url: directUrl,
-        mimeType: directUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
-        isEmbed: false,
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-          "Referer": sourceUrl
-        }
-      });
-    }
-
-    // 2. Tìm API JSON k-20.xyz nhúng trong HTML Player
-    var k20ApiMatch = html.match(/(https?:\/\/sc\.k-20\.xyz\/stream\/[^\s"'\\]+)/i);
-    if (k20ApiMatch) {
-      var apiUrl = k20ApiMatch[1].replace(/\\/g, '');
-      
-      // Trả về URL API này với datasend: "true" để App tiếp tục Fetch JSON
-      return JSON.stringify({
-        url: apiUrl,
-        isEmbed: false,
-        datasend: "true",
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-          "Referer": "https://sc.k-20.xyz/"
-        }
-      });
-    }
-
-    // 3. Nếu Dữ liệu gửi về là JSON trả về từ k-20.xyz
-    if (html.trim().startsWith("{")) {
-      var data = JSON.parse(html);
-      if (data && data.streams && data.streams.length > 0) {
-        var finalMediaUrl = data.streams[0].url;
-        return JSON.stringify({
-          url: finalMediaUrl,
-          mimeType: finalMediaUrl.includes(".m3u8") ? "application/x-mpegURL" : "video/mp4",
-          isEmbed: false,
-          headers: {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://sc.k-20.xyz/"
-          }
-        });
-      }
-    }
-  } catch (e) {
-    log("Error parsing embed: " + e.message);
-  }
-
-  // Nếu không trích xuất được link direct, giữ isEmbed: false để không đẩy ra WebView
-  return JSON.stringify({
-    url: sourceUrl,
-    isEmbed: false
-  });
+  return parseDetailResponse(html, sourceUrl, datasend);
 }
 
 // ========================================================
