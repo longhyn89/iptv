@@ -152,9 +152,9 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // Luồng mặc định duy nhất (res=5 tương đương 1080p)
+      // Đã đổi res=5 thành res=4 (tương đương 720p)
       var embedUrl = "https://abyssplayer.com/" + videoId;
-      var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2879240765";
+      var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=4&size=2879240765";
 
       episodes.push({
         id: directMp4,
