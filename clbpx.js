@@ -136,7 +136,7 @@ function parseMovieDetail(htmlResponse) {
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
-    // Bổ sung Regex lấy Mô Tả Phim
+    // SỬA 1: Trích xuất Mô tả nội dung phim
     var descMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
     if (descMatch) {
       description = descMatch[1].replace(/<[^>]+>/g, '').trim();
@@ -158,15 +158,15 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // Đường dẫn API JSON để lấy danh sách stream thực tế của server
-      var jsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      // SỬA 2: Lấy JSON luồng stream chuẩn từ server thay vì gán cứng res=5
+      var directMp4 = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
 
       episodes.push({
-        id: jsonUrl,
-        url: jsonUrl,
-        file: jsonUrl,
-        link: jsonUrl,
-        datasend: jsonUrl,
+        id: directMp4,
+        url: directMp4,
+        file: directMp4,
+        link: directMp4,
+        datasend: directMp4,
         name: epLabel,
         slug: videoId
       });
@@ -190,22 +190,18 @@ function parseMovieDetail(htmlResponse) {
 }
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = "";
+  var streamUrl = fallbackUrl || datasend || "";
 
-  // Bóc tách JSON để lấy duy nhất luồng đầu tiên [0] chuẩn nhất do server cung cấp
+  // Lấy luồng đầu tiên [0] chuẩn do server trả về
   if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
     try {
       var $data = JSON.parse(htmlResponse);
       if ($data && $data.streams && $data.streams.length > 0) {
-        streamUrl = $data.streams[0].url || "";
+        streamUrl = $data.streams[0].url || streamUrl;
       }
     } catch (e) {}
   } else if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
     streamUrl = htmlResponse.trim();
-  }
-
-  if (!streamUrl) {
-    streamUrl = fallbackUrl || datasend || "";
   }
 
   return JSON.stringify({
