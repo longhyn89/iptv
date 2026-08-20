@@ -136,13 +136,13 @@ function parseMovieDetail(htmlResponse) {
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
-    // FIX MÔ TẢ: Bóc tách đúng nội dung đoạn văn, loại bỏ phần diễn viên/đạo diễn
-    var descMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
-    if (descMatch) {
-      var rawDesc = descMatch[1];
-      // Bỏ đoạn chứa thông tin diễn viên/đạo diễn nếu có
-      rawDesc = rawDesc.replace(/<p>[\s\S]*?(?:Diễn viên|Đạo diễn|Quốc gia)[\s\S]*?<\/p>/gi, '');
-      description = rawDesc.replace(/<[^>]+>/g, '').trim();
+    // CẮT ĐÚNG NỘI DUNG MÔ TẢ (Bỏ đoạn thông tin diễn viên)
+    var descArea = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
+    if (descArea) {
+      var content = descArea[1];
+      // Tách bỏ phần thẻ chứa thông tin Diễn viên/Đạo diễn
+      var cleanContent = content.replace(/<p[^>]*>[\s\S]*?(?:Diễn viên|Đạo diễn|Quốc gia|Thể loại)[\s\S]*?<\/p>/gi, '');
+      description = cleanContent.replace(/<[^>]+>/g, '').trim();
     }
 
     var year = 0;
@@ -161,14 +161,13 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      var jsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      var jsonApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
 
-      // FIX REQUEST: Chỉ định link json vào thuộc tính "link" & "datasend", giữ "url" dạng endpoint để kích hoạt Fetch Request
+      // Đưa jsonApi vào 'url' và 'id' để ép App bắt buộc gửi Request tới API lấy dữ liệu JSON về
       episodes.push({
-        id: jsonUrl,
-        url: jsonUrl,
-        link: jsonUrl,
-        datasend: jsonUrl,
+        id: jsonApi,
+        url: jsonApi,
+        datasend: jsonApi,
         name: epLabel,
         slug: videoId
       });
@@ -194,10 +193,10 @@ function parseMovieDetail(htmlResponse) {
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
   var streamUrl = "";
 
-  if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
+  // Nhận dữ liệu JSON trả về từ Request và chọn duy nhất luồng đầu tiên [0]
+  if (typeof htmlResponse === 'string' && htmlResponse.trim().startsWith('{')) {
     try {
       var $data = JSON.parse(htmlResponse);
-      // Tự động lấy luôn luồng đầu tiên [0] sẵn có từ Server
       if ($data && $data.streams && $data.streams.length > 0) {
         streamUrl = $data.streams[0].url || "";
       }
