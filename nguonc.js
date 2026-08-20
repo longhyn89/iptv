@@ -186,27 +186,26 @@ function parseMovieDetail(apiResponseJson) {
                         var embed = ep.embed || ep.link_embed || "";
                         var m3u8 = ep.m3u8 || ep.link_m3u8 || "";
 
-                        // ƯU TIÊN 1: Lấy link m3u8 trực tiếp nếu có
-                        var finalStreamUrl = m3u8;
-
-                        // ƯU TIÊN 2: Nếu chỉ có embed, trích xuất hash để phát trực tiếp
-                        if (!finalStreamUrl && embed) {
+                        // Bóc tách Hash từ Embed nếu không có m3u8 trực tiếp
+                        var playTarget = m3u8;
+                        if (!playTarget && embed) {
                             var hashMatch = embed.match(/hash=([a-zA-Z0-9_-]+)/i);
                             if (hashMatch) {
-                                // Gọi qua Proxy giải mã stream trực tiếp bằng hash
-                                finalStreamUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embed) + "&res=4";
+                                var hash = hashMatch[1];
+                                // Chuyển sang link bóc tách HLS chuẩn của Server NguonC
+                                playTarget = "https://embed14.streamc.xyz/embed.php?hash=" + hash;
                             } else {
-                                finalStreamUrl = embed;
+                                playTarget = embed;
                             }
                         }
 
-                        if (finalStreamUrl) {
+                        if (playTarget) {
                             episodes.push({
-                                id: finalStreamUrl,
-                                url: finalStreamUrl,
-                                file: finalStreamUrl,
-                                link: finalStreamUrl,
-                                datasend: finalStreamUrl,
+                                id: playTarget,
+                                url: playTarget,
+                                file: playTarget,
+                                link: playTarget,
+                                datasend: playTarget,
                                 name: ep.name || ep.episode_name || "Tập",
                                 slug: ep.slug || ep.episode_slug || ""
                             });
@@ -261,21 +260,33 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// DIRECT EXOPLAYER STREAM PARSER
+// STREAM RESOLVER (SỬA LỖI HTTP 400 & MISSING PARAM)
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var streamUrl = fallbackUrl || datasend || "";
+        var inputUrl = fallbackUrl || datasend || "";
+        var streamUrl = "";
 
+        // 1. Nếu htmlResponse trả về mã nguồn trang embed.php, bóc tách m3u8 hoặc domain stream
         if (htmlResponse && typeof htmlResponse === 'string') {
-            // Nếu htmlResponse bóc tách được link m3u8 chuẩn
-            var m3u8Match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+            var m3u8Match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i) ||
+                            htmlResponse.match(/file\s*:\s*["']([^"']+\.m3u8[^"']*)["']/i);
             if (m3u8Match) {
                 streamUrl = m3u8Match[1];
             }
         }
 
+        // 2. Trường hợp chưa bóc tách được m3u8, đẩy sang Server Proxy giải mã tự động
+        if (!streamUrl) {
+            if (inputUrl.indexOf(".m3u8") !== -1) {
+                streamUrl = inputUrl;
+            } else {
+                streamUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(inputUrl) + "&res=4";
+            }
+        }
+
+        // 3. Cấu hình Headers chuẩn như Web Browser để tránh HTTP 400 / 403
         return JSON.stringify({
             url: streamUrl,
             playUrl: streamUrl,
@@ -283,9 +294,12 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
             link: streamUrl,
             mimeType: streamUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
             headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
                 "Referer": "https://embed14.streamc.xyz/",
-                "Origin": "https://embed14.streamc.xyz"
+                "Origin": "https://embed14.streamc.xyz",
+                "Accept": "*/*",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "cross-site"
             }
         });
     } catch (error) {
