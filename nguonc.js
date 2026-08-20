@@ -11,7 +11,7 @@ function getManifest() {
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
         "isEnabled": true,
         "type": "MOVIE",
-        "playerType": "exoplayer" // Chuyển cấu hình trình phát sang ExoPlayer
+        "playerType": "exoplayer"
     });
 }
 
@@ -185,15 +185,28 @@ function parseMovieDetail(apiResponseJson) {
                     serverItems.forEach(function (ep) {
                         var embed = ep.embed || ep.link_embed || "";
                         var m3u8 = ep.m3u8 || ep.link_m3u8 || "";
-                        var link = embed || m3u8;
 
-                        if (link) {
+                        // ƯU TIÊN 1: Lấy link m3u8 trực tiếp nếu có
+                        var finalStreamUrl = m3u8;
+
+                        // ƯU TIÊN 2: Nếu chỉ có embed, trích xuất hash để phát trực tiếp
+                        if (!finalStreamUrl && embed) {
+                            var hashMatch = embed.match(/hash=([a-zA-Z0-9_-]+)/i);
+                            if (hashMatch) {
+                                // Gọi qua Proxy giải mã stream trực tiếp bằng hash
+                                finalStreamUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embed) + "&res=4";
+                            } else {
+                                finalStreamUrl = embed;
+                            }
+                        }
+
+                        if (finalStreamUrl) {
                             episodes.push({
-                                id: link,
-                                url: link,
-                                file: link,
-                                link: link,
-                                datasend: link,
+                                id: finalStreamUrl,
+                                url: finalStreamUrl,
+                                file: finalStreamUrl,
+                                link: finalStreamUrl,
+                                datasend: finalStreamUrl,
                                 name: ep.name || ep.episode_name || "Tập",
                                 slug: ep.slug || ep.episode_slug || ""
                             });
@@ -253,40 +266,13 @@ function parseMovieDetail(apiResponseJson) {
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var embedUrl = fallbackUrl || datasend || "";
-        var streamUrl = "";
+        var streamUrl = fallbackUrl || datasend || "";
 
-        if (htmlResponse) {
-            // 1. Tìm trực tiếp chuỗi link .m3u8 trong mã nguồn JavaScript/Embed HTML
-            var m3u8Regex = /(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i;
-            var match = htmlResponse.match(m3u8Regex);
-
-            if (match) {
-                streamUrl = match[1];
-            } else {
-                // 2. Tìm qua thuộc tính file/source trong Player Config
-                var configMatch = htmlResponse.match(/(?:file|source|src)\s*:\s*["']([^"']+\.m3u8[^"']*)["']/i);
-                if (configMatch) {
-                    streamUrl = configMatch[1];
-                }
-            }
-        }
-
-        // 3. Sử dụng Proxy giải mã dự phòng nếu không tự bóc tách được từ HTML
-        if (!streamUrl && embedUrl) {
-            if (embedUrl.indexOf(".m3u8") !== -1) {
-                streamUrl = embedUrl;
-            } else {
-                streamUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=4";
-            }
-        }
-
-        // Xác định Domain để cấu hình Referer phù hợp
-        var refererHeader = "https://embed.streamc.xyz/";
-        if (embedUrl) {
-            var domainMatch = embedUrl.match(/https?:\/\/[^\/]+/i);
-            if (domainMatch) {
-                refererHeader = domainMatch[0] + "/";
+        if (htmlResponse && typeof htmlResponse === 'string') {
+            // Nếu htmlResponse bóc tách được link m3u8 chuẩn
+            var m3u8Match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+            if (m3u8Match) {
+                streamUrl = m3u8Match[1];
             }
         }
 
@@ -298,8 +284,8 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
             mimeType: streamUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                "Referer": refererHeader,
-                "Origin": refererHeader.replace(/\/$/, "")
+                "Referer": "https://embed14.streamc.xyz/",
+                "Origin": "https://embed14.streamc.xyz"
             }
         });
     } catch (error) {
