@@ -136,15 +136,6 @@ function parseMovieDetail(htmlResponse) {
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
-    // CẮT ĐÚNG NỘI DUNG MÔ TẢ (Bỏ đoạn thông tin diễn viên)
-    var descArea = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
-    if (descArea) {
-      var content = descArea[1];
-      // Tách bỏ phần thẻ chứa thông tin Diễn viên/Đạo diễn
-      var cleanContent = content.replace(/<p[^>]*>[\s\S]*?(?:Diễn viên|Đạo diễn|Quốc gia|Thể loại)[\s\S]*?<\/p>/gi, '');
-      description = cleanContent.replace(/<[^>]+>/g, '').trim();
-    }
-
     var year = 0;
     var yearMatch = title.match(/(19\d{2}|20\d{2})/);
     if (yearMatch) year = parseInt(yearMatch[1], 10);
@@ -161,13 +152,16 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      var jsonApi = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      // Luồng mặc định duy nhất (res=5 tương đương 1080p)
+      var embedUrl = "https://abyssplayer.com/" + videoId;
+      var directMp4 = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2879240765";
 
-      // Đưa jsonApi vào 'url' và 'id' để ép App bắt buộc gửi Request tới API lấy dữ liệu JSON về
       episodes.push({
-        id: jsonApi,
-        url: jsonApi,
-        datasend: jsonApi,
+        id: directMp4,
+        url: directMp4,
+        file: directMp4,
+        link: directMp4,
+        datasend: directMp4,
         name: epLabel,
         slug: videoId
       });
@@ -191,22 +185,18 @@ function parseMovieDetail(htmlResponse) {
 }
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = "";
+  var streamUrl = fallbackUrl || datasend || "";
 
-  // Nhận dữ liệu JSON trả về từ Request và chọn duy nhất luồng đầu tiên [0]
-  if (typeof htmlResponse === 'string' && htmlResponse.trim().startsWith('{')) {
+  // Bóc tách luồng đầu tiên nếu kết quả trả về là JSON
+  if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
     try {
       var $data = JSON.parse(htmlResponse);
       if ($data && $data.streams && $data.streams.length > 0) {
-        streamUrl = $data.streams[0].url || "";
+        streamUrl = $data.streams[0].url || streamUrl;
       }
     } catch (e) {}
   } else if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
     streamUrl = htmlResponse.trim();
-  }
-
-  if (!streamUrl) {
-    streamUrl = fallbackUrl || datasend || "";
   }
 
   return JSON.stringify({
