@@ -249,45 +249,20 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// HARDCODED DECODER (GIẢI MÃ TRỰC TIẾP HASH SANG M3U8 NATIVE)
+// STREAM RESOLVER (SỬ DỤNG CLOUDFLARE WORKER PROXY)
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var rawUrl = fallbackUrl || datasend || "";
-        var hashParam = "";
-
-        // Lấy tham số hash từ URL
-        var hashMatch = rawUrl.match(/hash=([a-zA-Z0-9]+)/i);
-        if (hashMatch) {
-            hashParam = hashMatch[1];
-        }
-
-        var finalM3u8 = "";
-
-        // 1. Kiểm tra xem trong htmlResponse có chứa sẵn link playlist .m3u8 không
-        if (htmlResponse && typeof htmlResponse === 'string') {
-            var directMatch = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
-            if (directMatch) {
-                finalM3u8 = directMatch[1];
-            }
-        }
-
-        // 2. Nếu không tìm thấy trong HTML, tự động dựng cấu hình CDN Direct Stream từ hash
-        if (!finalM3u8 && hashParam) {
-            // Định dạng Endpoint M3U8 chuẩn của hệ thống StreamC / NguonC CDN
-            finalM3u8 = "https://jps14.hihihoho4.top/hls/" + hashParam + "/index.m3u8";
-        }
-
-        if (!finalM3u8) {
-            finalM3u8 = rawUrl;
-        }
+        var rawEmbedUrl = fallbackUrl || datasend || "";
+        
+        // Trỏ qua Cloudflare Worker vừa tạo để bóc tách token ngầm
+        var proxyWorkerUrl = "https://nguonc.longdn-hyn89.workers.dev/?embed=" + encodeURIComponent(rawEmbedUrl);
 
         return JSON.stringify({
-            url: finalM3u8,
-            playUrl: finalM3u8,
-            file: finalM3u8,
-            link: finalM3u8,
+            url: proxyWorkerUrl,
+            playUrl: proxyWorkerUrl,
+            file: proxyWorkerUrl,
             mimeType: "application/x-mpegURL",
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
