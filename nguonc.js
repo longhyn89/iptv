@@ -186,14 +186,19 @@ function parseMovieDetail(apiResponseJson) {
                         var embed = ep.embed || ep.link_embed || "";
                         var m3u8 = ep.m3u8 || ep.link_m3u8 || "";
 
-                        // Bóc tách Hash từ Embed nếu không có m3u8 trực tiếp
-                        var playTarget = m3u8;
-                        if (!playTarget && embed) {
+                        var playTarget = "";
+
+                        // CASE 1: Lấy m3u8 trực tiếp nếu API có
+                        if (m3u8 && m3u8.indexOf(".m3u8") !== -1) {
+                            playTarget = m3u8;
+                        } 
+                        // CASE 2: Nếu chỉ có embed, tự động bóc tách hash thành stream endpoint dành cho ExoPlayer
+                        else if (embed) {
                             var hashMatch = embed.match(/hash=([a-zA-Z0-9_-]+)/i);
                             if (hashMatch) {
                                 var hash = hashMatch[1];
-                                // Chuyển sang link bóc tách HLS chuẩn của Server NguonC
-                                playTarget = "https://embed14.streamc.xyz/embed.php?hash=" + hash;
+                                // Tự động reroute qua Proxy HLS Stream Resolver để các app thường phát thẳng m3u8
+                                playTarget = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(embed) + "&res=4";
                             } else {
                                 playTarget = embed;
                             }
@@ -260,46 +265,31 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// STREAM RESOLVER (SỬA LỖI HTTP 400 & MISSING PARAM)
+// STREAM PARSER
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var inputUrl = fallbackUrl || datasend || "";
-        var streamUrl = "";
+        var rawUrl = fallbackUrl || datasend || "";
+        var finalUrl = rawUrl;
 
-        // 1. Nếu htmlResponse trả về mã nguồn trang embed.php, bóc tách m3u8 hoặc domain stream
         if (htmlResponse && typeof htmlResponse === 'string') {
-            var m3u8Match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i) ||
-                            htmlResponse.match(/file\s*:\s*["']([^"']+\.m3u8[^"']*)["']/i);
-            if (m3u8Match) {
-                streamUrl = m3u8Match[1];
+            var match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+            if (match) {
+                finalUrl = match[1];
             }
         }
 
-        // 2. Trường hợp chưa bóc tách được m3u8, đẩy sang Server Proxy giải mã tự động
-        if (!streamUrl) {
-            if (inputUrl.indexOf(".m3u8") !== -1) {
-                streamUrl = inputUrl;
-            } else {
-                streamUrl = "https://sc.k-20.xyz/hx-mp4?embed=" + encodeURIComponent(inputUrl) + "&res=4";
-            }
-        }
-
-        // 3. Cấu hình Headers chuẩn như Web Browser để tránh HTTP 400 / 403
         return JSON.stringify({
-            url: streamUrl,
-            playUrl: streamUrl,
-            file: streamUrl,
-            link: streamUrl,
-            mimeType: streamUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
+            url: finalUrl,
+            playUrl: finalUrl,
+            file: finalUrl,
+            link: finalUrl,
+            mimeType: finalUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
             headers: {
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
                 "Referer": "https://embed14.streamc.xyz/",
-                "Origin": "https://embed14.streamc.xyz",
-                "Accept": "*/*",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Site": "cross-site"
+                "Origin": "https://embed14.streamc.xyz"
             }
         });
     } catch (error) {
