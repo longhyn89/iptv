@@ -136,10 +136,13 @@ function parseMovieDetail(htmlResponse) {
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
-    // SỬA 1: Trích xuất Mô tả nội dung phim
+    // FIX MÔ TẢ: Bóc tách đúng nội dung đoạn văn, loại bỏ phần diễn viên/đạo diễn
     var descMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
     if (descMatch) {
-      description = descMatch[1].replace(/<[^>]+>/g, '').trim();
+      var rawDesc = descMatch[1];
+      // Bỏ đoạn chứa thông tin diễn viên/đạo diễn nếu có
+      rawDesc = rawDesc.replace(/<p>[\s\S]*?(?:Diễn viên|Đạo diễn|Quốc gia)[\s\S]*?<\/p>/gi, '');
+      description = rawDesc.replace(/<[^>]+>/g, '').trim();
     }
 
     var year = 0;
@@ -158,15 +161,14 @@ function parseMovieDetail(htmlResponse) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
-      // SỬA 2: Lấy JSON luồng stream chuẩn từ server thay vì gán cứng res=5
-      var directMp4 = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
+      var jsonUrl = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json";
 
+      // FIX REQUEST: Chỉ định link json vào thuộc tính "link" & "datasend", giữ "url" dạng endpoint để kích hoạt Fetch Request
       episodes.push({
-        id: directMp4,
-        url: directMp4,
-        file: directMp4,
-        link: directMp4,
-        datasend: directMp4,
+        id: jsonUrl,
+        url: jsonUrl,
+        link: jsonUrl,
+        datasend: jsonUrl,
         name: epLabel,
         slug: videoId
       });
@@ -190,18 +192,22 @@ function parseMovieDetail(htmlResponse) {
 }
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = fallbackUrl || datasend || "";
+  var streamUrl = "";
 
-  // Lấy luồng đầu tiên [0] chuẩn do server trả về
   if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
     try {
       var $data = JSON.parse(htmlResponse);
+      // Tự động lấy luôn luồng đầu tiên [0] sẵn có từ Server
       if ($data && $data.streams && $data.streams.length > 0) {
-        streamUrl = $data.streams[0].url || streamUrl;
+        streamUrl = $data.streams[0].url || "";
       }
     } catch (e) {}
   } else if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
     streamUrl = htmlResponse.trim();
+  }
+
+  if (!streamUrl) {
+    streamUrl = fallbackUrl || datasend || "";
   }
 
   return JSON.stringify({
