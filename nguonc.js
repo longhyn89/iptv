@@ -249,39 +249,56 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// STREAM RESOLVER (BÓC TÁCH NATIVE KHÔNG CẦN WEBVIEW)
+// MULTI-STEP REQUEST SOLVER (TỰ TẠO REQUEST NHƯ WEBVIEW)
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var finalUrl = fallbackUrl || datasend || "";
+        var embedUrl = fallbackUrl || datasend || "";
+        var finalM3u8Url = "";
 
         if (htmlResponse && typeof htmlResponse === 'string') {
-            // 1. Tìm trực tiếp file .m3u8 trong source HTML
-            var m3u8Match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
-            if (m3u8Match) {
-                finalUrl = m3u8Match[1];
-            } else {
-                // 2. Tìm chuỗi Token/Endpoint Base64 được nhúng trong JWPlayer setup
-                var tokenMatch = htmlResponse.match(/embed14\.streamc\.xyz\/([a-zA-Z0-9+/=]{30,})/i);
-                if (tokenMatch) {
-                    // Tự động tạo link endpoint stream giải mã
-                    finalUrl = "https://embed14.streamc.xyz/" + tokenMatch[1];
-                } else {
-                    // 3. Regex bóc tách iframe src fallback
-                    var iframeMatch = htmlResponse.match(/<iframe[^>]+src=["']([^"']+)["']/i);
-                    if (iframeMatch) {
-                        finalUrl = iframeMatch[1];
+            // Bước 1: Trích xuất Token Base64 (eyJ...) nằm trong HTML embed.php
+            var tokenMatch = htmlResponse.match(/["'](eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+|eyJ[a-zA-Z0-9_-]+)["']/i) ||
+                             htmlResponse.match(/embed14\.streamc\.xyz\/(eyJ[a-zA-Z0-9_-]+)/i);
+
+            if (tokenMatch && tokenMatch[1]) {
+                var token = tokenMatch[1];
+                var tokenApiUrl = "https://embed14.streamc.xyz/" + token;
+
+                // Bước 2: Bắt App/Core gửi HTTP Request thứ 2 trực tiếp lên API Token
+                return JSON.stringify({
+                    nextUrl: tokenApiUrl, // Yêu cầu core gửi tiếp request lấy m3u8
+                    url: tokenApiUrl,
+                    headers: {
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                        "Referer": embedUrl,
+                        "Origin": "https://embed14.streamc.xyz",
+                        "Accept": "application/json, text/plain, */*"
                     }
+                });
+            }
+
+            // Bước Fallback: Nếu htmlResponse trả về chính là kết quả JSON của request Token
+            try {
+                var jsonResp = JSON.parse(htmlResponse);
+                if (jsonResp.file || jsonResp.url || jsonResp.data) {
+                    finalM3u8Url = jsonResp.file || jsonResp.url || jsonResp.data;
                 }
+            } catch(e) {
+                // Regex trực tiếp nếu file HTML có sẵn m3u8
+                var directM3u8 = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+                if (directM3u8) finalM3u8Url = directM3u8[1];
             }
         }
 
+        if (!finalM3u8Url) finalM3u8Url = embedUrl;
+
+        // Bước 3: Trả về URL m3u8 cuối cùng cho ExoPlayer
         return JSON.stringify({
-            url: finalUrl,
-            playUrl: finalUrl,
-            file: finalUrl,
-            link: finalUrl,
+            url: finalM3u8Url,
+            playUrl: finalM3u8Url,
+            file: finalM3u8Url,
             mimeType: "application/x-mpegURL",
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
