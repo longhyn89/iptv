@@ -11,7 +11,7 @@ function getManifest() {
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
         "isEnabled": true,
         "type": "MOVIE",
-        "playerType": "webview" // Chuyển playerType sang webview để app khởi tạo engine trình duyệt
+        "playerType": "exoplayer"
     });
 }
 
@@ -194,7 +194,6 @@ function parseMovieDetail(apiResponseJson) {
                                 url: playTarget,
                                 file: playTarget,
                                 link: playTarget,
-                                embedUrl: embed,
                                 datasend: playTarget,
                                 name: ep.name || ep.episode_name || "Tập",
                                 slug: ep.slug || ep.episode_slug || ""
@@ -250,24 +249,44 @@ function parseMovieDetail(apiResponseJson) {
 }
 
 // =============================================================================
-// STREAM RESOLVER (CẤU HÌNH WEBVIEW HTML RENDERING)
+// STREAM RESOLVER (BÓC TÁCH NATIVE KHÔNG CẦN WEBVIEW)
 // =============================================================================
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
     try {
-        var targetUrl = fallbackUrl || datasend || "";
+        var finalUrl = fallbackUrl || datasend || "";
+
+        if (htmlResponse && typeof htmlResponse === 'string') {
+            // 1. Tìm trực tiếp file .m3u8 trong source HTML
+            var m3u8Match = htmlResponse.match(/(https?:\/\/[^"' ]+\.m3u8[^"' ]*)/i);
+            if (m3u8Match) {
+                finalUrl = m3u8Match[1];
+            } else {
+                // 2. Tìm chuỗi Token/Endpoint Base64 được nhúng trong JWPlayer setup
+                var tokenMatch = htmlResponse.match(/embed14\.streamc\.xyz\/([a-zA-Z0-9+/=]{30,})/i);
+                if (tokenMatch) {
+                    // Tự động tạo link endpoint stream giải mã
+                    finalUrl = "https://embed14.streamc.xyz/" + tokenMatch[1];
+                } else {
+                    // 3. Regex bóc tách iframe src fallback
+                    var iframeMatch = htmlResponse.match(/<iframe[^>]+src=["']([^"']+)["']/i);
+                    if (iframeMatch) {
+                        finalUrl = iframeMatch[1];
+                    }
+                }
+            }
+        }
 
         return JSON.stringify({
-            url: targetUrl,
-            playUrl: targetUrl,
-            file: targetUrl,
-            embedUrl: targetUrl,
-            isEmbed: true,
-            useWebView: true,
+            url: finalUrl,
+            playUrl: finalUrl,
+            file: finalUrl,
+            link: finalUrl,
+            mimeType: "application/x-mpegURL",
             headers: {
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
-                "Referer": "https://phim.nguonc.com/",
-                "Origin": "https://phim.nguonc.com"
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                "Referer": "https://embed14.streamc.xyz/",
+                "Origin": "https://embed14.streamc.xyz"
             }
         });
     } catch (error) {
