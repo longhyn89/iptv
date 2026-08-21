@@ -421,6 +421,12 @@ https://live.fptplay53.net/epzhd1/htvcplus_vhls.smil/chunklist.m3u8
 https://live.fptplay53.net/fnxhd2/anninhtv_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="qpvnhd" group-title="🇻🇳| Địa phương" tvg-logo="https://upload.wikimedia.org/wikipedia/vi/5/5d/QPVN.png", QPVN HD
 https://live.fptplay53.net/fnxhd1/quocphongvnhd_vhls.smil/chunklist.m3u8
+#EXTINF:-1 tvg-id="hitv" group-title="🇻🇳| Địa phương" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823412691/61627b84a612_640_360.png", HiTV
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+https://vmttv.dpdns.org/tv360/?id=hitv
+#EXTINF:-1 tvg-id="youtv" group-title="🇻🇳| Địa phương" tvg-logo="https://img-ali1.tv360.vn/image1/2020_09_23/1600823396313/7b474bf7bbce_640_360.png", YouTV
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+https://freem3u.xyz/api/live/play.m3u8?vid=31
 #EXTINF:-1 tvg-id="vinhlong1hd" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/2MVntS3/THVL1-HD-BEARTV.png", THVL1 HD - Báo và PTTH Vĩnh Long
 #EXTVLCOPT:http-user-agent="CloudTV"
 https://live.fptplay53.net/epzhd2/vinhlong1_vhls.smil/chunklist.m3u8
@@ -783,6 +789,8 @@ https://s7771.cdn.mytvnet.vn/pkg20/live_dzones/aplus.smil/manifest.mpd
 https://cache07.zapitv.com/live/eds_c2/nat_geo_wild_hd/dash_live_ez/nat_geo_wild_hd.mpd
 #EXTINF:-1 tvg-id="Strongman.us@UK" tvg-logo="https://i.imgur.com/bVQBF6R.png" group-title="🌏| Quốc tế",Strongman (720p)
 https://rightsboosterltd-scl-1-eu.rakuten.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="hgtv" group-title="🌏| Quốc tế" tvg-logo="https://raw.githubusercontent.com/vuminhthanh12/Logo/refs/heads/main/hgtv.png", HGTV
+https://vmttv.dpdns.org/tv360/?id=hgtv
 #EXTINF:-1 tvg-id="historyhd" group-title="🌏| Quốc tế" tvg-logo="https://img-zlr1.tv360.vn/image1/2024/06/03/22/1717427367441/869de47c9504_640_360.png", History HD
 https://vmttv.dpdns.org/tv360/?id=history-hd
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://i.imgur.com/HaoVsm5.png" group-title="MyTV",SPOTV (720p)
