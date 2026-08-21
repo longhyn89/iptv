@@ -1300,7 +1300,7 @@ https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv587/manifest.mpd
 #EXTINF:-1 tvg-id="SPOTV2" group-title="Dự phòng",SPOTV2
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
+#KODIPROP:inputstream.adaptive.license_key=02c67d10e32e4fe38028fe8e37b128e6:dcd33b298b14528e649166fcad7ac5ae
 https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv588/manifest.mpd
 
 #EXTINF:-1 tvg-id="ON Sport" group-title="Dự phòng",ON Sport
