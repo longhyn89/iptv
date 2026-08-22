@@ -1392,6 +1392,6 @@ https://vmttv.dpdns.org/tv360/?id=vtvcab-18-on-sports-news
 #KODIPROP:inputstream.adaptive.license_type=clearkey 
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"7oGk1qVUXL-C66XMXke9Ww","k":"LxYg226sOZH50564-tjY3Q"}],"type":"temporary"}
 https://vmttv.dpdns.org/tv360/?id=vtvcab-16-hd
-#EXTINF:-1 tvg-id="ongolf" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF
+#EXTINF:-1 tvg-id="ongolf" group-title="Dự phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 https://vmttv.dpdns.org/tv360/?id=vtvcab-23-golf-channel
