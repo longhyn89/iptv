@@ -1269,10 +1269,6 @@ http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065815&extension
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901321&extension=ts&play_token=Q50jrnLZTE
 #http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221498&extension=ts&play_token=xn6Vqd7ZjP
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065814&extension=ts&play_token=aDr8bCcxwd
-
-
-
-
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Dự Phòng", Tennis Channel 1
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881741&extension=ts&play_token=KM5AbVrybM
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Dự Phòng", Tennis Channel 2
@@ -1333,9 +1329,6 @@ http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881714&extension
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881713&extension=ts&play_token=2mZwRHcq8I
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Dự Phòng", Tennis Channel 30
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881712&extension=ts&play_token=CZwzSVMoOn
-
-
-
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Dự Phòng",SPOTV HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
@@ -1346,43 +1339,31 @@ https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv587/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
 https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv588/manifest.mpd
-
-
 #EXTINF:-1 tvg-id="onsports" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv264/manifest.mpd
-
+#https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv264/manifest.mpd
 #EXTINF:-1 tvg-id="onsportsplus" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv311/manifest.mpd
-
+#https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv311/manifest.mpd
 #EXTINF:-1 tvg-id="onsportsnews" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONSPORTSNEWS_150x904_1675158858.webp", ON SPORTS NEWS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv496/manifest.mpd
-
+#https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv496/manifest.mpd
 #EXTINF:-1 tvg-id="onfootball" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ootball_-_opyright_by_cab_logo_202212.jpg",  ON FOOTBALL
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv265/manifest.mpd
-
+#https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv265/manifest.mpd
 #EXTINF:-1 tvg-id="ongolf" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv485/manifest.mpd
-
-
-
-
-
-
+#https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv485/manifest.mpd
 #EXTINF:-1 tvg-id="onsports" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #KODIPROP:inputstream=inputstream.adaptive 
@@ -1390,31 +1371,27 @@ https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv485/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey 
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"P2XBB8mQTKmN3SJnHVyJww","k":"48b75Mrou_E-1qe-jmaqVQ"}],"type":"temporary"}
 https://vmttv.dpdns.org/tv360/?id=vtvcab-3-on-sports
-
-
 #EXTINF:-1 tvg-id="onsportsplus" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=widevine
-#KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv311/manifest.mpd
-
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+#KODIPROP:inputstream=inputstream.adaptive 
+#KODIPROP:inputstream.adaptive.manifest_type=dash 
+#KODIPROP:inputstream.adaptive.license_type=clearkey 
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"Os5jdWSUWqeBJArIMVKvMA","k":"Rb3pMgyI_-QvWCCBvViT4Q"}],"type":"temporary"}
+https://vmttv.dpdns.org/tv360/?id=vtvcab-6-on-sports
 #EXTINF:-1 tvg-id="onsportsnews" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONSPORTSNEWS_150x904_1675158858.webp", ON SPORTS NEWS
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=widevine
-#KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv496/manifest.mpd
-
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+#KODIPROP:inputstream=inputstream.adaptive 
+#KODIPROP:inputstream.adaptive.manifest_type=dash 
+#KODIPROP:inputstream.adaptive.license_type=clearkey 
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"bj6w7C72VyiykHY1AQ2r6Q","k":"Ale1E0em8cutZeOA0zMAOA"}],"type":"temporary"}
+https://vmttv.dpdns.org/tv360/?id=vtvcab-18-on-sports-news
 #EXTINF:-1 tvg-id="onfootball" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ootball_-_opyright_by_cab_logo_202212.jpg",  ON FOOTBALL
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=widevine
-#KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv265/manifest.mpd
-
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+#KODIPROP:inputstream=inputstream.adaptive 
+#KODIPROP:inputstream.adaptive.manifest_type=dash 
+#KODIPROP:inputstream.adaptive.license_type=clearkey 
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"7oGk1qVUXL-C66XMXke9Ww","k":"LxYg226sOZH50564-tjY3Q"}],"type":"temporary"}
+https://vmttv.dpdns.org/tv360/?id=vtvcab-16-hd
 #EXTINF:-1 tvg-id="ongolf" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/v2/channel/20220613/2022061306/Logo_ONGOLF_150x903_1675158871.webp", ON GOLF
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=widevine
-#KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
-https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv485/manifest.mpd
-
-
-
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
+https://vmttv.dpdns.org/tv360/?id=vtvcab-23-golf-channel
