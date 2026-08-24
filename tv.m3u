@@ -1090,11 +1090,10 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858523&e
 https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/bfigtl960n/out/v1/5ba5484550e84681bff2e8ca994266c1/cenc.mpd
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLIhFir_z0TLRKKW3fb6Ltu2JSJwWBXHxZg4U8AS65gw&s=10" group-title="Sports",Tennis+
 https://amg01935-amg01935c1-amgplt0165.playout.now3.amagi.tv/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="https://premiumvns.com/wp-content/uploads/2022/10/tai-khoan-tennis-tv-scaled.jpg" group-title="Sports",Tennis TV
+#EXTINF:-1 tvg-id="" tvg-logo="https://premiumvns.com/wp-content/uploads/2022/10/tai-khoan-tennis-tv-scaled.jpg" group-title="Sports",TennisTV Classics
 http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=946801&extension=ts&play_token=Qwzxk4aVQv
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8iY7aXKjCiL4EwnSJ-cZ4m-tgQ8xB9ZqVoCsJAy5dcw&s=10" group-title="Sports", Arena Tenis
-#http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1523618&extension=ts&play_token=CF3aFvwGSw
-http://line.godofiptv.com/play/live.php?mac=00:1B:79:48:81:CA&stream=1912894&extension=ts&play_token=r7KVbEwLjt
+http://pro.auramax.name/play/live.php?mac=00:1A:79:B6:5F:E9&stream=1523618&extension=ts&play_token=CF3aFvwGSw
 #EXTINF:-1 group-title="Sports" tvg-id="skytennis" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYesSuSeeJDhkQ2CjDAUyR1LX8xVGlQVKYxrezIS9O&s=10",Sky Sports Tennis
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=394549&extension=ts&play_token=B2Wqsq1EJ2
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Sports", Tennis Channel 1
@@ -1364,13 +1363,15 @@ https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv588/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
 #KODIPROP:inputstream.adaptive.license_key=https://tv.vietanhtv.top/mytv2/key.php
 #https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv485/manifest.mpd
+
 #EXTINF:-1 tvg-id="onsports" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/_ports_ng_logo_04202212.jpg", ON SPORTS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #KODIPROP:inputstream=inputstream.adaptive 
-#KODIPROP:inputstream.adaptive.manifest_type=mpd 
+#KODIPROP:inputstream.adaptive.manifest_type=dash 
 #KODIPROP:inputstream.adaptive.license_type=clearkey 
 #KODIPROP:inputstream.adaptive.license_key=3f65c107c9904ca98ddd22671d5c89c3:e3c6fbe4cae8bbf13ed6a7be8e66aa55
 https://vmttv.dpdns.org/tv360/?id=vtvcab-3-on-sports
+
 #EXTINF:-1 tvg-id="onsportsplus" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #KODIPROP:inputstream=inputstream.adaptive 
