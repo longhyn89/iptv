@@ -1370,7 +1370,8 @@ https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv588/manifest.mpd
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
 #KODIPROP:inputstream.adaptive.license_type=clearkey 
 #KODIPROP:inputstream.adaptive.license_key=3f65c107c9904ca98ddd22671d5c89c3:e3c6fbe4cae8bbf13ed6a7be8e66aa55
-https://vmttv.dpdns.org/tv360/?id=vtvcab-3-on-sports
+#https://vmttv.dpdns.org/tv360/?id=vtvcab-3-on-sports
+https://tv.vietanhtv.top/tv360/tv360.php?id=173&expires=1787641777&token=c334859a80a2e111c598febf6a9c7792
 
 #EXTINF:-1 tvg-id="onsportsplus" group-title="Dự Phòng" tvg-logo="https://assets-vtvcab.gviet.vn/images/hq/posters/onsportscongmoi1.jpg", ON SPORTS+
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
