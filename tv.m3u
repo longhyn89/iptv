@@ -1368,7 +1368,7 @@ https://s7484.cdn.mytvnet.vn/pkg20/__cl/gvtsig/vstv588/manifest.mpd
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #KODIPROP:inputstream=inputstream.adaptive 
 #KODIPROP:inputstream.adaptive.manifest_type=dash 
-#KODIPROP:inputstream.adaptive.license_type=clearkey 
+#KODIPROP:inputstream.adaptive.license_type=widevine 
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"P2XBB8mQTKmN3SJnHVyJww","k":"48b75Mrou_E-1qe-jmaqVQ"}],"type":"temporary"}
 https://vmttv.dpdns.org/tv360/?id=vtvcab-3-on-sports
 
