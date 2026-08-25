@@ -60,7 +60,7 @@ function getFilterConfig() {
 }
 
 // =============================================================================
-// HELPER: TẠO DIRECT MP4 PROXY URL TỪ STREMIO ID
+// HELPER: TẠO DIRECT MP4 PROXY URL TỪ STREMIO ID (LUỒNG 720P - RES=4)
 // =============================================================================
 function buildDirectMp4Url(rawId) {
   if (!rawId) return "";
@@ -71,7 +71,8 @@ function buildDirectMp4Url(rawId) {
   var videoHash = parts[parts.length - 1];
 
   var embedUrl = "https://abyssplayer.com/" + videoHash;
-  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2315264735";
+  // Cố định tham số res=4 (720p)
+  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=4&size=2879240765";
 }
 
 // =============================================================================
@@ -220,7 +221,7 @@ function parseMovieDetail(jsonResponse) {
         var epId = v.id || id;
         var epName = v.title || v.name || ("Tập " + (v.episode || (i + 1)));
 
-        // TỰ ĐỘNG GIẢI MÃ THÀNH LINK DIRECT STREAM HYBRID
+        // TỰ ĐỘNG CẤU HÌNH LUỒNG 720P (RES=4)
         var directMp4 = buildDirectMp4Url(epId);
 
         episodes.push({
@@ -235,13 +236,13 @@ function parseMovieDetail(jsonResponse) {
       }
 
       servers.push({
-        name: "Server Standard VIP",
+        name: "Server 720p VIP",
         episodes: episodes
       });
     } else {
       var movieDirectMp4 = buildDirectMp4Url(id);
       servers.push({
-        name: "Server Standard VIP",
+        name: "Server 720p VIP",
         episodes: [{
           id: movieDirectMp4,
           url: movieDirectMp4,
@@ -262,7 +263,7 @@ function parseMovieDetail(jsonResponse) {
       description: description,
       year: year,
       rating: 0,
-      quality: "HD",
+      quality: "720p HD",
       servers: servers,
       category: (meta.genres || []).join(", "),
       country: "",
