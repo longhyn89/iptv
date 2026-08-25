@@ -169,136 +169,7 @@ function getManifest() {
 })();
 
 // =============================================================
-// 3. HÀM HỖ TRỢ MENU, DETAIL & TIỆN ÍCH
-// =============================================================
-
-function iframe64(url) {
-  var html = `
-  <html>
-    <head>
-      <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: 0; object-fit: contain; }
-      </style>
-    </head>
-    <body>
-      <iframe id='player' src='${url}' scrolling='no' frameborder='0' class='openloadvideo lab-pinned-child' allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' name='watch'></iframe>
-    </body>
-  </html>`;
-  return "data:text/html;base64," + BASE64.encode(html);
-}
-
-function getUrlDetail(slug) {
-  try {
-    if (!slug) return "";
-    if (slug.indexOf('http') === 0) return slug;
-    var detailUrl = BASEURL + "/" + slug;
-    log("getUrlDetail[url]: \n" + detailUrl);
-    return detailUrl;
-  } catch (e) {
-    log("getUrlDetail[err]:\n " + e);
-    return "";
-  }
-}
-
-function getUrlCategories() {
-  try {
-    log("getUrlCategories[url]: \n" + BASEURL);
-    return BASEURL;
-  } catch (e) {
-    log("getUrlCategories[err]:\n " + e);
-    return "";
-  }
-}
-
-function getUrlCountries() {
-  try { return ""; } catch (e) { log("getUrlCountries[err]:\n " + e); return ""; }
-}
-
-function getUrlYears() {
-  try { return ""; } catch (e) { log("getUrlYears[err]:\n " + e); return ""; }
-}
-
-function parseCategoriesResponse(apiResponseJson) {
-  try {
-    var listurl = getLISTmenu();
-    var menulist = buildMenu(listurl);
-    return JSON.stringify(menulist);
-  } catch (e) {
-    log("parseCategoriesResponse[err]:\n " + e);
-    return JSON.stringify([]);
-  }
-}
-
-function parseCountriesResponse(html) { return "[]"; }
-function parseYearsResponse(html) { return "[]"; }
-
-function parseSearchResponse(html, url) {
-  try {
-    log("parseSearchResponse[url]: \n" + url);
-    return parseListResponse(html, url);
-  } catch (e) {
-    log("parseSearchResponse[err]:\n " + e);
-    return JSON.stringify({
-      "items": [],
-      "pagination": { "currentPage": 1, "totalPages": 1 }
-    });
-  }
-}
-
-function getPrimaryCategories() {
-  try {
-    var listurl = getLISTmenu();
-    var menulist = buildMenu(listurl);
-    return JSON.stringify(menulist);
-  } catch (e) {
-    log("getPrimaryCategories[err]:\n " + e);
-    return JSON.stringify([]);
-  }
-}
-
-function getFilterConfig() {
-  try {
-    var listurl = getLISTmenu();
-    var menulist = buildMenu(listurl);
-    return JSON.stringify({ category: menulist });
-  } catch (e) {
-    log("getFilterConfig[err]:\n " + e);
-    return JSON.stringify({ category: [] });
-  }
-}
-
-function buildMenu(menuStr, type) {
-  try {
-    var menuArray = typeof menuStr === 'string' ? JSON.parse(menuStr) : menuStr;
-    let menulist = [];
-    if (!menuArray || !Array.isArray(menuArray)) return menulist;
-    var typeStr = type !== undefined ? String(type).trim() : undefined;
-    for (var i = 0; i < menuArray.length; i++) {
-      var item = menuArray[i];
-      if (!item) continue;
-      var link = item.link ? String(item.link).trim() : "";
-      var name = item.name ? String(item.name).trim() : "";
-      if (!link || !name) continue;
-      var menuItem = {};
-      if (typeStr === "false") {
-        menuItem = { "slug": link, "title": name, "type": "Horizontal" };
-      } else if (typeStr === "true") {
-        menuItem = { "slug": link, "title": name, "type": "Grid" };
-      } else {
-        menuItem = { "slug": link, "name": name };
-      }
-      menulist.push(menuItem);
-    }
-    return menulist;
-  } catch (e) {
-    log("buildMenu[err]: " + e);
-    return [];
-  }
-}
-
-// =============================================================
-// 4. TRÌNH PHÂN TÍCH HTML (MINIJQ PARSER)
+// 3. TRÌNH PHÂN TÍCH HTML (MINIJQ PARSER FULL)
 // =============================================================
 function _$(param) {
   function parseHTML(htmlString) {
@@ -643,7 +514,7 @@ function log(msg) {
 }
 
 // =============================================================
-// 5. TIỆN ÍCH MÃ HÓA BASE64 & CHECK RAW
+// 4. TIỆN ÍCH MÃ HÓA BASE64 & CHECK RAW
 // =============================================================
 var BASE64 = {
   encode: function (str) {
@@ -787,11 +658,126 @@ function clearJS(func) {
   return checkRaw(match[1].trim(), true);
 }
 // =============================================================
+// 5. CÁC HÀM HỖ TRỢ DANH MỤC, MENU & BỘ LỌC
+// =============================================================
+function iframe64(url) {
+  var html = `
+  <html>
+    <head>
+      <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: 0; object-fit: contain; }
+      </style>
+    </head>
+    <body>
+      <iframe id='player' src='${url}' scrolling='no' frameborder='0' class='openloadvideo lab-pinned-child' allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' name='watch'></iframe>
+    </body>
+  </html>`;
+  return "data:text/html;base64," + BASE64.encode(html);
+}
+
+function getUrlDetail(slug) {
+  try {
+    if (!slug) return "";
+    if (slug.indexOf('http') === 0) return slug;
+    var detailUrl = BASEURL + "/" + slug;
+    log("getUrlDetail[url]: \n" + detailUrl);
+    return detailUrl;
+  } catch (e) {
+    log("getUrlDetail[err]:\n " + e);
+    return "";
+  }
+}
+
+function getUrlCategories() {
+  try {
+    log("getUrlCategories[url]: \n" + BASEURL);
+    return BASEURL;
+  } catch (e) {
+    log("getUrlCategories[err]:\n " + e);
+    return "";
+  }
+}
+
+function getUrlCountries() {
+  try { return ""; } catch (e) { log("getUrlCountries[err]:\n " + e); return ""; }
+}
+
+function getUrlYears() {
+  try { return ""; } catch (e) { log("getUrlYears[err]:\n " + e); return ""; }
+}
+
+function parseCategoriesResponse(apiResponseJson) {
+  try {
+    var listurl = getLISTmenu();
+    var menulist = buildMenu(listurl);
+    return JSON.stringify(menulist);
+  } catch (e) {
+    log("parseCategoriesResponse[err]:\n " + e);
+    return JSON.stringify([]);
+  }
+}
+
+function parseCountriesResponse(html) { return "[]"; }
+function parseYearsResponse(html) { return "[]"; }
+
+function getPrimaryCategories() {
+  try {
+    var listurl = getLISTmenu();
+    var menulist = buildMenu(listurl);
+    return JSON.stringify(menulist);
+  } catch (e) {
+    log("getPrimaryCategories[err]:\n " + e);
+    return JSON.stringify([]);
+  }
+}
+
+function getFilterConfig() {
+  try {
+    var listurl = getLISTmenu();
+    var menulist = buildMenu(listurl);
+    return JSON.stringify({ category: menulist });
+  } catch (e) {
+    log("getFilterConfig[err]:\n " + e);
+    return JSON.stringify({ category: [] });
+  }
+}
+
+function buildMenu(menuStr, type) {
+  try {
+    var menuArray = typeof menuStr === 'string' ? JSON.parse(menuStr) : menuStr;
+    let menulist = [];
+    if (!menuArray || !Array.isArray(menuArray)) return menulist;
+    var typeStr = type !== undefined ? String(type).trim() : undefined;
+    for (var i = 0; i < menuArray.length; i++) {
+      var item = menuArray[i];
+      if (!item) continue;
+      var link = item.link ? String(item.link).trim() : "";
+      var name = item.name ? String(item.name).trim() : "";
+      if (!link || !name) continue;
+      var menuItem = {};
+      if (typeStr === "false") {
+        menuItem = { "slug": link, "title": name, "type": "Horizontal" };
+      } else if (typeStr === "true") {
+        menuItem = { "slug": link, "title": name, "type": "Grid" };
+      } else {
+        menuItem = { "slug": link, "name": name };
+      }
+      menulist.push(menuItem);
+    }
+    return menulist;
+  } catch (e) {
+    log("buildMenu[err]: " + e);
+    return [];
+  }
+}
+
+// =============================================================
 // 6. DANH SÁCH MENU MẶC ĐỊNH (LISTMENU)
 // =============================================================
 function getLISTmenu() {
   return JSON.stringify([
-    { "name": "Phim Mới Nhat", "link": "danh-sach/phim-moi" },
+    { "name": "Phim Mới Nhất", "link": "danh-sach/phim-moi" },
     { "name": "Phim Lẻ", "link": "danh-sach/phim-le" },
     { "name": "Phim Bộ", "link": "danh-sach/phim-bo" },
     { "name": "Hoạt Hình", "link": "danh-sach/hoat-hinh" },
@@ -803,7 +789,7 @@ function getLISTmenu() {
 }
 
 // =============================================================
-// 7. XỬ LÝ LẤY DANH SÁCH & TRANG PHIM (PARSE LIST)
+// 7. XỬ LÝ LẤY DANH SÁCH, PHÂN TRANG & TÌM KIẾM
 // =============================================================
 function getUrlList(slug, page) {
   try {
@@ -899,56 +885,83 @@ function getUrlSearch(keyword, page) {
   }
 }
 
+function parseSearchResponse(html, url) {
+  try {
+    log("parseSearchResponse[url]: \n" + url);
+    return parseListResponse(html, url);
+  } catch (e) {
+    log("parseSearchResponse[err]:\n " + e);
+    return JSON.stringify({
+      "items": [],
+      "pagination": { "currentPage": 1, "totalPages": 1 }
+    });
+  }
+}
 // =============================================================
-// 8. XỬ LÝ CHI TIẾT PHIM, TẬP PHIM & PLAYER (PARSE DETAIL/EPISODES)
+// 8. XỬ LÝ CHI TIẾT PHIM & DANH SÁCH TẬP (EPISODES)
 // =============================================================
 function parseDetailResponse(html, url) {
   try {
     var $ = _$(html);
-    var title = $(".film-info h1, .movie-info .title, h1.title").text().trim();
-    var poster = $(".movie-poster img, .poster img").attr("src") || "";
-    var description = $(".film-description, .description, .movie-detail .content").text().trim();
-    var genres = [];
-
-    $(".genres a, .category a, .tags a").each(function () {
-      genres.push(_$(this).text().trim());
-    });
-
+    
+    // Lấy thông tin cơ bản
+    var title = $(".movie-title, .film-info h1, .title-m").first().text().trim();
+    var origTitle = $(".movie-org-title, .alias-name, .sub-title").first().text().trim();
+    var poster = $(".movie-poster img, .poster img").attr("src") || $(".movie-poster img, .poster img").attr("data-src") || "";
+    var description = $(".movie-description, .film-content, #description").text().trim();
+    
+    // Bóc tách danh sách tập phim
     var episodes = [];
-    $(".list-episodes a, .episodes-list a, #list-eps a").each(function (index) {
-      var $ep = _$(this);
-      var epTitle = $ep.text().trim() || ("Tập " + (index + 1));
-      var epHref = $ep.attr("href") || "";
-      var epSlug = epHref.replace(BASEURL, "").replace(/^\/+/, "");
+    var $epElements = $(".list-episodes a, .episodes-list a, .list-server a");
 
-      if (epSlug) {
-        episodes.push({
-          "name": epTitle,
-          "slug": epSlug
-        });
-      }
-    });
+    if ($epElements.length > 0) {
+      $epElements.each(function (idx) {
+        var $ep = _$(this);
+        var epName = $ep.text().trim() || ("Tập " + (idx + 1));
+        var epLink = $ep.attr("href") || "";
 
-    var result = {
+        if (epLink) {
+          var epSlug = epLink.replace(BASEURL, "").replace(/^\/+/, "");
+          episodes.push({
+            "name": epName,
+            "slug": epSlug,
+            "embedUrl": ""
+          });
+        }
+      });
+    } else {
+      // Trường hợp phim lẻ hoặc 1 tập duy nhất
+      episodes.push({
+        "name": "Full",
+        "slug": url.replace(BASEURL, "").replace(/^\/+/, ""),
+        "embedUrl": ""
+      });
+    }
+
+    var movieDetail = {
       "title": decodeHTMLtext(title),
-      "description": decodeHTMLtext(description),
+      "originalName": decodeHTMLtext(origTitle),
       "posterUrl": poster,
-      "genres": genres,
+      "description": decodeHTMLtext(description),
       "episodes": episodes
     };
 
     log("parseDetailResponse success: " + title);
-    return JSON.stringify(result);
+    return JSON.stringify(movieDetail);
   } catch (e) {
     log("parseDetailResponse[err]: " + e);
     return JSON.stringify({});
   }
 }
 
-function getUrlPlay(epSlug) {
+// =============================================================
+// 9. XỬ LÝ NGUỒN PHÁT (PLAYLINK / EMBED)
+// =============================================================
+function getUrlPlay(slug) {
   try {
-    if (!epSlug) return "";
-    var playUrl = epSlug.indexOf('http') === 0 ? epSlug : (BASEURL + "/" + epSlug);
+    if (!slug) return "";
+    if (slug.indexOf('http') === 0) return slug;
+    var playUrl = BASEURL + "/" + slug;
     log("getUrlPlay[url]: \n" + playUrl);
     return playUrl;
   } catch (e) {
@@ -960,25 +973,45 @@ function getUrlPlay(epSlug) {
 function parsePlayResponse(html, url) {
   try {
     var $ = _$(html);
-    var embedSrc = $("iframe#player, iframe.openloadvideo, #iframe-embed iframe").attr("src") || "";
+    var embedUrl = $("iframe#player, iframe.player-embed, .watch-iframe iframe").attr("src") || "";
 
-    if (!embedSrc) {
-      var match = html.match(/iframe\s+src=["']([^"']+)["']/i);
-      if (match) embedSrc = match[1];
+    if (!embedUrl) {
+      // Tìm link trong thẻ script nếu có player dạng JS
+      var match = html.match(/file\s*:\s*["']([^"']+)["']/i) || html.match(/src\s*:\s*["']([^"']+)["']/i);
+      if (match) embedUrl = match[1];
     }
 
-    if (embedSrc) {
-      log("parsePlayResponse [embedUrl]: " + embedSrc);
+    log("parsePlayResponse embedUrl: " + embedUrl);
+
+    if (embedUrl) {
+      // Nếu link dạng iframe truyền thống, có thể bọc qua iframe64 nếu cần
+      if (embedUrl.indexOf("http") !== 0) {
+        embedUrl = "https:" + embedUrl;
+      }
+      
       return JSON.stringify({
-        "url": embedSrc,
+        "playUrl": embedUrl,
         "type": "embed"
       });
     }
 
-    log("parsePlayResponse: Không tìm thấy nguồn Embed!");
     return JSON.stringify({});
   } catch (e) {
     log("parsePlayResponse[err]: " + e);
     return JSON.stringify({});
   }
+}
+
+// =============================================================
+// 10. HÀM PHỤ TRỢ GIẢI MÃ KÝ TỰ HTML (DECODE)
+// =============================================================
+function decodeHTMLtext(str) {
+  if (!str) return "";
+  return str
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&nbsp;/g, " ");
 }
