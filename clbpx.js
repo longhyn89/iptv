@@ -60,18 +60,17 @@ function getFilterConfig() {
 }
 
 // =============================================================================
-// HELPER: TẠO URL STREAM API HOẶC DIRECT MP4 (RES=5 MAX QUALITY FALLBACK)
+// HELPER: TẠO DIRECT MP4 THEO ĐỘ PHÂN GIẢI (RES)
 // =============================================================================
-function buildBestQualityMp4(rawId) {
+function buildDirectMp4Url(rawId, resValue) {
   if (!rawId) return "";
   if (rawId.indexOf("http") === 0) return rawId;
 
   var parts = rawId.split(':');
   var videoHash = parts[parts.length - 1];
-  var embedUrl = "https://abyssplayer.com/" + videoHash;
 
-  // Luồng res=5 là 1080p (độ phân giải tốt nhất từ server)
-  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2990283794";
+  var embedUrl = "https://abyssplayer.com/" + videoHash;
+  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=" + resValue + "&size=2990283794";
 }
 
 // =============================================================================
@@ -201,7 +200,6 @@ function parseMovieDetail(jsonResponse) {
     var posterUrl = meta.poster || "";
     var backdropUrl = meta.background || posterUrl;
     var description = meta.description || "";
-    var type = meta.type || "series";
 
     var year = 0;
     if (meta.year) {
@@ -215,47 +213,43 @@ function parseMovieDetail(jsonResponse) {
     var videos = meta.videos || [];
 
     if (videos.length > 0) {
-      var episodes = [];
+      var eps1080 = [];
+      var eps720 = [];
+
       for (var i = 0; i < videos.length; i++) {
         var v = videos[i];
         var epId = v.id || id;
         var epName = v.title || v.name || ("Tập " + (v.episode || (i + 1)));
 
-        // Link Stream API Stremio dành cho app tự fetch
-        var streamApiUrl = BASEURL + "/stream/" + type + "/" + epId + ".json";
-        // Link Direct MP4 chất lượng cao nhất (res=5 / 1080p) làm dự phòng
-        var directMp4 = buildBestQualityMp4(epId);
+        var url1080 = buildDirectMp4Url(epId, 5); // res=5
+        var url720 = buildDirectMp4Url(epId, 4);  // res=4
 
-        episodes.push({
-          id: streamApiUrl,
-          url: streamApiUrl,
-          file: streamApiUrl,
-          link: streamApiUrl,
-          datasend: directMp4,
-          name: epName,
-          slug: epId
+        eps1080.push({
+          id: url1080, url: url1080, file: url1080, link: url1080, datasend: url1080,
+          name: epName, slug: epId
+        });
+
+        eps720.push({
+          id: url720, url: url720, file: url720, link: url720, datasend: url720,
+          name: epName, slug: epId
         });
       }
 
-      servers.push({
-        name: "Server Max Quality (1080p)",
-        episodes: episodes
-      });
+      // Tạo 2 Server riêng biệt để phòng trường hợp 1080p bị fallback
+      servers.push({ name: "Server 1080p (Full HD)", episodes: eps1080 });
+      servers.push({ name: "Server 720p (HD Khuyên Dùng)", episodes: eps720 });
+
     } else {
-      var movieStreamApiUrl = BASEURL + "/stream/" + type + "/" + id + ".json";
-      var movieDirectMp4 = buildBestQualityMp4(id);
+      var url1080 = buildDirectMp4Url(id, 5);
+      var url720 = buildDirectMp4Url(id, 4);
 
       servers.push({
-        name: "Server Max Quality (1080p)",
-        episodes: [{
-          id: movieStreamApiUrl,
-          url: movieStreamApiUrl,
-          file: movieStreamApiUrl,
-          link: movieStreamApiUrl,
-          datasend: movieDirectMp4,
-          name: "Xem phim",
-          slug: id
-        }]
+        name: "Server 1080p (Full HD)",
+        episodes: [{ id: url1080, url: url1080, file: url1080, link: url1080, datasend: url1080, name: "Xem phim", slug: id }]
+      });
+      servers.push({
+        name: "Server 720p (HD Khuyên Dùng)",
+        episodes: [{ id: url720, url: url720, file: url720, link: url720, datasend: url720, name: "Xem phim", slug: id }]
       });
     }
 
@@ -267,7 +261,7 @@ function parseMovieDetail(jsonResponse) {
       description: description,
       year: year,
       rating: 0,
-      quality: "1080p Full HD",
+      quality: "1080p / 720p HD",
       servers: servers,
       category: (meta.genres || []).join(", "),
       country: "",
@@ -281,28 +275,11 @@ function parseMovieDetail(jsonResponse) {
   }
 }
 
-// =============================================================================
-// PARSE DETAIL RESPONSE: TỰ ĐỘNG BÓC TÁCH LUỒNG ĐẦU TIÊN (STREAMS[0])
-// =============================================================================
-function parseDetailResponse(jsonResponse, fallbackUrl, datasend) {
-  var streamUrl = fallbackUrl || datasend || "";
+function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
+  var streamUrl = fallbackUrl || datasend || htmlResponse || "";
 
-  // 1. Kiểm tra nếu app superOK truyền về nội dung JSON response của API /stream/...json
-  if (typeof jsonResponse === 'string' && jsonResponse.trim().indexOf('{') === 0) {
-    try {
-      var data = JSON.parse(jsonResponse);
-      
-      // Luôn ưu tiên lấy phần tử ĐẦU TIÊN trong mảng streams (Chất lượng cao nhất 1080p)
-      if (data && data.streams && data.streams.length > 0) {
-        streamUrl = data.streams[0].url || streamUrl;
-      } else if (data && data.url) {
-        streamUrl = data.url;
-      }
-    } catch (e) {
-      console.error("Lỗi parse JSON stream: " + e);
-    }
-  } else if (typeof jsonResponse === 'string' && jsonResponse.indexOf("http") === 0) {
-    streamUrl = jsonResponse.trim();
+  if (typeof streamUrl === 'string') {
+    streamUrl = streamUrl.trim();
   }
 
   return JSON.stringify({
@@ -319,6 +296,6 @@ function parseDetailResponse(jsonResponse, fallbackUrl, datasend) {
   });
 }
 
-function getStream(jsonResponse, fallbackUrl, datasend) {
-  return parseDetailResponse(jsonResponse, fallbackUrl, datasend);
+function getStream(htmlResponse, fallbackUrl, datasend) {
+  return parseDetailResponse(htmlResponse, fallbackUrl, datasend);
 }
