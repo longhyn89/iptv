@@ -786,3 +786,199 @@ function clearJS(func) {
   if (!match) return "";
   return checkRaw(match[1].trim(), true);
 }
+// =============================================================
+// 6. DANH SÁCH MENU MẶC ĐỊNH (LISTMENU)
+// =============================================================
+function getLISTmenu() {
+  return JSON.stringify([
+    { "name": "Phim Mới Nhat", "link": "danh-sach/phim-moi" },
+    { "name": "Phim Lẻ", "link": "danh-sach/phim-le" },
+    { "name": "Phim Bộ", "link": "danh-sach/phim-bo" },
+    { "name": "Hoạt Hình", "link": "danh-sach/hoat-hinh" },
+    { "name": "TV Shows", "link": "danh-sach/tv-shows" },
+    { "name": "Phim Vietsub", "link": "danh-sach/phim-vietsub" },
+    { "name": "Phim Thuyết Minh", "link": "danh-sach/phim-thuyet-minh" },
+    { "name": "Phim Lồng Tiếng", "link": "danh-sach/phim-long-tieng" }
+  ]);
+}
+
+// =============================================================
+// 7. XỬ LÝ LẤY DANH SÁCH & TRANG PHIM (PARSE LIST)
+// =============================================================
+function getUrlList(slug, page) {
+  try {
+    if (!slug) return "";
+    var pageNum = page ? parseInt(page, 10) : 1;
+    var listUrl = "";
+
+    if (slug.indexOf('http') === 0) {
+      listUrl = slug;
+    } else {
+      listUrl = BASEURL + "/" + slug;
+    }
+
+    if (pageNum > 1) {
+      if (listUrl.indexOf('?') !== -1) {
+        listUrl += "&page=" + pageNum;
+      } else {
+        listUrl += "?page=" + pageNum;
+      }
+    }
+
+    log("getUrlList[url]: \n" + listUrl);
+    return listUrl;
+  } catch (e) {
+    log("getUrlList[err]:\n " + e);
+    return "";
+  }
+}
+
+function parseListResponse(html, url) {
+  try {
+    var $ = _$(html);
+    var items = [];
+    var currentPage = 1;
+    var totalPages = 1;
+
+    // Lấy thông tin phân trang
+    var activePage = $(".pagination .active, .pagination .current, .pagination .page-item.active").text().trim();
+    if (activePage) currentPage = parseInt(activePage, 10) || 1;
+
+    var lastPageLink = $(".pagination a").last().attr("href") || "";
+    if (lastPageLink) {
+      var matchPage = lastPageLink.match(/page[=\/](\d+)/i);
+      if (matchPage) totalPages = parseInt(matchPage[1], 10) || 1;
+    }
+
+    // Lấy danh sách phim
+    $(".movie-item, .film-item, .item-movie, .col-item, article").each(function () {
+      var $item = _$(this);
+      var linkEl = $item.find("a").first();
+      var href = linkEl.attr("href") || "";
+      var title = $item.find(".title, .film-name, h3, h2").text().trim() || linkEl.attr("title") || "";
+      var poster = $item.find("img").attr("src") || $item.find("img").attr("data-src") || "";
+
+      if (href && title) {
+        var slug = href.replace(BASEURL, "").replace(/^\/+/, "");
+        items.push({
+          "title": decodeHTMLtext(title),
+          "slug": slug,
+          "posterUrl": poster,
+          "type": "MOVIE"
+        });
+      }
+    });
+
+    log("parseListResponse count: " + items.length);
+    return JSON.stringify({
+      "items": items,
+      "pagination": {
+        "currentPage": currentPage,
+        "totalPages": totalPages
+      }
+    });
+  } catch (e) {
+    log("parseListResponse[err]: " + e);
+    return JSON.stringify({
+      "items": [],
+      "pagination": { "currentPage": 1, "totalPages": 1 }
+    });
+  }
+}
+
+function getUrlSearch(keyword, page) {
+  try {
+    var pageNum = page ? parseInt(page, 10) : 1;
+    var searchUrl = BASEURL + "/tim-kiem?keyword=" + encodeURIComponent(keyword);
+    if (pageNum > 1) searchUrl += "&page=" + pageNum;
+    log("getUrlSearch[url]: \n" + searchUrl);
+    return searchUrl;
+  } catch (e) {
+    log("getUrlSearch[err]: " + e);
+    return "";
+  }
+}
+
+// =============================================================
+// 8. XỬ LÝ CHI TIẾT PHIM, TẬP PHIM & PLAYER (PARSE DETAIL/EPISODES)
+// =============================================================
+function parseDetailResponse(html, url) {
+  try {
+    var $ = _$(html);
+    var title = $(".film-info h1, .movie-info .title, h1.title").text().trim();
+    var poster = $(".movie-poster img, .poster img").attr("src") || "";
+    var description = $(".film-description, .description, .movie-detail .content").text().trim();
+    var genres = [];
+
+    $(".genres a, .category a, .tags a").each(function () {
+      genres.push(_$(this).text().trim());
+    });
+
+    var episodes = [];
+    $(".list-episodes a, .episodes-list a, #list-eps a").each(function (index) {
+      var $ep = _$(this);
+      var epTitle = $ep.text().trim() || ("Tập " + (index + 1));
+      var epHref = $ep.attr("href") || "";
+      var epSlug = epHref.replace(BASEURL, "").replace(/^\/+/, "");
+
+      if (epSlug) {
+        episodes.push({
+          "name": epTitle,
+          "slug": epSlug
+        });
+      }
+    });
+
+    var result = {
+      "title": decodeHTMLtext(title),
+      "description": decodeHTMLtext(description),
+      "posterUrl": poster,
+      "genres": genres,
+      "episodes": episodes
+    };
+
+    log("parseDetailResponse success: " + title);
+    return JSON.stringify(result);
+  } catch (e) {
+    log("parseDetailResponse[err]: " + e);
+    return JSON.stringify({});
+  }
+}
+
+function getUrlPlay(epSlug) {
+  try {
+    if (!epSlug) return "";
+    var playUrl = epSlug.indexOf('http') === 0 ? epSlug : (BASEURL + "/" + epSlug);
+    log("getUrlPlay[url]: \n" + playUrl);
+    return playUrl;
+  } catch (e) {
+    log("getUrlPlay[err]: " + e);
+    return "";
+  }
+}
+
+function parsePlayResponse(html, url) {
+  try {
+    var $ = _$(html);
+    var embedSrc = $("iframe#player, iframe.openloadvideo, #iframe-embed iframe").attr("src") || "";
+
+    if (!embedSrc) {
+      var match = html.match(/iframe\s+src=["']([^"']+)["']/i);
+      if (match) embedSrc = match[1];
+    }
+
+    if (embedSrc) {
+      log("parsePlayResponse [embedUrl]: " + embedSrc);
+      return JSON.stringify({
+        "url": embedSrc,
+        "type": "embed"
+      });
+    }
+
+    log("parsePlayResponse: Không tìm thấy nguồn Embed!");
+    return JSON.stringify({});
+  } catch (e) {
+    log("parsePlayResponse[err]: " + e);
+    return JSON.stringify({});
+  }
+}
