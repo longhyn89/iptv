@@ -60,19 +60,18 @@ function getFilterConfig() {
 }
 
 // =============================================================================
-// HELPER: TẠO DIRECT MP4 PROXY URL TỪ STREMIO ID (LUỒNG 720P - RES=4)
+// HELPER: TẠO URL STREAM API HOẶC DIRECT MP4 (RES=5 MAX QUALITY FALLBACK)
 // =============================================================================
-function buildDirectMp4Url(rawId) {
+function buildBestQualityMp4(rawId) {
   if (!rawId) return "";
   if (rawId.indexOf("http") === 0) return rawId;
 
-  // Lấy hash cuối cùng từ ID (ví dụ: "clbpx:ho-boi-tu-than-2018:gDsKqKamz" -> "gDsKqKamz")
   var parts = rawId.split(':');
   var videoHash = parts[parts.length - 1];
-
   var embedUrl = "https://abyssplayer.com/" + videoHash;
-  // Cố định tham số res=4 (720p)
-  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=4&size=2879240765";
+
+  // Luồng res=5 là 1080p (độ phân giải tốt nhất từ server)
+  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=5&size=2990283794";
 }
 
 // =============================================================================
@@ -202,6 +201,7 @@ function parseMovieDetail(jsonResponse) {
     var posterUrl = meta.poster || "";
     var backdropUrl = meta.background || posterUrl;
     var description = meta.description || "";
+    var type = meta.type || "series";
 
     var year = 0;
     if (meta.year) {
@@ -221,14 +221,16 @@ function parseMovieDetail(jsonResponse) {
         var epId = v.id || id;
         var epName = v.title || v.name || ("Tập " + (v.episode || (i + 1)));
 
-        // TỰ ĐỘNG CẤU HÌNH LUỒNG 720P (RES=4)
-        var directMp4 = buildDirectMp4Url(epId);
+        // Link Stream API Stremio dành cho app tự fetch
+        var streamApiUrl = BASEURL + "/stream/" + type + "/" + epId + ".json";
+        // Link Direct MP4 chất lượng cao nhất (res=5 / 1080p) làm dự phòng
+        var directMp4 = buildBestQualityMp4(epId);
 
         episodes.push({
-          id: directMp4,
-          url: directMp4,
-          file: directMp4,
-          link: directMp4,
+          id: streamApiUrl,
+          url: streamApiUrl,
+          file: streamApiUrl,
+          link: streamApiUrl,
           datasend: directMp4,
           name: epName,
           slug: epId
@@ -236,18 +238,20 @@ function parseMovieDetail(jsonResponse) {
       }
 
       servers.push({
-        name: "Server 720p VIP",
+        name: "Server Max Quality (1080p)",
         episodes: episodes
       });
     } else {
-      var movieDirectMp4 = buildDirectMp4Url(id);
+      var movieStreamApiUrl = BASEURL + "/stream/" + type + "/" + id + ".json";
+      var movieDirectMp4 = buildBestQualityMp4(id);
+
       servers.push({
-        name: "Server 720p VIP",
+        name: "Server Max Quality (1080p)",
         episodes: [{
-          id: movieDirectMp4,
-          url: movieDirectMp4,
-          file: movieDirectMp4,
-          link: movieDirectMp4,
+          id: movieStreamApiUrl,
+          url: movieStreamApiUrl,
+          file: movieStreamApiUrl,
+          link: movieStreamApiUrl,
           datasend: movieDirectMp4,
           name: "Xem phim",
           slug: id
@@ -263,7 +267,7 @@ function parseMovieDetail(jsonResponse) {
       description: description,
       year: year,
       rating: 0,
-      quality: "720p HD",
+      quality: "1080p Full HD",
       servers: servers,
       category: (meta.genres || []).join(", "),
       country: "",
@@ -277,20 +281,28 @@ function parseMovieDetail(jsonResponse) {
   }
 }
 
-function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
+// =============================================================================
+// PARSE DETAIL RESPONSE: TỰ ĐỘNG BÓC TÁCH LUỒNG ĐẦU TIÊN (STREAMS[0])
+// =============================================================================
+function parseDetailResponse(jsonResponse, fallbackUrl, datasend) {
   var streamUrl = fallbackUrl || datasend || "";
 
-  if (typeof htmlResponse === 'string' && htmlResponse.trim().indexOf('{') === 0) {
+  // 1. Kiểm tra nếu app superOK truyền về nội dung JSON response của API /stream/...json
+  if (typeof jsonResponse === 'string' && jsonResponse.trim().indexOf('{') === 0) {
     try {
-      var $data = JSON.parse(htmlResponse);
-      if ($data && $data.streams && $data.streams.length > 0) {
-        streamUrl = $data.streams[0].url || streamUrl;
-      } else if ($data && $data.url) {
-        streamUrl = $data.url;
+      var data = JSON.parse(jsonResponse);
+      
+      // Luôn ưu tiên lấy phần tử ĐẦU TIÊN trong mảng streams (Chất lượng cao nhất 1080p)
+      if (data && data.streams && data.streams.length > 0) {
+        streamUrl = data.streams[0].url || streamUrl;
+      } else if (data && data.url) {
+        streamUrl = data.url;
       }
-    } catch (e) {}
-  } else if (typeof htmlResponse === 'string' && htmlResponse.indexOf("http") === 0) {
-    streamUrl = htmlResponse.trim();
+    } catch (e) {
+      console.error("Lỗi parse JSON stream: " + e);
+    }
+  } else if (typeof jsonResponse === 'string' && jsonResponse.indexOf("http") === 0) {
+    streamUrl = jsonResponse.trim();
   }
 
   return JSON.stringify({
@@ -307,6 +319,6 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
   });
 }
 
-function getStream(htmlResponse, fallbackUrl, datasend) {
-  return parseDetailResponse(htmlResponse, fallbackUrl, datasend);
+function getStream(jsonResponse, fallbackUrl, datasend) {
+  return parseDetailResponse(jsonResponse, fallbackUrl, datasend);
 }
