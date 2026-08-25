@@ -100,30 +100,50 @@ function cleanHtmlText(str) {
     .trim();
 }
 
+// BÓC TÁCH DANH SÁCH PHIM (ĐÃ FIX REGEX TRÍCH XUẤT)
 function parseListResponse(htmlResponse, url) {
   var items = [];
   if (!htmlResponse) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
 
-  var regex = /<article[^>]*>[\s\S]*?<a\s+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/gi;
-  var match;
+  // Tách thẻ <article> để bóc tách độc lập từng item, tránh trật tự thuộc tính HTML làm hỏng Regex
+  var articleRegex = /<article[^>]*>([\s\S]*?)<\/article>/gi;
+  var articleMatch;
 
-  while ((match = regex.exec(htmlResponse)) !== null) {
-    var link = match[1] || "";
-    var thumb = match[2] || "";
-    var title = match[3] || "";
-    title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
+  while ((articleMatch = articleRegex.exec(htmlResponse)) !== null) {
+    var content = articleMatch[1];
+    
+    // Trích xuất Link
+    var linkMatch = content.match(/<a\s+[^>]*href="([^"]+)"/i);
+    var link = linkMatch ? linkMatch[1] : "";
+    
+    // Trích xuất Thumb / Poster
+    var thumbMatch = content.match(/<img\s+[^>]*src="([^"]+)"/i) || content.match(/<img\s+[^>]*data-src="([^"]+)"/i);
+    var thumb = thumbMatch ? thumbMatch[1] : "";
 
-    var cleanLink = link.replace(/\/$/, "");
-    var parts = cleanLink.split('/');
-    var slug = parts[parts.length - 1] || link;
+    // Trích xuất Title (Thử thuộc tính alt trước, nếu không có thì lấy title hoặc text trong thẻ a)
+    var titleMatch = content.match(/alt="([^"]+)"/i) || content.match(/title="([^"]+)"/i) || content.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+    var title = titleMatch ? cleanHtmlText(titleMatch[1]) : "";
 
-    var year = 0;
-    var yearMatch = title.match(/19\d{2}|20\d{2}/);
-    if (yearMatch) year = parseInt(yearMatch[0], 10);
+    if (link && title) {
+      var cleanLink = link.replace(/\/$/, "");
+      var parts = cleanLink.split('/');
+      var slug = parts[parts.length - 1] || link;
 
-    items.push({ id: slug, title: title.trim(), posterUrl: thumb, backdropUrl: thumb, year: year });
+      var year = new Date().getFullYear();
+      var yearMatch = title.match(/19\d{2}|20\d{2}/);
+      if (yearMatch) year = parseInt(yearMatch[0], 10);
+
+      items.push({
+        id: slug,
+        title: title,
+        posterUrl: thumb,
+        backdropUrl: thumb,
+        year: year
+      });
+    }
   }
 
+  // Tải thông tin phân trang
   var totalPages = 1, currentPage = 1;
   var pageRegex = /<a class="page-numbers".*?>(\d+)<\/a>/gi, pm;
   while ((pm = pageRegex.exec(htmlResponse)) !== null) {
@@ -154,13 +174,13 @@ function parseMovieDetail(htmlResponse) {
 
     // 2. Lấy Tên Phim
     var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i) || htmlResponse.match(/<h1[^>]*>([^<]+)<\/h1>/i);
-    if (titleMatch) title = titleMatch[1].trim().replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
+    if (titleMatch) title = cleanHtmlText(titleMatch[1]);
 
     // 3. Lấy Ảnh Poster
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i) || htmlResponse.match(/<meta property="og:image" content="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
-    // 4. BÓC TÁCH MÔ TẢ PHIM (DESCRIPTION)
+    // 4. Bóc tách mô tả phim
     var descMatch = htmlResponse.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i) || htmlResponse.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
     if (descMatch && descMatch[1].trim().length > 10) {
       description = descMatch[1];
@@ -183,20 +203,20 @@ function parseMovieDetail(htmlResponse) {
     description = cleanHtmlText(description);
 
     // 5. Lấy Năm Phát Hành
-    var year = 0;
+    var year = new Date().getFullYear();
     var yearMatch = title.match(/(19\d{2}|20\d{2})/);
     if (yearMatch) year = parseInt(yearMatch[1], 10);
 
-    // 6. Bóc Tách Tập Phim & Link MP4 Direct
+    // 6. Bóc Tách Tập Phim & Link Direct Stream
     var servers = [];
     var episodes = [];
-    var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=([a-zA-Z0-9_-]+))"[^>]*>([\s\S]*?)<\/a>/gi;
+    var allLinksRegex = /<a\s+[^>]*href="([^"]*[\?&]v=([a-zA-Z0-9_-]+)[^"]*)"[^>]*>([\s\S]*?)<\/a>/gi;
     var lMatch;
 
     while ((lMatch = allLinksRegex.exec(htmlResponse)) !== null) {
       var videoId = lMatch[2] || "";
-      var epLabel = lMatch[3].replace(/<[^>]+>/g, '').trim();
-      if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(lMatch[3])) {
+      var epLabel = cleanHtmlText(lMatch[3]);
+      if (!epLabel || /^\s*$/.test(epLabel)) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
