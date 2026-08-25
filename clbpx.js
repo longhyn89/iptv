@@ -2,7 +2,7 @@
 // CLB PHIM XƯA VIP PLUGIN (FIXED DESCRIPTION & DIRECT STREAM)
 // ========================================================
 
-var BASEURL = "https://clbpx.alokillgtv.workers.dev";
+var BASEURL = "https://sc.k-20.xyz";
 var BASESOURCE = "";
 
 function getManifest() {
@@ -100,50 +100,30 @@ function cleanHtmlText(str) {
     .trim();
 }
 
-// BÓC TÁCH DANH SÁCH PHIM (ĐÃ FIX REGEX TRÍCH XUẤT)
 function parseListResponse(htmlResponse, url) {
   var items = [];
   if (!htmlResponse) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
 
-  // Tách thẻ <article> để bóc tách độc lập từng item, tránh trật tự thuộc tính HTML làm hỏng Regex
-  var articleRegex = /<article[^>]*>([\s\S]*?)<\/article>/gi;
-  var articleMatch;
+  var regex = /<article[^>]*>[\s\S]*?<a\s+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/gi;
+  var match;
 
-  while ((articleMatch = articleRegex.exec(htmlResponse)) !== null) {
-    var content = articleMatch[1];
-    
-    // Trích xuất Link
-    var linkMatch = content.match(/<a\s+[^>]*href="([^"]+)"/i);
-    var link = linkMatch ? linkMatch[1] : "";
-    
-    // Trích xuất Thumb / Poster
-    var thumbMatch = content.match(/<img\s+[^>]*src="([^"]+)"/i) || content.match(/<img\s+[^>]*data-src="([^"]+)"/i);
-    var thumb = thumbMatch ? thumbMatch[1] : "";
+  while ((match = regex.exec(htmlResponse)) !== null) {
+    var link = match[1] || "";
+    var thumb = match[2] || "";
+    var title = match[3] || "";
+    title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
 
-    // Trích xuất Title (Thử thuộc tính alt trước, nếu không có thì lấy title hoặc text trong thẻ a)
-    var titleMatch = content.match(/alt="([^"]+)"/i) || content.match(/title="([^"]+)"/i) || content.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
-    var title = titleMatch ? cleanHtmlText(titleMatch[1]) : "";
+    var cleanLink = link.replace(/\/$/, "");
+    var parts = cleanLink.split('/');
+    var slug = parts[parts.length - 1] || link;
 
-    if (link && title) {
-      var cleanLink = link.replace(/\/$/, "");
-      var parts = cleanLink.split('/');
-      var slug = parts[parts.length - 1] || link;
+    var year = 0;
+    var yearMatch = title.match(/19\d{2}|20\d{2}/);
+    if (yearMatch) year = parseInt(yearMatch[0], 10);
 
-      var year = new Date().getFullYear();
-      var yearMatch = title.match(/19\d{2}|20\d{2}/);
-      if (yearMatch) year = parseInt(yearMatch[0], 10);
-
-      items.push({
-        id: slug,
-        title: title,
-        posterUrl: thumb,
-        backdropUrl: thumb,
-        year: year
-      });
-    }
+    items.push({ id: slug, title: title.trim(), posterUrl: thumb, backdropUrl: thumb, year: year });
   }
 
-  // Tải thông tin phân trang
   var totalPages = 1, currentPage = 1;
   var pageRegex = /<a class="page-numbers".*?>(\d+)<\/a>/gi, pm;
   while ((pm = pageRegex.exec(htmlResponse)) !== null) {
@@ -174,13 +154,13 @@ function parseMovieDetail(htmlResponse) {
 
     // 2. Lấy Tên Phim
     var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i) || htmlResponse.match(/<h1[^>]*>([^<]+)<\/h1>/i);
-    if (titleMatch) title = cleanHtmlText(titleMatch[1]);
+    if (titleMatch) title = titleMatch[1].trim().replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
 
     // 3. Lấy Ảnh Poster
     var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i) || htmlResponse.match(/<meta property="og:image" content="([^"]+)"/i);
     if (posterMatch) posterUrl = posterMatch[1];
 
-    // 4. Bóc tách mô tả phim
+    // 4. BÓC TÁCH MÔ TẢ PHIM (DESCRIPTION)
     var descMatch = htmlResponse.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i) || htmlResponse.match(/<meta\s+name="description"\s+content="([^"]+)"/i);
     if (descMatch && descMatch[1].trim().length > 10) {
       description = descMatch[1];
@@ -203,20 +183,20 @@ function parseMovieDetail(htmlResponse) {
     description = cleanHtmlText(description);
 
     // 5. Lấy Năm Phát Hành
-    var year = new Date().getFullYear();
+    var year = 0;
     var yearMatch = title.match(/(19\d{2}|20\d{2})/);
     if (yearMatch) year = parseInt(yearMatch[1], 10);
 
-    // 6. Bóc Tách Tập Phim & Link Direct Stream
+    // 6. Bóc Tách Tập Phim & Link MP4 Direct
     var servers = [];
     var episodes = [];
-    var allLinksRegex = /<a\s+[^>]*href="([^"]*[\?&]v=([a-zA-Z0-9_-]+)[^"]*)"[^>]*>([\s\S]*?)<\/a>/gi;
+    var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=([a-zA-Z0-9_-]+))"[^>]*>([\s\S]*?)<\/a>/gi;
     var lMatch;
 
     while ((lMatch = allLinksRegex.exec(htmlResponse)) !== null) {
       var videoId = lMatch[2] || "";
-      var epLabel = cleanHtmlText(lMatch[3]);
-      if (!epLabel || /^\s*$/.test(epLabel)) {
+      var epLabel = lMatch[3].replace(/<[^>]+>/g, '').trim();
+      if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(lMatch[3])) {
         epLabel = "Tập " + (episodes.length + 1);
       }
 
