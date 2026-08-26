@@ -111,33 +111,36 @@ function getUrlList(slug, filtersJson) {
 
     var path = slug || "vi/new";
 
-    // Loại bỏ domain nếu lỡ dính vào
+    // Bóc tách domain nếu bị lặp
     path = path.replace(/https?:\/\/[^\/]+/, "");
 
-    // Loại bỏ slash ở đầu
-    while (path.indexOf("/") === 0) {
+    // Xóa tất cả dấu / ở đầu
+    while (path.length > 0 && path.indexOf("/") === 0) {
         path = path.substring(1);
     }
 
-    // Xử lý tiền tố 'vi/'
-    if (path.indexOf("vi/") === 0) {
-        // Đã có 'vi/'
-    } else if (path === "vi") {
-        path = "vi";
+    // Xóa tiền tố 'vi/' nếu bị lặp lại nhiều lần
+    while (path.indexOf("vi/") === 0) {
+        path = path.substring(3);
+    }
+
+    // Ghép lại tiền tố vi/ duy nhất
+    if (path === "vi" || path === "") {
+        path = "vi/new";
     } else {
         path = "vi/" + path;
     }
 
     var url = baseUrl + "/" + path;
 
-    // Phân trang
+    // Xử lý tham số trang
     if (url.indexOf("?") !== -1) {
         url += "&page=" + page;
     } else {
         url += "?page=" + page;
     }
 
-    // Bộ lọc sắp xếp
+    // Xử lý bộ lọc Sắp xếp
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
         url += "&sort=" + filters.sort;
     } else if (filters.sort === 'hot') {
@@ -157,7 +160,7 @@ function getUrlDetail(slug) {
     if (slug.indexOf("http") === 0) return slug;
     var path = slug;
     while (path.indexOf("/") === 0) path = path.substring(1);
-    if (path.indexOf("vi/") === 0) return "https://missav.media/" + path;
+    while (path.indexOf("vi/") === 0) path = path.substring(3);
     return "https://missav.media/vi/" + path;
 }
 
@@ -285,8 +288,10 @@ function parseListResponse(html) {
                 thumb = thumb.replace("/cover-t.jpg", "/cover.jpg");
             }
 
-            // Loại trừ đường dẫn không phải chi tiết phim
-            if (slug && slug.indexOf("/actresses") === -1 && slug.indexOf("/genres") === -1 && slug.indexOf("/makers") === -1) {
+            // Chuẩn hóa slug phim
+            while (slug.indexOf("vi/") === 0) slug = slug.substring(3);
+
+            if (slug && slug.indexOf("actresses") !== 0 && slug.indexOf("genres") !== 0 && slug.indexOf("makers") !== 0) {
                 if (slug.indexOf('item.') !== -1 || slug.indexOf('{{') !== -1 || slug === "vi" || slug === "") continue;
                 if (cleanTitle.indexOf('item.') !== -1 || cleanTitle.indexOf('{{') !== -1) continue;
 
@@ -300,7 +305,7 @@ function parseListResponse(html) {
                 var previewUrl = PluginUtils.extractPreviewUrl(itemHtml);
 
                 movies.push({
-                    id: slug,
+                    id: slug, // ID sẽ có dạng: "ABC-123" hoặc "dm1/abc-123"
                     title: cleanTitle,
                     posterUrl: thumb,
                     backdropUrl: thumb,
@@ -314,7 +319,7 @@ function parseListResponse(html) {
         }
     }
 
-    // 2. Nếu không có phim, kiểm tra xem có phải là trang Danh sách Nữ diễn viên / Thể loại tổng không
+    // 2. Nếu không có phim, kiểm tra xem có phải trang danh sách Diễn viên hoặc Thể loại tổng không
     if (movies.length === 0) {
         var actressLinkMatch = html.match(/href="[^"]*\/actresses\/[^"]+"/g);
         var isActressesPage = (actressLinkMatch && actressLinkMatch.length > 5);
@@ -367,10 +372,11 @@ function parseListResponse(html) {
 
                 var slug = url.replace(/https?:\/\/[^\/]+/, "");
                 while (slug.indexOf("/") === 0) slug = slug.substring(1);
+                while (slug.indexOf("vi/") === 0) slug = slug.substring(3);
 
                 if (!foundActresses[slug]) {
                     movies.push({
-                        id: slug,
+                        id: slug, // ID trả về đúng dạng "actresses/yua-mikami"
                         title: name,
                         posterUrl: img,
                         backdropUrl: img,
@@ -397,10 +403,11 @@ function parseListResponse(html) {
 
                     var slug = url.replace(/https?:\/\/[^\/]+/, "");
                     while (slug.indexOf("/") === 0) slug = slug.substring(1);
+                    while (slug.indexOf("vi/") === 0) slug = slug.substring(3);
 
                     if (!foundSlugs[slug]) {
                         movies.push({
-                            id: slug,
+                            id: slug, // ID trả về đúng dạng "genres/uncensored"
                             title: name,
                             posterUrl: "",
                             backdropUrl: "",
