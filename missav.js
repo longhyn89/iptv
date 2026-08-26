@@ -111,45 +111,59 @@ function getUrlList(slug, filtersJson) {
     } catch (e) {
         filters = {};
     }
-    
+
     var page = filters.page || 1;
     var baseUrl = "https://missav.media";
     var path = slug || "vi/new";
 
-    // Xử lý các đường dẫn rác / tiền tố ứng dụng thêm vào
+    // 1. Tách query string nếu đã có sẵn trong slug
+    var queryIndex = path.indexOf("?");
+    var rawParams = "";
+    if (queryIndex !== -1) {
+        rawParams = path.substring(queryIndex + 1);
+        path = path.substring(0, queryIndex);
+    }
+
+    // 2. Tách domain nếu slug dạng URL tuyệt đối
     if (path.indexOf("http") === 0) {
         path = path.replace(/^https?:\/\/[^\/]+/, "");
     }
-    
-    // Loại bỏ tiền tố không cần thiết (vd: dm288/)
-    path = path.replace(/^\/?[^/]+\/vi\//, "vi/");
-    if (path.indexOf("/") === 0) {
-        path = path.substring(1);
-    }
-    if (path.indexOf("vi/") !== 0 && path.indexOf("http") !== 0) {
-        path = "vi/" + path;
-    }
 
-    var fullUrl = baseUrl + "/" + path;
-
-    // Loại bỏ tham số page cũ nếu có trong slug
-    fullUrl = fullUrl.replace(/([?&])page=\d+&?/, "$1").replace(/[?&]$/, "");
-
-    // Ép buộc thêm tham số page vào URL
-    if (fullUrl.indexOf("?") !== -1) {
-        fullUrl += "&page=" + page;
+    // 3. Làm sạch các tiền tố dẫn truyền từ app (vd: dm288/...)
+    var viIndex = path.indexOf("/vi/");
+    if (viIndex !== -1) {
+        path = path.substring(viIndex + 1);
+    } else if (path.indexOf("vi/") === 0) {
+        // Giữ nguyên
     } else {
-        fullUrl += "?page=" + page;
+        path = path.replace(/^\/+/, "");
+        if (path.indexOf("vi/") !== 0) {
+            path = "vi/" + path;
+        }
     }
 
-    // Bổ sung sort nếu có
+    // 4. Lấy lại các query param cũ (trừ page)
+    var paramPairs = [];
+    if (rawParams) {
+        var parts = rawParams.split("&");
+        for (var i = 0; i < parts.length; i++) {
+            if (parts[i] && parts[i].indexOf("page=") !== 0) {
+                paramPairs.push(parts[i]);
+            }
+        }
+    }
+
+    // 5. Thêm page vào danh sách param
+    paramPairs.push("page=" + page);
+
+    // 6. Xử lý Sort
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
-        fullUrl += "&sort=" + filters.sort;
+        paramPairs.push("sort=" + filters.sort);
     } else if (filters.sort === 'hot') {
-        fullUrl += "&sort=views";
+        paramPairs.push("sort=views");
     }
 
-    return fullUrl;
+    return baseUrl + "/" + path + "?" + paramPairs.join("&");
 }
 
 function getUrlSearch(keyword, filtersJson) {
@@ -165,8 +179,14 @@ function getUrlSearch(keyword, filtersJson) {
 
 function getUrlDetail(slug) {
     if (slug.indexOf("http") === 0) return slug;
-    var path = slug.replace(/^\/?[^/]+\/vi\//, "vi/");
-    if (path.indexOf("/") === 0) path = path.substring(1);
+    var path = slug;
+    var viIndex = path.indexOf("/vi/");
+    if (viIndex !== -1) {
+        path = path.substring(viIndex + 1);
+    } else {
+        path = path.replace(/^\/+/, "");
+        if (path.indexOf("vi/") !== 0) path = "vi/" + path;
+    }
     return "https://missav.media/" + path;
 }
 
@@ -196,6 +216,16 @@ var PluginUtils = {
             .replace(/&gt;/g, ">")
             .replace(/\s+/g, " ")
             .trim();
+    },
+    cleanSlug: function (url) {
+        if (!url) return "";
+        var clean = url.replace(/^https?:\/\/[^\/]+/, "");
+        var viIndex = clean.indexOf("/vi/");
+        if (viIndex !== -1) {
+            return clean.substring(viIndex + 1);
+        }
+        clean = clean.replace(/^\/+/, "");
+        return (clean.indexOf("vi/") === 0) ? clean : "vi/" + clean;
     },
     getMeta: function (html, property) {
         var regex = new RegExp('property="' + property + '"\\s+content="([^"]+)"', 'i');
@@ -280,7 +310,7 @@ function parseListResponse(html) {
         html.indexOf('class="text-nord13"') !== -1 &&
         html.indexOf(':đếm video') !== -1;
 
-    // 1. Xử lý Nữ diễn viên
+    // 1. Trang Nữ diễn viên
     if (isActressesPage) {
         var gridMatch = html.match(/<ul[^>]*class="[^"]*grid-cols-2[^"]*"[^>]*>([\s\S]*?)<\/ul>/);
         var searchScope = gridMatch ? gridMatch[1] : html;
@@ -317,9 +347,7 @@ function parseListResponse(html) {
 
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-            var slug = url.replace(/^https?:\/\/[^\/]+/, "");
-            // Chuẩn hóa slug sạch sẽ (ví dụ: vi/actresses/xxx)
-            var cleanSlug = slug.replace(/^\/?[^/]+\/vi\//, "vi/").replace(/^\//, "");
+            var cleanSlug = PluginUtils.cleanSlug(url);
 
             if (!foundActresses[cleanSlug]) {
                 movies.push({
@@ -337,7 +365,7 @@ function parseListResponse(html) {
             }
         }
     } 
-    // 2. Xử lý Thể loại
+    // 2. Trang Thể loại
     else if (isAllGenresPage) {
         var genreRegex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var foundSlugs = {};
@@ -351,8 +379,7 @@ function parseListResponse(html) {
                 var name = PluginUtils.cleanText(innerContent);
                 if (!name || name.length < 2) continue;
 
-                var slug = url.replace(/^https?:\/\/[^\/]+/, "");
-                var cleanSlug = slug.replace(/^\/?[^/]+\/vi\//, "vi/").replace(/^\//, "");
+                var cleanSlug = PluginUtils.cleanSlug(url);
 
                 if (!foundSlugs[cleanSlug]) {
                     movies.push({
@@ -372,7 +399,7 @@ function parseListResponse(html) {
         }
     }
 
-    // 3. Xử lý Phim
+    // 3. Trang Phim
     if (movies.length === 0) {
         var parts = html.split('thumbnail group');
         if (parts.length <= 1) parts = html.split('class="thumbnail');
@@ -383,8 +410,7 @@ function parseListResponse(html) {
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
             var slug = "";
             if (fullLinkMatch) {
-                slug = fullLinkMatch[1].replace(/^https?:\/\/[^\/]+/, "");
-                slug = slug.replace(/^\/?[^/]+\/vi\//, "vi/").replace(/^\//, "");
+                slug = PluginUtils.cleanSlug(fullLinkMatch[1]);
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
