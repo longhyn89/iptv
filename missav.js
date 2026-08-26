@@ -529,36 +529,62 @@ function parseSearchResponse(html) {
 function parseMovieDetail(html, pageUrl) {
     html = PluginUtils.normalizeHtml(html);
     try {
-        // NẾU URL LÀ DẠNG TRANG CỦA NỮ DIỄN VIÊN / THỂ LOẠI (App cố tình gọi parseMovieDetail)
+        // NẾU URL LÀ DẠNG TRANG CỦA NỮ DIỄN VIÊN / THỂ LOẠI
         if (pageUrl && (pageUrl.indexOf('/actresses/') !== -1 || pageUrl.indexOf('/genres/') !== -1)) {
             var parsedList = JSON.parse(parseListResponse(html));
             var items = parsedList.items || [];
 
-            var actName = "Danh sách phim";
-            var h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-            if (h1Match) actName = PluginUtils.cleanText(h1Match[1]);
+            // Bóc tách tên diễn viên chính xác từ DOM
+            var actName = "";
+            var nameMatch = html.match(/<h1[^>]*class="[^"]*font-bold[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) ||
+                            html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
+                            html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+            
+            if (nameMatch) {
+                actName = PluginUtils.cleanText(nameMatch[1]);
+                actName = actName.replace(/^Xem\s*:\s*/i, '').replace(/\s*của nữ diễn viên.*$/i, '').trim();
+            }
 
+            if (!actName || actName.indexOf("AV Online") !== -1) {
+                var ogTitle = PluginUtils.getMeta(html, "og:title");
+                if (ogTitle) {
+                    actName = PluginUtils.cleanText(ogTitle).replace(/^Xem\s*:\s*/i, '').replace(/\s*của nữ diễn viên.*$/i, '').trim();
+                }
+            }
+
+            if (!actName) {
+                var urlParts = pageUrl.split('/');
+                actName = decodeURIComponent(urlParts[urlParts.length - 1] || "Nữ diễn viên");
+            }
+
+            // Bóc tách ảnh đại diện diễn viên
             var actImg = "";
-            var imgMatch = html.match(/<img[^>]+src="([^"]+)"[^>]*>/i);
+            var imgMatch = html.match(/<img[^>]+src="([^"]+)"[^>]*alt="[^"]*"[^>]*>/i) || html.match(/<img[^>]+src="([^"]+)"[^>]*>/i);
             if (imgMatch) actImg = imgMatch[1];
+            if (!actImg || actImg.indexOf('flag') !== -1) actImg = PluginUtils.getMeta(html, "og:image");
 
             var episodes = [];
+            var seenEp = {};
             for (var k = 0; k < items.length; k++) {
-                episodes.push({
-                    id: items[k].id,
-                    name: items[k].title,
-                    slug: items[k].id
-                });
+                var epId = items[k].id;
+                if (!seenEp[epId]) {
+                    seenEp[epId] = true;
+                    episodes.push({
+                        id: epId,
+                        name: items[k].lang ? "[" + items[k].lang + "] " + items[k].title : items[k].title,
+                        slug: epId
+                    });
+                }
             }
 
             return JSON.stringify({
                 id: pageUrl,
-                title: actName,
+                title: "Nữ diễn viên: " + actName,
                 posterUrl: actImg,
                 backdropUrl: actImg,
-                description: "Danh sách " + items.length + " phim của " + actName,
+                description: "Tổng hợp " + episodes.length + " video của diễn viên " + actName,
                 servers: [{
-                    name: "Danh sách phim",
+                    name: "Danh sách phim (" + episodes.length + ")",
                     episodes: episodes
                 }],
                 quality: "HD",
@@ -566,10 +592,10 @@ function parseMovieDetail(html, pageUrl) {
                 year: 2024,
                 rating: 0,
                 casts: actName,
-                director: "",
-                category: "",
-                status: "Tổng cộng: " + items.length + " video",
-                duration: "",
+                director: "MissAV",
+                category: "Nữ diễn viên",
+                status: "Tổng cộng: " + episodes.length + " video",
+                duration: episodes.length + " phim",
                 previewUrl: ""
             });
         }
