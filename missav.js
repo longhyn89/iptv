@@ -105,53 +105,69 @@ function getFilterConfig() {
 // =============================================================================
 
 function getUrlList(slug, filtersJson) {
-    var filters = JSON.parse(filtersJson || "{}");
+    var filters = {};
+    try {
+        filters = JSON.parse(filtersJson || "{}");
+    } catch (e) {
+        filters = {};
+    }
+    
     var page = filters.page || 1;
     var baseUrl = "https://missav.media";
-
     var path = slug || "vi/new";
 
-    // 1. Xử lý đường dẫn tuyệt đối (http/https)
+    // Xử lý các đường dẫn rác / tiền tố ứng dụng thêm vào
     if (path.indexOf("http") === 0) {
-        var hasQuery = path.indexOf("?") !== -1;
-        return path + (hasQuery ? "&" : "?") + "page=" + page;
+        path = path.replace(/^https?:\/\/[^\/]+/, "");
     }
-
-    // 2. Làm sạch dấu / ở đầu path
+    
+    // Loại bỏ tiền tố không cần thiết (vd: dm288/)
+    path = path.replace(/^\/?[^/]+\/vi\//, "vi/");
     if (path.indexOf("/") === 0) {
         path = path.substring(1);
     }
+    if (path.indexOf("vi/") !== 0 && path.indexOf("http") !== 0) {
+        path = "vi/" + path;
+    }
 
-    // 3. Đảm bảo nối tham số page chính xác
-    var hasQueryParams = path.indexOf("?") !== -1;
-    var url = baseUrl + "/" + path;
+    var fullUrl = baseUrl + "/" + path;
 
-    if (hasQueryParams) {
-        url += "&page=" + page;
+    // Loại bỏ tham số page cũ nếu có trong slug
+    fullUrl = fullUrl.replace(/([?&])page=\d+&?/, "$1").replace(/[?&]$/, "");
+
+    // Ép buộc thêm tham số page vào URL
+    if (fullUrl.indexOf("?") !== -1) {
+        fullUrl += "&page=" + page;
     } else {
-        url += "?page=" + page;
+        fullUrl += "?page=" + page;
     }
 
-    // 4. Đính kèm tham số lọc/sắp xếp
+    // Bổ sung sort nếu có
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
-        url += "&sort=" + filters.sort;
+        fullUrl += "&sort=" + filters.sort;
     } else if (filters.sort === 'hot') {
-        url += "&sort=views";
+        fullUrl += "&sort=views";
     }
 
-    return url;
+    return fullUrl;
 }
 
 function getUrlSearch(keyword, filtersJson) {
-    var filters = JSON.parse(filtersJson || "{}");
+    var filters = {};
+    try {
+        filters = JSON.parse(filtersJson || "{}");
+    } catch (e) {
+        filters = {};
+    }
     var page = filters.page || 1;
     return "https://missav.media/vi/search/" + encodeURIComponent(keyword) + "?page=" + page;
 }
 
 function getUrlDetail(slug) {
     if (slug.indexOf("http") === 0) return slug;
-    if (slug.indexOf("/") === 0) return "https://missav.media" + slug;
-    return "https://missav.media/vi/" + slug;
+    var path = slug.replace(/^\/?[^/]+\/vi\//, "vi/");
+    if (path.indexOf("/") === 0) path = path.substring(1);
+    return "https://missav.media/" + path;
 }
 
 function getUrlCategories() { return "https://missav.media/vi/genres"; }
@@ -264,7 +280,7 @@ function parseListResponse(html) {
         html.indexOf('class="text-nord13"') !== -1 &&
         html.indexOf(':đếm video') !== -1;
 
-    // 1. Xử lý trang Nữ diễn viên
+    // 1. Xử lý Nữ diễn viên
     if (isActressesPage) {
         var gridMatch = html.match(/<ul[^>]*class="[^"]*grid-cols-2[^"]*"[^>]*>([\s\S]*?)<\/ul>/);
         var searchScope = gridMatch ? gridMatch[1] : html;
@@ -301,12 +317,13 @@ function parseListResponse(html) {
 
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-            var slug = url.replace(/https?:\/\/[^\/]+/, "");
-            if (slug.indexOf("/") !== 0) slug = "/" + slug;
+            var slug = url.replace(/^https?:\/\/[^\/]+/, "");
+            // Chuẩn hóa slug sạch sẽ (ví dụ: vi/actresses/xxx)
+            var cleanSlug = slug.replace(/^\/?[^/]+\/vi\//, "vi/").replace(/^\//, "");
 
-            if (!foundActresses[slug]) {
+            if (!foundActresses[cleanSlug]) {
                 movies.push({
-                    id: slug,
+                    id: cleanSlug,
                     title: name,
                     posterUrl: img,
                     backdropUrl: img,
@@ -316,11 +333,11 @@ function parseListResponse(html) {
                     episode_current: "",
                     lang: ""
                 });
-                foundActresses[slug] = true;
+                foundActresses[cleanSlug] = true;
             }
         }
     } 
-    // 2. Xử lý trang Thể loại
+    // 2. Xử lý Thể loại
     else if (isAllGenresPage) {
         var genreRegex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var foundSlugs = {};
@@ -334,12 +351,12 @@ function parseListResponse(html) {
                 var name = PluginUtils.cleanText(innerContent);
                 if (!name || name.length < 2) continue;
 
-                var slug = url.replace(/https?:\/\/[^\/]+/, "");
-                if (slug.indexOf("/") !== 0) slug = "/" + slug;
+                var slug = url.replace(/^https?:\/\/[^\/]+/, "");
+                var cleanSlug = slug.replace(/^\/?[^/]+\/vi\//, "vi/").replace(/^\//, "");
 
-                if (!foundSlugs[slug]) {
+                if (!foundSlugs[cleanSlug]) {
                     movies.push({
-                        id: slug,
+                        id: cleanSlug,
                         title: name,
                         posterUrl: "",
                         backdropUrl: "",
@@ -349,13 +366,13 @@ function parseListResponse(html) {
                         episode_current: "",
                         lang: ""
                     });
-                    foundSlugs[slug] = true;
+                    foundSlugs[cleanSlug] = true;
                 }
             }
         }
     }
 
-    // 3. Xử lý danh sách Phim
+    // 3. Xử lý Phim
     if (movies.length === 0) {
         var parts = html.split('thumbnail group');
         if (parts.length <= 1) parts = html.split('class="thumbnail');
@@ -366,8 +383,8 @@ function parseListResponse(html) {
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
             var slug = "";
             if (fullLinkMatch) {
-                slug = fullLinkMatch[1].replace(/https?:\/\/[^\/]+/, "");
-                if (slug.indexOf("/") !== 0) slug = "/" + slug;
+                slug = fullLinkMatch[1].replace(/^https?:\/\/[^\/]+/, "");
+                slug = slug.replace(/^\/?[^/]+\/vi\//, "vi/").replace(/^\//, "");
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
