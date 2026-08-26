@@ -73,29 +73,11 @@ function getFilterConfig() {
             { name: "Xem nhiều tháng", value: "vi/monthly-hot" },
             { name: "Phụ đề Anh", value: "vi/english-subtitle" },
             { name: "Phụ đề China", value: "vi/chinese-subtitle" },
-
-            // Amateur
-            { name: "SIRO", value: "vi/series/SIRO" },
-            { name: "LUXU", value: "vi/series/LUXU" },
-            { name: "GANA", value: "vi/series/GANA" },
-            { name: "MAAN", value: "vi/series/MAAN" },
-            { name: "S-CUTE", value: "vi/series/S-CUTE" },
-            { name: "ARA", value: "vi/series/ARA" },
-
-            // Uncensored Brands
             { name: "FC2", value: "vi/series/FC2" },
             { name: "HEYZO", value: "vi/series/HEYZO" },
             { name: "Tokyo Hot", value: "vi/series/Tokyo-Hot" },
             { name: "1pondo", value: "vi/series/1pondo" },
-            { name: "Caribbeancom", value: "vi/series/Caribbeancom" },
-            { name: "Caribbeancompr", value: "vi/series/Caribbeancompr" },
-            { name: "10musume", value: "vi/series/10musume" },
-            { name: "pacopacomama", value: "vi/series/pacopacomama" },
-            { name: "Gachinco", value: "vi/series/Gachinco" },
-            { name: "XXX-AV", value: "vi/series/XXX-AV" },
-            { name: "MarriedSlash", value: "vi/series/MarriedSlash" },
-            { name: "Naughty4610", value: "vi/series/naughty4610" },
-            { name: "Naughty0930", value: "vi/series/naughty0930" }
+            { name: "Caribbeancom", value: "vi/series/Caribbeancom" }
         ]
     });
 }
@@ -104,27 +86,28 @@ function getFilterConfig() {
 // URL GENERATION
 // =============================================================================
 
+function cleanSlugPath(rawPath) {
+    if (!rawPath) return "new";
+    var path = rawPath.replace(/https?:\/\/[^\/]+/, "");
+    
+    // Loại bỏ các dấu / ở đầu
+    while (path.length > 0 && path.indexOf("/") === 0) {
+        path = path.substring(1);
+    }
+    // Lọc bỏ tiền tố vi/ liên tiếp nếu bị trùng lặp
+    while (path.indexOf("vi/") === 0) {
+        path = path.substring(3);
+    }
+    return path;
+}
+
 function getUrlList(slug, filtersJson) {
     var filters = JSON.parse(filtersJson || "{}");
     var page = filters.page || 1;
     var baseUrl = "https://missav.media";
 
-    var path = slug || "vi/new";
+    var path = cleanSlugPath(slug);
 
-    // Bóc tách domain nếu bị lặp
-    path = path.replace(/https?:\/\/[^\/]+/, "");
-
-    // Xóa tất cả dấu / ở đầu
-    while (path.length > 0 && path.indexOf("/") === 0) {
-        path = path.substring(1);
-    }
-
-    // Xóa tiền tố 'vi/' nếu bị lặp lại nhiều lần
-    while (path.indexOf("vi/") === 0) {
-        path = path.substring(3);
-    }
-
-    // Ghép lại tiền tố vi/ duy nhất
     if (path === "vi" || path === "") {
         path = "vi/new";
     } else {
@@ -133,14 +116,12 @@ function getUrlList(slug, filtersJson) {
 
     var url = baseUrl + "/" + path;
 
-    // Xử lý tham số trang
     if (url.indexOf("?") !== -1) {
         url += "&page=" + page;
     } else {
         url += "?page=" + page;
     }
 
-    // Xử lý bộ lọc Sắp xếp
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
         url += "&sort=" + filters.sort;
     } else if (filters.sort === 'hot') {
@@ -157,10 +138,7 @@ function getUrlSearch(keyword, filtersJson) {
 }
 
 function getUrlDetail(slug) {
-    if (slug.indexOf("http") === 0) return slug;
-    var path = slug;
-    while (path.indexOf("/") === 0) path = path.substring(1);
-    while (path.indexOf("vi/") === 0) path = path.substring(3);
+    var path = cleanSlugPath(slug);
     return "https://missav.media/vi/" + path;
 }
 
@@ -231,14 +209,10 @@ function parseListResponse(html) {
         for (var i = 1; i < parts.length; i++) {
             var itemHtml = parts[i];
 
-            var linkMatch = itemHtml.match(/<a[^>]+href="[^"]*\/vi\/([^"\/ \?]+)"/);
-            var slug = linkMatch ? "vi/" + linkMatch[1] : "";
-
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
+            var slug = "";
             if (fullLinkMatch) {
-                var fullUrl = fullLinkMatch[1];
-                slug = fullUrl.replace(/https?:\/\/[^\/]+/, "");
-                while (slug.indexOf("/") === 0) slug = slug.substring(1);
+                slug = cleanSlugPath(fullLinkMatch[1]);
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
@@ -288,9 +262,6 @@ function parseListResponse(html) {
                 thumb = thumb.replace("/cover-t.jpg", "/cover.jpg");
             }
 
-            // Chuẩn hóa slug phim
-            while (slug.indexOf("vi/") === 0) slug = slug.substring(3);
-
             if (slug && slug.indexOf("actresses") !== 0 && slug.indexOf("genres") !== 0 && slug.indexOf("makers") !== 0) {
                 if (slug.indexOf('item.') !== -1 || slug.indexOf('{{') !== -1 || slug === "vi" || slug === "") continue;
                 if (cleanTitle.indexOf('item.') !== -1 || cleanTitle.indexOf('{{') !== -1) continue;
@@ -305,7 +276,7 @@ function parseListResponse(html) {
                 var previewUrl = PluginUtils.extractPreviewUrl(itemHtml);
 
                 movies.push({
-                    id: slug, // ID sẽ có dạng: "ABC-123" hoặc "dm1/abc-123"
+                    id: slug,
                     title: cleanTitle,
                     posterUrl: thumb,
                     backdropUrl: thumb,
@@ -319,7 +290,7 @@ function parseListResponse(html) {
         }
     }
 
-    // 2. Nếu không có phim, kiểm tra xem có phải trang danh sách Diễn viên hoặc Thể loại tổng không
+    // 2. Xử lý khi trang hiện tại là Danh sách Diễn viên hoặc Danh sách Thể loại
     if (movies.length === 0) {
         var actressLinkMatch = html.match(/href="[^"]*\/actresses\/[^"]+"/g);
         var isActressesPage = (actressLinkMatch && actressLinkMatch.length > 5);
@@ -367,16 +338,13 @@ function parseListResponse(html) {
 
                 var imgMatch = itemHtml.match(/<img[^>]+src="([^"]+)"/);
                 var img = imgMatch ? imgMatch[1] : "";
-
                 if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-                var slug = url.replace(/https?:\/\/[^\/]+/, "");
-                while (slug.indexOf("/") === 0) slug = slug.substring(1);
-                while (slug.indexOf("vi/") === 0) slug = slug.substring(3);
+                var slug = cleanSlugPath(url);
 
                 if (!foundActresses[slug]) {
                     movies.push({
-                        id: slug, // ID trả về đúng dạng "actresses/yua-mikami"
+                        id: slug, // slug dạng "actresses/yua-mikami"
                         title: name,
                         posterUrl: img,
                         backdropUrl: img,
@@ -401,13 +369,11 @@ function parseListResponse(html) {
                     var name = PluginUtils.cleanText(innerContent);
                     if (!name || name.length < 2) continue;
 
-                    var slug = url.replace(/https?:\/\/[^\/]+/, "");
-                    while (slug.indexOf("/") === 0) slug = slug.substring(1);
-                    while (slug.indexOf("vi/") === 0) slug = slug.substring(3);
+                    var slug = cleanSlugPath(url);
 
                     if (!foundSlugs[slug]) {
                         movies.push({
-                            id: slug, // ID trả về đúng dạng "genres/uncensored"
+                            id: slug, // slug dạng "genres/uncensored"
                             title: name,
                             posterUrl: "",
                             backdropUrl: "",
@@ -459,6 +425,38 @@ function parseSearchResponse(html) {
 function parseMovieDetail(html, pageUrl) {
     html = PluginUtils.normalizeHtml(html);
     try {
+        // Phòng ngừa: Nếu HTML nhận về thực chất là một trang danh sách (chẳng hạn do app mở nhầm màn hình chi tiết cho 1 Diễn viên/Thể loại)
+        if (html.indexOf('thumbnail group') !== -1 || html.indexOf('class="thumbnail') !== -1 || html.indexOf('grid-cols-2') !== -1) {
+            // Trả về dữ liệu danh sách phim con của mục đó
+            var listData = parseListResponse(html);
+            var parsed = JSON.parse(listData);
+            
+            // Nếu có danh sách phim con
+            if (parsed.items && parsed.items.length > 0) {
+                var firstItem = parsed.items[0];
+                return JSON.stringify({
+                    id: firstItem.id,
+                    title: "Danh sách phim (" + parsed.items.length + " video)",
+                    posterUrl: firstItem.posterUrl,
+                    backdropUrl: firstItem.backdropUrl,
+                    description: "Chọn tập bên dưới để xem danh sách phim của Diễn viên / Thể loại này",
+                    servers: [{
+                        name: "Danh Sách Phim",
+                        episodes: parsed.items.map(function(item, idx) {
+                            return {
+                                id: "https://missav.media/vi/" + item.id,
+                                name: item.title,
+                                slug: item.id
+                            };
+                        })
+                    }],
+                    quality: "LIST",
+                    lang: "Vietsub",
+                    year: 2024
+                });
+            }
+        }
+
         var getField = function (labelKey) {
             var regex = new RegExp("<span>" + labelKey + ":<\\/span>([\\s\\S]*?)<\\/div>", "i");
             var match = html.match(regex);
@@ -690,13 +688,11 @@ function parseCategoriesResponse(html) {
     while ((match = regex.exec(html)) !== null) {
         var fullPath = match[1];
         var name = PluginUtils.cleanText(match[2]);
-
-        var parts = fullPath.split("/genres/");
-        var slug = parts.length > 1 ? parts[1] : "";
+        var slug = cleanSlugPath(fullPath);
 
         if (slug && name && !seen[slug]) {
             seen[slug] = true;
-            categories.push({ name: name, slug: "vi/genres/" + slug });
+            categories.push({ name: name, slug: slug });
         }
     }
     return JSON.stringify(categories);
