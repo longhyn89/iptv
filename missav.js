@@ -72,30 +72,7 @@ function getFilterConfig() {
             { name: "Xem nhiều tuần", value: "vi/weekly-hot" },
             { name: "Xem nhiều tháng", value: "vi/monthly-hot" },
             { name: "Phụ đề Anh", value: "vi/english-subtitle" },
-            { name: "Phụ đề China", value: "vi/chinese-subtitle" },
-
-            // Amateur
-            { name: "SIRO", value: "vi/series/SIRO" },
-            { name: "LUXU", value: "vi/series/LUXU" },
-            { name: "GANA", value: "vi/series/GANA" },
-            { name: "MAAN", value: "vi/series/MAAN" },
-            { name: "S-CUTE", value: "vi/series/S-CUTE" },
-            { name: "ARA", value: "vi/series/ARA" },
-
-            // Uncensored Brands
-            { name: "FC2", value: "vi/series/FC2" },
-            { name: "HEYZO", value: "vi/series/HEYZO" },
-            { name: "Tokyo Hot", value: "vi/series/Tokyo-Hot" },
-            { name: "1pondo", value: "vi/series/1pondo" },
-            { name: "Caribbeancom", value: "vi/series/Caribbeancom" },
-            { name: "Caribbeancompr", value: "vi/series/Caribbeancompr" },
-            { name: "10musume", value: "vi/series/10musume" },
-            { name: "pacopacomama", value: "vi/series/pacopacomama" },
-            { name: "Gachinco", value: "vi/series/Gachinco" },
-            { name: "XXX-AV", value: "vi/series/XXX-AV" },
-            { name: "MarriedSlash", value: "vi/series/MarriedSlash" },
-            { name: "Naughty4610", value: "vi/series/naughty4610" },
-            { name: "Naughty0930", value: "vi/series/naughty0930" }
+            { name: "Phụ đề China", value: "vi/chinese-subtitle" }
         ]
     });
 }
@@ -114,56 +91,66 @@ function getUrlList(slug, filtersJson) {
 
     var page = filters.page || 1;
     var baseUrl = "https://missav.media";
-    var path = slug || "vi/new";
+    var rawSlug = slug || "vi/new";
 
-    // 1. Tách query string nếu đã có sẵn trong slug
-    var queryIndex = path.indexOf("?");
-    var rawParams = "";
+    // 1. Loại bỏ domain/protocol nếu có
+    if (rawSlug.indexOf("http") === 0) {
+        rawSlug = rawSlug.replace(/^https?:\/\/[^\/]+/, "");
+    }
+
+    // 2. Tách query string cũ nếu slug có chứa ?
+    var queryIndex = rawSlug.indexOf("?");
+    var existingQuery = "";
     if (queryIndex !== -1) {
-        rawParams = path.substring(queryIndex + 1);
-        path = path.substring(0, queryIndex);
+        existingQuery = rawSlug.substring(queryIndex + 1);
+        rawSlug = rawSlug.substring(0, queryIndex);
     }
 
-    // 2. Tách domain nếu slug dạng URL tuyệt đối
-    if (path.indexOf("http") === 0) {
-        path = path.replace(/^https?:\/\/[^\/]+/, "");
-    }
+    // 3. Loại bỏ các tiền tố rác do App tự thêm vào (vd: dm288/...)
+    var cleanPath = rawSlug;
+    var actressesIdx = cleanPath.indexOf("actresses/");
+    var genresIdx = cleanPath.indexOf("genres/");
+    var makersIdx = cleanPath.indexOf("makers/");
 
-    // 3. Làm sạch các tiền tố dẫn truyền từ app (vd: dm288/...)
-    var viIndex = path.indexOf("/vi/");
-    if (viIndex !== -1) {
-        path = path.substring(viIndex + 1);
-    } else if (path.indexOf("vi/") === 0) {
-        // Giữ nguyên
+    if (actressesIdx !== -1) {
+        cleanPath = "vi/" + cleanPath.substring(actressesIdx);
+    } else if (genresIdx !== -1) {
+        cleanPath = "vi/" + cleanPath.substring(genresIdx);
+    } else if (makersIdx !== -1) {
+        cleanPath = "vi/" + cleanPath.substring(makersIdx);
     } else {
-        path = path.replace(/^\/+/, "");
-        if (path.indexOf("vi/") !== 0) {
-            path = "vi/" + path;
-        }
-    }
-
-    // 4. Lấy lại các query param cũ (trừ page)
-    var paramPairs = [];
-    if (rawParams) {
-        var parts = rawParams.split("&");
-        for (var i = 0; i < parts.length; i++) {
-            if (parts[i] && parts[i].indexOf("page=") !== 0) {
-                paramPairs.push(parts[i]);
+        var viIndex = cleanPath.indexOf("/vi/");
+        if (viIndex !== -1) {
+            cleanPath = cleanPath.substring(viIndex + 1);
+        } else {
+            cleanPath = cleanPath.replace(/^\/+/, "");
+            if (cleanPath.indexOf("vi/") !== 0) {
+                cleanPath = "vi/" + cleanPath;
             }
         }
     }
 
-    // 5. Thêm page vào danh sách param
-    paramPairs.push("page=" + page);
+    // 4. Xây dựng tham số Query
+    var params = [];
+    params.push("page=" + page);
 
-    // 6. Xử lý Sort
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
-        paramPairs.push("sort=" + filters.sort);
+        params.push("sort=" + filters.sort);
     } else if (filters.sort === 'hot') {
-        paramPairs.push("sort=views");
+        params.push("sort=views");
     }
 
-    return baseUrl + "/" + path + "?" + paramPairs.join("&");
+    // Giữ lại các param cũ ngoại trừ page và sort
+    if (existingQuery) {
+        var parts = existingQuery.split("&");
+        for (var i = 0; i < parts.length; i++) {
+            if (parts[i] && parts[i].indexOf("page=") !== 0 && parts[i].indexOf("sort=") !== 0) {
+                params.push(parts[i]);
+            }
+        }
+    }
+
+    return baseUrl + "/" + cleanPath + "?" + params.join("&");
 }
 
 function getUrlSearch(keyword, filtersJson) {
@@ -217,9 +204,17 @@ var PluginUtils = {
             .replace(/\s+/g, " ")
             .trim();
     },
-    cleanSlug: function (url) {
+    // Hàm rút gọn ID để ép App luôn truyền vào getUrlList
+    toPureSlug: function (url, type) {
         if (!url) return "";
         var clean = url.replace(/^https?:\/\/[^\/]+/, "");
+        
+        var targetPattern = type + "/";
+        var idx = clean.indexOf(targetPattern);
+        if (idx !== -1) {
+            return "vi/" + clean.substring(idx);
+        }
+        
         var viIndex = clean.indexOf("/vi/");
         if (viIndex !== -1) {
             return clean.substring(viIndex + 1);
@@ -347,11 +342,11 @@ function parseListResponse(html) {
 
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-            var cleanSlug = PluginUtils.cleanSlug(url);
+            var pureSlug = PluginUtils.toPureSlug(url, "actresses");
 
-            if (!foundActresses[cleanSlug]) {
+            if (!foundActresses[pureSlug]) {
                 movies.push({
-                    id: cleanSlug,
+                    id: pureSlug,
                     title: name,
                     posterUrl: img,
                     backdropUrl: img,
@@ -361,7 +356,7 @@ function parseListResponse(html) {
                     episode_current: "",
                     lang: ""
                 });
-                foundActresses[cleanSlug] = true;
+                foundActresses[pureSlug] = true;
             }
         }
     } 
@@ -379,11 +374,11 @@ function parseListResponse(html) {
                 var name = PluginUtils.cleanText(innerContent);
                 if (!name || name.length < 2) continue;
 
-                var cleanSlug = PluginUtils.cleanSlug(url);
+                var pureSlug = PluginUtils.toPureSlug(url, "genres");
 
-                if (!foundSlugs[cleanSlug]) {
+                if (!foundSlugs[pureSlug]) {
                     movies.push({
-                        id: cleanSlug,
+                        id: pureSlug,
                         title: name,
                         posterUrl: "",
                         backdropUrl: "",
@@ -393,7 +388,7 @@ function parseListResponse(html) {
                         episode_current: "",
                         lang: ""
                     });
-                    foundSlugs[cleanSlug] = true;
+                    foundSlugs[pureSlug] = true;
                 }
             }
         }
@@ -410,7 +405,7 @@ function parseListResponse(html) {
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
             var slug = "";
             if (fullLinkMatch) {
-                slug = PluginUtils.cleanSlug(fullLinkMatch[1]);
+                slug = PluginUtils.toPureSlug(fullLinkMatch[1], "vi");
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
