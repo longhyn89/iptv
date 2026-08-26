@@ -96,7 +96,7 @@ function getUrlList(slug, filtersJson) {
     var baseUrl = "https://missav.media/vi";
     var str = slug || "new";
 
-    // 1. Tách Query String nếu đường dẫn đầu vào đã có ?
+    // 1. Tách Query String cũ nếu có
     var queryParams = [];
     if (str.indexOf("?") !== -1) {
         var parts = str.split("?");
@@ -109,7 +109,7 @@ function getUrlList(slug, filtersJson) {
         }
     }
 
-    // 2. Bóc tách loại bỏ các tiền tố /dm288/, /vi/ do App chèn vào
+    // 2. Làm sạch Path
     if (str.indexOf("http") === 0) {
         str = str.replace(/^https?:\/\/[^\/]+/, "");
     }
@@ -141,7 +141,7 @@ function getUrlList(slug, filtersJson) {
 
     cleanPath = cleanPath.replace(/^\/+/, "");
 
-    // 3. Ép tham số page vào mảng
+    // 3. Ép tham số phân trang
     queryParams.unshift("page=" + page);
 
     if (sort && sort !== 'new' && sort !== 'hot') {
@@ -204,7 +204,6 @@ var PluginUtils = {
             .replace(/\s+/g, " ")
             .trim();
     },
-    // Trả về ID sạch, không có / ở đầu để App bắt buộc kích hoạt getUrlList
     toCleanId: function (url, key) {
         if (!url) return "";
         var clean = url.replace(/^https?:\/\/[^\/]+/, "");
@@ -347,7 +346,7 @@ function parseListResponse(html) {
                     posterUrl: img,
                     backdropUrl: img,
                     description: "Nữ diễn viên",
-                    type: "FOLDER",
+                    type: "MOVIE", // Ép về MOVIE để buộc App gọi getUrlList khi click
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -379,7 +378,7 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        type: "FOLDER",
+                        type: "MOVIE", // Ép về MOVIE để buộc App gọi getUrlList khi click
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
