@@ -357,7 +357,7 @@ function parseListResponse(html) {
                     posterUrl: img,
                     backdropUrl: img,
                     description: "Diễn viên",
-                    type: "FOLDER", // Gán FOLDER/CATEGORY để App mở danh sách phim thay vì mở màn hình phát Detail
+                    type: "MOVIE",
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -392,7 +392,7 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        type: "FOLDER",
+                        type: "MOVIE",
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
@@ -529,6 +529,52 @@ function parseSearchResponse(html) {
 function parseMovieDetail(html, pageUrl) {
     html = PluginUtils.normalizeHtml(html);
     try {
+        // NẾU URL LÀ DẠNG TRANG CỦA NỮ DIỄN VIÊN / THỂ LOẠI (App cố tình gọi parseMovieDetail)
+        if (pageUrl && (pageUrl.indexOf('/actresses/') !== -1 || pageUrl.indexOf('/genres/') !== -1)) {
+            var parsedList = JSON.parse(parseListResponse(html));
+            var items = parsedList.items || [];
+
+            var actName = "Danh sách phim";
+            var h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+            if (h1Match) actName = PluginUtils.cleanText(h1Match[1]);
+
+            var actImg = "";
+            var imgMatch = html.match(/<img[^>]+src="([^"]+)"[^>]*>/i);
+            if (imgMatch) actImg = imgMatch[1];
+
+            var episodes = [];
+            for (var k = 0; k < items.length; k++) {
+                episodes.push({
+                    id: items[k].id,
+                    name: items[k].title,
+                    slug: items[k].id
+                });
+            }
+
+            return JSON.stringify({
+                id: pageUrl,
+                title: actName,
+                posterUrl: actImg,
+                backdropUrl: actImg,
+                description: "Danh sách " + items.length + " phim của " + actName,
+                servers: [{
+                    name: "Danh sách phim",
+                    episodes: episodes
+                }],
+                quality: "HD",
+                lang: "Vietsub",
+                year: 2024,
+                rating: 0,
+                casts: actName,
+                director: "",
+                category: "",
+                status: "Tổng cộng: " + items.length + " video",
+                duration: "",
+                previewUrl: ""
+            });
+        }
+
+        // BÓC TÁCH CHI TIẾT VIDEO PHIM BÌNH THƯỜNG
         var getField = function (labelKey) {
             var regex = new RegExp("<span>" + labelKey + ":<\\/span>([\\s\\S]*?)<\\/div>", "i");
             var match = html.match(regex);
