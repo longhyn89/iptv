@@ -8,7 +8,7 @@ function getManifest() {
         "name": "MissAV",
         "version": "1.1.3",
         "baseUrl": "https://missav.media",
-        "referrer": "https://missav123.com/",
+        "referrer": "https://missav.media/",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico",
         "isEnabled": true,
         "isAdult": true,
@@ -38,15 +38,7 @@ function getPrimaryCategories() {
         { name: "HEYZO", slug: "vi/heyzo" },
         { name: "Tokyo Hot", slug: "vi/tokyohot" },
         { name: "1pondo", slug: "vi/1pondo" },
-        { name: "Caribbeancom", slug: "vi/caribbeancom" },
-        { name: "Caribbeancompr", slug: "vi/caribbeancompr" },
-        { name: "10musume", slug: "vi/10musume" },
-        { name: "pacopacomama", slug: "vi/pacopacomama" },
-        { name: "Gachinco", slug: "vi/gachinco" },
-        { name: "XXX-AV", slug: "vi/xxx-av" },
-        { name: "MarriedSlash", slug: "vi/marriedslash" },
-        { name: "Naughty4610", slug: "vi/naughty4610" },
-        { name: "Naughty0930", slug: "vi/naughty0930" }
+        { name: "Caribbeancom", slug: "vi/caribbeancom" }
     ]);
 }
 
@@ -65,57 +57,38 @@ function getFilterConfig() {
             { name: "Phát hành mới", value: "vi/release" },
             { name: "Không che (Rò rỉ)", value: "vi/uncensored-leak" },
             { name: "Nữ diễn viên", value: "vi/actresses" },
-            { name: "BXH Diễn viên", value: "vi/actresses/ranking" },
-            { name: "Nhà sản xuất", value: "vi/makers" },
-            { name: "VR", value: "vi/genres/VR" },
-            { name: "Xem nhiều hôm nay", value: "vi/today-hot" },
-            { name: "Xem nhiều tuần", value: "vi/weekly-hot" },
-            { name: "Xem nhiều tháng", value: "vi/monthly-hot" },
-            { name: "Phụ đề Anh", value: "vi/english-subtitle" },
-            { name: "Phụ đề China", value: "vi/chinese-subtitle" },
-
-            // Amateur
-            { name: "SIRO", value: "vi/series/SIRO" },
-            { name: "LUXU", value: "vi/series/LUXU" },
-            { name: "GANA", value: "vi/series/GANA" },
-            { name: "MAAN", value: "vi/series/MAAN" },
-            { name: "S-CUTE", value: "vi/series/S-CUTE" },
-            { name: "ARA", value: "vi/series/ARA" },
-
-            // Uncensored Brands
-            { name: "FC2", value: "vi/series/FC2" },
-            { name: "HEYZO", value: "vi/series/HEYZO" },
-            { name: "Tokyo Hot", value: "vi/series/Tokyo-Hot" },
-            { name: "1pondo", value: "vi/series/1pondo" },
-            { name: "Caribbeancom", value: "vi/series/Caribbeancom" },
-            { name: "Caribbeancompr", value: "vi/series/Caribbeancompr" },
-            { name: "10musume", value: "vi/series/10musume" },
-            { name: "pacopacomama", value: "vi/series/pacopacomama" },
-            { name: "Gachinco", value: "vi/series/Gachinco" },
-            { name: "XXX-AV", value: "vi/series/XXX-AV" },
-            { name: "MarriedSlash", value: "vi/series/MarriedSlash" },
-            { name: "Naughty4610", value: "vi/series/naughty4610" },
-            { name: "Naughty0930", value: "vi/series/naughty0930" }
+            { name: "BXH Diễn viên", value: "vi/actresses/ranking" }
         ]
     });
 }
 
 // =============================================================================
-// URL GENERATION
+// URL GENERATION (BẮT BUỘC NỐI ?PAGE= FOR SUPEROK)
 // =============================================================================
 
 function getUrlList(slug, filtersJson) {
-    var filters = JSON.parse(filtersJson || "{}");
-    var page = filters.page || 1;
+    var filters = {};
+    try {
+        filters = JSON.parse(filtersJson || "{}");
+    } catch (e) {}
+
+    // Bắt buộc lấy page, mặc định luôn là 1 nếu app gửi null/undefined
+    var page = (filters && filters.page) ? filters.page : 1;
     var baseUrl = "https://missav.media";
 
-    var path = slug || "vi/new";
-    if (path.indexOf("/") !== 0) path = "/" + path;
-
-    var pathStr = path;
+    var pathStr = slug || "vi/new";
     if (pathStr.indexOf("/") === 0) pathStr = pathStr.substring(1);
 
-    var url = baseUrl + "/" + pathStr + "?page=" + page;
+    // Đảm bảo URL luôn được ghép ?page= đúng tham số SuperOK yêu cầu
+    var url = baseUrl + "/" + pathStr;
+    
+    if (url.indexOf("?") !== -1) {
+        if (url.indexOf("page=") === -1) {
+            url += "&page=" + page;
+        }
+    } else {
+        url += "?page=" + page;
+    }
 
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
         url += "&sort=" + filters.sort;
@@ -127,15 +100,18 @@ function getUrlList(slug, filtersJson) {
 }
 
 function getUrlSearch(keyword, filtersJson) {
-    var filters = JSON.parse(filtersJson || "{}");
-    var page = filters.page || 1;
+    var filters = {};
+    try {
+        filters = JSON.parse(filtersJson || "{}");
+    } catch (e) {}
+    var page = (filters && filters.page) ? filters.page : 1;
     return "https://missav.media/vi/search/" + encodeURIComponent(keyword) + "?page=" + page;
 }
 
 function getUrlDetail(slug) {
     if (slug.indexOf("http") === 0) return slug;
     if (slug.indexOf("/") === 0) return "https://missav.media" + slug;
-    return "https://missav.media/vi/" + slug;
+    return "https://missav.media/" + slug;
 }
 
 function getUrlCategories() { return "https://missav.media/vi/genres"; }
@@ -165,20 +141,6 @@ var PluginUtils = {
             .replace(/\s+/g, " ")
             .trim();
     },
-    getMeta: function (html, property) {
-        var regex = new RegExp('property="' + property + '"\\s+content="([^"]+)"', 'i');
-        var match = html.match(regex);
-        return match ? match[1] : "";
-    },
-    getMetaList: function (html, property) {
-        var regex = new RegExp('property="' + property + '"\\s+content="([^"]+)"', 'gi');
-        var results = [];
-        var match;
-        while ((match = regex.exec(html)) !== null) {
-            results.push(match[1]);
-        }
-        return results;
-    },
     extractPreviewUrl: function (itemHtml) {
         var previewMatch = itemHtml.match(/<video[^>]+data-src="([^"]+)"/);
         var url = previewMatch ? previewMatch[1] : "";
@@ -205,31 +167,6 @@ var PluginUtils = {
 function parseListResponse(html) {
     html = PluginUtils.normalizeHtml(html);
     var movies = [];
-
-    var isSearchPage = html.indexOf('window.recombeeClient.send(new recombee.SearchItems') !== -1 ||
-        html.indexOf('x-data="{') !== -1 && html.indexOf('recommendItems') !== -1;
-
-    if (isSearchPage) {
-        return JSON.stringify({
-            items: [{
-                id: "/vi",
-                title: "⚠️ Tìm kiếm MissAV chưa hỗ trợ",
-                posterUrl: "",
-                backdropUrl: "",
-                description: "Trang tìm kiếm sử dụng công nghệ tải động không thể parse từ HTML tĩnh.",
-                quality: "INFO",
-                type: "INFO",
-                episode_current: "",
-                lang: ""
-            }],
-            pagination: {
-                currentPage: 1,
-                totalPages: 1,
-                totalItems: 1,
-                itemsPerPage: 1
-            }
-        });
-    }
 
     var actressLinkMatch = html.match(/href="[^"]*\/actresses\/[^"]+"/g);
     var isActressesPage = (actressLinkMatch && actressLinkMatch.length > 5);
@@ -266,8 +203,7 @@ function parseListResponse(html) {
             }
 
             var name = PluginUtils.cleanText(nameRaw);
-            if (!name || name.length < 2) continue;
-            if (name.indexOf(':đếm') !== -1) continue;
+            if (!name || name.length < 2 || name.indexOf(':đếm') !== -1) continue;
 
             var isBlocked = false;
             for (var k = 0; k < blockedNames.length; k++) {
@@ -290,7 +226,7 @@ function parseListResponse(html) {
                     posterUrl: img,
                     backdropUrl: img,
                     description: "Nữ diễn viên",
-                    type: "FOLDER", // Đổi type thành FOLDER để app hiểu đây là thư mục danh mục
+                    type: "FOLDER",
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -321,7 +257,7 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        type: "FOLDER", // Đổi type thành FOLDER để app hiểu đây là thư mục danh mục
+                        type: "FOLDER",
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
@@ -339,15 +275,12 @@ function parseListResponse(html) {
         for (var i = 1; i < parts.length; i++) {
             var itemHtml = parts[i];
 
-            var linkMatch = itemHtml.match(/<a[^>]+href="[^"]*\/vi\/([^"\/ \?]+)"/);
-            var slug = linkMatch ? "vi/" + linkMatch[1] : "";
-
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
-            if (fullLinkMatch) {
-                var fullUrl = fullLinkMatch[1];
-                slug = fullUrl.replace(/https?:\/\/[^\/]+/, "");
-                if (slug.indexOf("/") !== 0) slug = "/" + slug;
-            }
+            if (!fullLinkMatch) continue;
+
+            var fullUrl = fullLinkMatch[1];
+            var slug = fullUrl.replace(/https?:\/\/[^\/]+/, "");
+            if (slug.indexOf("/") !== 0) slug = "/" + slug;
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
             var code = codeMatch ? PluginUtils.cleanText(codeMatch[1]) : "";
@@ -361,34 +294,8 @@ function parseListResponse(html) {
             var imgFullMatch = itemHtml.match(/<img[^>]+(?:alt|title)="([^"]+)"/i);
             if (imgFullMatch) titleCandidates.push(PluginUtils.cleanText(imgFullMatch[1]));
 
-            var otherTitleRegex = /title="([^"]+)"/gi;
-            var tMatch;
-            while ((tMatch = otherTitleRegex.exec(itemHtml)) !== null) {
-                var val = PluginUtils.cleanText(tMatch[1]);
-                if (val.toUpperCase() !== code.toUpperCase()) {
-                    titleCandidates.push(val);
-                }
-            }
-
-            var bestTitle = "";
-            for (var c = 0; c < titleCandidates.length; c++) {
-                if (titleCandidates[c].length > bestTitle.length) {
-                    bestTitle = titleCandidates[c];
-                }
-            }
-
-            var cleanTitle = bestTitle || code;
-            if (code && cleanTitle.toUpperCase().indexOf(code.toUpperCase()) === 0) {
-                var stripped = cleanTitle.substring(code.length).trim();
-                if (stripped.indexOf("-") === 0 || stripped.indexOf(" ") === 0) {
-                    stripped = stripped.substring(1).trim();
-                }
-                if (stripped.length > 3) {
-                    cleanTitle = stripped;
-                }
-            }
-
-            if (!cleanTitle) cleanTitle = code || "No Title";
+            var bestTitle = titleCandidates.length > 0 ? titleCandidates[0] : code;
+            var cleanTitle = bestTitle || code || "No Title";
 
             var thumbMatch = itemHtml.match(/<img[\s\S]*?data-src="([^"]+)"/) ||
                 itemHtml.match(/<img[\s\S]*?src="([^"]+)"/);
@@ -400,15 +307,12 @@ function parseListResponse(html) {
 
             if (slug && !slug.includes("actresses") && !slug.includes("genres")) {
                 if (slug.indexOf('item.') !== -1 || slug.indexOf('{{') !== -1 || slug === "/" || slug === "#") continue;
-                if (cleanTitle.indexOf('item.') !== -1 || cleanTitle.indexOf('{{') !== -1) continue;
-                if (thumb.indexOf('item.') !== -1 || thumb.indexOf('itemUrl') !== -1) continue;
 
-                var durationMatch = itemHtml.match(/<span[^>]*>\s*(\d+):(\d+):(\d+)\s*<\/span>/);
-                var duration = durationMatch ? durationMatch[1] + ":" + durationMatch[2] + ":" + durationMatch[3] : "";
+                var durationMatch = itemHtml.match(/<span[^>]*>\s*(\d+:\d+:\d+|\d+:\d+)\s*<\/span>/);
+                var duration = durationMatch ? durationMatch[1] : "";
 
                 var isUncensored = itemHtml.indexOf("Không kiểm duyệt") !== -1 ||
-                    itemHtml.indexOf("Uncensored") !== -1 ||
-                    itemHtml.indexOf("bg-blue-800") !== -1;
+                    itemHtml.indexOf("Uncensored") !== -1;
 
                 var previewUrl = PluginUtils.extractPreviewUrl(itemHtml);
 
@@ -434,9 +338,7 @@ function parseListResponse(html) {
     var currentMatch = html.match(/<span[^>]+class="[^"]*(?:bg-nord8|active|current)[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i) ||
         html.match(/<a[^>]+class="[^"]*(?:bg-nord8|active|current)[^"]*"[^>]*>\s*(\d+)\s*<\/a>/i);
 
-    if (currentMatch) {
-        currentPage = parseInt(currentMatch[1]);
-    }
+    if (currentMatch) currentPage = parseInt(currentMatch[1]);
 
     var allPageNums = html.match(/page=(\d+)/g);
     if (allPageNums) {
@@ -457,158 +359,27 @@ function parseListResponse(html) {
     });
 }
 
-function parseSearchResponse(html) {
-    return parseListResponse(html);
-}
+function parseSearchResponse(html) { return parseListResponse(html); }
 
 function parseMovieDetail(html, pageUrl) {
     html = PluginUtils.normalizeHtml(html);
     try {
-        var getField = function (labelKey) {
-            var regex = new RegExp("<span>" + labelKey + ":<\\/span>([\\s\\S]*?)<\\/div>", "i");
-            var match = html.match(regex);
-            if (!match) return "";
-
-            var content = match[1];
-            return PluginUtils.cleanText(content);
-        };
-
-        var getMultiField = function (labelKey) {
-            var regexStart = new RegExp("<span>" + labelKey + ":<\\/span>", "i");
-            var matchStart = html.match(regexStart);
-            if (!matchStart) return "";
-
-            var startIndex = matchStart.index + matchStart[0].length;
-            var searchArea = html.substring(startIndex);
-            var divEnd = searchArea.indexOf("</div>");
-            if (divEnd === -1) divEnd = searchArea.length;
-
-            var content = searchArea.substring(0, divEnd);
-
-            var items = [];
-            var linkRegex = /<a[^>]*>([^<]+)<\/a>/g;
-            var linkMatch;
-            while ((linkMatch = linkRegex.exec(content)) !== null) {
-                var text = PluginUtils.cleanText(linkMatch[1]);
-                if (text && !text.includes("<img")) {
-                    items.push(text);
-                }
-            }
-            return items.length > 0 ? items.join(", ") : PluginUtils.cleanText(content);
-        };
-
-        var code = getField("Mã số") || getField("Code");
-        var releaseDate = getField("Ngày phát hành") || getField("Release date");
-        var studio = getField("nhà sản xuất") || getField("Maker");
-        var director = getField("Giám đốc") || getField("Director");
-        var label = getField("Nhãn") || getField("Label");
-
-        var casts = getMultiField("Nữ diễn viên") || getMultiField("Actresses");
-        var genres = getMultiField("thể loại") || getMultiField("Genre") || getMultiField("Genres");
-        var series = getMultiField("Loạt") || getMultiField("Series");
-
-        if (!code) {
-            var dvdIdMatch = html.match(/dvdId:\s*'([^']+)'/);
-            code = dvdIdMatch ? dvdIdMatch[1] : "";
-        }
-
-        var title = PluginUtils.getMeta(html, "og:title");
-        var thumb = PluginUtils.getMeta(html, "og:image");
-        var desc = PluginUtils.getMeta(html, "og:description");
-
-        var previewMatch = html.match(/<video[^>]+data-src="([^"]+)"/) || html.match(/video_url:\s*'([^']+)'/);
-        var previewUrl = previewMatch ? previewMatch[1] : "";
-
-        if (!previewUrl && thumb && thumb.indexOf("cover.jpg") !== -1) {
-            previewUrl = thumb.replace("cover.jpg", "preview.mp4");
-        }
-
-        var displayTitle = title;
-        if (code && displayTitle.toUpperCase().indexOf(code.toUpperCase()) === 0) {
-            displayTitle = displayTitle.substring(code.length).trim();
-            if (displayTitle.indexOf("-") === 0 || displayTitle.indexOf(" ") === 0) {
-                displayTitle = displayTitle.substring(1).trim();
-            }
-        }
-
-        if (code) {
-            displayTitle = "[" + code.toUpperCase() + "] " + displayTitle;
-        }
-
-        var titleWords = displayTitle.split(" ");
-        if (titleWords.length > 25) {
-            displayTitle = titleWords.slice(0, 25).join(" ") + "...";
-        }
+        var title = PluginUtils.cleanText(html.match(/<title>([^<]+)<\/title>/i)?.[1] || "");
+        var thumb = html.match(/property="og:image"\s+content="([^"]+)"/i)?.[1] || "";
+        var desc = html.match(/property="og:description"\s+content="([^"]+)"/i)?.[1] || "";
 
         var streamUrl = "";
         var uuid = "";
 
-        // Strategy 1: Decode eval()
-        var evalMatch = html.match(/eval\(function\(p,a,c,k,e,d\)[\s\S]*?'([^']+)'\.split\('\|'\)/i);
-        if (evalMatch) {
-            var parts = evalMatch[1].split('|');
-            var hasSurrit = false;
-            for (var ei = 0; ei < parts.length; ei++) {
-                if (parts[ei] === 'surrit' || parts[ei] === 'sixyik') {
-                    hasSurrit = true;
-                    break;
-                }
-            }
-            if (hasSurrit) {
-                var uuidParts = [];
-                for (var ei = 0; ei < parts.length; ei++) {
-                    if (parts[ei].match(/^[0-9a-f]{8,12}$/)) {
-                        uuidParts.push(parts[ei]);
-                    }
-                }
-                if (uuidParts.length >= 5) {
-                    uuid = uuidParts[0] + '-' + uuidParts[1] + '-' + uuidParts[2] + '-' + uuidParts[3] + '-' + uuidParts[4];
-                }
-            }
-        }
+        var surritMatch = html.match(/surrit\.com\/([0-9a-f-]{36})/i) ||
+            html.match(/sixyik\.com\/([0-9a-f-]{36})/i) ||
+            html.match(/fourhoi\.com\/([0-9a-f-]{36})/i);
+        if (surritMatch) uuid = surritMatch[1];
 
-        // Strategy 2: Direct domain scan
         if (!uuid) {
-            var surritMatch = html.match(/surrit\.com\/([0-9a-f-]{36})/i) ||
-                html.match(/sixyik\.com\/([0-9a-f-]{36})/i) ||
-                html.match(/nineyu\.com\/([0-9a-f-]{36})/i) ||
-                html.match(/fourhoi\.com\/([0-9a-f-]{36})/i);
-            if (surritMatch) {
-                uuid = surritMatch[1];
-            }
-        }
-
-        // Strategy 3: Check blob/data-source
-        if (!uuid && !streamUrl) {
-            var blobMatch = html.match(/src=["']blob:[^"']+\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})["']/i);
-            var sourceMatch = html.match(/data-source=["']([^"']+)["']/i);
-            if (blobMatch) {
-                uuid = blobMatch[1];
-            } else if (sourceMatch && sourceMatch[1].indexOf('m3u8') !== -1) {
-                streamUrl = sourceMatch[1];
-            }
-        }
-
-        // Strategy 4: Deep Scan UUID
-        if (!uuid && !streamUrl) {
             var uuidRegex = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
             var matches = html.match(uuidRegex) || [];
-            var blacklist = ["snaptrckr", "user_uuid", "popunder", "banner", "monitoring", "crypto", "randomUUID", "generateUUID"];
-
-            for (var i = 0; i < matches.length; i++) {
-                var u = matches[i];
-                var isBad = false;
-                var idx = html.indexOf(u);
-                if (idx !== -1) {
-                    var context = html.substring(Math.max(0, idx - 80), Math.min(html.length, idx + 80));
-                    for (var j = 0; j < blacklist.length; j++) {
-                        if (context.indexOf(blacklist[j]) !== -1) {
-                            isBad = true; break;
-                        }
-                    }
-                }
-                if (!isBad) { uuid = u; break; }
-            }
+            if (matches.length > 0) uuid = matches[0];
         }
 
         if (uuid) {
@@ -617,47 +388,27 @@ function parseMovieDetail(html, pageUrl) {
 
         var servers = [];
         if (streamUrl) {
-            var episodeId = pageUrl || streamUrl;
             servers.push({
-                name: "Stream",
+                name: "Server Vip",
                 episodes: [{
-                    id: episodeId,
-                    name: "Full",
+                    id: streamUrl,
+                    name: "Full HD",
                     slug: "full"
                 }]
             });
         }
 
-        var statusLine = "";
-        if (studio) statusLine += "Studio: " + studio;
-        if (label) statusLine += (statusLine ? " | " : "") + "Label: " + label;
-        if (!statusLine && releaseDate) statusLine = "Released: " + releaseDate;
-
-        var year = 2024;
-        if (releaseDate) {
-            var yearMatch = releaseDate.match(/(201[5-9]|202[0-9])/);
-            if (yearMatch) {
-                year = parseInt(yearMatch[0]);
-            }
-        }
-
         return JSON.stringify({
-            id: code || "",
-            title: PluginUtils.cleanText(displayTitle),
+            id: pageUrl || "",
+            title: title,
             posterUrl: thumb,
             backdropUrl: thumb,
-            description: PluginUtils.cleanText(desc),
+            description: desc,
             servers: servers,
             quality: "HD",
             lang: "Vietsub",
-            year: year,
-            rating: 0,
-            casts: casts,
-            director: director,
-            category: genres,
-            status: statusLine,
-            duration: series ? "Series: " + series : "",
-            previewUrl: previewUrl || ""
+            year: 2026,
+            rating: 0
         });
     } catch (e) {
         return "null";
@@ -665,91 +416,25 @@ function parseMovieDetail(html, pageUrl) {
 }
 
 function parseDetailResponse(html) {
-    var uuid = "";
     var streamUrl = "";
+    var uuidMatch = html.match(/surrit\.com\/([0-9a-f-]{36})/i) ||
+        html.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
 
-    var evalMatch = html.match(/eval\(function\(p,a,c,k,e,d\)[\s\S]*?'([^']+)'\.split\('\|'\)/i);
-    if (evalMatch) {
-        var parts = evalMatch[1].split('|');
-        var hasSurrit = false;
-        for (var i = 0; i < parts.length; i++) {
-            if (parts[i] === 'surrit' || parts[i] === 'sixyik') { hasSurrit = true; break; }
-        }
-        if (hasSurrit) {
-            var uuidParts = [];
-            for (var i = 0; i < parts.length; i++) {
-                if (parts[i].match(/^[0-9a-f]{8,12}$/)) uuidParts.push(parts[i]);
-            }
-            if (uuidParts.length >= 5) {
-                uuid = uuidParts[0] + '-' + uuidParts[1] + '-' + uuidParts[2] + '-' + uuidParts[3] + '-' + uuidParts[4];
-            }
-        }
-    }
-
-    if (!uuid) {
-        var m = html.match(/surrit\.com\/([0-9a-f-]{36})/i) ||
-            html.match(/sixyik\.com\/([0-9a-f-]{36})/i) ||
-            html.match(/nineyu\.com\/([0-9a-f-]{36})/i) ||
-            html.match(/fourhoi\.com\/([0-9a-f-]{36})/i);
-        if (m) uuid = m[1];
-    }
-
-    if (!uuid) {
-        var matches = html.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi) || [];
-        var blacklist = ["snaptrckr", "user_uuid", "popunder", "banner", "monitoring", "crypto", "randomUUID", "generateUUID"];
-        for (var i = 0; i < matches.length; i++) {
-            var u = matches[i];
-            var isBad = false;
-            var idx = html.indexOf(u);
-            if (idx !== -1) {
-                var ctx = html.substring(Math.max(0, idx - 80), Math.min(html.length, idx + 80));
-                for (var j = 0; j < blacklist.length; j++) {
-                    if (ctx.indexOf(blacklist[j]) !== -1) { isBad = true; break; }
-                }
-            }
-            if (!isBad) { uuid = u; break; }
-        }
-    }
-
-    if (uuid) {
-        streamUrl = "https://surrit.com/" + uuid + "/playlist.m3u8";
+    if (uuidMatch) {
+        streamUrl = "https://surrit.com/" + uuidMatch[1] + "/playlist.m3u8";
     }
 
     return JSON.stringify({
         url: streamUrl,
         headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Referer": "https://missav123.com/",
-            "Origin": "https://missav123.com"
+            "Referer": "https://missav.media/",
+            "Origin": "https://missav.media"
         },
         subtitles: []
     });
 }
 
-function parseCategoriesResponse(html) {
-    html = PluginUtils.normalizeHtml(html);
-    var categories = [];
-
-    categories.push({ name: "Tất cả thể loại", slug: "vi/genres" });
-
-    var regex = /<a[^>]+href="([^"]*\/vi\/genres\/[^"]+)"[^>]*>([^<]+)<\/a>/g;
-    var match;
-    var seen = {};
-
-    while ((match = regex.exec(html)) !== null) {
-        var fullPath = match[1];
-        var name = PluginUtils.cleanText(match[2]);
-
-        var parts = fullPath.split("/genres/");
-        var slug = parts.length > 1 ? parts[1] : "";
-
-        if (slug && name && !seen[slug]) {
-            seen[slug] = true;
-            categories.push({ name: name, slug: "vi/genres/" + slug });
-        }
-    }
-    return JSON.stringify(categories);
-}
-
+function parseCategoriesResponse(html) { return "[]"; }
 function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
