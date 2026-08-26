@@ -199,6 +199,34 @@ var PluginUtils = {
         }
         
         return url;
+    },
+    // Hàm mới: Trích xuất hoặc ước tính năm từ HTML/Code ở danh sách
+    extractYearFromList: function (itemHtml, code) {
+        // Cách 1: Tìm chuỗi ngày tháng dạng YYYY-MM-DD hoặc YYYY/MM/DD trong HTML
+        var dateMatch = itemHtml.match(/(19|20)\d{2}[-\/]\d{2}[-\/]\d{2}/);
+        if (dateMatch) {
+            return parseInt(dateMatch[0].substring(0, 4));
+        }
+
+        // Cách 2: Tìm 4 chữ số năm trong chuỗi (19xx hoặc 20xx)
+        var yearMatch = itemHtml.match(/(19|20)\d{2}/);
+        if (yearMatch) {
+            return parseInt(yearMatch[0]);
+        }
+
+        // Cách 3: Trích xuất năm từ mã định dạng ngày FC2 / Heyzo (VD: FC2-PPV-2024123 -> 2024, 010123-123 -> 2023)
+        if (code) {
+            var fc2Year = code.match(/20(\d{2})\d{3,}/);
+            if (fc2Year) return parseInt("20" + fc2Year[1]);
+
+            var dateCode = code.match(/^(\d{2})(\d{2})(\d{2})/);
+            if (dateCode) {
+                var yy = parseInt(dateCode[1]);
+                if (yy >= 10 && yy <= 30) return 2000 + yy;
+            }
+        }
+
+        return 0; // Trả về 0 nếu hoàn toàn không có thông tin năm ở trang danh sách
     }
 };
 
@@ -411,6 +439,9 @@ function parseListResponse(html) {
                     itemHtml.indexOf("bg-blue-800") !== -1;
 
                 var previewUrl = PluginUtils.extractPreviewUrl(itemHtml);
+                
+                // Trích xuất năm hiển thị ở danh sách thumbnail
+                var itemYear = PluginUtils.extractYearFromList(itemHtml, code);
 
                 movies.push({
                     id: slug,
@@ -418,7 +449,7 @@ function parseListResponse(html) {
                     posterUrl: thumb,
                     backdropUrl: thumb,
                     description: duration,
-                    year: 0,
+                    year: itemYear,
                     quality: isUncensored ? "K.K.Duyệt" : "HD",
                     episode_current: isUncensored ? "K.K.Duyệt" : "Full",
                     lang: code,
@@ -464,7 +495,6 @@ function parseSearchResponse(html) {
 function parseMovieDetail(html, pageUrl) {
     html = PluginUtils.normalizeHtml(html);
     try {
-        // Lấy thông tin thuộc tính chữ thuần (Plain Text), bỏ Markdown
         var getField = function (labelKey) {
             var regex = new RegExp("<span>" + labelKey + ":<\\/span>([\\s\\S]*?)<\\/div>", "i");
             var match = html.match(regex);
@@ -474,7 +504,6 @@ function parseMovieDetail(html, pageUrl) {
             return PluginUtils.cleanText(content);
         };
 
-        // Lấy danh sách nhiều thuộc tính chữ thuần (Plain Text)
         var getMultiField = function (labelKey) {
             var regexStart = new RegExp("<span>" + labelKey + ":<\\/span>", "i");
             var matchStart = html.match(regexStart);
@@ -635,7 +664,6 @@ function parseMovieDetail(html, pageUrl) {
         if (label) statusLine += (statusLine ? " | " : "") + "Label: " + label;
         if (!statusLine && releaseDate) statusLine = "Released: " + releaseDate;
 
-        // BỔ SUNG: Trích xuất năm bằng Regex (tìm 4 chữ số liên tiếp từ 19xx hoặc 20xx)
         var year = 0;
         if (releaseDate) {
             var yearMatch = releaseDate.match(/(19|20)\d{2}/);
