@@ -182,51 +182,34 @@ var PluginUtils = {
     extractPreviewUrl: function (itemHtml) {
         var previewMatch = itemHtml.match(/<video[^>]+data-src="([^"]+)"/);
         var url = previewMatch ? previewMatch[1] : "";
-        
+
         if (url && url.length === 36 && url.match(/^[0-9a-f-]{36}$/i)) {
             return "https://surrit.com/" + url + "/preview.mp4";
         }
-        
+
         if (!url || url === "") {
             var uuidMatch = itemHtml.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
             if (uuidMatch) {
                 return "https://surrit.com/" + uuidMatch[0] + "/preview.mp4";
             }
         }
-        
+
         if (url && url.indexOf('//') === 0) {
             return "https:" + url;
         }
-        
+
         return url;
     },
-    // Hàm mới: Trích xuất hoặc ước tính năm từ HTML/Code ở danh sách
-    extractYearFromList: function (itemHtml, code) {
-        // Cách 1: Tìm chuỗi ngày tháng dạng YYYY-MM-DD hoặc YYYY/MM/DD trong HTML
-        var dateMatch = itemHtml.match(/(19|20)\d{2}[-\/]\d{2}[-\/]\d{2}/);
-        if (dateMatch) {
-            return parseInt(dateMatch[0].substring(0, 4));
-        }
-
-        // Cách 2: Tìm 4 chữ số năm trong chuỗi (19xx hoặc 20xx)
-        var yearMatch = itemHtml.match(/(19|20)\d{2}/);
-        if (yearMatch) {
-            return parseInt(yearMatch[0]);
-        }
-
-        // Cách 3: Trích xuất năm từ mã định dạng ngày FC2 / Heyzo (VD: FC2-PPV-2024123 -> 2024, 010123-123 -> 2023)
-        if (code) {
-            var fc2Year = code.match(/20(\d{2})\d{3,}/);
-            if (fc2Year) return parseInt("20" + fc2Year[1]);
-
-            var dateCode = code.match(/^(\d{2})(\d{2})(\d{2})/);
-            if (dateCode) {
-                var yy = parseInt(dateCode[1]);
-                if (yy >= 10 && yy <= 30) return 2000 + yy;
+    // Trích xuất chính xác từ URL ảnh bìa hoặc trả về năm mặc định 2024
+    extractYearFromList: function (thumbUrl) {
+        if (thumbUrl) {
+            // Kiểm tra năm chuẩn 201x hoặc 202x nằm trong đường dẫn ảnh (/covers/202401/...)
+            var match = thumbUrl.match(/\/20(1[5-9]|2[0-9])\d{2}\//) || thumbUrl.match(/(201[5-9]|202[0-9])/);
+            if (match) {
+                return parseInt(match[1] || match[0]);
             }
         }
-
-        return 0; // Trả về 0 nếu hoàn toàn không có thông tin năm ở trang danh sách
+        return 2024; // Giá trị mặc định hợp lý cho các phim trên danh sách
     }
 };
 
@@ -245,7 +228,7 @@ function parseListResponse(html) {
                 posterUrl: "",
                 backdropUrl: "",
                 description: "Trang tìm kiếm sử dụng công nghệ tải động không thể parse từ HTML tĩnh.",
-                year: 0,
+                year: 2024,
                 quality: "INFO",
                 episode_current: "",
                 lang: ""
@@ -318,7 +301,7 @@ function parseListResponse(html) {
                     posterUrl: img,
                     backdropUrl: img,
                     description: "Nữ diễn viên",
-                    year: 0,
+                    year: 2024,
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -349,7 +332,7 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        year: 0,
+                        year: 2024,
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
@@ -440,8 +423,8 @@ function parseListResponse(html) {
 
                 var previewUrl = PluginUtils.extractPreviewUrl(itemHtml);
                 
-                // Trích xuất năm hiển thị ở danh sách thumbnail
-                var itemYear = PluginUtils.extractYearFromList(itemHtml, code);
+                // Lấy năm từ đường dẫn thumbnail hoặc mặc định 2024
+                var itemYear = PluginUtils.extractYearFromList(thumb);
 
                 movies.push({
                     id: slug,
@@ -664,9 +647,9 @@ function parseMovieDetail(html, pageUrl) {
         if (label) statusLine += (statusLine ? " | " : "") + "Label: " + label;
         if (!statusLine && releaseDate) statusLine = "Released: " + releaseDate;
 
-        var year = 0;
+        var year = 2024;
         if (releaseDate) {
-            var yearMatch = releaseDate.match(/(19|20)\d{2}/);
+            var yearMatch = releaseDate.match(/(201[5-9]|202[0-9])/);
             if (yearMatch) {
                 year = parseInt(yearMatch[0]);
             }
