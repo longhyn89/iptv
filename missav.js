@@ -173,7 +173,9 @@ function getUrlSearch(keyword, filtersJson) {
 }
 
 function getUrlDetail(slug) {
+    if (!slug) return "https://missav.media/vi/new";
     if (slug.indexOf("http") === 0) return slug;
+    
     var cleanPath = slug;
     var viIdx = cleanPath.indexOf("/vi/");
     if (viIdx !== -1) {
@@ -215,9 +217,11 @@ var PluginUtils = {
     toCleanId: function (url, key) {
         if (!url) return "";
         var clean = url.replace(/^https?:\/\/[^\/]+/, "");
-        var idx = clean.indexOf(key + "/");
-        if (idx !== -1) {
-            return clean.substring(idx);
+        if (key) {
+            var idx = clean.indexOf(key + "/");
+            if (idx !== -1) {
+                return clean.substring(idx);
+            }
         }
         var viIdx = clean.indexOf("/vi/");
         if (viIdx !== -1) {
@@ -414,7 +418,7 @@ function parseListResponse(html) {
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
             var slug = "";
             if (fullLinkMatch) {
-                slug = PluginUtils.toCleanId(fullLinkMatch[1], "vi");
+                slug = PluginUtils.toCleanId(fullLinkMatch[1]);
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
@@ -534,10 +538,7 @@ function parseMovieDetail(html, pageUrl) {
             var parsedList = JSON.parse(parseListResponse(html));
             var items = parsedList.items || [];
 
-            // Bóc tách tên diễn viên chính xác từ Slug hoặc Meta Title
             var actName = "";
-            
-            // Cách 1: Tách từ URL Slug
             if (pageUrl.indexOf('/actresses/') !== -1) {
                 var rawSlug = pageUrl.split('/actresses/')[1] || "";
                 rawSlug = rawSlug.split('?')[0].split('/')[0];
@@ -546,7 +547,6 @@ function parseMovieDetail(html, pageUrl) {
                 }
             }
 
-            // Cách 2: Parse từ HTML và lọc bỏ từ khóa SEO
             if (!actName || actName.indexOf("AV ONLINE") !== -1) {
                 var rawTitle = PluginUtils.getMeta(html, "og:title") || "";
                 if (!rawTitle) {
@@ -565,7 +565,6 @@ function parseMovieDetail(html, pageUrl) {
 
             if (!actName) actName = "Diễn viên";
 
-            // Bóc tách ảnh đại diện diễn viên
             var actImg = "";
             var imgMatch = html.match(/<img[^>]+src="([^"]+)"[^>]*alt="[^"]*"[^>]*>/i) || html.match(/<img[^>]+src="([^"]+)"[^>]*>/i);
             if (imgMatch) actImg = imgMatch[1];
@@ -575,11 +574,12 @@ function parseMovieDetail(html, pageUrl) {
             var seenEp = {};
             for (var k = 0; k < items.length; k++) {
                 var epId = items[k].id;
+                var fullEpUrl = epId.indexOf("http") === 0 ? epId : "https://missav.media/vi/" + epId;
                 if (!seenEp[epId]) {
                     seenEp[epId] = true;
                     var epTitle = items[k].lang ? "[" + items[k].lang + "] " + items[k].title : items[k].title;
                     episodes.push({
-                        id: epId,
+                        id: fullEpUrl,
                         name: epTitle,
                         slug: epId
                     });
@@ -680,13 +680,14 @@ function parseMovieDetail(html, pageUrl) {
 
         var uuid = PluginUtils.extractStreamUuid(html);
         var streamUrl = uuid ? "https://surrit.com/" + uuid + "/playlist.m3u8" : "";
+        var playUrl = pageUrl && pageUrl.indexOf("http") === 0 ? pageUrl : "https://missav.media/vi/" + (pageUrl || "");
 
         var servers = [];
         if (streamUrl) {
             servers.push({
                 name: "Stream",
                 episodes: [{
-                    id: pageUrl || streamUrl,
+                    id: playUrl,
                     name: "Full",
                     slug: "full"
                 }]
