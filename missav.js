@@ -6,14 +6,14 @@ function getManifest() {
     return JSON.stringify({
         "id": "missav",
         "name": "MissAV",
-        "version": "1.1.3",
+        "version": "1.3.0",
         "baseUrl": "https://missav.media",
         "referrer": "https://missav123.com/",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",
-        "layoutType": "HORIZONTAL",
+        "layoutType": "GRID",
         "subtitleCat": true
     });
 }
@@ -85,7 +85,6 @@ function getUrlList(slug, filtersJson) {
     var page = 1;
     var sort = "";
 
-    // 1. Giải mã linh hoạt filtersJson
     if (filtersJson !== undefined && filtersJson !== null && filtersJson !== "") {
         if (typeof filtersJson === "number") {
             page = filtersJson;
@@ -110,22 +109,19 @@ function getUrlList(slug, filtersJson) {
 
     var str = slug || "new";
 
-    // 2. Bóc tách & loại bỏ các tham số ?page= hoặc &page= sẵn có trong slug
     var pageFromSlug = null;
     if (str.indexOf("?") !== -1) {
         var pageMatch = str.match(/[?&]page=(\d+)/);
         if (pageMatch) {
             pageFromSlug = parseInt(pageMatch[1], 10);
         }
-        str = str.split("?")[0]; // Xóa sạch query string cũ
+        str = str.split("?")[0];
     }
 
-    // Nếu filtersJson không có page nhưng slug có page > 1, dùng page từ slug
     if (page === 1 && pageFromSlug) {
         page = pageFromSlug;
     }
 
-    // 3. Làm sạch Path
     if (str.indexOf("http") === 0) {
         str = str.replace(/^https?:\/\/[^\/]+/, "");
     }
@@ -157,7 +153,6 @@ function getUrlList(slug, filtersJson) {
 
     cleanPath = cleanPath.replace(/^\/+/, "");
 
-    // 4. Tạo URL hoàn chỉnh
     var queryParams = ["page=" + page];
     if (sort && sort !== 'new' && sort !== 'hot') {
         queryParams.push("sort=" + sort);
@@ -497,7 +492,7 @@ function parseListResponse(html) {
         }
     }
 
-    var totalPages = 1;
+    var totalPages = 100;
     var currentPage = 1;
 
     var currentMatch = html.match(/<span[^>]+class="[^"]*(?:bg-nord8|active|current)[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i) ||
@@ -515,12 +510,13 @@ function parseListResponse(html) {
         }
     }
 
+    // Ép trả về totalPages lớn để buộc App luôn mở tính năng Next Page
     return JSON.stringify({
         items: movies,
         pagination: {
             currentPage: currentPage,
-            totalPages: totalPages || 100, // Đặt max page là 100 nếu không parse được để ép App cho chuyển trang
-            totalItems: movies.length,
+            totalPages: totalPages,
+            totalItems: 10000,
             itemsPerPage: 20
         }
     });
