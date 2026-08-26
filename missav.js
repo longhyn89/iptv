@@ -534,28 +534,36 @@ function parseMovieDetail(html, pageUrl) {
             var parsedList = JSON.parse(parseListResponse(html));
             var items = parsedList.items || [];
 
-            // Bóc tách tên diễn viên chính xác từ DOM
+            // Bóc tách tên diễn viên chính xác từ Slug hoặc Meta Title
             var actName = "";
-            var nameMatch = html.match(/<h1[^>]*class="[^"]*font-bold[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) ||
-                            html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
-                            html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
             
-            if (nameMatch) {
-                actName = PluginUtils.cleanText(nameMatch[1]);
-                actName = actName.replace(/^Xem\s*:\s*/i, '').replace(/\s*của nữ diễn viên.*$/i, '').trim();
-            }
-
-            if (!actName || actName.indexOf("AV Online") !== -1) {
-                var ogTitle = PluginUtils.getMeta(html, "og:title");
-                if (ogTitle) {
-                    actName = PluginUtils.cleanText(ogTitle).replace(/^Xem\s*:\s*/i, '').replace(/\s*của nữ diễn viên.*$/i, '').trim();
+            // Cách 1: Tách từ URL Slug
+            if (pageUrl.indexOf('/actresses/') !== -1) {
+                var rawSlug = pageUrl.split('/actresses/')[1] || "";
+                rawSlug = rawSlug.split('?')[0].split('/')[0];
+                if (rawSlug) {
+                    actName = decodeURIComponent(rawSlug).replace(/[-_]/g, ' ').toUpperCase();
                 }
             }
 
-            if (!actName) {
-                var urlParts = pageUrl.split('/');
-                actName = decodeURIComponent(urlParts[urlParts.length - 1] || "Nữ diễn viên");
+            // Cách 2: Parse từ HTML và lọc bỏ từ khóa SEO
+            if (!actName || actName.indexOf("AV ONLINE") !== -1) {
+                var rawTitle = PluginUtils.getMeta(html, "og:title") || "";
+                if (!rawTitle) {
+                    var h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+                    if (h1Match) rawTitle = PluginUtils.cleanText(h1Match[1]);
+                }
+                
+                if (rawTitle) {
+                    actName = rawTitle.replace(/^Xem\s*:\s*/i, '')
+                                     .replace(/AV\s*Online/gi, '')
+                                     .replace(/của\s*nữ\s*diễn\s*viên/gi, '')
+                                     .replace(/phim/gi, '')
+                                     .trim();
+                }
             }
+
+            if (!actName) actName = "Diễn viên";
 
             // Bóc tách ảnh đại diện diễn viên
             var actImg = "";
@@ -569,9 +577,10 @@ function parseMovieDetail(html, pageUrl) {
                 var epId = items[k].id;
                 if (!seenEp[epId]) {
                     seenEp[epId] = true;
+                    var epTitle = items[k].lang ? "[" + items[k].lang + "] " + items[k].title : items[k].title;
                     episodes.push({
                         id: epId,
-                        name: items[k].lang ? "[" + items[k].lang + "] " + items[k].title : items[k].title,
+                        name: epTitle,
                         slug: epId
                     });
                 }
@@ -579,10 +588,10 @@ function parseMovieDetail(html, pageUrl) {
 
             return JSON.stringify({
                 id: pageUrl,
-                title: "Nữ diễn viên: " + actName,
+                title: actName,
                 posterUrl: actImg,
                 backdropUrl: actImg,
-                description: "Tổng hợp " + episodes.length + " video của diễn viên " + actName,
+                description: "Tổng hợp " + episodes.length + " phim của " + actName,
                 servers: [{
                     name: "Danh sách phim (" + episodes.length + ")",
                     episodes: episodes
