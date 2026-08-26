@@ -199,17 +199,6 @@ var PluginUtils = {
         }
 
         return url;
-    },
-    // Trích xuất chính xác từ URL ảnh bìa hoặc trả về năm mặc định 2024
-    extractYearFromList: function (thumbUrl) {
-        if (thumbUrl) {
-            // Kiểm tra năm chuẩn 201x hoặc 202x nằm trong đường dẫn ảnh (/covers/202401/...)
-            var match = thumbUrl.match(/\/20(1[5-9]|2[0-9])\d{2}\//) || thumbUrl.match(/(201[5-9]|202[0-9])/);
-            if (match) {
-                return parseInt(match[1] || match[0]);
-            }
-        }
-        return 2024; // Giá trị mặc định hợp lý cho các phim trên danh sách
     }
 };
 
@@ -228,7 +217,6 @@ function parseListResponse(html) {
                 posterUrl: "",
                 backdropUrl: "",
                 description: "Trang tìm kiếm sử dụng công nghệ tải động không thể parse từ HTML tĩnh.",
-                year: 2024,
                 quality: "INFO",
                 episode_current: "",
                 lang: ""
@@ -301,7 +289,6 @@ function parseListResponse(html) {
                     posterUrl: img,
                     backdropUrl: img,
                     description: "Nữ diễn viên",
-                    year: 2024,
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -332,7 +319,6 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        year: 2024,
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
@@ -422,9 +408,6 @@ function parseListResponse(html) {
                     itemHtml.indexOf("bg-blue-800") !== -1;
 
                 var previewUrl = PluginUtils.extractPreviewUrl(itemHtml);
-                
-                // Lấy năm từ đường dẫn thumbnail hoặc mặc định 2024
-                var itemYear = PluginUtils.extractYearFromList(thumb);
 
                 movies.push({
                     id: slug,
@@ -432,7 +415,7 @@ function parseListResponse(html) {
                     posterUrl: thumb,
                     backdropUrl: thumb,
                     description: duration,
-                    year: itemYear,
+                    // Đã loại bỏ field year ở thumbnail
                     quality: isUncensored ? "K.K.Duyệt" : "HD",
                     episode_current: isUncensored ? "K.K.Duyệt" : "Full",
                     lang: code,
@@ -647,6 +630,7 @@ function parseMovieDetail(html, pageUrl) {
         if (label) statusLine += (statusLine ? " | " : "") + "Label: " + label;
         if (!statusLine && releaseDate) statusLine = "Released: " + releaseDate;
 
+        // Trích xuất năm chính xác từ mục Ngày phát hành chuẩn trong trang chi tiết
         var year = 2024;
         if (releaseDate) {
             var yearMatch = releaseDate.match(/(201[5-9]|202[0-9])/);
