@@ -82,52 +82,52 @@ function getFilterConfig() {
 // =============================================================================
 
 function getUrlList(slug, filtersJson) {
-    var filters = {};
-    try {
-        filters = JSON.parse(filtersJson || "{}");
-    } catch (e) {
-        filters = {};
+    var page = 1;
+    var sort = "";
+
+    if (filtersJson) {
+        try {
+            var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
+            if (parsed.page) page = parsed.page;
+            if (parsed.sort) sort = parsed.sort;
+        } catch (e) {}
     }
 
-    var page = filters.page || 1;
     var baseUrl = "https://missav.media/vi";
-    var rawSlug = slug || "new";
+    var str = slug || "new";
 
-    // 1. Tách Query String nếu slug có sẵn ?
-    var queryIndex = rawSlug.indexOf("?");
-    var existingParams = [];
-    if (queryIndex !== -1) {
-        var qStr = rawSlug.substring(queryIndex + 1);
-        rawSlug = rawSlug.substring(0, queryIndex);
-        var qParts = qStr.split("&");
-        for (var i = 0; i < qParts.length; i++) {
-            if (qParts[i] && qParts[i].indexOf("page=") !== 0 && qParts[i].indexOf("sort=") !== 0) {
-                existingParams.push(qParts[i]);
+    // 1. Tách Query String nếu đường dẫn đầu vào đã có ?
+    var queryParams = [];
+    if (str.indexOf("?") !== -1) {
+        var parts = str.split("?");
+        str = parts[0];
+        var rawParams = parts[1].split("&");
+        for (var i = 0; i < rawParams.length; i++) {
+            if (rawParams[i] && rawParams[i].indexOf("page=") !== 0 && rawParams[i].indexOf("sort=") !== 0) {
+                queryParams.push(rawParams[i]);
             }
         }
     }
 
-    // 2. Làm sạch chuỗi Path (Lấy từ đoạn quan trọng nhất)
-    var cleanPath = rawSlug;
-    
-    // Nếu chứa domain hoặc path tuyệt đối
-    if (cleanPath.indexOf("http") === 0) {
-        cleanPath = cleanPath.replace(/^https?:\/\/[^\/]+/, "");
+    // 2. Bóc tách loại bỏ các tiền tố /dm288/, /vi/ do App chèn vào
+    if (str.indexOf("http") === 0) {
+        str = str.replace(/^https?:\/\/[^\/]+/, "");
     }
 
-    // Lọc bỏ mọi prefix rác (vd: /dm288/, /vi/, v.v.)
-    var keyIndex = -1;
-    var keys = ["actresses/", "genres/", "makers/", "series/", "search/"];
-    for (var k = 0; k < keys.length; k++) {
-        var idx = cleanPath.indexOf(keys[k]);
+    var cleanPath = str;
+    var keywords = ["actresses/", "genres/", "makers/", "series/", "search/"];
+    var matched = false;
+
+    for (var k = 0; k < keywords.length; k++) {
+        var idx = cleanPath.indexOf(keywords[k]);
         if (idx !== -1) {
             cleanPath = cleanPath.substring(idx);
-            keyIndex = idx;
+            matched = true;
             break;
         }
     }
 
-    if (keyIndex === -1) {
+    if (!matched) {
         var viIdx = cleanPath.indexOf("/vi/");
         if (viIdx !== -1) {
             cleanPath = cleanPath.substring(viIdx + 4);
@@ -141,31 +141,26 @@ function getUrlList(slug, filtersJson) {
 
     cleanPath = cleanPath.replace(/^\/+/, "");
 
-    // 3. Ghép Query Parameters
-    var finalParams = [];
-    finalParams.push("page=" + page);
+    // 3. Ép tham số page vào mảng
+    queryParams.unshift("page=" + page);
 
-    if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
-        finalParams.push("sort=" + filters.sort);
-    } else if (filters.sort === 'hot') {
-        finalParams.push("sort=views");
+    if (sort && sort !== 'new' && sort !== 'hot') {
+        queryParams.push("sort=" + sort);
+    } else if (sort === 'hot') {
+        queryParams.push("sort=views");
     }
 
-    if (existingParams.length > 0) {
-        finalParams = finalParams.concat(existingParams);
-    }
-
-    return baseUrl + "/" + cleanPath + "?" + finalParams.join("&");
+    return baseUrl + "/" + cleanPath + "?" + queryParams.join("&");
 }
 
 function getUrlSearch(keyword, filtersJson) {
-    var filters = {};
-    try {
-        filters = JSON.parse(filtersJson || "{}");
-    } catch (e) {
-        filters = {};
+    var page = 1;
+    if (filtersJson) {
+        try {
+            var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
+            if (parsed.page) page = parsed.page;
+        } catch (e) {}
     }
-    var page = filters.page || 1;
     return "https://missav.media/vi/search/" + encodeURIComponent(keyword) + "?page=" + page;
 }
 
@@ -209,8 +204,8 @@ var PluginUtils = {
             .replace(/\s+/g, " ")
             .trim();
     },
-    // Trả về slug chuẩn không có vi/ hoặc / ở đầu để app không nhận nhầm URL tĩnh
-    extractPureKey: function (url, key) {
+    // Trả về ID sạch, không có / ở đầu để App bắt buộc kích hoạt getUrlList
+    toCleanId: function (url, key) {
         if (!url) return "";
         var clean = url.replace(/^https?:\/\/[^\/]+/, "");
         var idx = clean.indexOf(key + "/");
@@ -343,11 +338,11 @@ function parseListResponse(html) {
 
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-            var pureKey = PluginUtils.extractPureKey(url, "actresses");
+            var cleanId = PluginUtils.toCleanId(url, "actresses");
 
-            if (!foundActresses[pureKey]) {
+            if (!foundActresses[cleanId]) {
                 movies.push({
-                    id: pureKey,
+                    id: cleanId,
                     title: name,
                     posterUrl: img,
                     backdropUrl: img,
@@ -357,7 +352,7 @@ function parseListResponse(html) {
                     episode_current: "",
                     lang: ""
                 });
-                foundActresses[pureKey] = true;
+                foundActresses[cleanId] = true;
             }
         }
     } 
@@ -375,11 +370,11 @@ function parseListResponse(html) {
                 var name = PluginUtils.cleanText(innerContent);
                 if (!name || name.length < 2) continue;
 
-                var pureKey = PluginUtils.extractPureKey(url, "genres");
+                var cleanId = PluginUtils.toCleanId(url, "genres");
 
-                if (!foundSlugs[pureKey]) {
+                if (!foundSlugs[cleanId]) {
                     movies.push({
-                        id: pureKey,
+                        id: cleanId,
                         title: name,
                         posterUrl: "",
                         backdropUrl: "",
@@ -389,7 +384,7 @@ function parseListResponse(html) {
                         episode_current: "",
                         lang: ""
                     });
-                    foundSlugs[pureKey] = true;
+                    foundSlugs[cleanId] = true;
                 }
             }
         }
@@ -406,7 +401,7 @@ function parseListResponse(html) {
             var fullLinkMatch = itemHtml.match(/<a[^>]+href="([^"]+)"/);
             var slug = "";
             if (fullLinkMatch) {
-                slug = PluginUtils.extractPureKey(fullLinkMatch[1], "vi");
+                slug = PluginUtils.toCleanId(fullLinkMatch[1], "vi");
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
