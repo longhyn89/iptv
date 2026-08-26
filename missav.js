@@ -110,13 +110,27 @@ function getUrlList(slug, filtersJson) {
     var baseUrl = "https://missav.media";
 
     var path = slug || "vi/new";
-    if (path.indexOf("/") !== 0) path = "/" + path;
 
-    var pathStr = path;
-    if (pathStr.indexOf("/") === 0) pathStr = pathStr.substring(1);
+    // Loại bỏ dấu / ở đầu nếu có
+    if (path.indexOf("/") === 0) {
+        path = path.substring(1);
+    }
 
-    var url = baseUrl + "/" + pathStr + "?page=" + page;
+    // Đảm bảo slug luôn bắt đầu bằng ngôn ngữ 'vi/' nếu thiếu
+    if (path.indexOf("vi/") !== 0 && path !== "vi") {
+        path = "vi/" + path;
+    }
 
+    var url = baseUrl + "/" + path;
+    
+    // Ghép query param trang
+    if (url.indexOf("?") !== -1) {
+        url += "&page=" + page;
+    } else {
+        url += "?page=" + page;
+    }
+
+    // Ghép bộ lọc sắp xếp nếu có
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
         url += "&sort=" + filters.sort;
     } else if (filters.sort === 'hot') {
@@ -135,6 +149,7 @@ function getUrlSearch(keyword, filtersJson) {
 function getUrlDetail(slug) {
     if (slug.indexOf("http") === 0) return slug;
     if (slug.indexOf("/") === 0) return "https://missav.media" + slug;
+    if (slug.indexOf("vi/") === 0) return "https://missav.media/" + slug;
     return "https://missav.media/vi/" + slug;
 }
 
@@ -212,7 +227,7 @@ function parseListResponse(html) {
     if (isSearchPage) {
         return JSON.stringify({
             items: [{
-                id: "/vi",
+                id: "vi",
                 title: "⚠️ Tìm kiếm MissAV chưa hỗ trợ",
                 posterUrl: "",
                 backdropUrl: "",
@@ -280,7 +295,7 @@ function parseListResponse(html) {
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
             var slug = url.replace(/https?:\/\/[^\/]+/, "");
-            if (slug.indexOf("/") !== 0) slug = "/" + slug;
+            if (slug.indexOf("/") === 0) slug = slug.substring(1);
 
             if (!foundActresses[slug]) {
                 movies.push({
@@ -310,7 +325,7 @@ function parseListResponse(html) {
                 if (!name || name.length < 2) continue;
 
                 var slug = url.replace(/https?:\/\/[^\/]+/, "");
-                if (slug.indexOf("/") !== 0) slug = "/" + slug;
+                if (slug.indexOf("/") === 0) slug = slug.substring(1);
 
                 if (!foundSlugs[slug]) {
                     movies.push({
@@ -343,7 +358,7 @@ function parseListResponse(html) {
             if (fullLinkMatch) {
                 var fullUrl = fullLinkMatch[1];
                 slug = fullUrl.replace(/https?:\/\/[^\/]+/, "");
-                if (slug.indexOf("/") !== 0) slug = "/" + slug;
+                if (slug.indexOf("/") === 0) slug = slug.substring(1);
             }
 
             var codeMatch = itemHtml.match(/class="[^"]*text-nord13[^"]*"[^>]*>([\s\S]*?)<\/a>/);
@@ -396,7 +411,7 @@ function parseListResponse(html) {
             }
 
             if (slug && !slug.includes("actresses") && !slug.includes("genres")) {
-                if (slug.indexOf('item.') !== -1 || slug.indexOf('{{') !== -1 || slug === "/" || slug === "#") continue;
+                if (slug.indexOf('item.') !== -1 || slug.indexOf('{{') !== -1 || slug === "vi" || slug === "") continue;
                 if (cleanTitle.indexOf('item.') !== -1 || cleanTitle.indexOf('{{') !== -1) continue;
                 if (thumb.indexOf('item.') !== -1 || thumb.indexOf('itemUrl') !== -1) continue;
 
@@ -415,7 +430,6 @@ function parseListResponse(html) {
                     posterUrl: thumb,
                     backdropUrl: thumb,
                     description: duration,
-                    // Đã loại bỏ field year ở thumbnail
                     quality: isUncensored ? "K.K.Duyệt" : "HD",
                     episode_current: isUncensored ? "K.K.Duyệt" : "Full",
                     lang: code,
@@ -630,7 +644,6 @@ function parseMovieDetail(html, pageUrl) {
         if (label) statusLine += (statusLine ? " | " : "") + "Label: " + label;
         if (!statusLine && releaseDate) statusLine = "Released: " + releaseDate;
 
-        // Trích xuất năm chính xác từ mục Ngày phát hành chuẩn trong trang chi tiết
         var year = 2024;
         if (releaseDate) {
             var yearMatch = releaseDate.match(/(201[5-9]|202[0-9])/);
