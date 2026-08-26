@@ -236,7 +236,6 @@ var PluginUtils = {
         var videoMatch = itemHtml.match(/<video[^>]+src="([^"]+)"/);
         return videoMatch ? videoMatch[1] : "";
     },
-    // Đã khôi phục Regex chuẩn để lấy đúng Stream UUID từ trang chi tiết
     extractStreamUuid: function (html) {
         var match = html.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
         if (match) return match[0];
@@ -247,6 +246,10 @@ var PluginUtils = {
         return "";
     }
 };
+
+// =============================================================================
+// PARSE LIST RESPONSE (LẤY DANH SÁCH PHIM, DIỄN VIÊN, THỂ LOẠI)
+// =============================================================================
 
 function parseListResponse(html) {
     html = PluginUtils.normalizeHtml(html);
@@ -354,7 +357,7 @@ function parseListResponse(html) {
         }
     }
 
-    // 3. TRANG DANH SÁCH PHIM
+    // 3. TRANG DANH SÁCH PHIM (XỬ LÝ CHÍNH XÁC CÁC THUMBNAIL PHIM)
     if (movies.length === 0) {
         var parts = html.split('thumbnail group');
         if (parts.length <= 1) parts = html.split('class="thumbnail');
@@ -475,14 +478,17 @@ function parseSearchResponse(html) {
     return parseListResponse(html);
 }
 
-// Đã khôi phục hàm lấy thông tin chi tiết đầy đủ và danh sách tập phim (episodes) chính xác
+// =============================================================================
+// PARSE MOVIE DETAIL (CHI TIẾT PHIM & TẬP PHIM ĐÃ FIX LỖI)
+// =============================================================================
+
 function parseMovieDetail(html, pageUrl) {
     html = PluginUtils.normalizeHtml(html);
 
     var title = PluginUtils.getMeta(html, "og:title");
-    if (!title) {
+    if (!title || title.indexOf("Xem :AV") !== -1) {
         var h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
-        title = h1Match ? PluginUtils.cleanText(h1Match[1]) : "Unknown Title";
+        title = h1Match ? PluginUtils.cleanText(h1Match[1]) : "Chi tiết";
     }
 
     var posterUrl = PluginUtils.getMeta(html, "og:image");
@@ -493,16 +499,21 @@ function parseMovieDetail(html, pageUrl) {
     var match;
     while ((match = genreRegex.exec(html)) !== null) {
         var g = PluginUtils.cleanText(match[1]);
-        if (g && genres.indexOf(g) === -1) {
+        if (g && genres.indexOf(g) === -1 && g.indexOf("%") === -1) {
             genres.push(g);
         }
     }
 
     var casts = [];
-    var castRegex = /href="[^"]*\/actresses\/([^"]+)"/g;
+    var castRegex = /href="[^"]*\/actresses\/([^"/?]+)(?:\?[^"]*)?"/g;
     while ((match = castRegex.exec(html)) !== null) {
-        var c = PluginUtils.cleanText(match[1]);
-        if (c && casts.indexOf(c) === -1) {
+        var rawCast = match[1];
+        try {
+            rawCast = decodeURIComponent(rawCast);
+        } catch (e) {}
+        
+        var c = PluginUtils.cleanText(rawCast);
+        if (c && casts.indexOf(c) === -1 && c !== "news" && c !== "ranking" && c.indexOf("filters") === -1) {
             casts.push(c);
         }
     }
@@ -513,7 +524,7 @@ function parseMovieDetail(html, pageUrl) {
     if (streamUuid) {
         episodes.push({
             id: streamUuid,
-            name: "Phần 1",
+            name: "Full",
             slug: streamUuid
         });
     } else {
@@ -547,7 +558,6 @@ function parseMovieDetail(html, pageUrl) {
     });
 }
 
-// Đã khôi phục URL stream chuẩn `.m3u8` và Headers để ExoPlayer phát được video
 function parseDetailResponse(html) {
     var streamUuid = PluginUtils.extractStreamUuid(html);
     var streamUrl = "";
