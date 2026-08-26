@@ -110,11 +110,29 @@ function getUrlList(slug, filtersJson) {
     var baseUrl = "https://missav.media";
 
     var path = slug || "vi/new";
-    if (path.indexOf("/") !== 0) path = "/" + path;
 
-    var pathStr = path.substring(1);
-    var url = baseUrl + "/" + pathStr + "?page=" + page;
+    // 1. Xử lý đường dẫn tuyệt đối (http/https)
+    if (path.indexOf("http") === 0) {
+        var hasQuery = path.indexOf("?") !== -1;
+        return path + (hasQuery ? "&" : "?") + "page=" + page;
+    }
 
+    // 2. Làm sạch dấu / ở đầu path
+    if (path.indexOf("/") === 0) {
+        path = path.substring(1);
+    }
+
+    // 3. Đảm bảo nối tham số page chính xác
+    var hasQueryParams = path.indexOf("?") !== -1;
+    var url = baseUrl + "/" + path;
+
+    if (hasQueryParams) {
+        url += "&page=" + page;
+    } else {
+        url += "?page=" + page;
+    }
+
+    // 4. Đính kèm tham số lọc/sắp xếp
     if (filters.sort && filters.sort !== 'new' && filters.sort !== 'hot') {
         url += "&sort=" + filters.sort;
     } else if (filters.sort === 'hot') {
@@ -192,7 +210,6 @@ var PluginUtils = {
     extractStreamUuid: function (html) {
         var uuid = "";
         
-        // Unpack JavaScript eval() nếu có
         var evalMatch = html.match(/eval\(function\(p,a,c,k,e,d\)[\s\S]*?'([^']+)'\.split\('\|'\)/i);
         if (evalMatch) {
             var parts = evalMatch[1].split('|');
@@ -210,13 +227,11 @@ var PluginUtils = {
             }
         }
 
-        // Quét domain trực tiếp
         if (!uuid) {
             var match = html.match(/(?:surrit|sixyik|nineyu|fourhoi)\.com\/([0-9a-f-]{36})/i);
             if (match) uuid = match[1];
         }
 
-        // Quét UUID fallback
         if (!uuid) {
             var uuidMatches = html.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi) || [];
             var blacklist = ["snaptrckr", "user_uuid", "popunder", "banner", "monitoring", "crypto", "randomUUID", "generateUUID"];
@@ -249,7 +264,7 @@ function parseListResponse(html) {
         html.indexOf('class="text-nord13"') !== -1 &&
         html.indexOf(':đếm video') !== -1;
 
-    // Xử lý danh sách Diễn viên
+    // 1. Xử lý trang Nữ diễn viên
     if (isActressesPage) {
         var gridMatch = html.match(/<ul[^>]*class="[^"]*grid-cols-2[^"]*"[^>]*>([\s\S]*?)<\/ul>/);
         var searchScope = gridMatch ? gridMatch[1] : html;
@@ -305,7 +320,7 @@ function parseListResponse(html) {
             }
         }
     } 
-    // Xử lý danh sách Thể loại
+    // 2. Xử lý trang Thể loại
     else if (isAllGenresPage) {
         var genreRegex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var foundSlugs = {};
@@ -340,7 +355,7 @@ function parseListResponse(html) {
         }
     }
 
-    // Xử lý danh sách Phim chuẩn
+    // 3. Xử lý danh sách Phim
     if (movies.length === 0) {
         var parts = html.split('thumbnail group');
         if (parts.length <= 1) parts = html.split('class="thumbnail');
