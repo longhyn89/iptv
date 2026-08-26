@@ -63,23 +63,21 @@ function getFilterConfig() {
 }
 
 // =============================================================================
-// URL GENERATION (BẮT BUỘC NỐI ?PAGE= FOR SUPEROK)
+// URL GENERATION
 // =============================================================================
 
 function getUrlList(slug, filtersJson) {
     var filters = {};
     try {
-        filters = JSON.parse(filtersJson || "{}");
+        if (filtersJson) filters = JSON.parse(filtersJson);
     } catch (e) {}
 
-    // Bắt buộc lấy page, mặc định luôn là 1 nếu app gửi null/undefined
     var page = (filters && filters.page) ? filters.page : 1;
     var baseUrl = "https://missav.media";
 
     var pathStr = slug || "vi/new";
     if (pathStr.indexOf("/") === 0) pathStr = pathStr.substring(1);
 
-    // Đảm bảo URL luôn được ghép ?page= đúng tham số SuperOK yêu cầu
     var url = baseUrl + "/" + pathStr;
     
     if (url.indexOf("?") !== -1) {
@@ -102,13 +100,14 @@ function getUrlList(slug, filtersJson) {
 function getUrlSearch(keyword, filtersJson) {
     var filters = {};
     try {
-        filters = JSON.parse(filtersJson || "{}");
+        if (filtersJson) filters = JSON.parse(filtersJson);
     } catch (e) {}
     var page = (filters && filters.page) ? filters.page : 1;
     return "https://missav.media/vi/search/" + encodeURIComponent(keyword) + "?page=" + page;
 }
 
 function getUrlDetail(slug) {
+    if (!slug) return "https://missav.media";
     if (slug.indexOf("http") === 0) return slug;
     if (slug.indexOf("/") === 0) return "https://missav.media" + slug;
     return "https://missav.media/" + slug;
@@ -165,6 +164,8 @@ var PluginUtils = {
 };
 
 function parseListResponse(html) {
+    if (!html) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
+    
     html = PluginUtils.normalizeHtml(html);
     var movies = [];
 
@@ -343,8 +344,11 @@ function parseListResponse(html) {
     var allPageNums = html.match(/page=(\d+)/g);
     if (allPageNums) {
         for (var j = 0; j < allPageNums.length; j++) {
-            var p = parseInt(allPageNums[j].match(/\d+/)[0]);
-            if (p > totalPages) totalPages = p;
+            var pMatch = allPageNums[j].match(/\d+/);
+            if (pMatch) {
+                var p = parseInt(pMatch[0]);
+                if (p > totalPages) totalPages = p;
+            }
         }
     }
 
@@ -362,11 +366,17 @@ function parseListResponse(html) {
 function parseSearchResponse(html) { return parseListResponse(html); }
 
 function parseMovieDetail(html, pageUrl) {
+    if (!html) return "null";
     html = PluginUtils.normalizeHtml(html);
     try {
-        var title = PluginUtils.cleanText(html.match(/<title>([^<]+)<\/title>/i)?.[1] || "");
-        var thumb = html.match(/property="og:image"\s+content="([^"]+)"/i)?.[1] || "";
-        var desc = html.match(/property="og:description"\s+content="([^"]+)"/i)?.[1] || "";
+        var titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+        var title = titleMatch ? PluginUtils.cleanText(titleMatch[1]) : "";
+
+        var thumbMatch = html.match(/property="og:image"\s+content="([^"]+)"/i);
+        var thumb = thumbMatch ? thumbMatch[1] : "";
+
+        var descMatch = html.match(/property="og:description"\s+content="([^"]+)"/i);
+        var desc = descMatch ? PluginUtils.cleanText(descMatch[1]) : "";
 
         var streamUrl = "";
         var uuid = "";
@@ -416,6 +426,8 @@ function parseMovieDetail(html, pageUrl) {
 }
 
 function parseDetailResponse(html) {
+    if (!html) return JSON.stringify({ url: "", headers: {}, subtitles: [] });
+
     var streamUrl = "";
     var uuidMatch = html.match(/surrit\.com\/([0-9a-f-]{36})/i) ||
         html.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
