@@ -78,33 +78,50 @@ function getFilterConfig() {
 }
 
 // =============================================================================
+// HELPER FOR PARSING PAGE
+// =============================================================================
+
+function extractPageNumber(filtersJson) {
+    if (filtersJson === undefined || filtersJson === null || filtersJson === "") {
+        return 1;
+    }
+    if (typeof filtersJson === "number") {
+        return Math.max(1, Math.floor(filtersJson));
+    }
+    if (typeof filtersJson === "string") {
+        var trimmed = filtersJson.trim();
+        if (/^\d+$/.test(trimmed)) {
+            return Math.max(1, parseInt(trimmed, 10));
+        }
+        try {
+            var parsed = JSON.parse(trimmed);
+            if (parsed && parsed.page) {
+                return Math.max(1, parseInt(parsed.page, 10));
+            }
+        } catch (e) {}
+    } else if (typeof filtersJson === "object") {
+        if (filtersJson.page) {
+            return Math.max(1, parseInt(filtersJson.page, 10));
+        }
+    }
+    return 1;
+}
+
+// =============================================================================
 // URL GENERATION
 // =============================================================================
 
 function getUrlList(slug, filtersJson) {
-    var page = 1;
+    var page = extractPageNumber(filtersJson);
     var sort = "";
 
-    if (filtersJson !== undefined && filtersJson !== null && filtersJson !== "") {
-        if (typeof filtersJson === "number") {
-            page = filtersJson;
-        } else if (typeof filtersJson === "string") {
-            var trimmed = filtersJson.trim();
-            if (/^\d+$/.test(trimmed)) {
-                page = parseInt(trimmed, 10);
-            } else {
-                try {
-                    var parsed = JSON.parse(trimmed);
-                    if (parsed) {
-                        if (parsed.page) page = parseInt(parsed.page, 10);
-                        if (parsed.sort) sort = parsed.sort;
-                    }
-                } catch (e) {}
-            }
-        } else if (typeof filtersJson === "object") {
-            if (filtersJson.page) page = parseInt(filtersJson.page, 10);
-            if (filtersJson.sort) sort = filtersJson.sort;
-        }
+    if (typeof filtersJson === "object" && filtersJson !== null && filtersJson.sort) {
+        sort = filtersJson.sort;
+    } else if (typeof filtersJson === "string") {
+        try {
+            var parsedObj = JSON.parse(filtersJson);
+            if (parsedObj && parsedObj.sort) sort = parsedObj.sort;
+        } catch (e) {}
     }
 
     var str = slug || "new";
@@ -127,27 +144,15 @@ function getUrlList(slug, filtersJson) {
     }
 
     var cleanPath = str;
-    var keywords = ["actresses/", "genres/", "makers/", "series/", "search/"];
-    var matched = false;
-
-    for (var k = 0; k < keywords.length; k++) {
-        var idx = cleanPath.indexOf(keywords[k]);
-        if (idx !== -1) {
-            cleanPath = cleanPath.substring(idx);
-            matched = true;
-            break;
-        }
-    }
-
-    if (!matched) {
-        var viIdx = cleanPath.indexOf("/vi/");
-        if (viIdx !== -1) {
-            cleanPath = cleanPath.substring(viIdx + 4);
-        } else {
-            cleanPath = cleanPath.replace(/^\/+/, "");
-            if (cleanPath.indexOf("vi/") === 0) {
-                cleanPath = cleanPath.substring(3);
-            }
+    
+    // Tách chuẩn đường dẫn nếu là trang diễn viên, thể loại, hoặc nhà sản xuất
+    var viIdx = cleanPath.indexOf("/vi/");
+    if (viIdx !== -1) {
+        cleanPath = cleanPath.substring(viIdx + 4);
+    } else {
+        cleanPath = cleanPath.replace(/^\/+/, "");
+        if (cleanPath.indexOf("vi/") === 0) {
+            cleanPath = cleanPath.substring(3);
         }
     }
 
@@ -164,16 +169,7 @@ function getUrlList(slug, filtersJson) {
 }
 
 function getUrlSearch(keyword, filtersJson) {
-    var page = 1;
-    if (filtersJson) {
-        if (typeof filtersJson === "number") page = filtersJson;
-        else {
-            try {
-                var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
-                if (parsed && parsed.page) page = parseInt(parsed.page, 10);
-            } catch (e) {}
-        }
-    }
+    var page = extractPageNumber(filtersJson);
     return "https://missav.media/vi/search/" + encodeURIComponent(keyword) + "?page=" + page;
 }
 
@@ -313,7 +309,7 @@ function parseListResponse(html) {
         html.indexOf('class="text-nord13"') !== -1 &&
         html.indexOf(':đếm video') !== -1;
 
-    // 1. Trang Nữ diễn viên
+    // 1. Trang Danh Sách Nữ Diễn Viên
     if (isActressesPage) {
         var gridMatch = html.match(/<ul[^>]*class="[^"]*grid-cols-2[^"]*"[^>]*>([\s\S]*?)<\/ul>/);
         var searchScope = gridMatch ? gridMatch[1] : html;
@@ -327,11 +323,12 @@ function parseListResponse(html) {
         while ((match = liRegex.exec(searchScope)) !== null) {
             var itemHtml = match[0];
 
+            // Bắt chính xác href chứa slug của từng diễn viên
             var urlMatch = itemHtml.match(/href="([^"]*\/actresses\/[^"]+)"/);
             if (!urlMatch) continue;
 
-            var url = urlMatch[1];
-            if (url.indexOf('?') !== -1) continue;
+            var rawUrl = urlMatch[1];
+            if (rawUrl.indexOf('?') !== -1) continue;
 
             var nameMatch = itemHtml.match(/<h4[^>]*>([\s\S]*?)<\/h4>/);
             var nameRaw = nameMatch ? nameMatch[1] : "";
@@ -350,7 +347,11 @@ function parseListResponse(html) {
 
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-            var cleanId = PluginUtils.toCleanId(url, "actresses");
+            // Trích xuất Slug độc bản cho từng diễn viên: ví dụ "actresses/sora-aoi"
+            var cleanId = PluginUtils.toCleanId(rawUrl, "actresses");
+            if (cleanId.indexOf("actresses/") === -1) {
+                cleanId = "actresses/" + cleanId;
+            }
 
             if (!foundActresses[cleanId]) {
                 movies.push({
@@ -368,7 +369,7 @@ function parseListResponse(html) {
             }
         }
     } 
-    // 2. Trang Thể loại
+    // 2. Trang Thể Loại
     else if (isAllGenresPage) {
         var genreRegex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var foundSlugs = {};
@@ -383,6 +384,9 @@ function parseListResponse(html) {
                 if (!name || name.length < 2) continue;
 
                 var cleanId = PluginUtils.toCleanId(url, "genres");
+                if (cleanId.indexOf("genres/") === -1) {
+                    cleanId = "genres/" + cleanId;
+                }
 
                 if (!foundSlugs[cleanId]) {
                     movies.push({
@@ -402,7 +406,7 @@ function parseListResponse(html) {
         }
     }
 
-    // 3. Trang Phim
+    // 3. Trang Danh Sách Phim (Hoặc trang Phim của 1 Diễn Viên cụ thể)
     if (movies.length === 0) {
         var parts = html.split('thumbnail group');
         if (parts.length <= 1) parts = html.split('class="thumbnail');
@@ -492,32 +496,31 @@ function parseListResponse(html) {
         }
     }
 
-    var totalPages = 100;
-    var currentPage = 1;
+    var totalPagesParsed = 1;
+    var currentPageParsed = 1;
 
     var currentMatch = html.match(/<span[^>]+class="[^"]*(?:bg-nord8|active|current)[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i) ||
         html.match(/<a[^>]+class="[^"]*(?:bg-nord8|active|current)[^"]*"[^>]*>\s*(\d+)\s*<\/a>/i);
 
     if (currentMatch) {
-        currentPage = parseInt(currentMatch[1], 10);
+        currentPageParsed = parseInt(currentMatch[1], 10);
     }
 
     var allPageNums = html.match(/page=(\d+)/g);
     if (allPageNums) {
         for (var j = 0; j < allPageNums.length; j++) {
             var p = parseInt(allPageNums[j].match(/\d+/)[0], 10);
-            if (p > totalPages) totalPages = p;
+            if (p > totalPagesParsed) totalPagesParsed = p;
         }
     }
 
-    // Ép trả về totalPages lớn để buộc App luôn mở tính năng Next Page
     return JSON.stringify({
         items: movies,
         pagination: {
-            currentPage: currentPage,
-            totalPages: totalPages,
-            totalItems: 10000,
-            itemsPerPage: 20
+            currentPage: Number(currentPageParsed || 1),
+            totalPages: Number(totalPagesParsed > 1 ? totalPagesParsed : 100),
+            totalItems: Number(movies.length * 50),
+            itemsPerPage: Number(movies.length || 20)
         }
     });
 }
@@ -632,7 +635,7 @@ function parseMovieDetail(html, pageUrl) {
             servers: servers,
             quality: "HD",
             lang: "Vietsub",
-            year: year,
+            year: Number(year),
             rating: 0,
             casts: casts,
             director: director,
