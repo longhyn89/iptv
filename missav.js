@@ -85,31 +85,45 @@ function getUrlList(slug, filtersJson) {
     var page = 1;
     var sort = "";
 
-    if (filtersJson) {
-        try {
-            var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
-            if (parsed.page) page = parsed.page;
-            if (parsed.sort) sort = parsed.sort;
-        } catch (e) {}
+    // 1. Ép kiểu và xử lý linh hoạt tham số filtersJson
+    if (filtersJson !== undefined && filtersJson !== null) {
+        if (typeof filtersJson === "number") {
+            page = filtersJson;
+        } else if (typeof filtersJson === "string") {
+            if (!isNaN(filtersJson) && filtersJson.trim() !== "") {
+                page = parseInt(filtersJson);
+            } else {
+                try {
+                    var parsed = JSON.parse(filtersJson);
+                    if (parsed.page) page = parsed.page;
+                    if (parsed.sort) sort = parsed.sort;
+                } catch (e) {}
+            }
+        } else if (typeof filtersJson === "object") {
+            if (filtersJson.page) page = filtersJson.page;
+            if (filtersJson.sort) sort = filtersJson.sort;
+        }
     }
 
     var baseUrl = "https://missav.media/vi";
     var str = slug || "new";
 
-    // 1. Tách Query String cũ nếu có
-    var queryParams = [];
+    // 2. Bóc tách tham số ?page= nằm sẵn trong slug (do App tự nối hoặc từ link trang trước)
+    var extractedPageFromSlug = null;
     if (str.indexOf("?") !== -1) {
-        var parts = str.split("?");
-        str = parts[0];
-        var rawParams = parts[1].split("&");
-        for (var i = 0; i < rawParams.length; i++) {
-            if (rawParams[i] && rawParams[i].indexOf("page=") !== 0 && rawParams[i].indexOf("sort=") !== 0) {
-                queryParams.push(rawParams[i]);
-            }
+        var pageMatch = str.match(/[?&]page=(\d+)/);
+        if (pageMatch) {
+            extractedPageFromSlug = parseInt(pageMatch[1]);
         }
+        str = str.split("?")[0];
     }
 
-    // 2. Làm sạch Path
+    // Nếu App không truyền page qua filtersJson nhưng lại gắn vào Slug, lấy page từ Slug
+    if (page === 1 && extractedPageFromSlug) {
+        page = extractedPageFromSlug;
+    }
+
+    // 3. Làm sạch Path tuyệt đối
     if (str.indexOf("http") === 0) {
         str = str.replace(/^https?:\/\/[^\/]+/, "");
     }
@@ -141,8 +155,8 @@ function getUrlList(slug, filtersJson) {
 
     cleanPath = cleanPath.replace(/^\/+/, "");
 
-    // 3. Ép tham số phân trang
-    queryParams.unshift("page=" + page);
+    // 4. Dựng Query String
+    var queryParams = ["page=" + page];
 
     if (sort && sort !== 'new' && sort !== 'hot') {
         queryParams.push("sort=" + sort);
@@ -156,10 +170,13 @@ function getUrlList(slug, filtersJson) {
 function getUrlSearch(keyword, filtersJson) {
     var page = 1;
     if (filtersJson) {
-        try {
-            var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
-            if (parsed.page) page = parsed.page;
-        } catch (e) {}
+        if (typeof filtersJson === "number") page = filtersJson;
+        else {
+            try {
+                var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
+                if (parsed.page) page = parsed.page;
+            } catch (e) {}
+        }
     }
     return "https://missav.media/vi/search/" + encodeURIComponent(keyword) + "?page=" + page;
 }
@@ -346,7 +363,7 @@ function parseListResponse(html) {
                     posterUrl: img,
                     backdropUrl: img,
                     description: "Nữ diễn viên",
-                    type: "MOVIE", // Ép về MOVIE để buộc App gọi getUrlList khi click
+                    type: "MOVIE",
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -378,7 +395,7 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        type: "MOVIE", // Ép về MOVIE để buộc App gọi getUrlList khi click
+                        type: "MOVIE",
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
