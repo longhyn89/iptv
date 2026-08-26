@@ -85,45 +85,47 @@ function getUrlList(slug, filtersJson) {
     var page = 1;
     var sort = "";
 
-    // 1. Ép kiểu và xử lý linh hoạt tham số filtersJson
-    if (filtersJson !== undefined && filtersJson !== null) {
+    // 1. Giải mã linh hoạt filtersJson
+    if (filtersJson !== undefined && filtersJson !== null && filtersJson !== "") {
         if (typeof filtersJson === "number") {
             page = filtersJson;
         } else if (typeof filtersJson === "string") {
-            if (!isNaN(filtersJson) && filtersJson.trim() !== "") {
-                page = parseInt(filtersJson);
+            var trimmed = filtersJson.trim();
+            if (/^\d+$/.test(trimmed)) {
+                page = parseInt(trimmed, 10);
             } else {
                 try {
-                    var parsed = JSON.parse(filtersJson);
-                    if (parsed.page) page = parsed.page;
-                    if (parsed.sort) sort = parsed.sort;
+                    var parsed = JSON.parse(trimmed);
+                    if (parsed) {
+                        if (parsed.page) page = parseInt(parsed.page, 10);
+                        if (parsed.sort) sort = parsed.sort;
+                    }
                 } catch (e) {}
             }
         } else if (typeof filtersJson === "object") {
-            if (filtersJson.page) page = filtersJson.page;
+            if (filtersJson.page) page = parseInt(filtersJson.page, 10);
             if (filtersJson.sort) sort = filtersJson.sort;
         }
     }
 
-    var baseUrl = "https://missav.media/vi";
     var str = slug || "new";
 
-    // 2. Bóc tách tham số ?page= nằm sẵn trong slug (do App tự nối hoặc từ link trang trước)
-    var extractedPageFromSlug = null;
+    // 2. Bóc tách & loại bỏ các tham số ?page= hoặc &page= sẵn có trong slug
+    var pageFromSlug = null;
     if (str.indexOf("?") !== -1) {
         var pageMatch = str.match(/[?&]page=(\d+)/);
         if (pageMatch) {
-            extractedPageFromSlug = parseInt(pageMatch[1]);
+            pageFromSlug = parseInt(pageMatch[1], 10);
         }
-        str = str.split("?")[0];
+        str = str.split("?")[0]; // Xóa sạch query string cũ
     }
 
-    // Nếu App không truyền page qua filtersJson nhưng lại gắn vào Slug, lấy page từ Slug
-    if (page === 1 && extractedPageFromSlug) {
-        page = extractedPageFromSlug;
+    // Nếu filtersJson không có page nhưng slug có page > 1, dùng page từ slug
+    if (page === 1 && pageFromSlug) {
+        page = pageFromSlug;
     }
 
-    // 3. Làm sạch Path tuyệt đối
+    // 3. Làm sạch Path
     if (str.indexOf("http") === 0) {
         str = str.replace(/^https?:\/\/[^\/]+/, "");
     }
@@ -155,16 +157,15 @@ function getUrlList(slug, filtersJson) {
 
     cleanPath = cleanPath.replace(/^\/+/, "");
 
-    // 4. Dựng Query String
+    // 4. Tạo URL hoàn chỉnh
     var queryParams = ["page=" + page];
-
     if (sort && sort !== 'new' && sort !== 'hot') {
         queryParams.push("sort=" + sort);
     } else if (sort === 'hot') {
         queryParams.push("sort=views");
     }
 
-    return baseUrl + "/" + cleanPath + "?" + queryParams.join("&");
+    return "https://missav.media/vi/" + cleanPath + "?" + queryParams.join("&");
 }
 
 function getUrlSearch(keyword, filtersJson) {
@@ -174,7 +175,7 @@ function getUrlSearch(keyword, filtersJson) {
         else {
             try {
                 var parsed = typeof filtersJson === "string" ? JSON.parse(filtersJson) : filtersJson;
-                if (parsed.page) page = parsed.page;
+                if (parsed && parsed.page) page = parseInt(parsed.page, 10);
             } catch (e) {}
         }
     }
@@ -503,13 +504,13 @@ function parseListResponse(html) {
         html.match(/<a[^>]+class="[^"]*(?:bg-nord8|active|current)[^"]*"[^>]*>\s*(\d+)\s*<\/a>/i);
 
     if (currentMatch) {
-        currentPage = parseInt(currentMatch[1]);
+        currentPage = parseInt(currentMatch[1], 10);
     }
 
     var allPageNums = html.match(/page=(\d+)/g);
     if (allPageNums) {
         for (var j = 0; j < allPageNums.length; j++) {
-            var p = parseInt(allPageNums[j].match(/\d+/)[0]);
+            var p = parseInt(allPageNums[j].match(/\d+/)[0], 10);
             if (p > totalPages) totalPages = p;
         }
     }
@@ -518,7 +519,7 @@ function parseListResponse(html) {
         items: movies,
         pagination: {
             currentPage: currentPage,
-            totalPages: totalPages || 1,
+            totalPages: totalPages || 100, // Đặt max page là 100 nếu không parse được để ép App cho chuyển trang
             totalItems: movies.length,
             itemsPerPage: 20
         }
@@ -623,7 +624,7 @@ function parseMovieDetail(html, pageUrl) {
         var year = 2024;
         if (releaseDate) {
             var yearMatch = releaseDate.match(/(201[5-9]|202[0-9])/);
-            if (yearMatch) year = parseInt(yearMatch[0]);
+            if (yearMatch) year = parseInt(yearMatch[0], 10);
         }
 
         return JSON.stringify({
