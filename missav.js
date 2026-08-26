@@ -145,7 +145,6 @@ function getUrlList(slug, filtersJson) {
 
     var cleanPath = str;
     
-    // Tách chuẩn đường dẫn nếu là trang diễn viên, thể loại, hoặc nhà sản xuất
     var viIdx = cleanPath.indexOf("/vi/");
     if (viIdx !== -1) {
         cleanPath = cleanPath.substring(viIdx + 4);
@@ -309,7 +308,7 @@ function parseListResponse(html) {
         html.indexOf('class="text-nord13"') !== -1 &&
         html.indexOf(':đếm video') !== -1;
 
-    // 1. Trang Danh Sách Nữ Diễn Viên
+    // 1. TRANG DANH SÁCH NỮ DIỄN VIÊN
     if (isActressesPage) {
         var gridMatch = html.match(/<ul[^>]*class="[^"]*grid-cols-2[^"]*"[^>]*>([\s\S]*?)<\/ul>/);
         var searchScope = gridMatch ? gridMatch[1] : html;
@@ -323,7 +322,6 @@ function parseListResponse(html) {
         while ((match = liRegex.exec(searchScope)) !== null) {
             var itemHtml = match[0];
 
-            // Bắt chính xác href chứa slug của từng diễn viên
             var urlMatch = itemHtml.match(/href="([^"]*\/actresses\/[^"]+)"/);
             if (!urlMatch) continue;
 
@@ -347,7 +345,6 @@ function parseListResponse(html) {
 
             if (img.indexOf('flag') !== -1 || img.indexOf('icon') !== -1) img = "";
 
-            // Trích xuất Slug độc bản cho từng diễn viên: ví dụ "actresses/sora-aoi"
             var cleanId = PluginUtils.toCleanId(rawUrl, "actresses");
             if (cleanId.indexOf("actresses/") === -1) {
                 cleanId = "actresses/" + cleanId;
@@ -359,8 +356,8 @@ function parseListResponse(html) {
                     title: name,
                     posterUrl: img,
                     backdropUrl: img,
-                    description: "Nữ diễn viên",
-                    type: "MOVIE",
+                    description: "Diễn viên",
+                    type: "FOLDER", // Gán FOLDER/CATEGORY để App mở danh sách phim thay vì mở màn hình phát Detail
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: ""
@@ -369,7 +366,7 @@ function parseListResponse(html) {
             }
         }
     } 
-    // 2. Trang Thể Loại
+    // 2. TRANG THỂ LOẠI
     else if (isAllGenresPage) {
         var genreRegex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var foundSlugs = {};
@@ -395,7 +392,7 @@ function parseListResponse(html) {
                         posterUrl: "",
                         backdropUrl: "",
                         description: "Thể loại",
-                        type: "MOVIE",
+                        type: "FOLDER",
                         quality: "CAT",
                         episode_current: "",
                         lang: ""
@@ -406,7 +403,7 @@ function parseListResponse(html) {
         }
     }
 
-    // 3. Trang Danh Sách Phim (Hoặc trang Phim của 1 Diễn Viên cụ thể)
+    // 3. TRANG DANH SÁCH PHIM
     if (movies.length === 0) {
         var parts = html.split('thumbnail group');
         if (parts.length <= 1) parts = html.split('class="thumbnail');
