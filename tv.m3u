@@ -488,8 +488,8 @@ https://live.fptplay53.net/epzsd1/dongnai1_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="dongnai2" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/6B0LCKJ/dongnai2-BEARTV.png", ĐNRTV2 HD | TH Đồng Nai 2
 https://live.fptplay53.net/epzsd1/dongnai2_hls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="dongnai3" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/t3vKMfg/135.png", ĐNRTV3 | TH Đồng Nai 3
-#https://tv.vietanhtv.top/vieon/vieon.php?id=dong-nai-3
-https://live.fptplay53.net/epzsd1/dongnai3_hls.smil/chunklist.m3u8
+#https://live.fptplay53.net/epzsd1/dongnai3_hls.smil/chunklist.m3u8
+https://tv.vietanhtv.top/vieon/vieon.php?id=dong-nai-3
 #EXTINF:-1 tvg-id="dongthap1" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/3N22Nd4/TH-T-BEARTV.png", THĐT1 HD | TH Đồng Tháp
 #https://vpsttt.vietanhtv.top/tv360/tv360.php?id=54
 https://live.fptplay53.net/epzhd2/dongthap01_vhls.smil/chunklist.m3u8
