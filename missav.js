@@ -6,7 +6,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "missav",
         "name": "MissAV",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "baseUrl": "https://missav.media",
         "referrer": "https://missav123.com/",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico",
@@ -212,7 +212,7 @@ function parseListResponse(html) {
                 title: "⚠️ Tìm kiếm MissAV chưa hỗ trợ",
                 posterUrl: "",
                 backdropUrl: "",
-                description: "Trang tìm kiếm của MissAV sử dụng công nghệ tải động (Alpine.js + Recombee API), không thể parse từ HTML tĩnh. Vui lòng sử dụng các mục 'Thể loại', 'Hôm nay nóng', 'Mới nhất' để duyệt phim.",
+                description: "Trang tìm kiếm của MissAV sử dụng công nghệ tải động, không thể parse. Vui lòng sử dụng các mục 'Thể loại', 'Hôm nay nóng', 'Mới nhất' để duyệt phim.",
                 quality: "INFO",
                 episode_current: "",
                 lang: ""
@@ -281,7 +281,7 @@ function parseListResponse(html) {
                     quality: "ACTRESS",
                     episode_current: "",
                     lang: "",
-                    isFolder: true, // Cờ báo hiệu đây là thư mục, không phải phim
+                    isFolder: true,
                     type: "folder"
                 });
                 foundActresses[slug] = true;
@@ -313,7 +313,7 @@ function parseListResponse(html) {
                         quality: "CAT",
                         episode_current: "",
                         lang: "",
-                        isFolder: true, // Cờ báo hiệu đây là thư mục, không phải phim
+                        isFolder: true,
                         type: "folder"
                     });
                     foundSlugs[slug] = true;
@@ -412,6 +412,7 @@ function parseListResponse(html) {
                     episode_current: isUncensored ? "K.K.Duyệt" : "Full",
                     lang: code,
                     previewUrl: previewUrl
+                    // Cố ý không truyền "year" ở danh sách list (thumbnails) để không hiển thị năm ở ngoài
                 });
             }
         }
@@ -483,7 +484,6 @@ function parseMovieDetail(html, pageUrl) {
             var content = match[1];
             var linkMatch = content.match(/<a[^>]+href="([^"]+)"[^>]*>([^<]+)<\/a>/i);
             if (linkMatch) {
-                // Đã sửa lỗi Markdown, giờ chỉ lấy Tên thuần túy
                 return PluginUtils.cleanText(linkMatch[2]);
             }
             var timeMatch = content.match(/<time[^>]*>([^<]+)<\/time>/i);
@@ -515,7 +515,6 @@ function parseMovieDetail(html, pageUrl) {
             while ((linkMatch = linkRegex.exec(content)) !== null) {
                 var text = PluginUtils.cleanText(linkMatch[2]);
                 if (text && !text.includes("<img")) {
-                    // Đã sửa lỗi Markdown, giờ chỉ lấy Tên thuần túy
                     items.push(text);
                 }
             }
@@ -531,6 +530,15 @@ function parseMovieDetail(html, pageUrl) {
         var casts = getMultiField("Nữ diễn viên") || getMultiField("Actresses");
         var genres = getMultiField("thể loại") || getMultiField("Genre") || getMultiField("Genres");
         var series = getMultiField("Loạt") || getMultiField("Series");
+
+        // Bóc tách lấy đúng năm cho trang Detail
+        var releaseYear = 0;
+        if (releaseDate && releaseDate.length >= 4) {
+            var parsed = parseInt(releaseDate.substring(0, 4));
+            if (!isNaN(parsed)) {
+                releaseYear = parsed;
+            }
+        }
 
         if (!code) {
             var dvdIdMatch = html.match(/dvdId:\s*'([^']+)'/);
@@ -654,7 +662,7 @@ function parseMovieDetail(html, pageUrl) {
         if (label) statusLine += (statusLine ? " | " : "") + "Label: " + label;
         if (!statusLine && releaseDate) statusLine = "Released: " + releaseDate;
 
-        return JSON.stringify({
+        var resultObj = {
             id: code || "",
             title: PluginUtils.cleanText(displayTitle),
             posterUrl: thumb,
@@ -670,7 +678,14 @@ function parseMovieDetail(html, pageUrl) {
             status: statusLine,
             duration: series ? "Series: " + series : "",
             previewUrl: previewUrl || ""
-        });
+        };
+
+        // Gán năm vào kết quả của trang Detail
+        if (releaseYear > 0) {
+            resultObj.year = releaseYear;
+        }
+
+        return JSON.stringify(resultObj);
     } catch (e) {
         return "null";
     }
