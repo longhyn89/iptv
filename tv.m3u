@@ -1219,16 +1219,19 @@ https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 Asia
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901323&extension=ts&play_token=linSr9hzPD
 #http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065816&extension=ts&play_token=AYIA3yeMZR
-http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221500&extension=ts&play_token=Lw2VdK5McL
+#http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221500&extension=ts&play_token=Lw2VdK5McL
+https://ott.djdoolky76.io/api/streams/159/manifest.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN0cmVhbVRva2VuIjoiOGVkOTY4MTIzODE2ZDQyY2U0Y2I5Y2E0YjBkNTI2ZTRlNDFmMDViZTY5MmE1ZjBjNTE3MjU1MjAwNTE3NWQ5OSIsImlhdCI6MTc4ODE3NTg0MSwiZXhwIjoxNzkwNTUzNTk5fQ.g1UEg6uJi2RNR0adllxiD7-H6Bi-QCS0E0n7db_kIN0
 #EXTINF:-1 tvg-id="" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png" group-title="Sports", Bein Sports 2 Asia
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901322&extension=ts&play_token=hT7d5wYLcA
 #http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1968697&extension=ts&play_token=MGEZ4WByAt
 #http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065815&extension=ts&play_token=FBLveqssR0
-http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221499&extension=ts&play_token=PeZ71ud0Af
+#http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221499&extension=ts&play_token=PeZ71ud0Af
+https://ott.djdoolky76.io/api/streams/160/manifest.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN0cmVhbVRva2VuIjoiOGVkOTY4MTIzODE2ZDQyY2U0Y2I5Y2E0YjBkNTI2ZTRlNDFmMDViZTY5MmE1ZjBjNTE3MjU1MjAwNTE3NWQ5OSIsImlhdCI6MTc4ODE3NTg0MSwiZXhwIjoxNzkwNTUzNTk5fQ.g1UEg6uJi2RNR0adllxiD7-H6Bi-QCS0E0n7db_kIN0
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 Asia
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901321&extension=ts&play_token=Q50jrnLZTE
 #http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065814&extension=ts&play_token=aDr8bCcxwd
-http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221498&extension=ts&play_token=g2JcOrx55a
+#http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221498&extension=ts&play_token=g2JcOrx55a
+https://ott.djdoolky76.io/api/streams/161/manifest.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN0cmVhbVRva2VuIjoiOGVkOTY4MTIzODE2ZDQyY2U0Y2I5Y2E0YjBkNTI2ZTRlNDFmMDViZTY5MmE1ZjBjNTE3MjU1MjAwNTE3NWQ5OSIsImlhdCI6MTc4ODE3NTg0MSwiZXhwIjoxNzkwNTUzNTk5fQ.g1UEg6uJi2RNR0adllxiD7-H6Bi-QCS0E0n7db_kIN0
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Dự Phòng",SPOTV HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
