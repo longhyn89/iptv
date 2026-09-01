@@ -1271,38 +1271,17 @@ http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1287045.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Sport 30
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1287046.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 AU
-#KODIPROP:inputstreamaddon=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=335DAD778109954503DCBB21DC92015F:24bfd75d436cbf73168a2a2dccd40281
-#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=646977&extension=ts&play_token=9efXwZeoNb
-https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ghwcl6hv68/out/v1/83536910d8034e9b9895a20fbe1c1687/cenc.mpd
+
 #EXTINF:-1 tvg-id="" group-title="Sports" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png", Bein Sports 2 AU
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1
-#KODIPROP:inputstream.adaptive.license_key=0b42be2664d7e811d04f3e504e0924c5:ae24090123b8c72ac5404dc152847cb8
-https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/8m8cd46i1t/out/v1/83985c68e4174e90a58a1f2c024be4c9/cenc.mpd
+
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 AU
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=7995c724a13748ed970840a8ab5bb9b3:67bdaf1e2175b9ff682fcdf0e2354b1e
-#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944687&extension=ts&play_token=PeMid0cih0
-https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/out/v1/18de6d3e65934f3a8de4358e69eab86c/cenc.mpd
+
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 Asia
-#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901323&extension=ts&play_token=linSr9hzPD
-#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065816&extension=ts&play_token=AYIA3yeMZR
-#http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221500&extension=ts&play_token=Lw2VdK5McL
-https://ott.djdoolky76.io/api/streams/159/manifest.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN0cmVhbVRva2VuIjoiOGVkOTY4MTIzODE2ZDQyY2U0Y2I5Y2E0YjBkNTI2ZTRlNDFmMDViZTY5MmE1ZjBjNTE3MjU1MjAwNTE3NWQ5OSIsImlhdCI6MTc4ODE3NTg0MSwiZXhwIjoxNzkwNTUzNTk5fQ.g1UEg6uJi2RNR0adllxiD7-H6Bi-QCS0E0n7db_kIN0
+
 #EXTINF:-1 tvg-id="" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png" group-title="Sports", Bein Sports 2 Asia
-#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901322&extension=ts&play_token=hT7d5wYLcA
-#http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1968697&extension=ts&play_token=MGEZ4WByAt
-#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065815&extension=ts&play_token=FBLveqssR0
-#http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221499&extension=ts&play_token=PeZ71ud0Af
-https://ott.djdoolky76.io/api/streams/160/manifest.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN0cmVhbVRva2VuIjoiOGVkOTY4MTIzODE2ZDQyY2U0Y2I5Y2E0YjBkNTI2ZTRlNDFmMDViZTY5MmE1ZjBjNTE3MjU1MjAwNTE3NWQ5OSIsImlhdCI6MTc4ODE3NTg0MSwiZXhwIjoxNzkwNTUzNTk5fQ.g1UEg6uJi2RNR0adllxiD7-H6Bi-QCS0E0n7db_kIN0
+
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 Asia
-#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901321&extension=ts&play_token=Q50jrnLZTE
-#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065814&extension=ts&play_token=aDr8bCcxwd
-#http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=221498&extension=ts&play_token=g2JcOrx55a
-https://ott.djdoolky76.io/api/streams/161/manifest.m3u8?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInN0cmVhbVRva2VuIjoiOGVkOTY4MTIzODE2ZDQyY2U0Y2I5Y2E0YjBkNTI2ZTRlNDFmMDViZTY5MmE1ZjBjNTE3MjU1MjAwNTE3NWQ5OSIsImlhdCI6MTc4ODE3NTg0MSwiZXhwIjoxNzkwNTUzNTk5fQ.g1UEg6uJi2RNR0adllxiD7-H6Bi-QCS0E0n7db_kIN0
+
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Dự Phòng",SPOTV HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
@@ -1472,3 +1451,36 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944829&e
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944830&extension=ts&play_token=LBTsZElU9I
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Dự Phòng",Stan Sport 21
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944831&extension=ts&play_token=7vWJz6GIf4
+
+
+
+
+
+#EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Dự Phòng", Bein Sports 1 AU
+#KODIPROP:inputstreamaddon=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=335DAD778109954503DCBB21DC92015F:24bfd75d436cbf73168a2a2dccd40281
+#http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=646977&extension=ts&play_token=9efXwZeoNb
+https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ghwcl6hv68/out/v1/83536910d8034e9b9895a20fbe1c1687/cenc.mpd
+#EXTINF:-1 tvg-id="" group-title="Dự Phòng" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png", Bein Sports 2 AU
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1
+#KODIPROP:inputstream.adaptive.license_key=0b42be2664d7e811d04f3e504e0924c5:ae24090123b8c72ac5404dc152847cb8
+https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/8m8cd46i1t/out/v1/83985c68e4174e90a58a1f2c024be4c9/cenc.mpd
+#EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Dự Phòng", Bein Sports 3 AU
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=7995c724a13748ed970840a8ab5bb9b3:67bdaf1e2175b9ff682fcdf0e2354b1e
+#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944687&extension=ts&play_token=PeMid0cih0
+https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/out/v1/18de6d3e65934f3a8de4358e69eab86c/cenc.mpd
+#EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Dự Phòng", Bein Sports 1 Asia
+#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901323&extension=ts&play_token=linSr9hzPD
+http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065816&extension=ts&play_token=AYIA3yeMZR
+#EXTINF:-1 tvg-id="" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png" group-title="Dự Phòng", Bein Sports 2 Asia
+#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901322&extension=ts&play_token=hT7d5wYLcA
+#http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1968697&extension=ts&play_token=MGEZ4WByAt
+http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065815&extension=ts&play_token=FBLveqssR0
+#EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Dự Phòng", Bein Sports 3 Asia
+#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901321&extension=ts&play_token=Q50jrnLZTE
+http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065814&extension=ts&play_token=aDr8bCcxwd
+
