@@ -633,7 +633,7 @@ https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/boomerang.smil/manifest.mpd
 https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/dreamwork.smil/manifest.mpd
 #EXTINF:-1 tvg-id="babytvhd" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/Ht2cjfV/Baby-TV-cc.webp", BabyTV HD
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=561966&extension=ts&play_token=n5ryyR6RjF
-http://foxbleu.pro/play/live.php?mac=00:1A:79:A6:20:CD&stream=257226&extension=ts&play_token=OvcdwBAzT2
+http://brayann.com/live/5C5F037FFC9C/1C2A31683714/1035203.ts
 #EXTINF:-1 tvg-id="cartoonhd" group-title="🌈| KIDS" tvg-logo="https://mytv.com.vn/upload/channel/179.png", Cartoon Network HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
