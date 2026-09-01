@@ -1271,17 +1271,17 @@ http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1287045.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Sports",Stan Sport 30
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1287046.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 AU
-
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/78137.ts
 #EXTINF:-1 tvg-id="" group-title="Sports" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png", Bein Sports 2 AU
-
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/78138.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 AU
-
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/78139.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 Asia
-
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052432.ts
 #EXTINF:-1 tvg-id="" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png" group-title="Sports", Bein Sports 2 Asia
-
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052426.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 Asia
-
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052430.ts
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Dự Phòng",SPOTV HD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=widevine
@@ -1451,11 +1451,6 @@ http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944829&e
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944830&extension=ts&play_token=LBTsZElU9I
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-YVJHKIMfRCJ0QPDQKa3dQpHJAGJjMpbk0vBzP_5BA&s=10" group-title="Dự Phòng",Stan Sport 21
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=944831&extension=ts&play_token=7vWJz6GIf4
-
-
-
-
-
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Dự Phòng", Bein Sports 1 AU
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
@@ -1483,4 +1478,3 @@ http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065815&extension
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Dự Phòng", Bein Sports 3 Asia
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901321&extension=ts&play_token=Q50jrnLZTE
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065814&extension=ts&play_token=aDr8bCcxwd
-
