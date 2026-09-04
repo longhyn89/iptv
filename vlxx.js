@@ -116,10 +116,6 @@ function parseListResponse(html) {
 
         if (thumb && thumb.indexOf("data:image") === 0) thumb = "";
 
-        // Thử tìm năm trong tiêu đề phim (nếu có), nếu không có để trống hoặc ẩn
-        var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
-        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
-
         if (link && title) {
             var item = {
                 id: link,
@@ -128,8 +124,10 @@ function parseListResponse(html) {
                 backdropUrl: thumb
             };
 
-            if (parsedYear) {
-                item.year = parsedYear;
+            // CHỈ GÁN NĂM CHO PHIM ĐẦU TIÊN (Poster chính) THEO NĂM HỆ THỐNG
+            // Các phim còn lại hoàn toàn không có trường year để ẩn sạch số 0 hay năm ngẫu nhiên
+            if (i === 1 && items.length === 0) {
+                item.year = new Date().getFullYear();
             }
 
             items.push(item);
