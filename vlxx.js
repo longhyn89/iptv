@@ -124,10 +124,16 @@ function parseListResponse(html) {
                 backdropUrl: thumb
             };
 
-            // CHỈ GÁN NĂM CHO PHIM ĐẦU TIÊN (Poster chính) THEO NĂM HỆ THỐNG
-            // Các phim còn lại hoàn toàn không có trường year để ẩn sạch số 0 hay năm ngẫu nhiên
-            if (i === 1 && items.length === 0) {
+            // Phim poster đầu tiên (i === 1) hiển thị năm theo năm hệ thống
+            if (i === 1) {
                 item.year = new Date().getFullYear();
+            } else {
+                // Các thumbnail khác giữ lại logic quét năm từ tiêu đề (nếu có), không có thì bỏ trống
+                var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
+                var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
+                if (parsedYear) {
+                    item.year = parsedYear;
+                }
             }
 
             items.push(item);
@@ -377,14 +383,14 @@ function parseEmbedResponse(html, url) {
 
         var vlMatch = html.match(/(https?:\/\/[^\s"'\\]+\.vl[^\s"'\\]*)/i);
         if (vlMatch) {
-            return JSON.stringify({
+            return JSON.parse(JSON.stringify({
                 url: vlMatch[1],
                 isEmbed: false,
                 mimeType: "application/x-mpegURL",
                 headers: {
                     "Referer": "https://play.vlstream.net/"
                 }
-            });
+            }));
         }
 
         return JSON.stringify({ url: "", isEmbed: false, headers: {} });
