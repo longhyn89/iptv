@@ -117,12 +117,19 @@ function parseListResponse(html) {
         if (thumb && thumb.indexOf("data:image") === 0) thumb = "";
 
         if (link && title) {
-            items.push({
+            var item = {
                 id: link,
                 title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
                 backdropUrl: thumb
-            });
+            };
+
+            // Phim đầu tiên lấy động năm hiện tại theo hệ thống, các phim khác ẩn năm
+            if (i === 1) {
+                item.year = new Date().getFullYear();
+            }
+
+            items.push(item);
         }
     }
 
