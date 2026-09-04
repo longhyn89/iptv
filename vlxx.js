@@ -116,18 +116,22 @@ function parseListResponse(html) {
 
         if (thumb && thumb.indexOf("data:image") === 0) thumb = "";
 
-        // TÌM NĂM TRONG TIÊU ĐỀ, NẾU KHÔNG CÓ SẼ ĐỂ TRỐNG (ẨN ĐI)
         var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
-        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : "";
+        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
 
         if (link && title) {
-            items.push({
+            var item = {
                 id: link,
                 title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
-                backdropUrl: thumb,
-                year: parsedYear
-            });
+                backdropUrl: thumb
+            };
+
+            if (parsedYear) {
+                item.year = parsedYear;
+            }
+
+            items.push(item);
         }
     }
 
@@ -177,9 +181,8 @@ function parseMovieDetail(html) {
             title = "(" + code + ") " + title;
         }
 
-        // TÌM NĂM TỪ TIÊU ĐỀ, NẾU KHÔNG CÓ THÌ ĐỂ TRỐNG
         var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
-        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : "";
+        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
 
         var ogImg = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
         var posterUrl = ogImg ? ogImg[1] : "";
@@ -203,7 +206,6 @@ function parseMovieDetail(html) {
         }
 
         var servers = [];
-
         var canonicalMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)
             || html.match(/<meta[^>]*property=["']og:url["'][^>]*content=["']([^"']+)["']/i);
         var pageUrl = canonicalMatch ? canonicalMatch[1] : "";
@@ -234,7 +236,7 @@ function parseMovieDetail(html) {
             });
         }
 
-        return JSON.stringify({
+        var detail = {
             id: "",
             title: title.replace(/<[^>]+>/g, '').trim(),
             posterUrl: posterUrl,
@@ -243,14 +245,19 @@ function parseMovieDetail(html) {
             servers: servers,
             quality: "HD",
             lang: "Vietsub",
-            year: parsedYear,
             rating: 0,
             casts: castsArr.join(", "),
             director: "",
             country: "",
             category: categoriesArr.join(", "),
             status: code || "Full"
-        });
+        };
+
+        if (parsedYear) {
+            detail.year = parsedYear;
+        }
+
+        return JSON.stringify(detail);
 
     } catch (e) {
         return "null";
