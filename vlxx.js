@@ -124,8 +124,9 @@ function parseListResponse(html) {
                 backdropUrl: thumb
             };
 
-            // Chỉ duy nhất phim đầu tiên (poster chính) hiện năm hệ thống, các phim còn lại ẩn hoàn toàn
-            if (i === 1) {
+            // CHỈ GÁN NĂM CHO PHIM ĐẦU TIÊN CỦA TRANG CHỦ (Slider/Poster lớn)
+            // Các phim từ thứ 2 trở đi hoàn toàn không gán trường year để ẩn tuyệt đối
+            if (i === 1 && (!link.includes('page') && items.length === 0)) {
                 item.year = new Date().getFullYear();
             }
 
