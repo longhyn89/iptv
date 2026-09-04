@@ -116,22 +116,13 @@ function parseListResponse(html) {
 
         if (thumb && thumb.indexOf("data:image") === 0) thumb = "";
 
-        var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
-        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
-
         if (link && title) {
-            var item = {
+            items.push({
                 id: link,
                 title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
                 backdropUrl: thumb
-            };
-
-            if (parsedYear) {
-                item.year = parsedYear;
-            }
-
-            items.push(item);
+            });
         }
     }
 
@@ -181,9 +172,6 @@ function parseMovieDetail(html) {
             title = "(" + code + ") " + title;
         }
 
-        var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
-        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
-
         var ogImg = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
         var posterUrl = ogImg ? ogImg[1] : "";
 
@@ -206,6 +194,7 @@ function parseMovieDetail(html) {
         }
 
         var servers = [];
+
         var canonicalMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)
             || html.match(/<meta[^>]*property=["']og:url["'][^>]*content=["']([^"']+)["']/i);
         var pageUrl = canonicalMatch ? canonicalMatch[1] : "";
@@ -252,10 +241,6 @@ function parseMovieDetail(html) {
             category: categoriesArr.join(", "),
             status: code || "Full"
         };
-
-        if (parsedYear) {
-            detail.year = parsedYear;
-        }
 
         return JSON.stringify(detail);
 
