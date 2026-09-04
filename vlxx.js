@@ -6,7 +6,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "vlxx",
         "name": "VLXX",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "baseUrl": "https://vlxx.phd",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico",
         "isEnabled": true,
