@@ -116,6 +116,10 @@ function parseListResponse(html) {
 
         if (thumb && thumb.indexOf("data:image") === 0) thumb = "";
 
+        // Tìm năm phát hành trong tên phim
+        var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
+        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
+
         if (link && title) {
             var item = {
                 id: link,
@@ -124,9 +128,9 @@ function parseListResponse(html) {
                 backdropUrl: thumb
             };
 
-            // Phim đầu tiên lấy động năm hiện tại theo hệ thống, các phim khác ẩn năm
-            if (i === 1) {
-                item.year = new Date().getFullYear();
+            // Chỉ gắn trường year nếu có giá trị để tránh lỗi phân giải dữ liệu kiểu số
+            if (parsedYear) {
+                item.year = parsedYear;
             }
 
             items.push(item);
@@ -178,6 +182,10 @@ function parseMovieDetail(html) {
         if (code && title) {
             title = "(" + code + ") " + title;
         }
+
+        // Tìm năm phát hành trong tên phim
+        var yearMatch = title.match(/\b(19\d{2}|20\d{2})\b/);
+        var parsedYear = yearMatch ? parseInt(yearMatch[1]) : null;
 
         var ogImg = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
         var posterUrl = ogImg ? ogImg[1] : "";
@@ -248,6 +256,10 @@ function parseMovieDetail(html) {
             category: categoriesArr.join(", "),
             status: code || "Full"
         };
+
+        if (parsedYear) {
+            detail.year = parsedYear;
+        }
 
         return JSON.stringify(detail);
 
