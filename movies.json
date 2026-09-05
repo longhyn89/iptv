@@ -7,7 +7,7 @@
             "name": "KKPhim",
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/kkphim.js",
-            "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/kkphim.png"
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/kkphim.png"
         },
         {
             "id": "nguonc",
