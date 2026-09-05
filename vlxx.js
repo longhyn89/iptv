@@ -121,7 +121,8 @@ function parseListResponse(html) {
                 id: link,
                 title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
-                backdropUrl: thumb
+                backdropUrl: thumb,
+                year: "" // <--- Dùng chuỗi rỗng thay vì bỏ trống để đè lên giá trị 0 mặc định của App
             });
         }
     }
@@ -234,7 +235,8 @@ function parseMovieDetail(html) {
             servers: servers,
             quality: "HD",
             lang: "Vietsub",
-            rating: 0,
+            year: "",    // <--- Chuỗi rỗng
+            rating: "",  // <--- Đổi thành chuỗi rỗng 
             casts: castsArr.join(", "),
             director: "",
             country: "",
