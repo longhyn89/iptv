@@ -11,10 +11,10 @@
         },
         {
             "id": "nguonc",
-            "name": "Phim NguonC",
-            "version": "1.1.5",
+            "name": "Nguồn C (WEB)",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/nguonc.js",
-            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png"
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png"
         },
         {
             "id": "onflix",
