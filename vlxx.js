@@ -117,16 +117,11 @@ function parseListResponse(html) {
         if (thumb && thumb.indexOf("data:image") === 0) thumb = "";
 
         if (link && title) {
-            var cleanTitle = title.replace(/<[^>]+>/g, '').trim();
-            var yearMatch = cleanTitle.match(/\b(19\d{2}|20\d{2})\b/);
-            var itemYear = yearMatch ? parseInt(yearMatch[1]) : 0;
-
             items.push({
                 id: link,
-                title: cleanTitle,
+                title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
-                backdropUrl: thumb,
-                year: itemYear
+                backdropUrl: thumb
             });
         }
     }
