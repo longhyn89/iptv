@@ -98,7 +98,6 @@ function getUrlYears() { return ""; }
 function parseListResponse(html) {
     var items = [];
     var blocks = html.split('class="video-item"');
-    var currentYear = new Date().getFullYear(); // CHỈ SỬA Ở ĐÂY: Năm hệ thống cho Poster/Danh sách
 
     for (var i = 1; i < blocks.length; i++) {
         var block = blocks[i];
@@ -123,7 +122,7 @@ function parseListResponse(html) {
                 title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
                 backdropUrl: thumb,
-                year: currentYear // Gán năm hệ thống riêng cho poster
+                year: new Date().getFullYear() // Đã thêm: Gán năm hệ thống cho poster
             });
         }
     }
@@ -236,7 +235,6 @@ function parseMovieDetail(html) {
             servers: servers,
             quality: "HD",
             lang: "Vietsub",
-            year: 0,
             rating: 0,
             casts: castsArr.join(", "),
             director: "",
