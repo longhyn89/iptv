@@ -98,6 +98,7 @@ function getUrlYears() { return ""; }
 function parseListResponse(html) {
     var items = [];
     var blocks = html.split('class="video-item"');
+    var currentYear = new Date().getFullYear(); // Lấy năm hệ thống hiện tại
 
     for (var i = 1; i < blocks.length; i++) {
         var block = blocks[i];
@@ -122,7 +123,7 @@ function parseListResponse(html) {
                 title: title.replace(/<[^>]+>/g, '').trim(),
                 posterUrl: thumb,
                 backdropUrl: thumb,
-                year: "" // <--- Dùng chuỗi rỗng thay vì bỏ trống để đè lên giá trị 0 mặc định của App
+                year: currentYear // Gán năm hệ thống
             });
         }
     }
@@ -235,8 +236,8 @@ function parseMovieDetail(html) {
             servers: servers,
             quality: "HD",
             lang: "Vietsub",
-            year: "",    // <--- Chuỗi rỗng
-            rating: "",  // <--- Đổi thành chuỗi rỗng 
+            year: new Date().getFullYear(), // Lấy năm hệ thống
+            rating: 0,
             casts: castsArr.join(", "),
             director: "",
             country: "",
