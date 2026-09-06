@@ -78,6 +78,13 @@
             "version": "1.0.5",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/xnhau.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png"
+        },
+        {
+            "id": "sexliveporn",
+            "name": "SEX live porn (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexliveporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexliveporn.png"
         }
         
         
