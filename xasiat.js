@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.3",
+        "version": "1.0.4",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -144,34 +144,42 @@ function getUrlYears() { return ""; }
 function parseListResponse(html, $url) {
 	try {
 		var items = [];
-		_$(html).find(".item").find("a").each(function() {
-			var year = "";
-			var lang = "";
-			var current = this.find(".duration").text() || "";
-			var href = this.attr("href") || "";
-			if (href.indexOf("http") == -1) {
-				href = BASEURL + (href.charAt(0) === '/' ? href : '/' + href);
-			}
-			var quality = this.find('span[class*="is-"]').text() || "";
-			var title = this.find("strong.title").text() || this.find("img").attr("alt") || this.attr("title") || "";
-			var src = this.find("img").attr("data-original") || this.find("img").attr("data-webp") || this.find("img").attr("src") || "";
-			if (src && src.indexOf("http") == -1) {
-				src = BASEURL + (src.charAt(0) === '/' ? src : '/' + src);
-			}
-			
-			if (href && href.indexOf("http") > -1) {
-				var cleanThumb = src.replace(/&amp;/g, '&');
-				
-				items.push({
-					"id": href,
-					"title": title.trim(),
-					"posterUrl": cleanThumb,
-					"backdropUrl": cleanThumb,
-					"quality": quality.trim(),
-					"lang": lang,
-					"episode_current": current.trim()
-				});
-			}
+		_$(html).find(".item").each(function() {
+            var itemHtml = this;
+            var aMatch = itemHtml.match(/<a\s+[^>]*href="([^"]+)"[^>]*>/i);
+            var href = aMatch ? aMatch[1] : "";
+            
+            if (href && href.indexOf("http") == -1) {
+                href = BASEURL + (href.charAt(0) === '/' ? href : '/' + href);
+            }
+            
+            var durMatch = itemHtml.match(/<[^>]+class="[^"]*duration[^"]*"[^>]*>([^<]+)</i);
+            var current = durMatch ? durMatch[1] : "";
+            
+            var qualMatch = itemHtml.match(/<[^>]+class="[^"]*is-[^"]*"[^>]*>([^<]+)</i);
+            var quality = qualMatch ? qualMatch[1] : "";
+            
+            var imgMatch = itemHtml.match(/<img\s+[^>]*src="([^"]+)"/i) || itemHtml.match(/<img\s+[^>]*data-original="([^"]+)"/i);
+            var src = imgMatch ? imgMatch[1] : "";
+            if (src && src.indexOf("http") == -1) {
+                src = BASEURL + (src.charAt(0) === '/' ? src : '/' + src);
+            }
+            
+            var titleMatch = itemHtml.match(/strong[^>]*class="title"[^>]*>([^<]+)</i) || itemHtml.match(/<img\s+[^>]*alt="([^"]+)"/i);
+            var title = titleMatch ? titleMatch[1] : "Video";
+
+            if (href && href.indexOf("http") > -1) {
+                var cleanThumb = src.replace(/&amp;/g, '&');
+                items.push({
+                    "id": href,
+                    "title": title.trim(),
+                    "posterUrl": cleanThumb,
+                    "backdropUrl": cleanThumb,
+                    "quality": quality.trim(),
+                    "lang": "",
+                    "episode_current": current.trim()
+                });
+            }
 		});
 		
 		return JSON.stringify({
@@ -185,12 +193,7 @@ function parseListResponse(html, $url) {
 	} catch (e) {
 		log(e);
 		return JSON.stringify({
-			"items": [{
-				"id": $url || "",
-				"title": "Lỗi: " + e,
-				"posterUrl": "",
-				"backdropUrl": ""
-			}],
+			"items": [],
 			"pagination": { "currentPage": 1, "totalPages": 1 }
 		});
 	}
@@ -460,136 +463,64 @@ function buildMenu(menuArray, type) {
     return menulist;
 }
 
-// Minimal safe HTML parser wrapper
+// Global Safe DOM Parser Helper
 function _$(htmlOrBlock) {
     var sourceHtml = typeof htmlOrBlock === 'string' ? htmlOrBlock : '';
-    var elements = Array.isArray(htmlOrBlock) ? htmlOrBlock : (htmlOrBlock && typeof htmlOrBlock === 'object' && htmlOrBlock.elements ? htmlOrBlock.elements : (htmlOrBlock ? [htmlOrBlock] : []));
-    
     return {
         sourceHtml: sourceHtml,
-        elements: elements,
         find: function(selector) {
             var results = [];
-            for (var i = 0; i < this.elements.length; i++) {
-                var currentHtml = this.elements[i];
-                if (typeof currentHtml !== 'string') continue;
+            var targetClass = selector.replace('.', '');
+            var pos = 0;
+            
+            // Tìm kiếm các khối có chứa class tương ứng một cách linh hoạt
+            while ((pos = this.sourceHtml.indexOf(targetClass, pos)) !== -1) {
+                var startTag = this.sourceHtml.lastIndexOf('<', pos);
+                if (startTag === -1) { pos++; continue; }
                 
-                if (selector === ".item") {
-                    var pos = 0;
-                    while ((pos = currentHtml.indexOf('class="item', pos)) !== -1) {
-                        var startTag = currentHtml.lastIndexOf('<', pos);
-                        if (startTag === -1) { pos++; continue; }
-                        var tagMatch = currentHtml.substring(startTag).match(/^<([a-zA-Z0-9_-]+)/);
-                        if (!tagMatch) { pos++; continue; }
-                        var tagName = tagMatch[1].toLowerCase();
-                        var depth = 1, scanPos = currentHtml.indexOf('>', startTag) + 1;
-                        var endTagPos = scanPos;
-                        var openStr = '<' + tagName;
-                        var closeStr = '</' + tagName + '>';
-                        while (depth > 0 && scanPos < currentHtml.length) {
-                            var nOpen = currentHtml.indexOf(openStr, scanPos);
-                            var nClose = currentHtml.indexOf(closeStr, scanPos);
-                            if (nClose === -1) break;
-                            if (nOpen !== -1 && nOpen < nClose) {
-                                depth++;
-                                scanPos = nOpen + openStr.length;
-                            } else {
-                                depth--;
-                                scanPos = nClose + closeStr.length;
-                                if (depth === 0) endTagPos = nClose + closeStr.length;
-                            }
-                        }
-                        var block = currentHtml.substring(startTag, endTagPos);
-                        if (results.indexOf(block) === -1) results.push(block);
-                        pos = endTagPos;
-                    }
-                } else if (selector === "a") {
-                    var pos = 0;
-                    while ((pos = currentHtml.indexOf('<a ', pos)) !== -1 || (pos = currentHtml.indexOf('<a>', pos)) !== -1) {
-                        var startTag = pos;
-                        var endOpen = currentHtml.indexOf('>', startTag);
-                        if (endOpen === -1) break;
-                        var depth = 1, scanPos = endOpen + 1;
-                        var endTagPos = scanPos;
-                        while (depth > 0 && scanPos < currentHtml.length) {
-                            var nOpen = currentHtml.indexOf('<a', scanPos);
-                            var nClose = currentHtml.indexOf('</a>', scanPos);
-                            if (nClose === -1) break;
-                            if (nOpen !== -1 && nOpen < nClose && currentHtml.charAt(nOpen+2) === ' ') {
-                                depth++;
-                                scanPos = nOpen + 2;
-                            } else {
-                                depth--;
-                                scanPos = nClose + 4;
-                                if (depth === 0) endTagPos = nClose + 4;
-                            }
-                        }
-                        var block = currentHtml.substring(startTag, endTagPos);
-                        if (results.indexOf(block) === -1) results.push(block);
-                        pos = endTagPos;
-                    }
-                } else {
-                    var classKey = selector.replace('.', '');
-                    var pos = 0;
-                    while ((pos = currentHtml.indexOf(classKey, pos)) !== -1) {
-                        var startTag = currentHtml.lastIndexOf('<', pos);
-                        if (startTag === -1) { pos++; continue; }
-                        var endOpen = currentHtml.indexOf('>', startTag);
-                        if (endOpen === -1) { pos++; continue; }
-                        var tagBlock = currentHtml.substring(startTag, endOpen + 1);
-                        var tagMatch = tagBlock.match(/^<([a-zA-Z0-9_-]+)/);
-                        if (!tagMatch) { pos++; continue; }
-                        var tagName = tagMatch[1].toLowerCase();
-                        var depth = 1, scanPos = endOpen + 1;
-                        var endTagPos = scanPos;
-                        var openStr = '<' + tagName;
-                        var closeStr = '</' + tagName + '>';
-                        while (depth > 0 && scanPos < currentHtml.length) {
-                            var nOpen = currentHtml.indexOf(openStr, scanPos);
-                            var nClose = currentHtml.indexOf(closeStr, scanPos);
-                            if (nClose === -1) break;
-                            if (nOpen !== -1 && nOpen < nClose) {
-                                depth++;
-                                scanPos = nOpen + openStr.length;
-                            } else {
-                                depth--;
-                                scanPos = nClose + closeStr.length;
-                                if (depth === 0) endTagPos = nClose + closeStr.length;
-                            }
-                        }
-                        var block = currentHtml.substring(startTag, endTagPos);
-                        if (results.indexOf(block) === -1) results.push(block);
-                        pos = endTagPos;
+                var endOpen = this.sourceHtml.indexOf('>', startTag);
+                if (endOpen === -1) { pos++; continue; }
+                
+                var tagBlock = this.sourceHtml.substring(startTag, endOpen + 1);
+                var tagMatch = tagBlock.match(/^<([a-zA-Z0-9_-]+)/);
+                if (!tagMatch) { pos++; continue; }
+                
+                var tagName = tagMatch[1].toLowerCase();
+                var depth = 1;
+                var scanPos = endOpen + 1;
+                var endTagPos = scanPos;
+                var openStr = '<' + tagName;
+                var closeStr = '</' + tagName + '>';
+                
+                while (depth > 0 && scanPos < this.sourceHtml.length) {
+                    var nOpen = this.sourceHtml.indexOf(openStr, scanPos);
+                    var nClose = this.sourceHtml.indexOf(closeStr, scanPos);
+                    if (nClose === -1) break;
+                    if (nOpen !== -1 && nOpen < nClose) {
+                        depth++;
+                        scanPos = nOpen + openStr.length;
+                    } else {
+                        depth--;
+                        scanPos = nClose + closeStr.length;
+                        if (depth === 0) endTagPos = nClose + closeStr.length;
                     }
                 }
+                
+                var block = this.sourceHtml.substring(startTag, endTagPos);
+                if (results.indexOf(block) === -1) {
+                    results.push(block);
+                }
+                pos = endTagPos;
             }
-            var inst = _$(results);
-            inst.sourceHtml = this.sourceHtml;
-            return inst;
-        },
-        each: function(callback) {
-            for (var i = 0; i < this.elements.length; i++) {
-                var child = _$(this.elements[i]);
-                child.sourceHtml = this.sourceHtml;
-                callback.call(child, i, this.elements[i]);
-            }
-            return this;
-        },
-        attr: function(attrName) {
-            if (this.elements.length === 0) return "";
-            var elem = this.elements[0];
-            var match = elem.match(new RegExp(attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|([^\\s>]+))', 'i'));
-            return match ? (match[1] || match[2] || match[3] || "") : "";
-        },
-        text: function() {
-            if (this.elements.length === 0) return "";
-            var elem = this.elements[0];
-            var start = elem.indexOf('>') + 1;
-            var end = elem.lastIndexOf('</');
-            if (start > 0 && end > start) {
-                return elem.substring(start, end).replace(/<\/?[^>]+(>|$)/g, "").trim();
-            }
-            return "";
+            return {
+                elements: results,
+                each: function(callback) {
+                    for (var i = 0; i < this.elements.length; i++) {
+                        callback.call(this.elements[i], i, this.elements[i]);
+                    }
+                    return this;
+                }
+            };
         }
     };
 }
