@@ -61,14 +61,14 @@
         {
             "id": "missav",
             "name": "MissAV",
-            "version": "1.1.5",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/missav.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico"
         },
         {
             "id": "vlxx",
             "name": "VLXX",
-            "version": "1.0.6",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/vlxx.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico"
         }
