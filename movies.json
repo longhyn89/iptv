@@ -19,9 +19,9 @@
         {
             "id": "onflix",
             "name": "Onflix",
-            "version": "1.9.1",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/onflix.js",
-            "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/onflix.png"
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/onflix.png"
         },
         {
             "id": "sieutamphim",
