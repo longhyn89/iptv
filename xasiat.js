@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -144,43 +144,55 @@ function getUrlYears() { return ""; }
 function parseListResponse(html, $url) {
 	try {
 		var items = [];
-		_$(html).find(".item").each(function() {
-            var itemHtml = this;
-            var aMatch = itemHtml.match(/<a\s+[^>]*href="([^"]+)"[^>]*>/i);
-            var href = aMatch ? aMatch[1] : "";
+        
+        // Sử dụng Regex an toàn quét trực tiếp từng khối item, tránh hoàn toàn lỗi treo lặp
+        var itemRegex = /<div[^>]*class="[^"]*item[^"]*"[^>]*>([\s\S]*?)<\/div>(?=\s*<div|\s*<\/div|\s*<[a-zA-Z]|$)/gi;
+        var match;
+        
+        // Fallback nếu không khớp chuẩn div
+        if (html.indexOf('class="item"') === -1) {
+            itemRegex = /class="item[^"]*"[^>]*>([\s\S]*?)(?=class="item[^"]*"|<\/div>\s*<\/div>\s*<\/div>)/gi;
+        }
+
+        // Tách các khối item bằng phương pháp thủ công an toàn
+        var parts = html.split('class="item');
+        for (var i = 1; i < parts.length; i++) {
+            var itemHtml = parts[i];
             
+            var aMatch = itemHtml.match(/href="([^"]+)"/i);
+            var href = aMatch ? aMatch[1] : "";
             if (href && href.indexOf("http") == -1) {
                 href = BASEURL + (href.charAt(0) === '/' ? href : '/' + href);
             }
             
-            var durMatch = itemHtml.match(/<[^>]+class="[^"]*duration[^"]*"[^>]*>([^<]+)</i);
-            var current = durMatch ? durMatch[1] : "";
+            var durMatch = itemHtml.match(/class="[^"]*duration[^"]*"[^>]*>([^<]+)</i);
+            var current = durMatch ? durMatch[1].trim() : "";
             
-            var qualMatch = itemHtml.match(/<[^>]+class="[^"]*is-[^"]*"[^>]*>([^<]+)</i);
-            var quality = qualMatch ? qualMatch[1] : "";
+            var qualMatch = itemHtml.match(/class="[^"]*is-[^"]*"[^>]*>([^<]+)</i);
+            var quality = qualMatch ? qualMatch[1].trim() : "";
             
-            var imgMatch = itemHtml.match(/<img\s+[^>]*src="([^"]+)"/i) || itemHtml.match(/<img\s+[^>]*data-original="([^"]+)"/i);
+            var imgMatch = itemHtml.match(/src="([^"]+)"/i) || itemHtml.match(/data-original="([^"]+)"/i) || itemHtml.match(/data-webp="([^"]+)"/i);
             var src = imgMatch ? imgMatch[1] : "";
             if (src && src.indexOf("http") == -1) {
                 src = BASEURL + (src.charAt(0) === '/' ? src : '/' + src);
             }
             
-            var titleMatch = itemHtml.match(/strong[^>]*class="title"[^>]*>([^<]+)</i) || itemHtml.match(/<img\s+[^>]*alt="([^"]+)"/i);
-            var title = titleMatch ? titleMatch[1] : "Video";
+            var titleMatch = itemHtml.match(/class="title"[^>]*>([^<]+)</i) || itemHtml.match(/alt="([^"]+)"/i);
+            var title = titleMatch ? titleMatch[1].trim() : "Video";
 
             if (href && href.indexOf("http") > -1) {
                 var cleanThumb = src.replace(/&amp;/g, '&');
                 items.push({
                     "id": href,
-                    "title": title.trim(),
+                    "title": title,
                     "posterUrl": cleanThumb,
                     "backdropUrl": cleanThumb,
-                    "quality": quality.trim(),
+                    "quality": quality,
                     "lang": "",
-                    "episode_current": current.trim()
+                    "episode_current": current
                 });
             }
-		});
+        }
 		
 		return JSON.stringify({
 			"items": items,
@@ -461,66 +473,4 @@ function buildMenu(menuArray, type) {
         menulist.push(menuItem);
     }
     return menulist;
-}
-
-// Global Safe DOM Parser Helper
-function _$(htmlOrBlock) {
-    var sourceHtml = typeof htmlOrBlock === 'string' ? htmlOrBlock : '';
-    return {
-        sourceHtml: sourceHtml,
-        find: function(selector) {
-            var results = [];
-            var targetClass = selector.replace('.', '');
-            var pos = 0;
-            
-            // Tìm kiếm các khối có chứa class tương ứng một cách linh hoạt
-            while ((pos = this.sourceHtml.indexOf(targetClass, pos)) !== -1) {
-                var startTag = this.sourceHtml.lastIndexOf('<', pos);
-                if (startTag === -1) { pos++; continue; }
-                
-                var endOpen = this.sourceHtml.indexOf('>', startTag);
-                if (endOpen === -1) { pos++; continue; }
-                
-                var tagBlock = this.sourceHtml.substring(startTag, endOpen + 1);
-                var tagMatch = tagBlock.match(/^<([a-zA-Z0-9_-]+)/);
-                if (!tagMatch) { pos++; continue; }
-                
-                var tagName = tagMatch[1].toLowerCase();
-                var depth = 1;
-                var scanPos = endOpen + 1;
-                var endTagPos = scanPos;
-                var openStr = '<' + tagName;
-                var closeStr = '</' + tagName + '>';
-                
-                while (depth > 0 && scanPos < this.sourceHtml.length) {
-                    var nOpen = this.sourceHtml.indexOf(openStr, scanPos);
-                    var nClose = this.sourceHtml.indexOf(closeStr, scanPos);
-                    if (nClose === -1) break;
-                    if (nOpen !== -1 && nOpen < nClose) {
-                        depth++;
-                        scanPos = nOpen + openStr.length;
-                    } else {
-                        depth--;
-                        scanPos = nClose + closeStr.length;
-                        if (depth === 0) endTagPos = nClose + closeStr.length;
-                    }
-                }
-                
-                var block = this.sourceHtml.substring(startTag, endTagPos);
-                if (results.indexOf(block) === -1) {
-                    results.push(block);
-                }
-                pos = endTagPos;
-            }
-            return {
-                elements: results,
-                each: function(callback) {
-                    for (var i = 0; i < this.elements.length; i++) {
-                        callback.call(this.elements[i], i, this.elements[i]);
-                    }
-                    return this;
-                }
-            };
-        }
-    };
 }
