@@ -31,6 +31,13 @@
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/rophim.png",
         },
         {
+            "id": "hdvnn",
+            "name": "HD VNN (EXO)",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hdvnn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hdvnn.png",
+        },
+        {
             "id": "sieutamphim",
             "name": "Sưu Tầm Phim",
             "version": "1.0.0",
