@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -144,17 +144,6 @@ function getUrlYears() { return ""; }
 function parseListResponse(html, $url) {
 	try {
 		var items = [];
-        
-        // Sử dụng Regex an toàn quét trực tiếp từng khối item, tránh hoàn toàn lỗi treo lặp
-        var itemRegex = /<div[^>]*class="[^"]*item[^"]*"[^>]*>([\s\S]*?)<\/div>(?=\s*<div|\s*<\/div|\s*<[a-zA-Z]|$)/gi;
-        var match;
-        
-        // Fallback nếu không khớp chuẩn div
-        if (html.indexOf('class="item"') === -1) {
-            itemRegex = /class="item[^"]*"[^>]*>([\s\S]*?)(?=class="item[^"]*"|<\/div>\s*<\/div>\s*<\/div>)/gi;
-        }
-
-        // Tách các khối item bằng phương pháp thủ công an toàn
         var parts = html.split('class="item');
         for (var i = 1; i < parts.length; i++) {
             var itemHtml = parts[i];
@@ -171,8 +160,20 @@ function parseListResponse(html, $url) {
             var qualMatch = itemHtml.match(/class="[^"]*is-[^"]*"[^>]*>([^<]+)</i);
             var quality = qualMatch ? qualMatch[1].trim() : "";
             
-            var imgMatch = itemHtml.match(/src="([^"]+)"/i) || itemHtml.match(/data-original="([^"]+)"/i) || itemHtml.match(/data-webp="([^"]+)"/i);
+            // Ưu tiên quét các thuộc tính ảnh thật thay vì src placeholder
+            var imgMatch = itemHtml.match(/data-original="([^"]+)"/i) || 
+                           itemHtml.match(/data-src="([^"]+)"/i) || 
+                           itemHtml.match(/data-lazy-src="([^"]+)"/i) || 
+                           itemHtml.match(/src="([^"]+)"/i);
             var src = imgMatch ? imgMatch[1] : "";
+            
+            if (src && src.indexOf("data:image") === 0) {
+                var backupImg = itemHtml.match(/src="([^"]+)"/i);
+                if (backupImg && backupImg[1].indexOf("data:image") === -1) {
+                    src = backupImg[1];
+                }
+            }
+            
             if (src && src.indexOf("http") == -1) {
                 src = BASEURL + (src.charAt(0) === '/' ? src : '/' + src);
             }
@@ -332,6 +333,24 @@ function parseMovieDetail(html, url) {
             }
         }
 
+        // Fallback bổ sung: quét iframe embed nếu không tìm thấy link trực tiếp
+        if (episodes.length === 0) {
+            var iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/i);
+            if (iframeMatch) {
+                var iframeUrl = iframeMatch[1];
+                if (iframeUrl.indexOf("http") !== 0 && iframeUrl.indexOf("//") === 0) {
+                    iframeUrl = "https:" + iframeUrl;
+                } else if (iframeUrl.indexOf("http") !== 0) {
+                    iframeUrl = BASEURL + iframeUrl;
+                }
+                episodes.push({
+                    id: iframeUrl,
+                    name: "Trình phát Nhúng (Embed)",
+                    slug: "embed"
+                });
+            }
+        }
+
 		if (episodes.length > 0) {
 			servers.push({
 				name: "Phát trực tiếp",
@@ -388,10 +407,11 @@ function parseDetailResponse(html, url) {
 
         streamUrl = streamUrl.trim();
         var isHls = streamUrl.indexOf(".m3u8") !== -1;
+        var isEmbedUrl = streamUrl.indexOf("embed") !== -1 || (streamUrl.indexOf(".mp4") === -1 && streamUrl.indexOf(".m3u8") === -1);
 
 		return JSON.stringify({
 			"url": streamUrl,
-			"isEmbed": false,
+			"isEmbed": isEmbedUrl,
 			"mimeType": isHls ? "application/x-mpegURL" : "video/mp4",
 			"headers": {
 				"Referer": BASEURL + "/",
