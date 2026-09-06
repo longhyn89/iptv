@@ -52,6 +52,13 @@
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png"
         },
         {
+            "id": "animevietsub",
+            "name": "Anime Vietsub (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
+        },
+        {
             "id": "missav",
             "name": "MissAV",
             "version": "1.1.5",
