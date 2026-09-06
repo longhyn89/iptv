@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.0",
+        "version": "1.0.2",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -41,7 +41,6 @@ function getPrimaryCategories() {
     return JSON.stringify(menulist);
 }
 
-// ĐÃ SỬA: Lỗi cú pháp khai báo biến trong JSON.stringify
 function getFilterConfig() {
     var listurl = getLISTmenu();
     var menulist = buildMenu(listurl);
@@ -53,7 +52,6 @@ function getFilterConfig() {
 // =============================================================================
 // URL GENERATION
 // =============================================================================
-
 
 function getUrlList(slug, filtersJson) {
     try {
@@ -130,32 +128,15 @@ function getUrlSearch(keyword, filtersJson) {
     return BASEURL + "/search/" + cleanKeyword + "/";
 }
 
-// https://www.1porn.tv/vi/categories/4k/5/
-// https://www.1porn.tv/vi/search/blacked/relevance/3/
-
-//var BASEURL = "https://motchille.cx";
-//var filtersJson = '{page:11,category:[{"slug":"/movies?sort=year_desc&limit=24&category=18-plus","name":"Thiếu niên"}]}'; 
-//var filtersJson = '{page:22}';
-//getUrlSearch("naruto", filtersJson)
-//console.log(getUrlList("https://www.1porn.tv/vi/search/blacked/relevance/", filtersJson));
-
 function getUrlDetail(slug) {
     if (!slug) return "";
     if (slug.indexOf('http') === 0) return slug;
     return BASEURL + "/" + slug;
 }
 
-function getUrlCategories() {
-    return "";
-}
-
-function getUrlCountries() {
-    return "";
-}
-
-function getUrlYears() {
-    return "";
-}
+function getUrlCategories() { return ""; }
+function getUrlCountries() { return ""; }
+function getUrlYears() { return ""; }
 
 // =============================================================================
 // PARSERS
@@ -210,10 +191,7 @@ function parseListResponse(html, $url) {
 				"posterUrl": "",
 				"backdropUrl": ""
 			}],
-			"pagination": {
-				"currentPage": 1,
-				"totalPages": 1
-			}
+			"pagination": { "currentPage": 1, "totalPages": 1 }
 		});
 	}
 }
@@ -222,56 +200,7 @@ function parseSearchResponse(html, $url) {
     return parseListResponse(html, $url);
 }
 
-function parseScript(rawScript) {
-	var result = {
-		success: false,
-		data: {},
-		embedHtml: ''
-	};
-	
-	if (!rawScript || typeof rawScript !== 'string') {
-		return result;
-	}
-	
-	try {
-		var embedMatch = rawScript.match(/return\s+('(?:[^'\\]|\\.)*')/);
-		if (embedMatch) {
-			result.embedHtml = embedMatch[1].slice(1, -1);
-		}
-		
-		var objectContentMatch = rawScript.match(/var\s+\w+\s*=\s*\{([\s\S]*?)\};/);
-		
-		if (objectContentMatch) {
-			var objectBody = objectContentMatch[1];
-			var pairRegex = /(\w+)\s*:\s*(?:'((?:[^'\\]|\\.)*)'|([^,\s}]+))/g;
-			var match;
-			
-			while ((match = pairRegex.exec(objectBody)) !== null) {
-				var key = match[1];
-				var value = match[2] !== undefined ? match[2] : match[3];
-				
-				if (match[2] !== undefined) {
-					value = value.replace(/\\'/g, "'").replace(/\\"/g, '"');
-				} else {
-					if (value === 'true') value = true;
-					else if (value === 'false') value = false;
-					else if (!isNaN(value)) value = Number(value);
-				}
-				
-				result.data[key] = value;
-			}
-			
-			if (Object.keys(result.data).length > 0) {
-				result.success = true;
-			}
-		}
-	} catch (error) {
-		log("SafeParser Error: " + error);
-	}
-	
-	return result;
-}
-
+// =============== HÀM KHẮC PHỤC LỖI TRÌNH PHÁT ===============
 function parseMovieDetail(html, url) {
     var cachedMovieDetailId = "";
 	try {
@@ -293,38 +222,51 @@ function parseMovieDetail(html, url) {
 		var status = "";
 
 		var idMatch = /<link\s+rel="canonical"\s+href="([^"]+)"/i.exec(html) ||
-			/<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
+			          /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
 		id = idMatch ? idMatch[1] : (url || "");
 		cachedMovieDetailId = id;
 
-		// 1. Trích xuất flashvars qua regex trực tiếp
-		var fvMatch = html.match(/var\s+flashvars\s*=\s*\{([\s\S]*?)\};/);
+		// 1. Trích xuất metadata phòng hờ script bị lỗi
+        var getMeta = function(prop) {
+            var m = html.match(new RegExp('<meta\\s+(?:property|name)="' + prop + '"\\s+content="([^"]+)"', 'i'));
+            return m ? m[1] : "";
+        };
+        lname = getMeta('og:title') || getMeta('twitter:title') || lname;
+        limg = getMeta('og:image') || getMeta('twitter:image') || "";
+        ldes = getMeta('og:description') || getMeta('twitter:description') || ldes;
+
+		var episodes = [];
+
+		// 2. Cố gắng lấy flashvars với regex linh hoạt hơn (KVS standard)
+		var fvMatch = html.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
 		var flashvarsBody = fvMatch ? fvMatch[1] : "";
 
-		var getField = function(name) {
-			if (!flashvarsBody) return "";
-			var m = flashvarsBody.match(new RegExp(name + "\\s*:\\s*'((?:[^'\\\\]|\\\\.)*)'"));
-			if (m) {
-				return m[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
-			}
-			var mNum = flashvarsBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
-			return mNum ? mNum[1] : "";
-		};
-
 		if (flashvarsBody) {
-			lname = getField('video_title') || lname;
-			limg = getField('preview_url') || getField('preview_url3') || getField('preview_url1') || "";
-			ldes = getField('video_tags') || ldes;
-			category = getField('video_categories') || "";
-			lactor = getField('video_models') || "";
+			var getField = function(name) {
+				var m = flashvarsBody.match(new RegExp(name + "\\s*:\\s*'((?:[^'\\\\]|\\\\.)*)'"));
+				if (m) return m[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
+				var mNum = flashvarsBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
+				return mNum ? mNum[1] : "";
+			};
 
-			var episodes = [];
+			if (lname === "Đang cập nhật...") lname = getField('video_title') || lname;
+			if (!limg) limg = getField('preview_url') || getField('preview_url3') || getField('preview_url1') || "";
 
 			var addEp = function(urlKey, textKey, defaultName, slug) {
 				var vUrl = getField(urlKey);
+				
+                // GIẢI MÃ URL NẾU NÓ BỊ MÃ HOÁ (Vấn đề khiến trình phát bị xịt)
+                if (vUrl) {
+                    try { vUrl = decodeURIComponent(vUrl); } catch(e) {}
+                }
+
 				if (vUrl && vUrl.indexOf("http") !== -1) {
 					var text = getField(textKey) || defaultName;
 					var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
+                    
+                    // Dọn dẹp các ký tự rác để trình phát không bị lỗi
+                    cleanUrl = cleanUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
+
 					episodes.push({
 						id: cleanUrl,
 						name: "Chất lượng " + text,
@@ -337,20 +279,66 @@ function parseMovieDetail(html, url) {
 			addEp('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
 			addEp('video_alt_url', 'video_alt_url_text', 'Chất lượng cao (HD)', 'hd720');
 			addEp('video_url', 'video_url_text', 'SD', 'sd');
+		}
 
-			if (episodes.length > 0) {
-				servers.push({
-					name: "Phát trực tiếp",
-					episodes: episodes
-				});
-			}
+        // 3. FALLBACK: Nếu flashvars lỗi, tự động bóc HTML5 <source>
+        if (episodes.length === 0) {
+            var srcRegex = /<source[^>]+src="([^"]+)"/gi;
+            var srcM;
+            var qCount = 1;
+            while ((srcM = srcRegex.exec(html)) !== null) {
+                var vUrl = srcM[1];
+                try { vUrl = decodeURIComponent(vUrl); } catch(e) {}
+                vUrl = vUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
+
+                if (vUrl && (vUrl.indexOf(".mp4") !== -1 || vUrl.indexOf(".m3u8") !== -1 || vUrl.indexOf("http") === 0)) {
+                    var qualityMatch = srcM[0].match(/(?:res|resolution|title|label)="([^"]+)"/i);
+                    var qLabel = qualityMatch ? qualityMatch[1] : ("Link " + qCount);
+                    if (vUrl.indexOf("http") !== 0 && vUrl.indexOf("/") === 0) vUrl = BASEURL + vUrl;
+                    episodes.push({
+                        id: vUrl,
+                        name: "Chất lượng " + qLabel,
+                        slug: "link" + qCount
+                    });
+                    qCount++;
+                }
+            }
+        }
+
+        // 4. FALLBACK CUỐI CÙNG: Cào nát chuỗi để lấy link .mp4 / .m3u8
+        if (episodes.length === 0) {
+            var rawUrlsMatches = html.match(/(https?:\/\/[^\s"'<>]+\.(?:mp4|m3u8)[^\s"'<>]*)/gi);
+            if (rawUrlsMatches) {
+                var uniqueUrls = [];
+                var count = 1;
+                for (var i = 0; i < rawUrlsMatches.length; i++) {
+                    var clean = rawUrlsMatches[i].replace(/\\/g, "").replace(/&amp;/g, "&");
+                    try { clean = decodeURIComponent(clean); } catch(e) {}
+                    if (uniqueUrls.indexOf(clean) === -1) {
+                        uniqueUrls.push(clean);
+                        episodes.push({
+                            id: clean,
+                            name: "Server " + count,
+                            slug: "srv" + count
+                        });
+                        count++;
+                    }
+                }
+            }
+        }
+
+		if (episodes.length > 0) {
+			servers.push({
+				name: "Phát trực tiếp",
+				episodes: episodes
+			});
 		}
 
 		if (servers.length === 0) {
 			return JSON.stringify({
 				id: cachedMovieDetailId || url || "error",
 				title: "Video không khả dụng",
-				description: "Video riêng tư hoặc không tìm thấy nguồn phát.",
+				description: "Video riêng tư, bị xoá hoặc không tìm thấy nguồn phát.",
 				posterUrl: limg || "",
 				backdropUrl: limg || "",
 				servers: []
@@ -380,27 +368,33 @@ function parseMovieDetail(html, url) {
 		log(e);
 		return JSON.stringify({
 			id: cachedMovieDetailId || url || "error",
-			title: "error",
+			title: "Lỗi xử lý phim",
 			servers: []
 		});
 	}
 }
 
+// Bắt chính xác định dạng để phát Player
 function parseDetailResponse(html, url) {
 	try {
-		var streamUrl = "";
-		if (url && typeof url === 'string' && url.indexOf("http") === 0) {
-			streamUrl = url;
-		} else if (html && typeof html === 'string' && html.indexOf("http") === 0) {
+        // App sẽ truyền ID của tập phim (chính là URL video ta bóc được ở trên) vào biến `url`
+		var streamUrl = url || "";
+        
+        // Đề phòng App đẩy ngược vào biến html
+		if (!streamUrl && html && typeof html === 'string' && html.indexOf("http") !== -1) {
 			streamUrl = html;
 		}
+
+        streamUrl = streamUrl.trim();
+        var isHls = streamUrl.indexOf(".m3u8") !== -1;
 
 		return JSON.stringify({
 			"url": streamUrl,
 			"isEmbed": false,
-			"mimeType": "video/mp4",
+			"mimeType": isHls ? "application/x-mpegURL" : "video/mp4",
 			"headers": {
 				"Referer": BASEURL + "/",
+                "Origin": BASEURL,
 				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 			},
 			"subtitles": []
@@ -422,31 +416,15 @@ function parsePlayerUrl(response) {
 function parseEmbedPlayer(html, url) {
     return parseDetailResponse(html, url);
 }
-/*
-var html = outerHTML;
-var url = "https://bilutv.asia/phim/kinh-thanh-ky-tham/tap-tap-01-398150?tapplay=12&type=m3u8";
-JSON.parse(parseEmbedResponse(html, url))
-function textJS(typevideo, checkepi){
-    return `
-    typevideo = '${typevideo}';
-    checkepi = '${checkepi}';
-    `
-}
-*/
 
 function sortEpisodesByName(data) {
     data.forEach(server => {
         if (server.episodes && Array.isArray(server.episodes)) {
             server.episodes.sort((a, b) => {
-                // Sử dụng Regex để tìm số đứng ngay sau chữ "Tập" (Không phân biệt hoa thường)
                 const matchA = a.name.match(/Tập\s*(\d+)/i);
                 const matchB = b.name.match(/Tập\s*(\d+)/i);
-
-                // Nếu tìm thấy số thì chuyển thành kiểu Int, nếu không thấy thì mặc định là 0
                 const numA = matchA ? parseInt(matchA[1], 10) : 0;
                 const numB = matchB ? parseInt(matchB[1], 10) : 0;
-
-                // Sắp xếp tăng dần: Số nhỏ xếp trước (lên trên), số lớn xếp sau (xuống dưới)
                 return numA - numB;
             });
         }
@@ -462,7 +440,6 @@ function parseCategoriesResponse(apiResponseJson) {
 
 function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
-// https://k8s.onflixcdn.com/api/movies?sort=year_desc&limit=24&category=chien-tranh
 
 function getLISTmenu() {
     return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored9508"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/categories/","name":"Load more..."},{"link":"/tags/japanese/","name":"japanese"},{"link":"/tags/asian/","name":"asian"},{"link":"/tags/japan/","name":"japan"},{"link":"/tags/onlyfans2/","name":"onlyfans"},{"link":"/tags/beautiful/","name":"beautiful"},{"link":"/tags/creampie/","name":"creampie"},{"link":"/tags/blowjob/","name":"blowjob"},{"link":"/tags/teen/","name":"teen"},{"link":"/tags/big-tits/","name":"big tits"},{"link":"/tags/cute/","name":"cute"},{"link":"/tags/tiny-body/","name":"tiny body"},{"link":"/tags/big-dick/","name":"big dick"},{"link":"/tags/anal/","name":"anal"},{"link":"/tags/slim-body/","name":"slim body"},{"link":"/tags/wife/","name":"wife"},{"link":"/tags/chinese/","name":"chinese"},{"link":"/tags/fc2ppv/","name":"fc2ppv"},{"link":"/tags/slut/","name":"slut"},{"link":"/tags/masturbation/","name":"masturbation"},{"link":"/tags/virgin/","name":"virgin"},{"link":"/tags/black/","name":"black"},{"link":"/tags/student/","name":"student"},{"link":"/tags/babe/","name":"babe"},{"link":"/tags/small-tits/","name":"small tits"},{"link":"/tags/girls/","name":"girls"},{"link":"/tags/thai/","name":"thai"},{"link":"/tags/school/","name":"school"},{"link":"/tags/girlfriend/","name":"girlfriend"},{"link":"/tags/nude/","name":"nude"},{"link":"/tags/brunette/","name":"brunette"},{"link":"/tags/squirting/","name":"squirting"},{"link":"/tags/18-year-old/","name":"18-year-old"},{"link":"/tags/lovepop/","name":"lovepop"},{"link":"/tags/milf/","name":"milf"},{"link":"/tags/china/","name":"china"},{"link":"/tags/dildo/","name":"dildo"},{"link":"/tags/solo/","name":"solo"},{"link":"/tags/graphis/","name":"graphis"},{"link":"/tags/idol/","name":"idol"},{"link":"/tags/homemade/","name":"homemade"},{"link":"/tags/hardcore/","name":"hardcore"},{"link":"/tags/college/","name":"college"},{"link":"/tags/uniform/","name":"uniform"},{"link":"/tags/threesome/","name":"threesome"},{"link":"/tags/boyfriend2/","name":"boyfriend"},{"link":"/tags/teacher/","name":"teacher"},{"link":"/tags/friend/","name":"friend"},{"link":"/tags/20-year-old/","name":"20-year-old"},{"link":"/tags/","name":"Show All Tags"}]`
