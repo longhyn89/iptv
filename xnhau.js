@@ -4,7 +4,7 @@
 // Tuong thich SmartTube / Rhino Engine
 // =============================================================================
 
-var BASEURL = "https://xnhau.art";
+var BASEURL = "https://xnhau.city";
 
 function getManifest() {
     return JSON.stringify({
@@ -13,7 +13,7 @@ function getManifest() {
         "description": "Kho clip và phim xNhau hot nhất, cập nhật liên tục.",
         "info": "Nguồn phim xNhau chất lượng cao HD/FHD.",
         "version": "1.0.3",
-        "baseUrl": "https://xnhau.art",
+        "baseUrl": "https://xnhau.city",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
         "isEnabled": true,
         "isAdult": true,
@@ -123,13 +123,16 @@ function getUrlList(slug, filtersJson) {
         }
 
         var targetPath = slug || "/movies";
+        
         if (cat && cat !== "all") {
-            if (cat.indexOf("/category/") === 0) {
-                targetPath = cat;
-            } else {
-                targetPath = "/category/" + cat;
-            }
+            targetPath = cat;
         }
+
+        // Tự động nhận diện và bù chữ "/category/" cho các thư mục
+        if (targetPath.indexOf("/") === -1 && targetPath !== "movies" && targetPath !== "search") {
+            targetPath = "/category/" + targetPath;
+        }
+
         if (targetPath.indexOf("/") !== 0) {
             targetPath = "/" + targetPath;
         }
@@ -219,14 +222,13 @@ function parseListResponse(html, url) {
         var items = [];
         var seen = {};
 
-        // Mở rộng Regex để lấy tất cả các thẻ <a> (đề phòng web đổi cấu trúc url)
         var itemRegex = /<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var match;
 
         while ((match = itemRegex.exec(html)) !== null) {
             var href = match[1];
             
-            // Lọc bỏ các thẻ a không phải là link phim (trang chủ, category, phân trang...)
+            // Lọc các link rác
             if (href === "/" || href === "#" || href.indexOf("/category/") !== -1 || href.indexOf("page=") !== -1) {
                 continue;
             }
@@ -234,15 +236,12 @@ function parseListResponse(html, url) {
 
             var inner = match[2];
             
-            // Bắt ảnh bìa (hỗ trợ lazyload: data-original, data-lazy-src...)
             var imgMatch = inner.match(/<img[^>]+(?:src|data-src|data-original|data-lazy-src)="([^"]+)"/i);
             
-            // Bắt tiêu đề linh hoạt hơn
             var titleMatch = inner.match(/<[^>]*class="[^"]*(?:line-clamp|title|name)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i) ||
                              inner.match(/alt="([^"]+)"/i) ||
                              match[0].match(/title="([^"]+)"/i);
 
-            // Bắt buộc phải có ảnh mới xác nhận đây là khung chứa phim
             if (imgMatch) {
                 seen[href] = true;
                 var posterUrl = imgMatch[1];
@@ -267,7 +266,6 @@ function parseListResponse(html, url) {
             }
         }
 
-        // Tính tổng số trang
         var totalPages = 99;
         var pageMatches = html.match(/page=(\d+)/g);
         if (pageMatches) {
@@ -311,7 +309,6 @@ function parseSearchResponse(html, url) {
 }
 
 function extractStreamUrl(html) {
-    // 1. Kiểm tra <source src="...m3u8"
     var sourceMatch = html.match(/<source[^>]+src="([^"]+)"/i);
     if (sourceMatch && sourceMatch[1]) {
         var src = sourceMatch[1];
@@ -319,14 +316,12 @@ function extractStreamUrl(html) {
         return src;
     }
 
-    // 2. Kiểm tra iframe src (ví dụ Blogger player)
     var iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/i);
     if (iframeMatch && iframeMatch[1]) {
         var ifSrc = iframeMatch[1];
         if (ifSrc.indexOf("http") === 0) return ifSrc;
     }
 
-    // 3. Kiểm tra Astro props streams JSON
     var streamsMatch = html.match(/"streams":\[1,\[\[0,\{([^}]+)\}\]\]\]/);
     if (streamsMatch && streamsMatch[1]) {
         var sBlock = streamsMatch[1];
@@ -349,7 +344,6 @@ function extractStreamUrl(html) {
         }
     }
 
-    // 4. Regex trực tiếp m3u8 hoặc mp4
     var directM3u8 = html.match(/(https?:\/\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i) ||
                      html.match(/(\/media\/files\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i);
     if (directM3u8 && directM3u8[1]) {
@@ -387,7 +381,6 @@ function parseMovieDetail(html, url) {
             description = cleanText(ogDesc[1]);
         }
 
-        // Parse Thể loại / Categories
         var catMatches = html.match(/<a[^>]+href="\/category\/[^"]*"[^>]*>([\s\S]*?)<\/a>/gi);
         var categories = [];
         var seenCat = {};
@@ -402,7 +395,6 @@ function parseMovieDetail(html, url) {
         }
         var categoryStr = categories.join(", ");
 
-        // Parse stream / embed URL
         var streamUrl = extractStreamUrl(html);
 
         var episodes = [];
@@ -416,7 +408,6 @@ function parseMovieDetail(html, url) {
             });
         }
 
-        // Parse Related Movies
         var relatedMovies = [];
         var relSeen = {};
         if (url) relSeen[url] = true;
