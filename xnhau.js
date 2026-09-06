@@ -12,7 +12,7 @@ function getManifest() {
         "name": "xNhau (ALL)",
         "description": "Kho clip và phim xNhau hot nhất, cập nhật liên tục.",
         "info": "Nguồn phim xNhau chất lượng cao HD/FHD.",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "baseUrl": "https://xnhau.art",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
         "isEnabled": true,
