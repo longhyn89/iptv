@@ -5,7 +5,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "clbpxVIP",
     "name": "CLB Phim Xưa VIP",
-    "version": "1.1.9",
+    "version": "1.0.1",
     "info": "",
     "BASEURL": BASEURL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png",
