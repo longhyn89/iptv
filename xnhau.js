@@ -12,7 +12,7 @@ function getManifest() {
         "name": "xNhau (ALL)",
         "description": "Kho clip và phim xNhau hot nhất, cập nhật liên tục.",
         "info": "Nguồn phim xNhau chất lượng cao HD/FHD.",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "baseUrl": "https://xnhau.city",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
         "isEnabled": true,
@@ -219,28 +219,41 @@ function parseListResponse(html, url) {
         var items = [];
         var seen = {};
 
-        // Parse HTML cards: <a href="/watch/..." ...>
-        var itemRegex = /<a\s+[^>]*href="(\/watch\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+        // Mở rộng Regex để lấy tất cả các thẻ <a> (đề phòng web đổi cấu trúc url)
+        var itemRegex = /<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var match;
 
         while ((match = itemRegex.exec(html)) !== null) {
             var href = match[1];
+            
+            // Lọc bỏ các thẻ a không phải là link phim (trang chủ, category, phân trang...)
+            if (href === "/" || href === "#" || href.indexOf("/category/") !== -1 || href.indexOf("page=") !== -1) {
+                continue;
+            }
             if (seen[href]) continue;
 
             var inner = match[2];
-            var imgMatch = inner.match(/<img[^>]+(?:src|data-src)="([^"]+)"/i);
-            var titleMatch = inner.match(/<p[^>]*class="[^"]*line-clamp[^"]*"[^>]*>([\s\S]*?)<\/p>/i) ||
-                             inner.match(/alt="([^"]+)"/i);
+            
+            // Bắt ảnh bìa (hỗ trợ lazyload: data-original, data-lazy-src...)
+            var imgMatch = inner.match(/<img[^>]+(?:src|data-src|data-original|data-lazy-src)="([^"]+)"/i);
+            
+            // Bắt tiêu đề linh hoạt hơn
+            var titleMatch = inner.match(/<[^>]*class="[^"]*(?:line-clamp|title|name)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i) ||
+                             inner.match(/alt="([^"]+)"/i) ||
+                             match[0].match(/title="([^"]+)"/i);
 
-            if (imgMatch || titleMatch) {
+            // Bắt buộc phải có ảnh mới xác nhận đây là khung chứa phim
+            if (imgMatch) {
                 seen[href] = true;
-                var posterUrl = imgMatch ? imgMatch[1] : "";
+                var posterUrl = imgMatch[1];
                 if (posterUrl.indexOf("/") === 0) {
                     posterUrl = BASEURL + posterUrl;
                 }
 
-                var title = titleMatch ? cleanText(titleMatch[1]) : "";
-                var viewsMatch = inner.match(/<span>([^<]*lượt xem[^<]*)<\/span>/i);
+                var title = titleMatch ? cleanText(titleMatch[1] || "") : "Không có tiêu đề";
+                if (!title && titleMatch && titleMatch[2]) title = cleanText(titleMatch[2]);
+
+                var viewsMatch = inner.match(/<span>([^<]*(?:lượt xem|views)[^<]*)<\/span>/i);
                 var duration = viewsMatch ? viewsMatch[1].trim() : "Full HD";
 
                 items.push({
@@ -254,7 +267,7 @@ function parseListResponse(html, url) {
             }
         }
 
-        // Tinh tong so trang
+        // Tính tổng số trang
         var totalPages = 99;
         var pageMatches = html.match(/page=(\d+)/g);
         if (pageMatches) {
@@ -298,7 +311,7 @@ function parseSearchResponse(html, url) {
 }
 
 function extractStreamUrl(html) {
-    // 1. Kiem tra <source src="...m3u8"
+    // 1. Kiểm tra <source src="...m3u8"
     var sourceMatch = html.match(/<source[^>]+src="([^"]+)"/i);
     if (sourceMatch && sourceMatch[1]) {
         var src = sourceMatch[1];
@@ -306,14 +319,14 @@ function extractStreamUrl(html) {
         return src;
     }
 
-    // 2. Kiem tra iframe src (vi du Blogger player)
+    // 2. Kiểm tra iframe src (ví dụ Blogger player)
     var iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/i);
     if (iframeMatch && iframeMatch[1]) {
         var ifSrc = iframeMatch[1];
         if (ifSrc.indexOf("http") === 0) return ifSrc;
     }
 
-    // 3. Kiem tra Astro props streams JSON
+    // 3. Kiểm tra Astro props streams JSON
     var streamsMatch = html.match(/"streams":\[1,\[\[0,\{([^}]+)\}\]\]\]/);
     if (streamsMatch && streamsMatch[1]) {
         var sBlock = streamsMatch[1];
@@ -336,7 +349,7 @@ function extractStreamUrl(html) {
         }
     }
 
-    // 4. Regex truc tiep m3u8 hoac mp4
+    // 4. Regex trực tiếp m3u8 hoặc mp4
     var directM3u8 = html.match(/(https?:\/\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i) ||
                      html.match(/(\/media\/files\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i);
     if (directM3u8 && directM3u8[1]) {
@@ -374,7 +387,7 @@ function parseMovieDetail(html, url) {
             description = cleanText(ogDesc[1]);
         }
 
-        // Parse The loai / Categories
+        // Parse Thể loại / Categories
         var catMatches = html.match(/<a[^>]+href="\/category\/[^"]*"[^>]*>([\s\S]*?)<\/a>/gi);
         var categories = [];
         var seenCat = {};
@@ -408,22 +421,24 @@ function parseMovieDetail(html, url) {
         var relSeen = {};
         if (url) relSeen[url] = true;
 
-        var relRegex = /<a\s+[^>]*href="(\/watch\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+        var relRegex = /<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var rMatch;
         while ((rMatch = relRegex.exec(html)) !== null && relatedMovies.length < 12) {
             var rHref = rMatch[1];
+            if (rHref === "/" || rHref === "#" || rHref.indexOf("/category/") !== -1) continue;
             if (relSeen[rHref]) continue;
 
             var rInner = rMatch[2];
-            var rImgMatch = rInner.match(/<img[^>]+(?:src|data-src)="([^"]+)"/i);
-            var rTitleMatch = rInner.match(/<p[^>]*class="[^"]*line-clamp[^"]*"[^>]*>([\s\S]*?)<\/p>/i) ||
-                              rInner.match(/alt="([^"]+)"/i);
+            var rImgMatch = rInner.match(/<img[^>]+(?:src|data-src|data-original)="([^"]+)"/i);
+            var rTitleMatch = rInner.match(/<[^>]*class="[^"]*(?:line-clamp|title)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i) ||
+                              rInner.match(/alt="([^"]+)"/i) ||
+                              rMatch[0].match(/title="([^"]+)"/i);
 
-            if (rImgMatch && rTitleMatch) {
+            if (rImgMatch) {
                 relSeen[rHref] = true;
                 var rPoster = rImgMatch[1];
                 if (rPoster.indexOf("/") === 0) rPoster = BASEURL + rPoster;
-                var rTitle = cleanText(rTitleMatch[1]);
+                var rTitle = rTitleMatch ? cleanText(rTitleMatch[1]) : "Video liên quan";
 
                 relatedMovies.push({
                     "id": rHref,
