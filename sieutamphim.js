@@ -9,7 +9,7 @@ function getManifest() {
   return JSON.stringify({
     "id": "sieutamphim",
     "name": "Sưu Tầm Phim",
-    "version": "1.2.1",
+    "version": "1.0.0",
     "baseUrl": BASE_URL,
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/sieutamphim.png",
     "isEnabled": true,
