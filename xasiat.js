@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -19,9 +19,9 @@ function getManifest() {
 
 function log(msg) {
     if (typeof nativeLog !== 'undefined') {
-        nativeLog("[motchille] " + msg);
+        nativeLog("[xasiat] " + msg);
     } else if (typeof console !== 'undefined' && console.log) {
-        console.log("[motchille] " + msg);
+        console.log("[xasiat] " + msg);
     }
 }
 
@@ -200,11 +200,9 @@ function parseSearchResponse(html, $url) {
     return parseListResponse(html, $url);
 }
 
-// =============== HÀM KHẮC PHỤC LỖI TRÌNH PHÁT ===============
 function parseMovieDetail(html, url) {
     var cachedMovieDetailId = "";
 	try {
-		log(url);
 		var id = "";
 		var lname = "Đang cập nhật...";
 		var limg = "";
@@ -226,7 +224,6 @@ function parseMovieDetail(html, url) {
 		id = idMatch ? idMatch[1] : (url || "");
 		cachedMovieDetailId = id;
 
-		// 1. Trích xuất metadata phòng hờ script bị lỗi
         var getMeta = function(prop) {
             var m = html.match(new RegExp('<meta\\s+(?:property|name)="' + prop + '"\\s+content="([^"]+)"', 'i'));
             return m ? m[1] : "";
@@ -237,7 +234,6 @@ function parseMovieDetail(html, url) {
 
 		var episodes = [];
 
-		// 2. Cố gắng lấy flashvars với regex linh hoạt hơn (KVS standard)
 		var fvMatch = html.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
 		var flashvarsBody = fvMatch ? fvMatch[1] : "";
 
@@ -254,17 +250,13 @@ function parseMovieDetail(html, url) {
 
 			var addEp = function(urlKey, textKey, defaultName, slug) {
 				var vUrl = getField(urlKey);
-				
-                // GIẢI MÃ URL NẾU NÓ BỊ MÃ HOÁ (Vấn đề khiến trình phát bị xịt)
-                if (vUrl) {
-                    try { vUrl = decodeURIComponent(vUrl); } catch(e) {}
-                }
+				if (vUrl) {
+					try { vUrl = decodeURIComponent(vUrl); } catch(e) {}
+				}
 
 				if (vUrl && vUrl.indexOf("http") !== -1) {
 					var text = getField(textKey) || defaultName;
 					var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
-                    
-                    // Dọn dẹp các ký tự rác để trình phát không bị lỗi
                     cleanUrl = cleanUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
 
 					episodes.push({
@@ -281,7 +273,6 @@ function parseMovieDetail(html, url) {
 			addEp('video_url', 'video_url_text', 'SD', 'sd');
 		}
 
-        // 3. FALLBACK: Nếu flashvars lỗi, tự động bóc HTML5 <source>
         if (episodes.length === 0) {
             var srcRegex = /<source[^>]+src="([^"]+)"/gi;
             var srcM;
@@ -305,7 +296,6 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        // 4. FALLBACK CUỐI CÙNG: Cào nát chuỗi để lấy link .mp4 / .m3u8
         if (episodes.length === 0) {
             var rawUrlsMatches = html.match(/(https?:\/\/[^\s"'<>]+\.(?:mp4|m3u8)[^\s"'<>]*)/gi);
             if (rawUrlsMatches) {
@@ -374,13 +364,9 @@ function parseMovieDetail(html, url) {
 	}
 }
 
-// Bắt chính xác định dạng để phát Player
 function parseDetailResponse(html, url) {
 	try {
-        // App sẽ truyền ID của tập phim (chính là URL video ta bóc được ở trên) vào biến `url`
 		var streamUrl = url || "";
-        
-        // Đề phòng App đẩy ngược vào biến html
 		if (!streamUrl && html && typeof html === 'string' && html.indexOf("http") !== -1) {
 			streamUrl = html;
 		}
@@ -418,13 +404,13 @@ function parseEmbedPlayer(html, url) {
 }
 
 function sortEpisodesByName(data) {
-    data.forEach(server => {
+    data.forEach(function(server) {
         if (server.episodes && Array.isArray(server.episodes)) {
-            server.episodes.sort((a, b) => {
-                const matchA = a.name.match(/Tập\s*(\d+)/i);
-                const matchB = b.name.match(/Tập\s*(\d+)/i);
-                const numA = matchA ? parseInt(matchA[1], 10) : 0;
-                const numB = matchB ? parseInt(matchB[1], 10) : 0;
+            server.episodes.sort(function(a, b) {
+                var matchA = a.name.match(/Tập\s*(\d+)/i);
+                var matchB = b.name.match(/Tập\s*(\d+)/i);
+                var numA = matchA ? parseInt(matchA[1], 10) : 0;
+                var numB = matchB ? parseInt(matchB[1], 10) : 0;
                 return numA - numB;
             });
         }
@@ -442,7 +428,7 @@ function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
 
 function getLISTmenu() {
-    return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored9508"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/categories/","name":"Load more..."},{"link":"/tags/japanese/","name":"japanese"},{"link":"/tags/asian/","name":"asian"},{"link":"/tags/japan/","name":"japan"},{"link":"/tags/onlyfans2/","name":"onlyfans"},{"link":"/tags/beautiful/","name":"beautiful"},{"link":"/tags/creampie/","name":"creampie"},{"link":"/tags/blowjob/","name":"blowjob"},{"link":"/tags/teen/","name":"teen"},{"link":"/tags/big-tits/","name":"big tits"},{"link":"/tags/cute/","name":"cute"},{"link":"/tags/tiny-body/","name":"tiny body"},{"link":"/tags/big-dick/","name":"big dick"},{"link":"/tags/anal/","name":"anal"},{"link":"/tags/slim-body/","name":"slim body"},{"link":"/tags/wife/","name":"wife"},{"link":"/tags/chinese/","name":"chinese"},{"link":"/tags/fc2ppv/","name":"fc2ppv"},{"link":"/tags/slut/","name":"slut"},{"link":"/tags/masturbation/","name":"masturbation"},{"link":"/tags/virgin/","name":"virgin"},{"link":"/tags/black/","name":"black"},{"link":"/tags/student/","name":"student"},{"link":"/tags/babe/","name":"babe"},{"link":"/tags/small-tits/","name":"small tits"},{"link":"/tags/girls/","name":"girls"},{"link":"/tags/thai/","name":"thai"},{"link":"/tags/school/","name":"school"},{"link":"/tags/girlfriend/","name":"girlfriend"},{"link":"/tags/nude/","name":"nude"},{"link":"/tags/brunette/","name":"brunette"},{"link":"/tags/squirting/","name":"squirting"},{"link":"/tags/18-year-old/","name":"18-year-old"},{"link":"/tags/lovepop/","name":"lovepop"},{"link":"/tags/milf/","name":"milf"},{"link":"/tags/china/","name":"china"},{"link":"/tags/dildo/","name":"dildo"},{"link":"/tags/solo/","name":"solo"},{"link":"/tags/graphis/","name":"graphis"},{"link":"/tags/idol/","name":"idol"},{"link":"/tags/homemade/","name":"homemade"},{"link":"/tags/hardcore/","name":"hardcore"},{"link":"/tags/college/","name":"college"},{"link":"/tags/uniform/","name":"uniform"},{"link":"/tags/threesome/","name":"threesome"},{"link":"/tags/boyfriend2/","name":"boyfriend"},{"link":"/tags/teacher/","name":"teacher"},{"link":"/tags/friend/","name":"friend"},{"link":"/tags/20-year-old/","name":"20-year-old"},{"link":"/tags/","name":"Show All Tags"}]`
+    return '[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/categories/","name":"Load more..."}]';
 }
 
 function buildMenu(menuArray, type) {
@@ -474,4 +460,136 @@ function buildMenu(menuArray, type) {
     return menulist;
 }
 
-function _$(htmlOrBlock){if (htmlOrBlock && typeof htmlOrBlock === 'object' && htmlOrBlock.elements) {return htmlOrBlock;} var instance = {sourceHtml: typeof htmlOrBlock === 'string' ? htmlOrBlock : '',elements: Array.isArray(htmlOrBlock) ? htmlOrBlock : (htmlOrBlock ? [htmlOrBlock] : []),find: function (selector) {if (selector.indexOf(',') !== -1) {var results = [];var selectors = selector.split(',').map(function (s) {return s.trim();});for (var s = 0;s < selectors.length;s++) {if (selectors[s] === "") continue;var subInstance = this.find(selectors[s]);for (var r = 0;r < subInstance.elements.length;r++) {var element = subInstance.elements[r];if (results.indexOf(element) === -1) {results.push(element);}}} var multiInstance = _$(results);multiInstance.sourceHtml = this.sourceHtml;return multiInstance;} var results = [];var contentFilter = "";if (selector.indexOf(":content(") !== -1) {var contentMatch = selector.match(/:content\((?:"([^"]*)"|'([^']*)'|([^)]*))\)/);if (contentMatch) {contentFilter = contentMatch[1] || contentMatch[2] || contentMatch[3] || "";selector = selector.replace(/:content\((?:"[^"]*"|'[^']*'|[^)]*)\)/,"");}} var attrNameFilter = "";var attrValueFilter = "";var attrOperator = "=";var hasAttrFilter = false;var attrMatch = selector.match(/\[([a-zA-Z0-9_-]+)\s*([*^$]?=)\s*(?:"([^"]*)"|'([^']*)'|([^\]"']*))\]/);if (attrMatch) {hasAttrFilter = true;attrNameFilter = attrMatch[1];attrOperator = attrMatch[2];attrValueFilter = attrMatch[3] || attrMatch[4] || attrMatch[5] || "";selector = selector.replace(/\[.*?\]/,"");} var notSelector = "";if (selector.indexOf(":not(") !== -1) {var notMatch = selector.match(/:not\(([^)]+)\)/);if (notMatch) {notSelector = notMatch[1];selector = selector.replace(/:not\([^)]+\)/,"");}} var isFirstFilter = selector.indexOf(":first") !== -1;var isLastFilter = selector.indexOf(":last") !== -1;selector = selector.replace(/:first|:last/g,"");var targetTagName = "";var targetId = "";var targetClasses = [];var selectorToParse = selector.trim();if (selectorToParse !== "") {var idIndex = selectorToParse.indexOf('#');if (idIndex !== -1) {var afterId = selectorToParse.substring(idIndex + 1);var nextDot = afterId.indexOf('.');targetId = nextDot === -1 ? afterId : afterId.substring(0,nextDot);selectorToParse = selectorToParse.substring(0,idIndex) + (nextDot === -1 ? "" : "." + afterId.substring(nextDot + 1));} var classParts = selectorToParse.split('.');var possibleTag = classParts.shift();if (possibleTag) {targetTagName = possibleTag.toLowerCase();} targetClasses = classParts.filter(function (c) {return c.length > 0;});} for (var i = 0;i < this.elements.length;i++) {var currentHtml = this.elements[i];var pos = 0;var subResults = [];while ((pos = currentHtml.indexOf('<',pos)) !== -1) {if (currentHtml.charAt(pos + 1) === '/' || currentHtml.charAt(pos + 1) === '!') {pos++;continue;} var endOpenTag = -1;var insideQuote = false;var quoteChar = '';for (var j = pos + 1;j < currentHtml.length;j++) {var char = currentHtml.charAt(j);if ((char === '"' || char === "'") && currentHtml.charAt(j - 1) !== '\\') {if (!insideQuote) {insideQuote = true;quoteChar = char;} else if (char === quoteChar) {insideQuote = false;}} if (char === '>' && !insideQuote) {endOpenTag = j;break;}} if (endOpenTag === -1) break;var fullOpenTag = currentHtml.substring(pos,endOpenTag + 1);var tagMatch = fullOpenTag.match(/^<([a-zA-Z0-9_-]+)/);var currentTagName = tagMatch ? tagMatch[1].toLowerCase() : "";var isMatched = true;if (targetTagName && targetTagName !== currentTagName) {isMatched = false;} var getClassAttr = fullOpenTag.match(/class\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);var classMatchStr = getClassAttr ? (getClassAttr[1] || getClassAttr[2] || getClassAttr[3] || "") : "";var getIdAttr = fullOpenTag.match(/id\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);var idMatchStr = getIdAttr ? (getIdAttr[1] || getIdAttr[2] || getIdAttr[3] || "") : "";if (isMatched && targetId && idMatchStr !== targetId) {isMatched = false;} if (isMatched && targetClasses.length > 0) {if (classMatchStr) {var currentClasses = classMatchStr.trim().split(/\s+/);for (var c = 0;c < targetClasses.length;c++) {if (currentClasses.indexOf(targetClasses[c]) === -1) {isMatched = false;break;}}} else {isMatched = false;}} if (isMatched && hasAttrFilter) {var actualValue = "";if (attrNameFilter === "class") {actualValue = classMatchStr;} else if (attrNameFilter === "id") {actualValue = idMatchStr;} else {var getAnyAttr = fullOpenTag.match(new RegExp(attrNameFilter + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|([^\\s>]+))','i'));actualValue = getAnyAttr ? (getAnyAttr[1] || getAnyAttr[2] || getAnyAttr[3] || "") : "";} var attrExists = fullOpenTag.search(new RegExp(attrNameFilter + '\\s*=','i')) !== -1;if (!attrExists) {isMatched = false;} else {if (attrOperator === "=") {if (attrNameFilter === "class") {var classes = actualValue.trim().split(/\s+/);if (classes.indexOf(attrValueFilter) === -1) isMatched = false;} else if (actualValue !== attrValueFilter) {isMatched = false;}} else if (attrOperator === "*=") {if (actualValue.indexOf(attrValueFilter) === -1) isMatched = false;} else if (attrOperator === "^=") {if (actualValue.indexOf(attrValueFilter) !== 0) isMatched = false;} else if (attrOperator === "$=") {if (actualValue.slice(-attrValueFilter.length) !== attrValueFilter) isMatched = false;}}} if (isMatched) {var startTagPos = pos;var endTagPos = endOpenTag + 1;var selfClosingTags = ['img','source','input','br','hr','link','meta'];if (selfClosingTags.indexOf(currentTagName) === -1 && fullOpenTag.indexOf('/>') === -1) {var depth = 1;var scanPos = endOpenTag + 1;var openStr = '<' + currentTagName;var closeStr = '</' + currentTagName + '>';while (depth > 0 && scanPos < currentHtml.length) {var nextOpen = currentHtml.indexOf(openStr,scanPos);var nextClose = currentHtml.indexOf(closeStr,scanPos);if (nextClose === -1) {scanPos = currentHtml.length;break;} if (nextOpen !== -1 && nextOpen < nextClose) {depth++;scanPos = nextOpen + openStr.length;} else {depth--;scanPos = nextClose + closeStr.length;if (depth === 0) endTagPos = nextClose + closeStr.length;}}} var foundBlock = currentHtml.substring(startTagPos,endTagPos);if (contentFilter) {var pureText = foundBlock.replace(/<[^>]+>/g,"").trim();if (pureText.indexOf(contentFilter) === -1) {pos = endTagPos;continue;}} if (notSelector) {var isNotClass = notSelector.indexOf('.') === 0;var isNotId = notSelector.indexOf('#') === 0;var notValue = notSelector.substring(1);var hasNot = false;if (isNotClass && classMatchStr.indexOf(notValue) !== -1) hasNot = true;if (isNotId && idMatchStr.indexOf(notValue) !== -1) hasNot = true;if (!hasNot) subResults.push(foundBlock);} else {subResults.push(foundBlock);} pos = endTagPos;} else {pos++;}} if (isFirstFilter && subResults.length > 0) subResults = [subResults[0]];if (isLastFilter && subResults.length > 0) subResults = [subResults[subResults.length - 1]];results = results.concat(subResults);} var newInstance = _$(results);newInstance.sourceHtml = this.sourceHtml || currentHtml;return newInstance;},each: function (callback) {for (var i = 0;i < this.elements.length;i++) {var childInstance = _$(this.elements[i]);childInstance.sourceHtml = this.sourceHtml;callback.call(childInstance,i,this.elements[i]);} return this;},eq: function (index) {if (index < 0) index = this.elements.length + index;var matchedElement = this.elements[index];this.elements = matchedElement ? [matchedElement] : [];return this;},attr: function (attrName) {if (this.elements.length === 0) return "";var elem = this.elements[0];var getAttr = elem.match(new RegExp(attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|([^\\s>]+))','i'));return getAttr ? (getAttr[1] || getAttr[2] || getAttr[3] || "") : "";},html: function () {if (this.elements.length === 0) return "";var elem = this.elements[0];var start = elem.indexOf('>') + 1;var end = elem.lastIndexOf('</');if (start > 0 && end > start) return elem.substring(start,end);return "";},text: function (separator) {if (this.elements.length === 0) return "";var elem = this.elements[0];var start = elem.indexOf('>') + 1;var end = elem.lastIndexOf('</');if (start > 0 && end > start) {var content = elem.substring(start,end);var pureText = content.replace(/<\/?[^>]+(>|$)/g,"\n");if (typeof separator === 'string') {return pureText .split('\n') .map(function (item) {return item.trim();}) .filter(function (item) {return item !== '';}) .join(separator);} return pureText .split('\n') .map(function (item) {return item.trim();}) .filter(function (item) {return item !== '';}) .join(' ');} return "";},next: function () {var results = [];if (!this.sourceHtml) return this;for (var i = 0;i < this.elements.length;i++) {var elem = this.elements[i];var idx = this.sourceHtml.indexOf(elem);if (idx === -1) continue;var scanPos = idx + elem.length;var nextOpen = this.sourceHtml.indexOf('<',scanPos);if (nextOpen !== -1) {if (this.sourceHtml.charAt(nextOpen + 1) === '/') continue;var endOpenTag = this.sourceHtml.indexOf('>',nextOpen);if (endOpenTag === -1) continue;var fullOpenTag = this.sourceHtml.substring(nextOpen,endOpenTag + 1);var spacePos = fullOpenTag.indexOf(' ');var currentTagName = (spacePos === -1) ? fullOpenTag.substring(1,fullOpenTag.length - 1).toLowerCase() : fullOpenTag.substring(1,spacePos).toLowerCase();var startTagPos = nextOpen;var endTagPos = endOpenTag + 1;var selfClosingTags = ['img','source','input','br','hr','link','meta'];if (selfClosingTags.indexOf(currentTagName) === -1 && fullOpenTag.indexOf('/>') === -1) {var depth = 1;var sPos = endOpenTag + 1;var openStr = '<' + currentTagName;var closeStr = '</' + currentTagName + '>';while (depth > 0 && sPos < this.sourceHtml.length) {var nOpen = this.sourceHtml.indexOf(openStr,sPos);var nClose = this.sourceHtml.indexOf(closeStr,sPos);if (nClose === -1) break;if (nOpen !== -1 && nOpen < nClose) {depth++;sPos = nOpen + openStr.length;} else {depth--;sPos = nClose + closeStr.length;if (depth === 0) endTagPos = nClose + closeStr.length;}}} results.push(this.sourceHtml.substring(startTagPos,endTagPos));}} var nextInstance = _$(results);nextInstance.sourceHtml = this.sourceHtml;this.elements = results;return this;},parent: function () {var results = [];if (!this.sourceHtml) return this;for (var i = 0;i < this.elements.length;i++) {var elem = this.elements[i];var idx = this.sourceHtml.indexOf(elem);if (idx <= 0) continue;var scanPos = idx - 1;while (scanPos >= 0) {var openTagPos = this.sourceHtml.lastIndexOf('<',scanPos);if (openTagPos === -1) break;if (this.sourceHtml.charAt(openTagPos + 1) !== '/' && this.sourceHtml.charAt(openTagPos + 1) !== '!') {var endOpenTag = this.sourceHtml.indexOf('>',openTagPos);if (endOpenTag !== -1 && endOpenTag > openTagPos) {var fullOpenTag = this.sourceHtml.substring(openTagPos,endOpenTag + 1);var spacePos = fullOpenTag.indexOf(' ');var currentTagName = (spacePos === -1) ? fullOpenTag.substring(1,fullOpenTag.length - 1).toLowerCase() : fullOpenTag.substring(1,spacePos).toLowerCase();var endTagPos = endOpenTag + 1;var selfClosingTags = ['img','source','input','br','hr','link','meta'];if (selfClosingTags.indexOf(currentTagName) === -1 && fullOpenTag.indexOf('/>') === -1) {var depth = 1;var sPos = endOpenTag + 1;var openStr = '<' + currentTagName;var closeStr = '</' + currentTagName + '>';while (depth > 0 && sPos < this.sourceHtml.length) {var nOpen = this.sourceHtml.indexOf(openStr,sPos);var nClose = this.sourceHtml.indexOf(closeStr,sPos);if (nClose === -1) break;if (nOpen !== -1 && nOpen < nClose) {depth++;sPos = nOpen + openStr.length;} else {depth--;sPos = nClose + closeStr.length;if (depth === 0) endTagPos = nClose + closeStr.length;}}} if (endTagPos >= idx + elem.length) {var parentBlock = this.sourceHtml.substring(openTagPos,endTagPos);if (results.indexOf(parentBlock) === -1) results.push(parentBlock);break;}}} scanPos = openTagPos - 1;}} var parentInstance = _$(results);parentInstance.sourceHtml = this.sourceHtml;this.elements = results;return this;},closest: function (selector) {var results = [];if (!this.sourceHtml || this.elements.length === 0) return _$([]);for (var i = 0;i < this.elements.length;i++) {var currentElem = this.elements[i];var currentObj = _$(currentElem);currentObj.sourceHtml = this.sourceHtml;var selfCheck = _$(this.sourceHtml).find(selector);var isSelfMatched = false;for (var s = 0;s < selfCheck.elements.length;s++) {if (selfCheck.elements[s] === currentElem) {isSelfMatched = true;break;}} if (isSelfMatched) {if (results.indexOf(currentElem) === -1) results.push(currentElem);continue;} var parentObj = currentObj.parent();while (parentObj.elements.length > 0) {var parentElem = parentObj.elements[0];var checkMatch = _$(this.sourceHtml).find(selector);var isMatched = false;for (var j = 0;j < checkMatch.elements.length;j++) {if (checkMatch.elements[j] === parentElem) {isMatched = true;break;}} if (isMatched) {if (results.indexOf(parentElem) === -1) results.push(parentElem);break;} parentObj = parentObj.parent();}} var closestInstance = _$(results);closestInstance.sourceHtml = this.sourceHtml;return closestInstance;}};return instance;};
+// Minimal safe HTML parser wrapper
+function _$(htmlOrBlock) {
+    var sourceHtml = typeof htmlOrBlock === 'string' ? htmlOrBlock : '';
+    var elements = Array.isArray(htmlOrBlock) ? htmlOrBlock : (htmlOrBlock && typeof htmlOrBlock === 'object' && htmlOrBlock.elements ? htmlOrBlock.elements : (htmlOrBlock ? [htmlOrBlock] : []));
+    
+    return {
+        sourceHtml: sourceHtml,
+        elements: elements,
+        find: function(selector) {
+            var results = [];
+            for (var i = 0; i < this.elements.length; i++) {
+                var currentHtml = this.elements[i];
+                if (typeof currentHtml !== 'string') continue;
+                
+                if (selector === ".item") {
+                    var pos = 0;
+                    while ((pos = currentHtml.indexOf('class="item', pos)) !== -1) {
+                        var startTag = currentHtml.lastIndexOf('<', pos);
+                        if (startTag === -1) { pos++; continue; }
+                        var tagMatch = currentHtml.substring(startTag).match(/^<([a-zA-Z0-9_-]+)/);
+                        if (!tagMatch) { pos++; continue; }
+                        var tagName = tagMatch[1].toLowerCase();
+                        var depth = 1, scanPos = currentHtml.indexOf('>', startTag) + 1;
+                        var endTagPos = scanPos;
+                        var openStr = '<' + tagName;
+                        var closeStr = '</' + tagName + '>';
+                        while (depth > 0 && scanPos < currentHtml.length) {
+                            var nOpen = currentHtml.indexOf(openStr, scanPos);
+                            var nClose = currentHtml.indexOf(closeStr, scanPos);
+                            if (nClose === -1) break;
+                            if (nOpen !== -1 && nOpen < nClose) {
+                                depth++;
+                                scanPos = nOpen + openStr.length;
+                            } else {
+                                depth--;
+                                scanPos = nClose + closeStr.length;
+                                if (depth === 0) endTagPos = nClose + closeStr.length;
+                            }
+                        }
+                        var block = currentHtml.substring(startTag, endTagPos);
+                        if (results.indexOf(block) === -1) results.push(block);
+                        pos = endTagPos;
+                    }
+                } else if (selector === "a") {
+                    var pos = 0;
+                    while ((pos = currentHtml.indexOf('<a ', pos)) !== -1 || (pos = currentHtml.indexOf('<a>', pos)) !== -1) {
+                        var startTag = pos;
+                        var endOpen = currentHtml.indexOf('>', startTag);
+                        if (endOpen === -1) break;
+                        var depth = 1, scanPos = endOpen + 1;
+                        var endTagPos = scanPos;
+                        while (depth > 0 && scanPos < currentHtml.length) {
+                            var nOpen = currentHtml.indexOf('<a', scanPos);
+                            var nClose = currentHtml.indexOf('</a>', scanPos);
+                            if (nClose === -1) break;
+                            if (nOpen !== -1 && nOpen < nClose && currentHtml.charAt(nOpen+2) === ' ') {
+                                depth++;
+                                scanPos = nOpen + 2;
+                            } else {
+                                depth--;
+                                scanPos = nClose + 4;
+                                if (depth === 0) endTagPos = nClose + 4;
+                            }
+                        }
+                        var block = currentHtml.substring(startTag, endTagPos);
+                        if (results.indexOf(block) === -1) results.push(block);
+                        pos = endTagPos;
+                    }
+                } else {
+                    var classKey = selector.replace('.', '');
+                    var pos = 0;
+                    while ((pos = currentHtml.indexOf(classKey, pos)) !== -1) {
+                        var startTag = currentHtml.lastIndexOf('<', pos);
+                        if (startTag === -1) { pos++; continue; }
+                        var endOpen = currentHtml.indexOf('>', startTag);
+                        if (endOpen === -1) { pos++; continue; }
+                        var tagBlock = currentHtml.substring(startTag, endOpen + 1);
+                        var tagMatch = tagBlock.match(/^<([a-zA-Z0-9_-]+)/);
+                        if (!tagMatch) { pos++; continue; }
+                        var tagName = tagMatch[1].toLowerCase();
+                        var depth = 1, scanPos = endOpen + 1;
+                        var endTagPos = scanPos;
+                        var openStr = '<' + tagName;
+                        var closeStr = '</' + tagName + '>';
+                        while (depth > 0 && scanPos < currentHtml.length) {
+                            var nOpen = currentHtml.indexOf(openStr, scanPos);
+                            var nClose = currentHtml.indexOf(closeStr, scanPos);
+                            if (nClose === -1) break;
+                            if (nOpen !== -1 && nOpen < nClose) {
+                                depth++;
+                                scanPos = nOpen + openStr.length;
+                            } else {
+                                depth--;
+                                scanPos = nClose + closeStr.length;
+                                if (depth === 0) endTagPos = nClose + closeStr.length;
+                            }
+                        }
+                        var block = currentHtml.substring(startTag, endTagPos);
+                        if (results.indexOf(block) === -1) results.push(block);
+                        pos = endTagPos;
+                    }
+                }
+            }
+            var inst = _$(results);
+            inst.sourceHtml = this.sourceHtml;
+            return inst;
+        },
+        each: function(callback) {
+            for (var i = 0; i < this.elements.length; i++) {
+                var child = _$(this.elements[i]);
+                child.sourceHtml = this.sourceHtml;
+                callback.call(child, i, this.elements[i]);
+            }
+            return this;
+        },
+        attr: function(attrName) {
+            if (this.elements.length === 0) return "";
+            var elem = this.elements[0];
+            var match = elem.match(new RegExp(attrName + '\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\'|([^\\s>]+))', 'i'));
+            return match ? (match[1] || match[2] || match[3] || "") : "";
+        },
+        text: function() {
+            if (this.elements.length === 0) return "";
+            var elem = this.elements[0];
+            var start = elem.indexOf('>') + 1;
+            var end = elem.lastIndexOf('</');
+            if (start > 0 && end > start) {
+                return elem.substring(start, end).replace(/<\/?[^>]+(>|$)/g, "").trim();
+            }
+            return "";
+        }
+    };
+}
