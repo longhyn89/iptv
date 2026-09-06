@@ -40,14 +40,14 @@
         {
             "id": "sieutamphim",
             "name": "Sưu Tầm Phim",
-            "version": "1.0.0",
+            "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/sieutamphim.js",
             "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png"
         },
         {
             "id": "clbpxVIP",
             "name": "CLB Phim Xưa VIP",
-            "version": "1.0.1",
+            "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/clbpx.js",
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png"
         },
@@ -61,14 +61,14 @@
         {
             "id": "missav",
             "name": "MissAV",
-            "version": "1.0.0",
+            "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/missav.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico"
         },
         {
             "id": "vlxx",
             "name": "VLXX",
-            "version": "1.0.0",
+            "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/vlxx.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico"
         }
