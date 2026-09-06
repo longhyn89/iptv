@@ -28,26 +28,26 @@
             "name": "Rổ phim (WEB)",
             "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/rophim.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/rophim.png",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/rophim.png"
         },
         {
             "id": "hdvnn",
             "name": "HD VNN (EXO)",
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/hdvnn.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hdvnn.png",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hdvnn.png"
         },
         {
             "id": "sieutamphim",
             "name": "Sưu Tầm Phim",
-            "version": "1.0.9",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/sieutamphim.js",
             "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png"
         },
         {
             "id": "clbpxVIP",
             "name": "CLB Phim Xưa VIP",
-            "version": "1.0.9",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/clbpx.js",
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png"
         },
@@ -56,19 +56,19 @@
             "name": "Anime Vietsub (ALL)",
             "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/animevietsub.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png"
         },
         {
             "id": "missav",
             "name": "MissAV",
-            "version": "1.0.9",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/missav.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico"
         },
         {
             "id": "vlxx",
             "name": "VLXX",
-            "version": "1.0.9",
+            "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/vlxx.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico"
         }
