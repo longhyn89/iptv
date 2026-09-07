@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -157,12 +157,19 @@ function parseListResponse(html, $url) {
             var durMatch = itemHtml.match(/class="[^"]*duration[^"]*"[^>]*>([^<]+)</i);
             var current = durMatch ? durMatch[1].trim() : "";
             
-            // Cải tiến lọc chất lượng để bắt chính xác các nhãn HD, 4K, 1080p...
-            var qualMatch = itemHtml.match(/class="[^"]*(?:is-|quality)[^"]*"[^>]*>([^<]+)</i) ||
-                            itemHtml.match(/<span[^>]*>([4K|HD|FHD|SD|1080p|720p]+)<\/span>/i);
-            var quality = qualMatch ? qualMatch[1].trim() : "HD";
-            if (quality.length > 10) quality = "HD";
+            // Xử lý Quality Label chuẩn xác hơn
+            var quality = "HD";
+            var qMatch = itemHtml.match(/<[^>]+class="[^"]*(?:quality|is-hd|badge|label-hd|v-quality)[^"]*"[^>]*>([^<]+)<\//i);
+            if (qMatch && qMatch[1]) {
+                quality = qMatch[1].replace(/<[^>]+>/g, '').trim();
+            } else {
+                // Quét nhanh các từ khoá chất lượng trong toàn bộ khung item
+                var rawQ = itemHtml.match(/\b(4K|1080p|720p|480p|360p|FHD|HD|SD)\b/i);
+                if (rawQ) quality = rawQ[1].toUpperCase();
+            }
+            if (quality.length > 8 || quality.length === 0) quality = "HD";
             
+            // Xử lý ảnh Thumbnail Lazyload
             var imgMatch = itemHtml.match(/data-original="([^"]+)"/i) || 
                            itemHtml.match(/data-src="([^"]+)"/i) || 
                            itemHtml.match(/data-lazy-src="([^"]+)"/i) || 
@@ -251,108 +258,98 @@ function parseMovieDetail(html, url) {
         ldes = getMeta('og:description') || getMeta('twitter:description') || ldes;
 
 		var episodes = [];
+        var uniqueUrls = [];
 
-        // Quét sâu cấu hình flashvars chứa link video gốc
-		var fvMatch = html.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
-		var flashvarsBody = fvMatch ? fvMatch[1] : "";
+        // Hàm hỗ trợ add URL an toàn
+        function addVideo(vidUrl, vidName, vidSlug) {
+            if (!vidUrl || vidUrl.indexOf("javascript") === 0) return;
+            var cleanUrl = vidUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
+            try { cleanUrl = decodeURIComponent(cleanUrl); } catch(e) {}
+            
+            if (cleanUrl.indexOf("http") !== 0 && cleanUrl.indexOf("//") !== 0 && cleanUrl.indexOf("/") !== 0) return;
+            if (cleanUrl.indexOf("//") === 0) cleanUrl = "https:" + cleanUrl;
+            else if (cleanUrl.indexOf("/") === 0) cleanUrl = BASEURL + cleanUrl;
 
-		if (flashvarsBody) {
+            if (uniqueUrls.indexOf(cleanUrl) === -1) {
+                uniqueUrls.push(cleanUrl);
+                episodes.push({
+                    id: cleanUrl,
+                    name: vidName,
+                    slug: vidSlug
+                });
+            }
+        }
+
+        // TẦNG 1: Quét KVS Player / Flashvars
+		var fvMatch = html.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i) || html.match(/kt_player\s*\(\s*'[^']+'\s*,\s*'[^']+'\s*,\s*\{([\s\S]*?)\}/i);
+		if (fvMatch && fvMatch[1]) {
+            var fBody = fvMatch[1];
 			var getField = function(name) {
-				var m = flashvarsBody.match(new RegExp(name + "\\s*:\\s*'((?:[^'\\\\]|\\\\.)*)'"));
-				if (m) return m[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
-				var mNum = flashvarsBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
-				return mNum ? mNum[1] : "";
+				var m = fBody.match(new RegExp(name + "\\s*:\\s*'([^']+)'"));
+                if (!m) m = fBody.match(new RegExp(name + "\\s*:\\s*\"([^\"]+)\""));
+				if (!m) m = fBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
+				return m ? m[1] : null;
 			};
 
 			if (lname === "Đang cập nhật...") lname = getField('video_title') || lname;
-			if (!limg) limg = getField('preview_url') || getField('preview_url3') || getField('preview_url1') || "";
+			if (!limg) limg = getField('preview_url') || getField('preview_url3') || "";
 
-			var addEp = function(urlKey, textKey, defaultName, slug) {
-				var vUrl = getField(urlKey);
-				if (vUrl) {
-					try { vUrl = decodeURIComponent(vUrl); } catch(e) {}
-				}
-
-				if (vUrl && vUrl.indexOf("http") !== -1) {
-					var text = getField(textKey) || defaultName;
-					var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
-                    cleanUrl = cleanUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
-
-					episodes.push({
-						id: cleanUrl,
-						name: "Chất lượng " + text,
-						slug: slug
-					});
-				}
-			};
-
-			addEp('video_alt_url3', 'video_alt_url3_text', '4K / FHD', 'hd4k');
-			addEp('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
-			addEp('video_alt_url', 'video_alt_url_text', 'HD', 'hd720');
-			addEp('video_url', 'video_url_text', 'SD', 'sd');
+            addVideo(getField('video_alt_url3'), "4K / FHD", "hd4k");
+            addVideo(getField('video_alt_url2'), "1080p", "hd1080");
+            addVideo(getField('video_alt_url'), "720p HD", "hd720");
+            addVideo(getField('video_url'), "SD", "sd");
 		}
 
-        // Quét thêm các nguồn file trực tiếp trong thẻ source của video tag
-        if (episodes.length === 0) {
-            var srcRegex = /<source[^>]+src="([^"]+)"/gi;
-            var srcM;
-            var qCount = 1;
-            while ((srcM = srcRegex.exec(html)) !== null) {
-                var vUrl = srcM[1];
-                try { vUrl = decodeURIComponent(vUrl); } catch(e) {}
-                vUrl = vUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
+        // TẦNG 2: Quét thẻ HTML5 <source>
+        var srcRegex = /<source[^>]+src=["']([^"']+)["']/gi;
+        var srcM;
+        var qCount = 1;
+        while ((srcM = srcRegex.exec(html)) !== null) {
+            var labelMatch = srcM[0].match(/(?:res|resolution|title|label|size)=["']([^"']+)["']/i);
+            var qLabel = labelMatch ? labelMatch[1] : ("Nguồn " + qCount);
+            addVideo(srcM[1], "Chất lượng " + qLabel, "src" + qCount);
+            qCount++;
+        }
 
-                if (vUrl && (vUrl.indexOf(".mp4") !== -1 || vUrl.indexOf(".m3u8") !== -1 || vUrl.indexOf("http") === 0)) {
-                    var qualityMatch = srcM[0].match(/(?:res|resolution|title|label)="([^"]+)"/i);
-                    var qLabel = qualityMatch ? qualityMatch[1] : ("Link " + qCount);
-                    if (vUrl.indexOf("http") !== 0 && vUrl.indexOf("/") === 0) vUrl = BASEURL + vUrl;
-                    episodes.push({
-                        id: vUrl,
-                        name: "Chất lượng " + qLabel,
-                        slug: "link" + qCount
-                    });
-                    qCount++;
-                }
+        // TẦNG 3: Quét trực tiếp thẻ <video src="..."> hoặc data-src
+        var videoSrcMatch = html.match(/<video[^>]+src=["']([^"']+)["']/i) || html.match(/data-(?:video|src|file)=["'](https?:\/\/[^"']+\.(?:mp4|m3u8)[^"']*)["']/i);
+        if (videoSrcMatch) {
+            addVideo(videoSrcMatch[1], "Nguồn Gốc", "mainsrc");
+        }
+
+        // TẦNG 4: Quét cấu hình JWPlayer/JSON
+        var jwRegex = /["']?file["']?\s*:\s*["'](https?:\/\/[^"']+)["']/gi;
+        var jwM;
+        var jwCount = 1;
+        while ((jwM = jwRegex.exec(html)) !== null) {
+            if (jwM[1].indexOf('.m3u8') !== -1 || jwM[1].indexOf('.mp4') !== -1) {
+                addVideo(jwM[1], "Server Trực Tiếp " + jwCount, "jw" + jwCount);
+                jwCount++;
             }
         }
 
-        // Quét link trực tiếp định dạng video trong toàn trang
+        // TẦNG 5: Quét thô toàn bộ file mp4/m3u8 trong HTML (Dự phòng)
         if (episodes.length === 0) {
-            var rawUrlsMatches = html.match(/(https?:\/\/[^\s"'<>]+\.(?:mp4|m3u8)[^\s"'<>]*)/gi);
+            var rawUrlsMatches = html.match(/(https?:\/\/[^\s"'<>\[\]]+\.(?:mp4|m3u8)[^\s"'<>\[\]]*)/gi);
             if (rawUrlsMatches) {
-                var uniqueUrls = [];
-                var count = 1;
                 for (var i = 0; i < rawUrlsMatches.length; i++) {
-                    var clean = rawUrlsMatches[i].replace(/\\/g, "").replace(/&amp;/g, "&");
-                    try { clean = decodeURIComponent(clean); } catch(e) {}
-                    if (uniqueUrls.indexOf(clean) === -1) {
-                        uniqueUrls.push(clean);
-                        episodes.push({
-                            id: clean,
-                            name: "Server " + count,
-                            slug: "srv" + count
-                        });
-                        count++;
-                    }
+                    addVideo(rawUrlsMatches[i], "Dự phòng " + (i+1), "raw" + i);
                 }
             }
         }
 
-        // Bắt iframe nhúng dự phòng nếu trang không trả link trực tiếp
+        // TẦNG 6: Bắt Iframe Nhúng
         if (episodes.length === 0) {
-            var iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/i);
-            if (iframeMatch) {
-                var iframeUrl = iframeMatch[1];
-                if (iframeUrl.indexOf("http") !== 0 && iframeUrl.indexOf("//") === 0) {
-                    iframeUrl = "https:" + iframeUrl;
-                } else if (iframeUrl.indexOf("http") !== 0) {
-                    iframeUrl = BASEURL + iframeUrl;
+            var iframeRegex = /<iframe[^>]+src=["']([^"']+)["']/gi;
+            var ifM;
+            var ifCount = 1;
+            while ((ifM = iframeRegex.exec(html)) !== null) {
+                var ifUrl = ifM[1];
+                // Loại trừ iframe rác/quảng cáo
+                if (ifUrl.indexOf('ads') === -1 && ifUrl.indexOf('banner') === -1) {
+                    addVideo(ifUrl, "Trình phát Nhúng (Embed) " + ifCount, "embed" + ifCount);
+                    ifCount++;
                 }
-                episodes.push({
-                    id: iframeUrl,
-                    name: "Trình phát Nhúng (Embed)",
-                    slug: "embed"
-                });
             }
         }
 
@@ -412,7 +409,8 @@ function parseDetailResponse(html, url) {
 
         streamUrl = streamUrl.trim();
         var isHls = streamUrl.indexOf(".m3u8") !== -1;
-        var isEmbedUrl = streamUrl.indexOf("embed") !== -1 || (streamUrl.indexOf(".mp4") === -1 && streamUrl.indexOf(".m3u8") === -1);
+        // Kiểm tra chính xác xem link có phải embed iframe hay không
+        var isEmbedUrl = streamUrl.indexOf(".mp4") === -1 && streamUrl.indexOf(".m3u8") === -1;
 
 		return JSON.stringify({
 			"url": streamUrl,
