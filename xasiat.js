@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -143,6 +143,9 @@ function getUrlYears() { return ""; }
 // =============================================================================
 function parseListResponse(html, $url) {
 	try {
+        if (!html || typeof html !== 'string') {
+            return JSON.stringify({ "items": [], "pagination": { "currentPage": 1, "totalPages": 1 } });
+        }
 		var items = [];
         var parts = html.split('class="item');
         for (var i = 1; i < parts.length; i++) {
@@ -211,7 +214,7 @@ function parseListResponse(html, $url) {
 		});
 		
 	} catch (e) {
-		log(e);
+		log("parseListResponse error: " + e);
 		return JSON.stringify({
 			"items": [],
 			"pagination": { "currentPage": 1, "totalPages": 1 }
@@ -224,9 +227,12 @@ function parseSearchResponse(html, $url) {
 }
 
 function parseMovieDetail(html, url) {
-    var cachedMovieDetailId = "";
+    var cachedMovieDetailId = url || "";
 	try {
-		var id = "";
+        if (!html || typeof html !== 'string') {
+            html = "";
+        }
+		var id = url || "";
 		var lname = "Đang cập nhật...";
 		var limg = "";
 		var ldes = "Không có mô tả.";
@@ -240,12 +246,18 @@ function parseMovieDetail(html, url) {
 
 		var idMatch = /<link\s+rel="canonical"\s+href="([^"]+)"/i.exec(html) ||
 			          /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
-		id = idMatch ? idMatch[1] : (url || "");
+		if (idMatch && idMatch[1]) {
+            id = idMatch[1];
+        }
 		cachedMovieDetailId = id;
 
         var getMeta = function(prop) {
-            var m = html.match(new RegExp('<meta\\s+(?:property|name)="' + prop + '"\\s+content="([^"]+)"', 'i'));
-            return m ? m[1] : "";
+            try {
+                var m = html.match(new RegExp('<meta\\s+(?:property|name)="' + prop + '"\\s+content="([^"]+)"', 'i'));
+                return m ? m[1] : "";
+            } catch (err) {
+                return "";
+            }
         };
         lname = getMeta('og:title') || getMeta('twitter:title') || lname;
         limg = getMeta('og:image') || getMeta('twitter:image') || "";
@@ -255,10 +267,9 @@ function parseMovieDetail(html, url) {
 
         function addVideo(vidUrl, vidName, vidSlug) {
             if (!vidUrl) return;
-            var cleanUrl = vidUrl.replace(/\\/g, "").replace(/&amp;/g, "&");
+            var cleanUrl = String(vidUrl).replace(/\\/g, "").replace(/&amp;/g, "&");
             if (cleanUrl.indexOf("javascript") === 0) return;
             
-            // Lọc bỏ ảnh, file phụ và ĐẶC BIỆT LỌC BỎ các file trailer ngắn (thường có từ khóa preview, sample, trailer trong link)
             if (cleanUrl.match(/\.(jpg|jpeg|png|gif|webp|css|js|vtt|srt)($|\?)/i)) return;
             if (cleanUrl.indexOf("preview") !== -1 || cleanUrl.indexOf("sample") !== -1 || cleanUrl.indexOf("trailer") !== -1) return;
             
@@ -278,25 +289,29 @@ function parseMovieDetail(html, url) {
 
         var decodedHtml = html.replace(/\\"/g, '"').replace(/\\\//g, '/');
 
-        // Trích xuất cấu hình KVS Player chính xác từ biến flashvars (Nguồn phim chính thức)
         var fvMatch = decodedHtml.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
         if (fvMatch && fvMatch[1]) {
             var fBody = fvMatch[1];
             var getField = function(name) {
-                var m = fBody.match(new RegExp(name + "\\s*:\\s*'([^']+)'")) || fBody.match(new RegExp(name + "\\s*:\\s*\"([^\"]+)\""));
-                return m ? m[1] : null;
+                try {
+                    var m = fBody.match(new RegExp(name + "\\s*:\\s*'([^']+)'")) || fBody.match(new RegExp(name + "\\s*:\\s*\"([^\"]+)\""));
+                    return m ? m[1] : null;
+                } catch (err) {
+                    return null;
+                }
             };
 
-            if (lname === "Đang cập nhật...") lname = getField('video_title') || lname;
+            var vTitle = getField('video_title');
+            if (vTitle && lname === "Đang cập nhật...") {
+                lname = vTitle;
+            }
             
-            // Lấy link các chất lượng phim thật
             addVideo(getField('video_alt_url3'), "Chất lượng 4K / FHD", "hd4k");
             addVideo(getField('video_alt_url2'), "Chất lượng 1080p", "hd1080");
             addVideo(getField('video_alt_url'), "Chất lượng 720p (HD)", "hd720");
             addVideo(getField('video_url'), "Chất lượng SD", "sd");
         }
 
-        // Quét các thẻ source hoặc liên kết video chuẩn khác không dính đuôi preview
         var srcRegex = /<source[^>]+src=["']([^"']+)["']/gi;
         var srcM;
         while ((srcM = srcRegex.exec(decodedHtml)) !== null) {
@@ -305,14 +320,12 @@ function parseMovieDetail(html, url) {
             addVideo(srcM[1], "Nguồn " + qLabel, "src");
         }
 
-        // Nếu hệ thống không bóc được link chính do mã hoá động, kích hoạt WebView chính hãng để xem trọn vẹn không bị cắt ngắn
-        if (episodes.length === 0) {
-            episodes.push({
-                id: cachedMovieDetailId,
-                name: "Xem Trực Tiếp Qua Web (Khuyên dùng)",
-                slug: "webview"
-            });
-        }
+        // Luôn cung cấp tùy chọn WebView dự phòng an toàn
+        episodes.push({
+            id: cachedMovieDetailId || url || BASEURL,
+            name: "Xem Trực Tiếp Qua Web (Khuyên dùng)",
+            slug: "webview"
+        });
 
 		if (episodes.length > 0) {
 			servers.push({
@@ -322,7 +335,7 @@ function parseMovieDetail(html, url) {
 		}
 
 		return JSON.stringify({
-			id: id,
+			id: cachedMovieDetailId || url || "",
 			title: lname,
 			posterUrl: limg,
 			backdropUrl: limg,
@@ -341,11 +354,18 @@ function parseMovieDetail(html, url) {
 		});
 		
 	} catch (e) {
-		log(e);
+		log("parseMovieDetail fatal error: " + e);
 		return JSON.stringify({
 			id: cachedMovieDetailId || url || "error",
-			title: "Lỗi xử lý phim",
-			servers: []
+			title: "Xem Trực Tiếp Qua Web",
+			servers: [{
+				name: "Phát trực tiếp",
+				episodes: [{
+					id: cachedMovieDetailId || url || BASEURL,
+					name: "Xem Trực Tiếp Qua Web (Khuyên dùng)",
+					slug: "webview"
+				}]
+			}]
 		});
 	}
 }
@@ -357,7 +377,7 @@ function parseDetailResponse(html, url) {
 			streamUrl = html;
 		}
 
-        streamUrl = streamUrl.trim();
+        streamUrl = String(streamUrl).trim();
         var isHls = streamUrl.indexOf(".m3u8") !== -1;
         var isEmbedUrl = streamUrl.indexOf(".mp4") === -1 && streamUrl.indexOf(".m3u8") === -1;
 
