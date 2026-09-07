@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -374,7 +374,7 @@ function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
 
 function getLISTmenu() {
-    return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"}]`;
+    return '[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"}]';
 }
 
 function buildMenu(menuArray, type) {
@@ -394,6 +394,10 @@ function buildMenu(menuArray, type) {
     return menulist;
 }
 
+function _$û(htmlOrBlock) {
+    return _$(htmlOrBlock);
+}
+
 function _$(htmlOrBlock) {
     if (htmlOrBlock && typeof htmlOrBlock === 'object' && htmlOrBlock.elements) {
         return htmlOrBlock;
@@ -404,10 +408,11 @@ function _$(htmlOrBlock) {
         find: function(selector) {
             if (selector.indexOf(',') !== -1) {
                 var results = [];
-                var selectors = selector.split(',').map(function(s) { return s.trim(); });
+                var selectors = selector.split(',');
                 for (var s = 0; s < selectors.length; s++) {
-                    if (selectors[s] === "") continue;
-                    var subInstance = this.find(selectors[s]);
+                    var cleanSel = selectors[s].trim();
+                    if (cleanSel === "") continue;
+                    var subInstance = this.find(cleanSel);
                     for (var r = 0; r < subInstance.elements.length; r++) {
                         var element = subInstance.elements[r];
                         if (results.indexOf(element) === -1) {
@@ -468,7 +473,11 @@ function _$(htmlOrBlock) {
                 if (possibleTag) {
                     targetTagName = possibleTag.toLowerCase();
                 }
-                targetClasses = classParts.filter(function(c) { return c.length > 0; });
+                for (var cp = 0; cp < classParts.length; cp++) {
+                    if (classParts[cp].length > 0) {
+                        targetClasses.push(classParts[cp]);
+                    }
+                }
             }
             for (var i = 0; i < this.elements.length; i++) {
                 var currentHtml = this.elements[i];
@@ -649,10 +658,18 @@ function _$(htmlOrBlock) {
             if (start > 0 && end > start) {
                 var content = elem.substring(start, end);
                 var pureText = content.replace(/<\/?[^>]+(>|$)/g, "\n");
-                if (typeof separator === 'string') {
-                    return pureText.split('\n').map(function(item) { return item.trim(); }).filter(function(item) { return item !== ''; }).join(separator);
+                var lines = pureText.split('\n');
+                var filtered = [];
+                for (var l = 0; l < lines.length; l++) {
+                    var trimmed = lines[l].trim();
+                    if (trimmed !== '') {
+                        filtered.push(trimmed);
+                    }
                 }
-                return pureText.split('\n').map(function(item) { return item.trim(); }).filter(function(item) { return item !== ''; }).join(' ');
+                if (typeof separator === 'string') {
+                    return filtered.join(separator);
+                }
+                return filtered.join(' ');
             }
             return "";
         }
