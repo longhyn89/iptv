@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -303,23 +303,27 @@ function parseMovieDetail(html, url) {
 	}
 }
 
-// CẬP NHẬT: Xử lý bóc tách link CDN (Sửa đổi 2)
+// CẬP NHẬT: Xử lý bóc tách link CDN linh hoạt (có fallback an toàn)
 function parseDetailResponse(html, url) {
 	try {
 		var targetUrl = url || "";
 		
-		// Nếu response trả về nội dung có chứa link CDN thực tế (dạng xascdn.li), ưu tiên lấy luôn link đó
 		if (html && typeof html === 'string') {
-			var matchCDN = html.match(/(https:\/\/[^"'\s]+\.xascdn\.li[^"'\s]+)/);
+			var matchCDN = html.match(/(https:\/\/[^"'\s]+\.(?:xascdn\.li|mp4|m3u8)[^"'\s]*)/i) ||
+			               html.match(/https?:\/\/[^"'\s]+\b(stream|video|cdn)[^"'\s]+/i);
 			if (matchCDN) {
-				targetUrl = matchCDN[1];
+				targetUrl = matchCDN[1] || matchCDN[0];
 			}
+		}
+
+		if (!targetUrl && url) {
+			targetUrl = url;
 		}
 
 		return JSON.stringify({
 			"url": targetUrl,
 			"isEmbed": false,
-			"mimeType": "video/mp4",
+			"mimeType": targetUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
 			"headers": {
 				"Referer": BASEURL,
 				"Origin": BASEURL,
