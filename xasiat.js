@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -48,6 +48,10 @@ function getFilterConfig() {
         category: menulist
     });
 }
+
+// =============================================================================
+// URL GENERATION
+// =============================================================================
 
 function getUrlList(slug, filtersJson) {
     try {
@@ -134,7 +138,10 @@ function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
-// Đảm bảo giữ nguyên hàm quét danh sách chuẩn từ sửa đổi 1
+// =============================================================================
+// PARSERS
+// =============================================================================
+
 function parseListResponse(html, $url) {
 	try {
 		var items = [];
@@ -304,6 +311,20 @@ function parseDetailResponse(html, url) {
 	try {
 		var targetUrl = url || "";
 		
+		if (targetUrl.match(/\.(mp4|m3u8|ts|live)(\?.*)?$/i)) {
+			return JSON.stringify({
+				"url": targetUrl,
+				"isEmbed": false,
+				"mimeType": targetUrl.indexOf(".m3u8") !== -1 ? "application/x-mpegURL" : "video/mp4",
+				"headers": {
+					"Referer": BASEURL,
+					"Origin": BASEURL,
+					"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+				},
+				"subtitles": []
+			});
+		}
+
 		if (html && typeof html === 'string') {
 			var matchCDN = html.match(/(https:\/\/[^"'\s]+\.(?:xascdn\.li|mp4|m3u8)[^"'\s]*)/i) ||
 			               html.match(/https?:\/\/[^"'\s]+\b(stream|video|cdn)[^"'\s]+/i);
