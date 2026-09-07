@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -157,10 +157,12 @@ function parseListResponse(html, $url) {
             var durMatch = itemHtml.match(/class="[^"]*duration[^"]*"[^>]*>([^<]+)</i);
             var current = durMatch ? durMatch[1].trim() : "";
             
-            var qualMatch = itemHtml.match(/class="[^"]*is-[^"]*"[^>]*>([^<]+)</i);
-            var quality = qualMatch ? qualMatch[1].trim() : "";
+            // Cải tiến lọc chất lượng để bắt chính xác các nhãn HD, 4K, 1080p...
+            var qualMatch = itemHtml.match(/class="[^"]*(?:is-|quality)[^"]*"[^>]*>([^<]+)</i) ||
+                            itemHtml.match(/<span[^>]*>([4K|HD|FHD|SD|1080p|720p]+)<\/span>/i);
+            var quality = qualMatch ? qualMatch[1].trim() : "HD";
+            if (quality.length > 10) quality = "HD";
             
-            // Ưu tiên quét các thuộc tính ảnh thật thay vì src placeholder
             var imgMatch = itemHtml.match(/data-original="([^"]+)"/i) || 
                            itemHtml.match(/data-src="([^"]+)"/i) || 
                            itemHtml.match(/data-lazy-src="([^"]+)"/i) || 
@@ -225,7 +227,7 @@ function parseMovieDetail(html, url) {
 		var ldes = "Không có mô tả.";
 		var category = "";
 		var episode_current = "";
-		var quality = "";
+		var quality = "HD";
 		var year = 2026;
 		var rating = 0;
 		var servers = [];
@@ -250,6 +252,7 @@ function parseMovieDetail(html, url) {
 
 		var episodes = [];
 
+        // Quét sâu cấu hình flashvars chứa link video gốc
 		var fvMatch = html.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
 		var flashvarsBody = fvMatch ? fvMatch[1] : "";
 
@@ -285,10 +288,11 @@ function parseMovieDetail(html, url) {
 
 			addEp('video_alt_url3', 'video_alt_url3_text', '4K / FHD', 'hd4k');
 			addEp('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
-			addEp('video_alt_url', 'video_alt_url_text', 'Chất lượng cao (HD)', 'hd720');
+			addEp('video_alt_url', 'video_alt_url_text', 'HD', 'hd720');
 			addEp('video_url', 'video_url_text', 'SD', 'sd');
 		}
 
+        // Quét thêm các nguồn file trực tiếp trong thẻ source của video tag
         if (episodes.length === 0) {
             var srcRegex = /<source[^>]+src="([^"]+)"/gi;
             var srcM;
@@ -312,6 +316,7 @@ function parseMovieDetail(html, url) {
             }
         }
 
+        // Quét link trực tiếp định dạng video trong toàn trang
         if (episodes.length === 0) {
             var rawUrlsMatches = html.match(/(https?:\/\/[^\s"'<>]+\.(?:mp4|m3u8)[^\s"'<>]*)/gi);
             if (rawUrlsMatches) {
@@ -333,7 +338,7 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        // Fallback bổ sung: quét iframe embed nếu không tìm thấy link trực tiếp
+        // Bắt iframe nhúng dự phòng nếu trang không trả link trực tiếp
         if (episodes.length === 0) {
             var iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/i);
             if (iframeMatch) {
