@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -263,6 +263,20 @@ function parseMovieDetail(html, url) {
         limg = getMeta('og:image') || getMeta('twitter:image') || "";
         ldes = getMeta('og:description') || getMeta('twitter:description') || ldes;
 
+        // Trích xuất chất lượng chính xác ở trang chi tiết
+        var qMatch = html.match(/class="[^"]*(?:quality|badge|label|hd)[^"]*"[^>]*>(?:[^<]*\s*)(4K|FHD|1080p|1080|720p|720|HD|SD)/i) || html.match(/\b(4K|1080p|720p|FHD|HD|SD)\b/i);
+        if (qMatch) {
+            quality = (qMatch[1] || qMatch[0]).trim().toUpperCase();
+            if (quality === '1080') quality = '1080p';
+            if (quality === '720') quality = '720p';
+        }
+
+        // Trích xuất năm phát hành chính xác từ metadata hoặc nội dung trang
+        var timeMatch = html.match(/<meta\s+property="article:published_time"\s+content="(\d{4})/i) || html.match(/\b(20\d{2})\b/);
+        if (timeMatch && timeMatch[1]) {
+            year = parseInt(timeMatch[1], 10);
+        }
+
 		var episodes = [];
 
         function addVideo(vidUrl, vidName, vidSlug) {
@@ -289,13 +303,14 @@ function parseMovieDetail(html, url) {
 
         var decodedHtml = html.replace(/\\"/g, '"').replace(/\\\//g, '/');
 
+        // Quét cấu hình KVS Player từ flashvars để lấy link trực tiếp cho ExoPlayer
         var fvMatch = decodedHtml.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
         if (fvMatch && fvMatch[1]) {
             var fBody = fvMatch[1];
             var getField = function(name) {
                 try {
-                    var m = fBody.match(new RegExp(name + "\\s*:\\s*'([^']+)'")) || fBody.match(new RegExp(name + "\\s*:\\s*\"([^\"]+)\""));
-                    return m ? m[1] : null;
+                    var m = fBody.match(new RegExp(name + "\\s*:\\s*'([^']+)'")) || fBody.match(new RegExp(name + "\\s*:\\s*\"([^\"]+)\"")) || fBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
+                    return m ? m[1].replace(/['"]/g, '') : null;
                 } catch (err) {
                     return null;
                 }
@@ -312,6 +327,7 @@ function parseMovieDetail(html, url) {
             addVideo(getField('video_url'), "Chất lượng SD", "sd");
         }
 
+        // Quét các nguồn thẻ source hoặc link trực tiếp mp4/m3u8 bổ sung
         var srcRegex = /<source[^>]+src=["']([^"']+)["']/gi;
         var srcM;
         while ((srcM = srcRegex.exec(decodedHtml)) !== null) {
@@ -320,12 +336,21 @@ function parseMovieDetail(html, url) {
             addVideo(srcM[1], "Nguồn " + qLabel, "src");
         }
 
-        // Luôn cung cấp tùy chọn WebView dự phòng an toàn
-        episodes.push({
-            id: cachedMovieDetailId || url || BASEURL,
-            name: "Xem Trực Tiếp Qua Web (Khuyên dùng)",
-            slug: "webview"
-        });
+        var rawMatches = decodedHtml.match(/(https?:\/\/[^\s"'<>\[\]]+\.(?:mp4|m3u8)[^\s"'<>\[\]]*)/gi);
+        if (rawMatches) {
+            for (var i = 0; i < rawMatches.length; i++) {
+                addVideo(rawMatches[i], "Server Trực Tiếp " + (i + 1), "raw");
+            }
+        }
+
+        // Chỉ thêm WebView nếu hoàn toàn không tìm thấy link trực tiếp nào cho ExoPlayer
+        if (episodes.length === 0) {
+            episodes.push({
+                id: cachedMovieDetailId || url || BASEURL,
+                name: "Xem Trực Tiếp Qua Web (Dự phòng)",
+                slug: "webview"
+            });
+        }
 
 		if (episodes.length > 0) {
 			servers.push({
@@ -362,7 +387,7 @@ function parseMovieDetail(html, url) {
 				name: "Phát trực tiếp",
 				episodes: [{
 					id: cachedMovieDetailId || url || BASEURL,
-					name: "Xem Trực Tiếp Qua Web (Khuyên dùng)",
+					name: "Xem Trực Tiếp Qua Web (Dự phòng)",
 					slug: "webview"
 				}]
 			}]
