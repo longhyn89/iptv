@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -263,7 +263,7 @@ function parseMovieDetail(html, url) {
         limg = getMeta('og:image') || getMeta('twitter:image') || "";
         ldes = getMeta('og:description') || getMeta('twitter:description') || ldes;
 
-        // Trích xuất chất lượng chính xác ở trang chi tiết
+        // Trích xuất chất lượng chính xác
         var qMatch = html.match(/class="[^"]*(?:quality|badge|label|hd)[^"]*"[^>]*>(?:[^<]*\s*)(4K|FHD|1080p|1080|720p|720|HD|SD)/i) || html.match(/\b(4K|1080p|720p|FHD|HD|SD)\b/i);
         if (qMatch) {
             quality = (qMatch[1] || qMatch[0]).trim().toUpperCase();
@@ -271,7 +271,7 @@ function parseMovieDetail(html, url) {
             if (quality === '720') quality = '720p';
         }
 
-        // Trích xuất năm phát hành chính xác từ metadata hoặc nội dung trang
+        // Trích xuất năm phát hành chuẩn xác (không bị lệch cứng năm)
         var timeMatch = html.match(/<meta\s+property="article:published_time"\s+content="(\d{4})/i) || html.match(/\b(20\d{2})\b/);
         if (timeMatch && timeMatch[1]) {
             year = parseInt(timeMatch[1], 10);
@@ -303,7 +303,7 @@ function parseMovieDetail(html, url) {
 
         var decodedHtml = html.replace(/\\"/g, '"').replace(/\\\//g, '/');
 
-        // Quét cấu hình KVS Player từ flashvars để lấy link trực tiếp cho ExoPlayer
+        // Bóc tách luồng KVS Player chính xác để phát thẳng qua ExoPlayer
         var fvMatch = decodedHtml.match(/flashvars\s*=\s*\{([\s\S]*?)\}/i);
         if (fvMatch && fvMatch[1]) {
             var fBody = fvMatch[1];
@@ -327,7 +327,6 @@ function parseMovieDetail(html, url) {
             addVideo(getField('video_url'), "Chất lượng SD", "sd");
         }
 
-        // Quét các nguồn thẻ source hoặc link trực tiếp mp4/m3u8 bổ sung
         var srcRegex = /<source[^>]+src=["']([^"']+)["']/gi;
         var srcM;
         while ((srcM = srcRegex.exec(decodedHtml)) !== null) {
@@ -336,20 +335,12 @@ function parseMovieDetail(html, url) {
             addVideo(srcM[1], "Nguồn " + qLabel, "src");
         }
 
+        // Quét toàn bộ link video thô (mp4, m3u8) phục vụ ExoPlayer
         var rawMatches = decodedHtml.match(/(https?:\/\/[^\s"'<>\[\]]+\.(?:mp4|m3u8)[^\s"'<>\[\]]*)/gi);
         if (rawMatches) {
             for (var i = 0; i < rawMatches.length; i++) {
                 addVideo(rawMatches[i], "Server Trực Tiếp " + (i + 1), "raw");
             }
-        }
-
-        // Chỉ thêm WebView nếu hoàn toàn không tìm thấy link trực tiếp nào cho ExoPlayer
-        if (episodes.length === 0) {
-            episodes.push({
-                id: cachedMovieDetailId || url || BASEURL,
-                name: "Xem Trực Tiếp Qua Web (Dự phòng)",
-                slug: "webview"
-            });
         }
 
 		if (episodes.length > 0) {
@@ -382,15 +373,8 @@ function parseMovieDetail(html, url) {
 		log("parseMovieDetail fatal error: " + e);
 		return JSON.stringify({
 			id: cachedMovieDetailId || url || "error",
-			title: "Xem Trực Tiếp Qua Web",
-			servers: [{
-				name: "Phát trực tiếp",
-				episodes: [{
-					id: cachedMovieDetailId || url || BASEURL,
-					name: "Xem Trực Tiếp Qua Web (Dự phòng)",
-					slug: "webview"
-				}]
-			}]
+			title: "Lỗi xử lý phim",
+			servers: []
 		});
 	}
 }
@@ -404,14 +388,13 @@ function parseDetailResponse(html, url) {
 
         streamUrl = String(streamUrl).trim();
         var isHls = streamUrl.indexOf(".m3u8") !== -1;
-        var isEmbedUrl = streamUrl.indexOf(".mp4") === -1 && streamUrl.indexOf(".m3u8") === -1;
 
 		return JSON.stringify({
 			"url": streamUrl,
-			"isEmbed": isEmbedUrl,
+			"isEmbed": false, // Ép buộc luôn dùng ExoPlayer, tắt hoàn toàn WebView
 			"mimeType": isHls ? "application/x-mpegURL" : "video/mp4",
 			"headers": {
-				"Referer": isEmbedUrl ? streamUrl : BASEURL + "/",
+				"Referer": BASEURL + "/",
                 "Origin": BASEURL,
 				"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 			},
