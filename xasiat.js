@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.3",
+        "version": "1.0.4",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -48,10 +48,6 @@ function getFilterConfig() {
         category: menulist
     });
 }
-
-// =============================================================================
-// URL GENERATION
-// =============================================================================
 
 function getUrlList(slug, filtersJson) {
     try {
@@ -138,9 +134,7 @@ function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
-// =============================================================================
-// PARSERS
-// =============================================================================
+// Đảm bảo giữ nguyên hàm quét danh sách chuẩn từ sửa đổi 1
 function parseListResponse(html, $url) {
 	try {
 		var items = [];
@@ -211,7 +205,6 @@ function parseMovieDetail(html, url) {
 		var limg = "";
 		var ldes = "Không có mô tả.";
 		var category = "";
-		var episode_current = "";
 		var quality = "";
 		var year = 2026;
 		var rating = 0;
@@ -222,61 +215,65 @@ function parseMovieDetail(html, url) {
 		id = idMatch ? idMatch[1] : (url || "");
 		cachedMovieDetailId = id;
 
+		var titleMatch = /<meta\s+property="og:title"\s+content="([^"]+)"/i.exec(html);
+		if (titleMatch) lname = titleMatch[1];
+		
+		var imgMatch = /<meta\s+property="og:image"\s+content="([^"]+)"/i.exec(html);
+		if (imgMatch) limg = imgMatch[1];
+
+		var episodes = [];
+
 		var fvMatch = html.match(/var\s+flashvars\s*=\s*\{([\s\S]*?)\};/);
-		var flashvarsBody = fvMatch ? fvMatch[1] : "";
-
-		var getField = function(name) {
-			if (!flashvarsBody) return "";
-			var m = flashvarsBody.match(new RegExp(name + "\\s*:\\s*'((?:[^'\\\\]|\\\\.)*)'"));
-			if (m) {
-				return m[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
-			}
-			var mNum = flashvarsBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
-			return mNum ? mNum[1] : "";
-		};
-
-		if (flashvarsBody) {
+		if (fvMatch) {
+			var flashvarsBody = fvMatch[1];
+			var getField = function(name) {
+				var m = flashvarsBody.match(new RegExp(name + "\\s*:\\s*'((?:[^'\\\\]|\\\\.)*)'"));
+				if (m) return m[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
+				var mNum = flashvarsBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
+				return mNum ? mNum[1] : "";
+			};
+			
 			lname = getField('video_title') || lname;
-			limg = getField('preview_url') || getField('preview_url3') || getField('preview_url1') || "";
+			limg = getField('preview_url') || limg;
 			ldes = getField('video_tags') || ldes;
 			category = getField('video_categories') || "";
-
-			var episodes = [];
 
 			var addEp = function(urlKey, textKey, defaultName, slug) {
 				var vUrl = getField(urlKey);
 				if (vUrl && vUrl.indexOf("http") !== -1) {
 					var text = getField(textKey) || defaultName;
 					var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
-					episodes.push({
-						id: cleanUrl,
-						name: "Chất lượng " + text,
-						slug: slug
-					});
+					episodes.push({ id: cleanUrl, name: "Chất lượng " + text, slug: slug });
 				}
 			};
-
 			addEp('video_alt_url3', 'video_alt_url3_text', '4K / FHD', 'hd4k');
 			addEp('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
-			addEp('video_alt_url', 'video_alt_url_text', 'Chất lượng cao (HD)', 'hd720');
+			addEp('video_alt_url', 'video_alt_url_text', 'HD', 'hd720');
 			addEp('video_url', 'video_url_text', 'SD', 'sd');
+		}
 
-			if (episodes.length > 0) {
-				servers.push({
-					name: "Phát trực tiếp",
-					episodes: episodes
-				});
+		if (episodes.length === 0 && html) {
+			var matchSources = html.match(/(https:\/\/[^"'\s]+\.(?:mp4|m3u8|xascdn\.li)[^"'\s]*)/gi);
+			if (matchSources) {
+				var uniqueLinks = [];
+				for (var i = 0; i < matchSources.length; i++) {
+					var link = matchSources[i].replace(/&amp;/g, '&');
+					if (uniqueLinks.indexOf(link) === -1) {
+						uniqueLinks.push(link);
+						episodes.push({
+							id: link,
+							name: "Nguồn phát " + (uniqueLinks.length),
+							slug: "src_" + i
+						});
+					}
+				}
 			}
 		}
 
-		if (servers.length === 0) {
-			return JSON.stringify({
-				id: cachedMovieDetailId || url || "error",
-				title: "Video không khả dụng",
-				description: "Video riêng tư hoặc không tìm thấy nguồn phát.",
-				posterUrl: limg || "",
-				backdropUrl: limg || "",
-				servers: []
+		if (episodes.length > 0) {
+			servers.push({
+				name: "Phát trực tiếp",
+				episodes: episodes
 			});
 		}
 
@@ -294,7 +291,7 @@ function parseMovieDetail(html, url) {
 		});
 		
 	} catch (e) {
-		log(e);
+		log("ParseMovieDetail Error: " + e);
 		return JSON.stringify({
 			id: cachedMovieDetailId || url || "error",
 			title: "error",
@@ -303,7 +300,6 @@ function parseMovieDetail(html, url) {
 	}
 }
 
-// CẬP NHẬT: Xử lý bóc tách link CDN linh hoạt (có fallback an toàn)
 function parseDetailResponse(html, url) {
 	try {
 		var targetUrl = url || "";
@@ -337,17 +333,9 @@ function parseDetailResponse(html, url) {
 	}
 }
 
-function parseEpisodePlayer(response, fetchedUrl) {
-    return parseDetailResponse(response, fetchedUrl);
-}
-
-function parsePlayerUrl(response) {
-    return parseDetailResponse(response, "");
-}
-
-function parseEmbedPlayer(html, url) {
-    return parseDetailResponse(html, url);
-}
+function parseEpisodePlayer(response, fetchedUrl) { return parseDetailResponse(response, fetchedUrl); }
+function parsePlayerUrl(response) { return parseDetailResponse(response, ""); }
+function parseEmbedPlayer(html, url) { return parseDetailResponse(html, url); }
 
 function sortEpisodesByName(data) {
     data.forEach(server => {
