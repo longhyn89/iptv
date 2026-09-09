@@ -33,7 +33,7 @@
         {
             "id": "hdvnn",
             "name": "HD VNN (EXO)",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/hdvnn.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hdvnn.png"
         },
