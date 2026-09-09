@@ -97,8 +97,8 @@ function getManifest() {
   return JSON.stringify({
     "id": "clbpxVIP",
     "name": "CLB Phim Xưa VIP",
-    "version": "1.3.1",
-    "info": "Bản sửa lỗi không load được dữ liệu",
+    "version": "1.3.3",
+    "info": "Fix lỗi không load danh sách phim (Lazyload)",
     "BASEURL": "https://clbphimxua.com",
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png",
     "headers": {
@@ -188,38 +188,92 @@ function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
+// =============== HÀM BÓC TÁCH DANH SÁCH (ĐÃ VIẾT LẠI HOÀN TOÀN) ===============
 function parseListResponse(htmlResponse, url) {
-  console.log("list\n" + url);
-
+  console.log("Loading List Data From:\n" + url);
   var items = [];
-  // Tối ưu Regex: Bỏ bớt điều kiện khắt khe để dễ dàng match thẻ hơn (tránh trắng trang)
-  var regex = /<article[^>]*>[\s\S]*?<a[^>]+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"[^>]*alt="([^"]*)"/gi;
-  var match;
 
-  while ((match = regex.exec(htmlResponse)) !== null) {
-    var link = match[1] || "";
-    var thumb = match[2] || "";
-    var title = match[3] || "";
-
-    title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").trim();
-
-    var slugMatch = link.match(/clbphimxua\.com\/([^\/]+)\/?/);
-    var slug = slugMatch ? slugMatch[1] : link;
-    var year = 0;
-    var yearMatch = title.match(/(19\d{2}|20\d{2})/);
-    if (yearMatch) {
-      year = parseInt(yearMatch[1], 10);
-    }
-
-    items.push({
-      id: slug,
-      title: title || "Không có tên",
-      posterUrl: thumb,
-      backdropUrl: thumb,
-      year: year
-    });
+  // Lọc bớt header/footer để tránh lấy nhầm link rác
+  var contentArea = htmlResponse;
+  var mainMatch = htmlResponse.match(/(<main[\s\S]*?<\/main>|<div[^>]*id="primary"[^>]*>[\s\S]*?<\/div>\s*<footer)/i);
+  if (mainMatch) {
+    contentArea = mainMatch[0];
   }
 
+  // Lấy tất cả các khối <article> (Chuẩn WordPress)
+  var blockRegex = /<article[^>]*>([\s\S]*?)<\/article>/gi;
+  var blocks = [];
+  var match;
+  while ((match = blockRegex.exec(contentArea)) !== null) {
+    blocks.push(match[1]);
+  }
+
+  // Nếu bóc theo khối thành công
+  if (blocks.length > 0) {
+    for (var i = 0; i < blocks.length; i++) {
+      var block = blocks[i];
+      var linkMatch = block.match(/<a[^>]+href="([^"]+)"/i);
+      
+      // Hỗ trợ lazy load: data-src, data-lazy-src
+      var imgMatch = block.match(/<img[^>]+(?:data-lazy-src|data-src|src)="([^"]+)"/i);
+      var titleMatch = block.match(/<img[^>]+alt="([^"]+)"/i) || block.match(/title="([^"]+)"/i) || block.match(/<h[2-4][^>]*>([\s\S]*?)<\/h[2-4]>/i);
+
+      if (linkMatch && imgMatch) {
+        var link = linkMatch[1];
+        var thumb = imgMatch[1];
+        
+        // Nếu bắt trúng ảnh dummy (base64) thì rà lại tìm data-src
+        if (thumb.indexOf("data:image") === 0 || thumb.indexOf("blank.gif") !== -1) {
+          var realImgMatch = block.match(/data-src="([^"]+)"/i) || block.match(/data-lazy-src="([^"]+)"/i);
+          if (realImgMatch) thumb = realImgMatch[1];
+        }
+
+        var title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : "Không có tên";
+        title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").trim();
+
+        var slugMatch = link.match(/clbphimxua\.com\/([^\/]+)\/?/);
+        var slug = slugMatch ? slugMatch[1] : link;
+
+        var year = 0;
+        var yearMatch = title.match(/(19\d{2}|20\d{2})/);
+        if (yearMatch) year = parseInt(yearMatch[1], 10);
+
+        items.push({
+          id: slug,
+          title: title,
+          posterUrl: thumb,
+          backdropUrl: thumb,
+          year: year
+        });
+      }
+    }
+  } else {
+    // Phương án dự phòng (Fallback): Quét tự do tìm cặp thẻ <a href...> bọc <img src...>
+    var fallbackRegex = /<a[^>]+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]+(?:data-lazy-src|data-src|src)="([^"]+)"/gi;
+    var fbMatch;
+    while ((fbMatch = fallbackRegex.exec(contentArea)) !== null) {
+      var fbLink = fbMatch[1];
+      var fbThumb = fbMatch[2];
+      
+      // Bỏ qua các link chuyên mục hoặc tag
+      if (fbLink.indexOf('/category/') !== -1 || fbLink.indexOf('/tag/') !== -1 || fbLink.indexOf('/author/') !== -1) continue;
+      // Bỏ qua ảnh rác base64
+      if (fbThumb.indexOf("data:image") === 0) continue;
+
+      var fbSlugMatch = fbLink.match(/clbphimxua\.com\/([^\/]+)\/?/);
+      var fbSlug = fbSlugMatch ? fbSlugMatch[1] : fbLink;
+
+      items.push({
+        id: fbSlug,
+        title: "Phim " + fbSlug, // Không bắt được title thì gán tạm bằng ID
+        posterUrl: fbThumb,
+        backdropUrl: fbThumb,
+        year: 0
+      });
+    }
+  }
+
+  // --- Bóc tách số trang (Pagination) ---
   var totalPages = 1;
   var currentPage = 1;
   var pageRegex = /<a class="page-numbers".*?>(\d+)<\/a>/gi;
@@ -245,7 +299,7 @@ function parseListResponse(htmlResponse, url) {
 }
 
 function parseSearchResponse(htmlResponse) {
-  return parseListResponse(htmlResponse);
+  return parseListResponse(htmlResponse, "Search");
 }
 
 function extractVideoId(url) {
@@ -269,16 +323,13 @@ function BASE64ENCODE(str) {
         utf8Bytes.push((code >> 12) | 224, ((code >> 6) & 63) | 128, (code & 63) | 128);
       }
     }
-
     var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var encoded = "";
     var byte1, byte2, byte3, b1, b2, b3, b4;
-
     for (var j = 0; j < utf8Bytes.length; j += 3) {
       byte1 = utf8Bytes[j];
       byte2 = j + 1 < utf8Bytes.length ? utf8Bytes[j + 1] : NaN;
       byte3 = j + 2 < utf8Bytes.length ? utf8Bytes[j + 2] : NaN;
-
       b1 = byte1 >> 2;
       b2 = ((byte1 & 3) << 4) | (isNaN(byte2) ? 0 : byte2 >> 4);
       b3 = isNaN(byte2) ? 64 : ((byte2 & 15) << 2) | (isNaN(byte3) ? 0 : byte3 >> 6);
@@ -362,7 +413,6 @@ function parseMovieDetail(htmlResponse) {
       for (var si = 0; si < boldSections.length; si++) {
         var section = boldSections[si];
         var serverName = "";
-
         for (var pi = 0; pi < serverPatterns.length; pi++) {
           serverPatterns[pi].pattern.lastIndex = 0;
           if (serverPatterns[pi].pattern.test(section)) {
@@ -370,7 +420,6 @@ function parseMovieDetail(htmlResponse) {
             break;
           }
         }
-
         if (!serverName) {
           var headerMatch = section.match(/^\s*\(([^)]+)\)/);
           if (headerMatch) serverName = headerMatch[1].trim();
@@ -393,7 +442,6 @@ function parseMovieDetail(htmlResponse) {
           var videoId = vMatch ? vMatch[1] : "";
           if (videoId) saveEp.push(videoId);
           
-          // Đã fix lỗi khai báo biến thừa và thiếu dấu chấm phẩy ở đây
           sectionEpisodes.push({
             id: epUrl,
             name: epLabel,
@@ -427,7 +475,6 @@ function parseMovieDetail(htmlResponse) {
         var videoId = vMatch ? vMatch[1] : "";
         if (videoId) fallbackSaveEp.push(videoId);
 
-        // Đã fix lỗi khai báo biến thừa và thiếu dấu chấm phẩy ở đây
         episodes.push({
           id: epUrl,
           name: epLabel,
@@ -466,11 +513,9 @@ function parseMovieDetail(htmlResponse) {
 
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
   try {
-    console.log("Detailt:\n" + fallbackUrl);
     var vMatch = fallbackUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
     var videoId = vMatch ? vMatch[1] : "";
     var stream = "https://abysscdn.com/?v=" + videoId;
-    console.log("Stream:\n" + stream);
     return JSON.stringify({
       url: stream,
       mimeType: "video/mp4",
@@ -479,7 +524,6 @@ function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
       }
     });
   } catch (error) {
-    console.log("Lỗi parseDetail\n" + error);
     return JSON.stringify({
       url: "https://vaxplugin.alokillgtv.workers.dev/blankvd.mp4",
       mimeType: "video/mp4",
