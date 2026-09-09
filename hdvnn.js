@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.3",
+        "version": "1.0.4",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -101,10 +101,7 @@ function getPrimaryCategories() {
         var menu = getLISTmenu();
         var result = [];
         for (var i = 0; i < menu.length; i++) {
-            result.push({
-                "name": menu[i].name,
-                "slug": menu[i].link
-            });
+            result.push({ "name": menu[i].name, "slug": menu[i].link });
         }
         return JSON.stringify(result);
     } catch(e) {
@@ -117,14 +114,9 @@ function getFilterConfig() {
         var menu = getLISTmenu();
         var result = [];
         for (var i = 0; i < menu.length; i++) {
-            result.push({
-                "name": menu[i].name,
-                "slug": menu[i].link
-            });
+            result.push({ "name": menu[i].name, "slug": menu[i].link });
         }
-        return JSON.stringify({
-            category: result
-        });
+        return JSON.stringify({ category: result });
     } catch(e) {
         return JSON.stringify({ category: [] });
     }
@@ -139,7 +131,6 @@ function parseYearsResponse(html) { return "[]"; }
 function getUrlList(slug, filtersJson) {
     try {
         if (slug && slug.indexOf("http") === 0) return slug;
-
         var page = 1;
         var path = slug || "/the-loai/phim-chieu-rap.html";
 
@@ -178,9 +169,7 @@ function getUrlSearch(keyword, filtersJson) {
         }
         var kw = encodeURIComponent(keyword || "");
         var url = BASEURL + "/tim-kiem/" + kw + ".html";
-        if (page > 1) {
-            url += "?p=" + page;
-        }
+        if (page > 1) url += "?p=" + page;
         return url;
     } catch(e) {
         return BASEURL + "/tim-kiem/" + encodeURIComponent(keyword || "") + ".html";
@@ -188,8 +177,7 @@ function getUrlSearch(keyword, filtersJson) {
 }
 
 function getSearchUrl(keyword, page) {
-    var p = typeof page === 'number' ? page : 1;
-    return getUrlSearch(keyword, JSON.stringify({ page: p }));
+    return getUrlSearch(keyword, JSON.stringify({ page: typeof page === 'number' ? page : 1 }));
 }
 
 function getUrlDetail(id) {
@@ -202,29 +190,40 @@ function getUrlCategories() { return BASEURL; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
-// ===== PARSE LIST RESPONSE =====
+// ===== PARSE LIST RESPONSE (Sửa lỗi phân giải thumbnail) =====
 
 function parseListResponse(html, $url) {
     try {
         if (!html) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1, hasNext: false } });
 
         var items = [];
-        var itemRegex = /<a\s+href="([^"]*thong-tin-phim[^"]*)"[^>]*>([\s\S]*?)<\/a>/gi;
+        // Quét linh hoạt các thẻ a trỏ tới trang thông tin phim hoặc xem phim
+        var itemRegex = /<a\s+href="([^"]*(?:thong-tin-phim|xem-phim)[^"]*)"([^>]*)>([\s\S]*?)<\/a>/gi;
         var match;
         var seen = {};
 
         while ((match = itemRegex.exec(html)) !== null) {
             var href = match[1];
-            if (seen[href]) continue;
-            seen[href] = true;
-
+            // Chuẩn hóa link chi tiết phim (nếu là trang xem phim thì đổi về thông tin phim nếu cần, hoặc giữ nguyên link hợp lệ)
             if (href.indexOf("http") !== 0) {
                 href = BASEURL + (href.indexOf("/") === 0 ? "" : "/") + href;
             }
 
-            var inner = match[2];
-            var titleMatch = match[0].match(/title="([^"]+)"/i) || inner.match(/alt="([^"]+)"/i);
+            if (seen[href]) continue;
+            seen[href] = true;
+
+            var outerAttr = match[2];
+            var inner = match[3];
+
+            // Lấy tiêu đề từ thuộc tính title hoặc alt hoặc text bên trong
+            var titleMatch = outerAttr.match(/title="([^"]+)"/i) || inner.match(/alt="([^"]+)"/i);
             var title = titleMatch ? titleMatch[1].trim() : "";
+            
+            // Nếu không có title/alt, lấy text ngắn gọn bên trong nếu có cấu trúc tên phim
+            if (!title) {
+                var nameDiv = inner.match(/class="[^"]*name[^"]*"[^>]*>([^<]+)</i) || inner.match(/class="[^"]*title[^"]*"[^>]*>([^<]+)</i);
+                if (nameDiv) title = nameDiv[1].trim();
+            }
             if (!title) continue;
 
             var imgMatch = inner.match(/img[\s\S]*?src="([^"]+)"/i);
@@ -232,10 +231,10 @@ function parseListResponse(html, $url) {
             if (poster.indexOf("//") === 0) poster = "https:" + poster;
             else if (poster && poster.indexOf("http") !== 0) poster = BASEURL + (poster.indexOf("/") === 0 ? "" : "/") + poster;
 
-            var epMatch = inner.match(/class="episode-latest"[^>]*>[\s\S]*?<span>([^<]+)<\/span>/i);
+            var epMatch = inner.match(/class="episode-latest"[^>]*>[\s\S]*?<span>([^<]+)<\/span>/i) || inner.match(/class="episode"[^>]*>([^<]+)<\/span>/i);
             var episodeCurrent = epMatch ? epMatch[1].trim() : "";
 
-            var qMatch = inner.match(/class="score"[^>]*>([\s\S]*?)<\/div>/i);
+            var qMatch = inner.match(/class="score"[^>]*>([\s\S]*?)<\/div>/i) || inner.match(/class="quality"[^>]*>([^<]+)<\/span>/i);
             var quality = qMatch ? qMatch[1].replace(/<[^>]*>/g, '').trim() : "HD";
 
             items.push({
@@ -267,7 +266,7 @@ function parseListResponse(html, $url) {
             "pagination": {
                 "currentPage": currentPage,
                 "totalPages": totalPages,
-                "hasNext": currentPage < totalPages || items.length >= 30
+                "hasNext": currentPage < totalPages || items.length >= 20
             }
         });
     } catch(e) {
@@ -281,7 +280,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL =====
+// ===== PARSE MOVIE DETAIL (Sửa lỗi Năm phát hành & Nội dung) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -296,17 +295,16 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // --- BẮT ĐẦU BÓC TÁCH THÔNG TIN CHUẨN XÁC ---
+        // --- BÓC TÁCH THÔNG TIN CHÍNH XÁC THEO GIAO DIỆN BẢNG ---
 
-        // 1. Năm phát hành (Chỉ quét trong link /nam-phat-hanh/ hoặc cụm từ cụ thể)
-        var yearMatch = html.match(/href="[^"]*\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
-                        html.match(/(?:Năm phát hành|Năm sản xuất)[\s\S]*?<a[^>]*>(\d{4})<\/a>/i) ||
-                        html.match(/Năm:[\s\S]*?>(\d{4})</i);
-        // Trả về chuỗi rỗng nếu không tìm thấy, tránh bị fix cứng thành năm hiện tại
+        // 1. Năm phát hành: Bắt chuẩn theo nhãn "Phát hành" trong bảng thông tin
+        var yearMatch = html.match(/Phát hành[\s\S]*?>\s*(\d{4})\s*<\//i) ||
+                        html.match(/href="[^"]*\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
+                        html.match(/Năm sản xuất[\s\S]*?>\s*(\d{4})\s*<\//i);
         var year = yearMatch ? parseInt(yearMatch[1], 10) : ""; 
 
-        // 2. Thể loại (Bóc tách mảng thể loại)
-        var genreBlock = html.match(/Thể loại:[\s\S]*?<\/dd>/i) || html.match(/(?:Thể loại|Genres)[\s\S]*?<\/(?:dd|li|div)>/i);
+        // 2. Thể loại: Bắt theo nhãn "Thể loại" trong bảng thông tin
+        var genreBlock = html.match(/Thể loại[\s\S]*?<\/div>\s*<\/div>/i) || html.match(/Thể loại[\s\S]*?<\/dd>/i);
         var genres = [];
         if (genreBlock) {
             var gRegex = /<a[^>]*>([^<]+)<\/a>/gi;
@@ -318,28 +316,26 @@ function parseMovieDetail(html, url) {
         }
         var genre = genres.length > 0 ? genres.join(", ") : "Đang cập nhật";
 
-        // 3. Nội dung phim (Mô tả)
-        var descMatch = html.match(/<div[^>]*id="info-film"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/i) ||
-                        html.match(/<div[^>]*class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
-                        html.match(/Nội dung phim:([\s\S]*?)<\/div>/i) ||
+        // 3. Nội dung phim (Mô tả): Bắt theo khung "Nội dung" phía dưới
+        var descMatch = html.match(/<div[^>]*class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
+                        html.match(/Nội dung<\/div>[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
                         html.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i);
         var description = "Đang cập nhật nội dung phim.";
         if (descMatch) {
-            // Xóa các thẻ HTML và gộp các khoảng trắng thừa
             description = descMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(); 
         }
 
         // 4. Trạng thái, Chất lượng, Rating
-        var statusMatch = html.match(/(?:Trạng thái|Tình trạng)[\s\S]*?>([^<]+)<\//i) || html.match(/<span[^>]*class="status"[^>]*>([^<]+)<\/span>/i);
+        var statusMatch = html.match(/Trạng thái[\s\S]*?>\s*([^<]+)\s*<\//i) || html.match(/<span[^>]*class="status"[^>]*>([^<]+)<\/span>/i);
         var status = statusMatch ? statusMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật";
 
-        var qualityMatch = html.match(/(?:Chất lượng|Định dạng)[\s\S]*?>([^<]+)<\//i) || html.match(/<span[^>]*class="quality"[^>]*>([^<]+)<\/span>/i);
+        var qualityMatch = html.match(/Chất lượng[\s\S]*?>\s*([^<]+)\s*<\//i) || html.match(/<span[^>]*class="quality"[^>]*>([^<]+)<\/span>/i);
         var quality = qualityMatch ? qualityMatch[1].replace(/<[^>]*>/g, '').trim() : "HD";
 
-        var ratingMatch = html.match(/(?:Điểm IMDb|IMDb|Rating)[\s\S]*?>([^<]+)<\//i) || html.match(/<span[^>]*class="imdb"[^>]*>([^<]+)<\/span>/i);
-        var rating = ratingMatch ? parseFloat(ratingMatch[1].replace(/[^\d.]/g, '')) : 0;
+        var ratingMatch = html.match(/Điểm[\s\S]*?>\s*([\d.]+)/i) || html.match(/IMDb[\s\S]*?>\s*([\d.]+)/i);
+        var rating = ratingMatch ? parseFloat(ratingMatch[1]) : 0;
 
-        // --- KẾT THÚC BÓC TÁCH THÔNG TIN ---
+        // --- KẾT THÚC BÓC TÁCH ---
 
         // Fetch watch page to get episode list & server details
         var watchLinks = [];
@@ -348,9 +344,7 @@ function parseMovieDetail(html, url) {
         while ((wMatch = watchRegex.exec(html)) !== null) {
             var wUrl = wMatch[1];
             if (wUrl.indexOf("http") !== 0) wUrl = BASEURL + (wUrl.indexOf("/") === 0 ? "" : "/") + wUrl;
-            if (watchLinks.indexOf(wUrl) === -1) {
-                watchLinks.push(wUrl);
-            }
+            if (watchLinks.indexOf(wUrl) === -1) watchLinks.push(wUrl);
         }
 
         var watchHtml = html;
@@ -359,7 +353,6 @@ function parseMovieDetail(html, url) {
             if (fetchedWatch) watchHtml = fetchedWatch;
         }
 
-        // Parse episodes from watch page
         var episodesRaw = [];
         var epRegex = /<a\s+href="([^"]*xem-phim[^"]*)"[^>]*>([\s\S]*?)<\/a>/gi;
         var epMatch;
@@ -371,12 +364,8 @@ function parseMovieDetail(html, url) {
             var inner = epMatch[2];
             var epName = inner.replace(/<[^>]*>/g, '').trim();
 
-            if (!epName || epName.toLowerCase().indexOf("xem ngay") !== -1 || epName.toLowerCase().indexOf("xem phim") !== -1) {
-                continue;
-            }
-            if (inner.indexOf("fa-play") !== -1 || epMatch[0].indexOf("button-default") !== -1) {
-                continue;
-            }
+            if (!epName || epName.toLowerCase().indexOf("xem ngay") !== -1 || epName.toLowerCase().indexOf("xem phim") !== -1) continue;
+            if (inner.indexOf("fa-play") !== -1 || epMatch[0].indexOf("button-default") !== -1) continue;
 
             if (!seenEps[epUrl] && epName.indexOf("script") === -1 && epName.indexOf("jwplayer") === -1) {
                 seenEps[epUrl] = true;
@@ -425,40 +414,26 @@ function parseMovieDetail(html, url) {
                     if (pResp) {
                         var pJson = JSON.parse(pResp);
                         preResolvedUrl = pJson.src_pt || pJson.src_go || pJson.src_hd || pJson.src_vip || pJson.src_dr || pJson.src_vnn_1 || "";
-                        if (preResolvedUrl) {
-                            episodesRaw[0].id = preResolvedUrl;
-                        }
+                        if (preResolvedUrl) episodesRaw[0].id = preResolvedUrl;
                     }
                 }
             } catch(ex) {}
         }
 
         var servers = [];
-
         if (episodesRaw.length > 0) {
-            servers.push({
-                name: "HDvnn (Tự Động)",
-                episodes: episodesRaw
-            });
+            servers.push({ name: "HDvnn (Tự Động)", episodes: episodesRaw });
 
             if (!preResolvedUrl) {
                 var epsPT = [];
                 for (var p = 0; p < episodesRaw.length; p++) {
-                    epsPT.push({
-                        id: episodesRaw[p].id + "#server=pt",
-                        name: episodesRaw[p].name,
-                        slug: episodesRaw[p].slug
-                    });
+                    epsPT.push({ id: episodesRaw[p].id + "#server=pt", name: episodesRaw[p].name, slug: episodesRaw[p].slug });
                 }
                 servers.push({ name: "Server Google (PT)", episodes: epsPT });
 
                 var epsGO = [];
                 for (var g = 0; g < episodesRaw.length; g++) {
-                    epsGO.push({
-                        id: episodesRaw[g].id + "#server=go",
-                        name: episodesRaw[g].name,
-                        slug: episodesRaw[g].slug
-                    });
+                    epsGO.push({ id: episodesRaw[g].id + "#server=go", name: episodesRaw[g].name, slug: episodesRaw[g].slug });
                 }
                 servers.push({ name: "Server Google (GO)", episodes: epsGO });
             }
@@ -472,8 +447,8 @@ function parseMovieDetail(html, url) {
             backdropUrl: posterUrl,
             description: description,
             year: year,
-            genre: genre,      // Trường thể loại
-            genres: genre,     // Truyền thêm cả "genres" đề phòng phiên bản app yêu cầu khóa này
+            genre: genre,
+            genres: genre,
             rating: rating,
             quality: quality,
             status: status,
@@ -481,11 +456,7 @@ function parseMovieDetail(html, url) {
         });
     } catch(e) {
         log("parseMovieDetail error: " + e);
-        return JSON.stringify({
-            id: url || "error",
-            title: "Lỗi tải chi tiết",
-            servers: []
-        });
+        return JSON.stringify({ id: url || "error", title: "Lỗi tải chi tiết", servers: [] });
     }
 }
 
@@ -530,11 +501,7 @@ function parseDetailResponse(html, url) {
         var episodeId = episodeIDMatch ? episodeIDMatch[1] : "";
 
         if (!movieId || !episodeId) {
-            return JSON.stringify({
-                "url": reqUrl,
-                "isEmbed": true,
-                "headers": { "Referer": BASEURL + "/" }
-            });
+            return JSON.stringify({ "url": reqUrl, "isEmbed": true, "headers": { "Referer": BASEURL + "/" } });
         }
 
         var postData = "MovieID=" + movieId + "&EpisodeID=" + episodeId;
@@ -590,11 +557,7 @@ function parseDetailResponse(html, url) {
         });
     } catch(e) {
         log("parseDetailResponse error: " + e);
-        return JSON.stringify({
-            "url": url || "",
-            "isEmbed": true,
-            "headers": { "Referer": BASEURL + "/" }
-        });
+        return JSON.stringify({ "url": url || "", "isEmbed": true, "headers": { "Referer": BASEURL + "/" } });
     }
 }
 
