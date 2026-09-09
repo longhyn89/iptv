@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.0.9 (Khắc phục triệt để lỗi hiển thị đè menu hệ thống)
+// Phiên bản: 1.1.0 (Fix bóc tách năm phát hành động chính xác)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Chống tràn menu bằng bộ lọc từ khóa độc lập) =====
+// ===== PARSE MOVIE DETAIL (Fix bóc tách năm phát hành động chính xác) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -291,7 +291,7 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // Trích xuất vùng thông tin chính của chi tiết phim (cắt bỏ header/footer tổng của trang)
+        // Trích xuất vùng thông tin chính của chi tiết phim
         var mainInfoBlock = html;
         var infoStart = html.indexOf('class="movie-info"') !== -1 ? html.indexOf('class="movie-info"') : html.indexOf('<h1');
         var infoEnd = html.indexOf('Nội dung') !== -1 ? html.indexOf('Nội dung') : html.length;
@@ -299,7 +299,7 @@ function parseMovieDetail(html, url) {
             mainInfoBlock = html.substring(infoStart, infoEnd);
         }
 
-        // Tự động tìm và chỉ lấy các thể loại hợp lệ (bỏ hoàn toàn danh sách menu tổng)
+        // Thể loại độc lập
         var genre = "Phim Lẻ";
         var validGenres = [];
         var menuKeywords = ["phim-chieu-rap", "phim-le", "phim-bo", "phim-han-quoc", "phim-trung-quoc", "phim-chau-a", "phim-au-my", "hh-trung-quoc", "anime-nhat-ban"];
@@ -309,7 +309,6 @@ function parseMovieDetail(html, url) {
         while ((lMatch = linkRegex.exec(mainInfoBlock)) !== null) {
             var slug = lMatch[1].trim();
             var name = lMatch[2].replace(/<[^>]*>/g, '').trim();
-            // Chỉ lấy các thể loại không trùng với tên menu trang chủ
             if (menuKeywords.indexOf(slug) === -1 && name && validGenres.indexOf(name) === -1) {
                 validGenres.push(name);
             }
@@ -318,15 +317,27 @@ function parseMovieDetail(html, url) {
             genre = validGenres.join(", ");
         }
 
-        // Năm phát hành
+        // --- BÓC TÁCH NĂM PHÁT HÀNH ĐỘNG CHÍNH XÁC ---
         var year = 2024;
-        var yearMatch = mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) || mainInfoBlock.match(/(\d{4})/i);
+        // Quét link năm phát hành dạng /nam-phat-hanh/YYYY.html hoặc thẻ chứa năm 4 chữ số đặc thù của block thông tin
+        var yearMatch = mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
+                        mainInfoBlock.match(/Năm phát hành[:\s\S]*?(\d{4})/i) ||
+                        mainInfoBlock.match(/Phát hành[:\s\S]*?(\d{4})/i) ||
+                        mainInfoBlock.match(/class="[^"]*year[^"]*"[^>]*>(\d{4})</i);
+        
         if (yearMatch) {
             var yVal = parseInt(yearMatch[1], 10);
-            if (yVal >= 1900 && yVal <= 2030) year = yVal;
+            if (yVal >= 1900 && yVal <= 2030) {
+                year = yVal;
+            }
+        } else {
+            // Quét dự phòng các năm trong khoảng hợp lệ từ block thông tin
+            var allYears = mainInfoBlock.match(/\b(19\d{2}|20[0-2]\d)\b/g);
+            if (allYears && allYears.length > 0) {
+                year = parseInt(allYears[0], 10);
+            }
         }
 
-        // Đánh giá & Chất lượng
         var rating = 0;
         var quality = "HD";
         var status = "Hoàn tất";
