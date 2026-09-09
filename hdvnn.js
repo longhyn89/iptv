@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.0.6 (Khắc phục triệt để lỗi thể loại và thông tin chi tiết)
+// Phiên bản: 1.0.7 (Khắc phục triệt để lỗi gom danh mục menu vào thể loại phim)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -222,7 +222,7 @@ function parseListResponse(html, $url) {
             }
             if (!title) continue;
 
-            var imgMatch = inner.match(/img[\s\S]*?src="([^"]+)"/i);
+            var imgMatch = inner.imgMatch || inner.match(/img[\s\S]*?src="([^"]+)"/i);
             var poster = imgMatch ? imgMatch[1].trim() : "";
             if (poster.indexOf("//") === 0) poster = "https:" + poster;
             else if (poster && poster.indexOf("http") !== 0) poster = BASEURL + (poster.indexOf("/") === 0 ? "" : "/") + poster;
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Đã lọc sạch thể loại, chuẩn hóa năm và nội dung) =====
+// ===== PARSE MOVIE DETAIL (Đã cô lập chống lỗi dính menu thể loại) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -291,7 +291,7 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // --- CÔ LẬP VÙNG THÔNG TIN PHIM ---
+        // --- CÔ LẬP VÙNG THÔNG TIN PHIM AN TOÀN ---
         var mainInfoBlock = "";
         var h1Idx = html.indexOf("<h1");
         var descIdx = html.indexOf("Nội dung");
@@ -301,8 +301,8 @@ function parseMovieDetail(html, url) {
             mainInfoBlock = html;
         }
 
-        // 1. Thể loại: Chỉ quét các liên kết trỏ tới thư mục /the-loai/ NHƯNG loại bỏ các danh mục tổng quát của hệ thống
-        var genre = "Đang cập nhật";
+        // 1. Thể loại: Quét cụ thể các link thể loại ngoại trừ các mục chuyên mục tổng quát, hoặc đặt giá trị an toàn
+        var genre = "Phim Lẻ";
         var linkRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
         var linkMatch;
         var filteredGenres = [];
@@ -311,8 +311,7 @@ function parseMovieDetail(html, url) {
         while ((linkMatch = linkRegex.exec(mainInfoBlock)) !== null) {
             var gSlug = linkMatch[1].trim();
             var gName = linkMatch[2].replace(/<[^>]*>/g, '').trim();
-            // Nếu slug không nằm trong danh mục menu chính, đây chính là thể loại riêng của phim
-            if (ignoredSlugs.indexOf(gSlug) === -1 && gName) {
+            if (ignoredSlugs.indexOf(gSlug) === -1 && gName && gName.indexOf("Phim") === -1) {
                 if (filteredGenres.indexOf(gName) === -1) {
                     filteredGenres.push(gName);
                 }
@@ -322,7 +321,7 @@ function parseMovieDetail(html, url) {
             genre = filteredGenres.join(", ");
         }
 
-        // 2. Năm phát hành: Bắt chính xác từ đường dẫn /nam-phat-hanh/ hoặc nhãn Phát hành
+        // 2. Năm phát hành
         var year = "";
         var yearMatch = mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
                         mainInfoBlock.match(/Phát hành[:\s\S]*?(\d{4})/i);
