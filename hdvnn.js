@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -300,19 +300,48 @@ function parseList(html, url) {
 function parseMovieDetail(html, url) {
     try {
         var id = url || "";
+        
+        // Tiêu đề
         var titleMatch = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
                          html.match(/property="og:title"\s+content="([^"]+)"/i);
         var title = titleMatch ? titleMatch[1].replace(/<[^>]*>/g, '').trim() : "HDvnn Movie";
 
+        // Ảnh Poster
         var imgMatch = html.match(/property="og:image"\s+content="([^"]+)"/i);
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        var descMatch = html.match(/property="og:description"\s+content="([^"]+)"/i);
-        var description = descMatch ? descMatch[1] : "Xem phim chất lượng cao trên HDvnn.";
+        // Mô tả (Nội dung phim)
+        var descMatch = html.match(/property="og:description"\s+content="([^"]+)"/i) || 
+                        html.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+        var description = descMatch ? descMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật nội dung.";
 
-        var yearMatch = html.match(/(\d{4})/);
-        var year = yearMatch ? parseInt(yearMatch[1], 10) : 2026;
+        // --- FIX LỖI THÔNG TIN ---
+
+        // 1. Năm phát hành
+        var yearMatch = html.match(/href="[^"]*(?:\/nam\/|\/nam-phat-hanh\/|\/year\/)[^"]*"[^>]*>(\d{4})<\/a>/i) ||
+                        html.match(/(?:Năm sản xuất|Năm phát hành|Năm)[\s\S]*?>(\d{4})</i) ||
+                        html.match(/Năm:.*?(\d{4})/i);
+        var year = yearMatch ? parseInt(yearMatch[1], 10) : 0; 
+
+        // 2. Trạng thái
+        var statusMatch = html.match(/(?:Trạng thái|Tình trạng)[\s\S]*?>([^<]+)<\//i) ||
+                          html.match(/<span[^>]*class="status"[^>]*>([^<]+)<\/span>/i) ||
+                          html.match(/<span[^>]*class="episode"[^>]*>([^<]+)<\/span>/i);
+        var status = statusMatch ? statusMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật";
+
+        // 3. Chất lượng
+        var qualityMatch = html.match(/(?:Chất lượng|Định dạng)[\s\S]*?>([^<]+)<\//i) ||
+                           html.match(/<span[^>]*class="quality"[^>]*>([^<]+)<\/span>/i) ||
+                           html.match(/<span[^>]*class="score"[^>]*>([^<]+)<\/span>/i);
+        var quality = qualityMatch ? qualityMatch[1].replace(/<[^>]*>/g, '').trim() : "FHD";
+
+        // 4. Điểm đánh giá (Rating)
+        var ratingMatch = html.match(/(?:Điểm IMDb|IMDb|Rating)[\s\S]*?>([^<]+)<\//i) || 
+                          html.match(/<span[^>]*class="imdb"[^>]*>([^<]+)<\/span>/i);
+        var rating = ratingMatch ? parseFloat(ratingMatch[1].replace(/[^\d.]/g, '')) : 0;
+
+        // --- END FIX ---
 
         // Fetch watch page to get episode list & server details
         var watchLinks = [];
@@ -364,7 +393,7 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        // Đảo ngược mảng nếu danh sách tập trên web bị xếp giảm dần (ví dụ 239 -> 1)
+        // Đảo ngược mảng nếu danh sách tập trên web bị xếp giảm dần
         if (episodesRaw.length > 1 && episodesRaw[0].num > episodesRaw[episodesRaw.length - 1].num) {
             episodesRaw.reverse();
         }
@@ -459,9 +488,9 @@ function parseMovieDetail(html, url) {
             backdropUrl: posterUrl,
             description: description,
             year: year,
-            rating: 8.5,
-            quality: "FHD",
-            status: "Hoàn Thành",
+            rating: rating,
+            quality: quality,
+            status: status,
             servers: servers
         });
     } catch(e) {
