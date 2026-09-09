@@ -25,7 +25,7 @@
         },
         {
             "id": "rophim",
-            "name": "Rổ phim (WEB)",
+            "name": "Rổ phim",
             "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/rophim.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/rophim.png"
