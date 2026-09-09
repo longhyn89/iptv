@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.1.5 (Bắt chính xác cấu trúc HTML của khối list_cate)
+// Phiên bản: 1.1.6 (Quét trực tiếp thẻ liên kết trong khối list_cate)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.1.6",
+        "version": "1.1.7",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -291,28 +291,34 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // 3. Thể loại (Quét trực tiếp khối class="list_cate")
+        // 3. Thể loại (Quét chuẩn xác từ khối class="list_cate")
         var genre = "Phim Lẻ";
         var genresList = [];
         
         var listCateMatch = html.match(/<div[^>]*class="list_cate"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/i) || html.match(/<div[^>]*class="list_cate"[^>]*>([\s\S]*?)<\/div>/i);
-        var searchTargetHtml = listCateMatch ? listCateMatch[1] : html;
-        
-        var gRegex = /<a[^>]*href="[^"]*\/the-loai\/[^"]*"[^>]*>([\s\S]*?)<\/a>/gi;
-        var gMatch;
-        while ((gMatch = gRegex.exec(searchTargetHtml)) !== null) {
-            var gName = gMatch[1].replace(/<[^>]*>/g, '').trim();
-            if (gName && gName.toLowerCase() !== "thể loại" && genresList.indexOf(gName) === -1) {
-                genresList.push(gName);
+        if (listCateMatch) {
+            var subHtml = listCateMatch[1];
+            var aTagRegex = /<a[^>]*>([\s\S]*?)<\/a>/gi;
+            var aMatch;
+            while ((aMatch = aTagRegex.exec(subHtml)) !== null) {
+                var nameText = aMatch[1].replace(/<[^>]*>/g, '').trim();
+                if (nameText && nameText.toLowerCase() !== "thể loại" && genresList.indexOf(nameText) === -1) {
+                    genresList.push(nameText);
+                }
             }
         }
         
         if (genresList.length === 0) {
-            var fallbackGRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([\s\S]*?)<\/a>/gi;
-            while ((gMatch = fallbackGRegex.exec(html)) !== null) {
-                var gName = gMatch[2].replace(/<[^>]*>/g, '').trim();
-                if (gName && gName.toLowerCase() !== "thể loại" && genresList.indexOf(gName) === -1) {
-                    genresList.push(gName);
+            var fallbackRegex = /class="list_cate"[\s\S]*?<\/div>([\s\S]*?)<\/div>/i;
+            var fbMatch = html.match(fallbackRegex);
+            if (fbMatch) {
+                var aTagRegex2 = /<a[^>]*>([\s\S]*?)<\/a>/gi;
+                var aMatch2;
+                while ((aMatch2 = aTagRegex2.exec(fbMatch[1])) !== null) {
+                    var nameText2 = aMatch2[1].replace(/<[^>]*>/g, '').trim();
+                    if (nameText2 && nameText2.toLowerCase() !== "thể loại" && genresList.indexOf(nameText2) === -1) {
+                        genresList.push(nameText2);
+                    }
                 }
             }
         }
