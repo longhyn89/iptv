@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.1.3 (Bổ sung bộ lọc đa tầng, khắc phục triệt để lỗi mất dữ liệu)
+// Phiên bản: 1.1.4 (Khắc phục triệt để lỗi thiếu mục thể loại phim)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Đa tầng chống mất dữ liệu) =====
+// ===== PARSE MOVIE DETAIL (Đa tầng quét thể loại & nội dung) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -291,16 +291,14 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // 3. Thể loại (Quét linh hoạt qua list_cate hoặc bất kỳ thẻ chứa /the-loai/)
+        // 3. Thể loại (Quét toàn diện các thẻ chứa /the-loai/)
         var genre = "Phim Lẻ";
         var genresList = [];
-        var listCateMatch = html.match(/<div[^>]*class="[^"]*list_cate[^"]*"[^>]*>([\s\S]*?)<\/div>/i) || html;
-        var cateHtml = listCateMatch ? listCateMatch[1] : html;
-        var gRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
+        var gRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([\s\S]*?)<\/a>/gi;
         var gMatch;
-        while ((gMatch = gRegex.exec(cateHtml)) !== null) {
+        while ((gMatch = gRegex.exec(html)) !== null) {
             var gName = gMatch[2].replace(/<[^>]*>/g, '').trim();
-            if (gName && genresList.indexOf(gName) === -1) {
+            if (gName && gName.toLowerCase() !== "phim lẻ" && gName.toLowerCase() !== "phim bộ" && genresList.indexOf(gName) === -1) {
                 genresList.push(gName);
             }
         }
@@ -319,7 +317,7 @@ function parseMovieDetail(html, url) {
             if (yVal >= 1900 && yVal <= 2030) year = yVal;
         }
 
-        // 5. Nội dung phim (Quét qua thẻ desc, thông tin text trong p hoặc og:description)
+        // 5. Nội dung phim
         var description = "Đang cập nhật nội dung phim.";
         var descBlockMatch = html.match(/<div[^>]*class="[^"]*desc[^"]*">([\s\S]*?)<\/div>/i) ||
                              html.match(/<div[^>]*class="[^"]*list_episode[^"]*">([\s\S]*?)<\/div>/i) ||
@@ -331,7 +329,6 @@ function parseMovieDetail(html, url) {
             }
         }
         
-        // Dự phòng nếu nội dung vẫn bị lấy nhầm chuỗi ngắn
         if (description.length < 10) {
             var pFallback = html.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
             if (pFallback && pFallback.length > 0) {
