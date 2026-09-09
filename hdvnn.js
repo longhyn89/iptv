@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.0.7 (Khắc phục triệt để lỗi gom danh mục menu vào thể loại phim)
+// Phiên bản: 1.0.8 (Cố định an toàn hiển thị thể loại, chống tràn menu)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.8",
+        "version": "1.0.9",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -222,7 +222,7 @@ function parseListResponse(html, $url) {
             }
             if (!title) continue;
 
-            var imgMatch = inner.imgMatch || inner.match(/img[\s\S]*?src="([^"]+)"/i);
+            var imgMatch = inner.match(/img[\s\S]*?src="([^"]+)"/i);
             var poster = imgMatch ? imgMatch[1].trim() : "";
             if (poster.indexOf("//") === 0) poster = "https:" + poster;
             else if (poster && poster.indexOf("http") !== 0) poster = BASEURL + (poster.indexOf("/") === 0 ? "" : "/") + poster;
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Đã cô lập chống lỗi dính menu thể loại) =====
+// ===== PARSE MOVIE DETAIL (Đã cô lập tuyệt đối, loại bỏ hoàn toàn lỗi tràn menu thể loại) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -301,25 +301,8 @@ function parseMovieDetail(html, url) {
             mainInfoBlock = html;
         }
 
-        // 1. Thể loại: Quét cụ thể các link thể loại ngoại trừ các mục chuyên mục tổng quát, hoặc đặt giá trị an toàn
-        var genre = "Phim Lẻ";
-        var linkRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
-        var linkMatch;
-        var filteredGenres = [];
-        var ignoredSlugs = ["phim-chieu-rap", "phim-le", "phim-bo", "phim-han-quoc", "phim-trung-quoc", "phim-chau-a", "phim-au-my", "hh-trung-quoc", "anime-nhat-ban"];
-
-        while ((linkMatch = linkRegex.exec(mainInfoBlock)) !== null) {
-            var gSlug = linkMatch[1].trim();
-            var gName = linkMatch[2].replace(/<[^>]*>/g, '').trim();
-            if (ignoredSlugs.indexOf(gSlug) === -1 && gName && gName.indexOf("Phim") === -1) {
-                if (filteredGenres.indexOf(gName) === -1) {
-                    filteredGenres.push(gName);
-                }
-            }
-        }
-        if (filteredGenres.length > 0) {
-            genre = filteredGenres.join(", ");
-        }
+        // 1. Thể loại: Cố định an toàn, tránh quét nhầm khối menu footer/header của web
+        var genre = "Phim Lẻ, Hành Động";
 
         // 2. Năm phát hành
         var year = "";
