@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Đã sửa triệt để Rating, Thể loại, Nội dung) =====
+// ===== PARSE MOVIE DETAIL (Đã tinh chỉnh chống lỗi lấy nhầm dữ liệu toàn trang) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -291,56 +291,88 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // --- BÓC TÁCH CHÍNH XÁC KHU VỰC BẢNG THÔNG TIN ---
+        // --- BÓC TÁCH AN TOÀN TRONG KHU VỰC THÔNG TIN PHIM ---
+        
+        // Lọc lấy đoạn chứa thông tin chi tiết phim (thường nằm trong thẻ thông tin phim)
+        var mainInfoBlock = "";
+        var blockMatch = html.match(/<div[^>]*class="[^"]*(?:movie-detail|info-film|film-infor|detail-content)[^"]*"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/i) ||
+                         html.match(/<ul[^>]*class="[^"]*list-info[^"]*"[^>]*>([\s\S]*?)<\/ul>/i);
+        if (blockMatch) {
+            mainInfoBlock = blockMatch[1];
+        } else {
+            // Nếu không tìm thấy block riêng, cắt từ tiêu đề h1 đến phần nội dung tóm tắt để tránh quét menu header/footer
+            var h1Idx = html.indexOf("<h1");
+            var descIdx = html.indexOf("Nội dung");
+            if (h1Idx !== -1 && descIdx !== -1 && descIdx > h1Idx) {
+                mainInfoBlock = html.substring(h1Idx, descIdx);
+            } else {
+                mainInfoBlock = html;
+            }
+        }
 
-        // 1. Cắt riêng vùng bảng thông tin (tránh bắt nhầm dữ liệu phần chân trang hoặc chỗ khác)
-        var infoTableMatch = html.match(/<div[^>]*class="[^"]*(?:info|details|film-info)[^"]*"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/i) || 
-                             html.match(/<div[^>]*id="info-film"[^>]*>([\s\S]*?)<\/div>/i) ||
-                             html.match(/<ul[^>]*class="[^"]*list-info[^"]*"[^>]*>([\s\S]*?)<\/ul>/i) ||
-                             html.match(/<div[^>]*class="[^"]*row[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
-        var infoHtml = infoTableMatch ? infoTableMatch[1] : html;
-
-        // 2. Thể loại: Chỉ quét trong dòng chứa chữ "Thể loại"
-        var genreLine = infoHtml.match(/Thể loại[\s\S]*?(<\/div>|<\/li>|<\/dd>)/i);
-        var genres = [];
-        if (genreLine) {
+        // 1. Thể loại: Chỉ quét các thẻ a nằm trong dòng Thể loại của phim
+        var genre = "Đang cập nhật";
+        var genreRowMatch = mainInfoBlock.match(/Thể loại[:\s\S]*?(<\/div>|<\/li>|<\/p>|<br\s*\/?>)/i);
+        if (genreRowMatch) {
+            var gSub = genreRowMatch[0];
+            var genres = [];
             var gRegex = /<a[^>]*>([^<]+)<\/a>/gi;
             var gM;
-            while ((gM = gRegex.exec(genreLine[0])) !== null) {
-                var text = gM[1].replace(/<[^>]*>/g, '').trim();
-                if (text && text.toLowerCase() !== "thể loại") genres.push(text);
+            while ((gM = gRegex.exec(gSub)) !== null) {
+                var gText = gM[1].replace(/<[^>]*>/g, '').trim();
+                // Bỏ qua nếu text trùng với tên các mục điều hướng tổng
+                if (gText && gText.indexOf("Phim") === -1 && gText.indexOf("Anime") === -1 && gText.indexOf("HH") === -1 && gText.length < 30) {
+                    genres.push(gText);
+                }
+            }
+            if (genres.length > 0) genre = genres.join(", ");
+        }
+        if (genre === "Đang cập nhật") {
+            // Fallback quét rộng hơn nếu cấu trúc khác
+            var altGenre = mainInfoBlock.match(/\/the-loai\/[^"]*"[^>]*>([^<]+)<\/a>/gi);
+            if (altGenre && altGenre.length > 0) {
+                var arrG = [];
+                for (var gi = 0; gi < altGenre.length; gi++) {
+                    var subM = altGenre[gi].match(/>([^<]+)<\/a>/);
+                    if (subM && subM[1].indexOf("Phim") === -1) arrG.push(subM[1].trim());
+                }
+                if (arrG.length > 0) genre = arrG.join(", ");
             }
         }
-        var genre = genres.length > 0 ? genres.join(", ") : "Đang cập nhật";
 
-        // 3. Năm phát hành: Quét chính xác dòng "Phát hành"
-        var yearMatch = infoHtml.match(/Phát hành[\s\S]*?>\s*(\d{4})\s*<\//i) ||
-                        infoHtml.match(/Năm(?:\s+sản xuất)?[\s\S]*?>\s*(\d{4})\s*<\//i);
-        var year = yearMatch ? parseInt(yearMatch[1], 10) : ""; 
+        // 2. Năm phát hành: Bắt chính xác số năm 4 chữ số đi sau nhãn Phát hành hoặc nằm trong link năm phát hành
+        var year = "";
+        var yearMatch = mainInfoBlock.match(/Phát hành[:\s\S]*?(\d{4})/i) ||
+                        mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
+                        mainInfoBlock.match(/Năm(?:\s+sản xuất)?[:\s\S]*?(\d{4})/i);
+        if (yearMatch) {
+            var yVal = parseInt(yearMatch[1], 10);
+            if (yVal >= 1900 && yVal <= 2030) year = yVal;
+        }
 
-        // 4. Điểm đánh giá (Rating): Quét dòng "Điểm" hoặc "IMDb", lấy số thực dạng X.X (bỏ qua chuỗi NaN hoặc số đánh giá phía sau)
-        var ratingLine = infoHtml.match(/Điểm[\s\S]*?<\/div>/i) || infoHtml.match(/IMDb[\s\S]*?<\/div>/i) || infoHtml.match(/Rating[\s\S]*?<\/div>/i);
+        // 3. Điểm đánh giá (Rating): Quét chính xác điểm số (ví dụ 7.5, 8, v.v.), bỏ qua giá trị NaN hoặc 0 đánh giá
         var rating = 0;
-        if (ratingLine) {
-            var rMatch = ratingLine[0].match(/(\d+(?:\.\d+)?)/);
-            if (rMatch) {
-                var val = parseFloat(rMatch[1]);
-                if (!isNaN(val) && val <= 10) rating = val; // Điểm IMDb hợp lệ từ 0 đến 10
+        var ratingMatch = mainInfoBlock.match(/Điểm[:\s\S]*?(\d+(?:\.\d+)?)/i) || 
+                          mainInfoBlock.match(/IMDb[:\s\S]*?(\d+(?:\.\d+)?)/i);
+        if (ratingMatch) {
+            var rVal = parseFloat(ratingMatch[1]);
+            if (!isNaN(rVal) && rVal > 0 && rVal <= 10) {
+                rating = rVal;
             }
         }
 
-        // 5. Trạng thái và Chất lượng
-        var statusMatch = infoHtml.match(/Trạng thái[\s\S]*?>\s*([^<]+)\s*<\//i);
+        // 4. Trạng thái và Chất lượng
+        var statusMatch = mainInfoBlock.match(/Trạng thái[:\s\S]*?>\s*([^<>\n]+)\s*<\//i);
         var status = statusMatch ? statusMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật";
 
-        var qualityMatch = infoHtml.match(/Chất lượng[\s\S]*?>\s*([^<]+)\s*<\//i);
+        var qualityMatch = mainInfoBlock.match(/Chất lượng[:\s\S]*?>\s*([^<>\n]+)\s*<\//i);
         var quality = qualityMatch ? qualityMatch[1].replace(/<[^>]*>/g, '').trim() : "HD";
 
-        // 6. Nội dung phim (Mô tả): Quét khung có tiêu đề "Nội dung" riêng biệt bên dưới
+        // 5. Nội dung phim (Mô tả): Lấy chính xác phần nội dung tóm tắt phim
+        var description = "Đang cập nhật nội dung phim.";
         var descBlockMatch = html.match(/Nội dung<\/div>[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
                              html.match(/class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
                              html.match(/property="og:description"\s+content="([^"]+)"/i);
-        var description = "Đang cập nhật nội dung phim.";
         if (descBlockMatch) {
             description = descBlockMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
         }
