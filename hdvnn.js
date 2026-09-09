@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -130,10 +130,7 @@ function getFilterConfig() {
     }
 }
 
-function parseCategoriesResponse(html) {
-    return getPrimaryCategories();
-}
-
+function parseCategoriesResponse(html) { return getPrimaryCategories(); }
 function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
 
@@ -279,21 +276,10 @@ function parseListResponse(html, $url) {
     }
 }
 
-function parseSearchResponse(html, url) {
-    return parseListResponse(html, url);
-}
-
-function parseSearchResult(html, url) {
-    return parseListResponse(html, url);
-}
-
-function parseHomeResponse(html, url) {
-    return parseListResponse(html, url);
-}
-
-function parseList(html, url) {
-    return parseListResponse(html, url);
-}
+function parseSearchResponse(html, url) { return parseListResponse(html, url); }
+function parseSearchResult(html, url) { return parseListResponse(html, url); }
+function parseHomeResponse(html, url) { return parseListResponse(html, url); }
+function parseList(html, url) { return parseListResponse(html, url); }
 
 // ===== PARSE MOVIE DETAIL =====
 
@@ -302,8 +288,7 @@ function parseMovieDetail(html, url) {
         var id = url || "";
         
         // Tiêu đề
-        var titleMatch = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
-                         html.match(/property="og:title"\s+content="([^"]+)"/i);
+        var titleMatch = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || html.match(/property="og:title"\s+content="([^"]+)"/i);
         var title = titleMatch ? titleMatch[1].replace(/<[^>]*>/g, '').trim() : "HDvnn Movie";
 
         // Ảnh Poster
@@ -311,37 +296,50 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // Mô tả (Nội dung phim)
-        var descMatch = html.match(/property="og:description"\s+content="([^"]+)"/i) || 
-                        html.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
-        var description = descMatch ? descMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật nội dung.";
+        // --- BẮT ĐẦU BÓC TÁCH THÔNG TIN CHUẨN XÁC ---
 
-        // --- FIX LỖI THÔNG TIN ---
+        // 1. Năm phát hành (Chỉ quét trong link /nam-phat-hanh/ hoặc cụm từ cụ thể)
+        var yearMatch = html.match(/href="[^"]*\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
+                        html.match(/(?:Năm phát hành|Năm sản xuất)[\s\S]*?<a[^>]*>(\d{4})<\/a>/i) ||
+                        html.match(/Năm:[\s\S]*?>(\d{4})</i);
+        // Trả về chuỗi rỗng nếu không tìm thấy, tránh bị fix cứng thành năm hiện tại
+        var year = yearMatch ? parseInt(yearMatch[1], 10) : ""; 
 
-        // 1. Năm phát hành
-        var yearMatch = html.match(/href="[^"]*(?:\/nam\/|\/nam-phat-hanh\/|\/year\/)[^"]*"[^>]*>(\d{4})<\/a>/i) ||
-                        html.match(/(?:Năm sản xuất|Năm phát hành|Năm)[\s\S]*?>(\d{4})</i) ||
-                        html.match(/Năm:.*?(\d{4})/i);
-        var year = yearMatch ? parseInt(yearMatch[1], 10) : 0; 
+        // 2. Thể loại (Bóc tách mảng thể loại)
+        var genreBlock = html.match(/Thể loại:[\s\S]*?<\/dd>/i) || html.match(/(?:Thể loại|Genres)[\s\S]*?<\/(?:dd|li|div)>/i);
+        var genres = [];
+        if (genreBlock) {
+            var gRegex = /<a[^>]*>([^<]+)<\/a>/gi;
+            var gM;
+            while ((gM = gRegex.exec(genreBlock[0])) !== null) {
+                var text = gM[1].replace(/<[^>]*>/g, '').trim();
+                if (text) genres.push(text);
+            }
+        }
+        var genre = genres.length > 0 ? genres.join(", ") : "Đang cập nhật";
 
-        // 2. Trạng thái
-        var statusMatch = html.match(/(?:Trạng thái|Tình trạng)[\s\S]*?>([^<]+)<\//i) ||
-                          html.match(/<span[^>]*class="status"[^>]*>([^<]+)<\/span>/i) ||
-                          html.match(/<span[^>]*class="episode"[^>]*>([^<]+)<\/span>/i);
+        // 3. Nội dung phim (Mô tả)
+        var descMatch = html.match(/<div[^>]*id="info-film"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/i) ||
+                        html.match(/<div[^>]*class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
+                        html.match(/Nội dung phim:([\s\S]*?)<\/div>/i) ||
+                        html.match(/<meta\s+property="og:description"\s+content="([^"]+)"/i);
+        var description = "Đang cập nhật nội dung phim.";
+        if (descMatch) {
+            // Xóa các thẻ HTML và gộp các khoảng trắng thừa
+            description = descMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(); 
+        }
+
+        // 4. Trạng thái, Chất lượng, Rating
+        var statusMatch = html.match(/(?:Trạng thái|Tình trạng)[\s\S]*?>([^<]+)<\//i) || html.match(/<span[^>]*class="status"[^>]*>([^<]+)<\/span>/i);
         var status = statusMatch ? statusMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật";
 
-        // 3. Chất lượng
-        var qualityMatch = html.match(/(?:Chất lượng|Định dạng)[\s\S]*?>([^<]+)<\//i) ||
-                           html.match(/<span[^>]*class="quality"[^>]*>([^<]+)<\/span>/i) ||
-                           html.match(/<span[^>]*class="score"[^>]*>([^<]+)<\/span>/i);
-        var quality = qualityMatch ? qualityMatch[1].replace(/<[^>]*>/g, '').trim() : "FHD";
+        var qualityMatch = html.match(/(?:Chất lượng|Định dạng)[\s\S]*?>([^<]+)<\//i) || html.match(/<span[^>]*class="quality"[^>]*>([^<]+)<\/span>/i);
+        var quality = qualityMatch ? qualityMatch[1].replace(/<[^>]*>/g, '').trim() : "HD";
 
-        // 4. Điểm đánh giá (Rating)
-        var ratingMatch = html.match(/(?:Điểm IMDb|IMDb|Rating)[\s\S]*?>([^<]+)<\//i) || 
-                          html.match(/<span[^>]*class="imdb"[^>]*>([^<]+)<\/span>/i);
+        var ratingMatch = html.match(/(?:Điểm IMDb|IMDb|Rating)[\s\S]*?>([^<]+)<\//i) || html.match(/<span[^>]*class="imdb"[^>]*>([^<]+)<\/span>/i);
         var rating = ratingMatch ? parseFloat(ratingMatch[1].replace(/[^\d.]/g, '')) : 0;
 
-        // --- END FIX ---
+        // --- KẾT THÚC BÓC TÁCH THÔNG TIN ---
 
         // Fetch watch page to get episode list & server details
         var watchLinks = [];
@@ -373,7 +371,6 @@ function parseMovieDetail(html, url) {
             var inner = epMatch[2];
             var epName = inner.replace(/<[^>]*>/g, '').trim();
 
-            // Bỏ qua nút 'Xem Ngay', 'Xem Phim' hoặc button action
             if (!epName || epName.toLowerCase().indexOf("xem ngay") !== -1 || epName.toLowerCase().indexOf("xem phim") !== -1) {
                 continue;
             }
@@ -393,7 +390,6 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        // Đảo ngược mảng nếu danh sách tập trên web bị xếp giảm dần
         if (episodesRaw.length > 1 && episodesRaw[0].num > episodesRaw[episodesRaw.length - 1].num) {
             episodesRaw.reverse();
         }
@@ -409,7 +405,6 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        // Đối với phim lẻ (1 tập), pre-resolve link stream trực tiếp từ watchHtml nếu có
         var preResolvedUrl = "";
         if (episodesRaw.length === 1 && watchHtml.indexOf("MovieID") !== -1) {
             try {
@@ -438,19 +433,15 @@ function parseMovieDetail(html, url) {
             } catch(ex) {}
         }
 
-        // Generate server groups
         var servers = [];
 
-        // Server 1: Default / Auto
         if (episodesRaw.length > 0) {
             servers.push({
                 name: "HDvnn (Tự Động)",
                 episodes: episodesRaw
             });
 
-            // Chỉ tạo server phụ nếu chưa pre-resolve thành direct URL
             if (!preResolvedUrl) {
-                // Server 2: Direct Google PT
                 var epsPT = [];
                 for (var p = 0; p < episodesRaw.length; p++) {
                     epsPT.push({
@@ -459,12 +450,8 @@ function parseMovieDetail(html, url) {
                         slug: episodesRaw[p].slug
                     });
                 }
-                servers.push({
-                    name: "Server Google (PT)",
-                    episodes: epsPT
-                });
+                servers.push({ name: "Server Google (PT)", episodes: epsPT });
 
-                // Server 3: Direct Google GO
                 var epsGO = [];
                 for (var g = 0; g < episodesRaw.length; g++) {
                     epsGO.push({
@@ -473,10 +460,7 @@ function parseMovieDetail(html, url) {
                         slug: episodesRaw[g].slug
                     });
                 }
-                servers.push({
-                    name: "Server Google (GO)",
-                    episodes: epsGO
-                });
+                servers.push({ name: "Server Google (GO)", episodes: epsGO });
             }
         }
 
@@ -488,6 +472,8 @@ function parseMovieDetail(html, url) {
             backdropUrl: posterUrl,
             description: description,
             year: year,
+            genre: genre,      // Trường thể loại
+            genres: genre,     // Truyền thêm cả "genres" đề phòng phiên bản app yêu cầu khóa này
             rating: rating,
             quality: quality,
             status: status,
@@ -503,9 +489,7 @@ function parseMovieDetail(html, url) {
     }
 }
 
-function parseDetail(html, url) {
-    return parseMovieDetail(html, url);
-}
+function parseDetail(html, url) { return parseMovieDetail(html, url); }
 
 // ===== PARSE PLAYER & STREAM RESPONSE =====
 
@@ -614,10 +598,5 @@ function parseDetailResponse(html, url) {
     }
 }
 
-function parsePlayerUrl(html, url) {
-    return parseDetailResponse(html, url);
-}
-
-function parseEpisodePlayer(html, url) {
-    return parseDetailResponse(html, url);
-}
+function parsePlayerUrl(html, url) { return parseDetailResponse(html, url); }
+function parseEpisodePlayer(html, url) { return parseDetailResponse(html, url); }
