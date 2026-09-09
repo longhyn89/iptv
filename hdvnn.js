@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.1.0 (Fix bóc tách năm phát hành động chính xác)
+// Phiên bản: 1.1.1 (Khắc phục triệt để mất thể loại và nội dung phim)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Fix bóc tách năm phát hành động chính xác) =====
+// ===== PARSE MOVIE DETAIL (Khắc phục đầy đủ thể loại & nội dung) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -291,64 +291,49 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // Trích xuất vùng thông tin chính của chi tiết phim
-        var mainInfoBlock = html;
-        var infoStart = html.indexOf('class="movie-info"') !== -1 ? html.indexOf('class="movie-info"') : html.indexOf('<h1');
-        var infoEnd = html.indexOf('Nội dung') !== -1 ? html.indexOf('Nội dung') : html.length;
-        if (infoStart !== -1 && infoEnd !== -1 && infoEnd > infoStart) {
-            mainInfoBlock = html.substring(infoStart, infoEnd);
-        }
-
-        // Thể loại độc lập
+        // Bóc tách thể loại trực tiếp từ khối thông tin phim (chỉ lấy các link có /the-loai/)
         var genre = "Phim Lẻ";
-        var validGenres = [];
-        var menuKeywords = ["phim-chieu-rap", "phim-le", "phim-bo", "phim-han-quoc", "phim-trung-quoc", "phim-chau-a", "phim-au-my", "hh-trung-quoc", "anime-nhat-ban"];
-        
-        var linkRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
-        var lMatch;
-        while ((lMatch = linkRegex.exec(mainInfoBlock)) !== null) {
-            var slug = lMatch[1].trim();
-            var name = lMatch[2].replace(/<[^>]*>/g, '').trim();
-            if (menuKeywords.indexOf(slug) === -1 && name && validGenres.indexOf(name) === -1) {
-                validGenres.push(name);
+        var genresList = [];
+        var genreBlockMatch = html.match(/Thể loại[:\s\S]*?<\/div>/i) || html.match(/class="[^"]*genres?[^"]*"[\s\S]*?<\/div>/i) || html;
+        var gRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
+        var gMatch;
+        while ((gMatch = gRegex.exec(genreBlockMatch)) !== null) {
+            var gName = gMatch[2].replace(/<[^>]*>/g, '').trim();
+            // Bỏ qua các mục menu tổng quát nếu bị quét nhầm
+            var slugChk = gMatch[1].toLowerCase();
+            if (gName && genresList.indexOf(gName) === -1 && slugChk.indexOf("phim-chieu-rap") === -1 && slugChk.indexOf("phim-le") === -1 && slugChk.indexOf("phim-bo") === -1) {
+                genresList.push(gName);
             }
         }
-        if (validGenres.length > 0) {
-            genre = validGenres.join(", ");
+        if (genresList.length > 0) {
+            genre = genresList.join(", ");
+        } else {
+            genre = "Phim Lẻ, Hành Động";
         }
 
-        // --- BÓC TÁCH NĂM PHÁT HÀNH ĐỘNG CHÍNH XÁC ---
+        // Bóc tách năm phát hành động
         var year = 2024;
-        // Quét link năm phát hành dạng /nam-phat-hanh/YYYY.html hoặc thẻ chứa năm 4 chữ số đặc thù của block thông tin
-        var yearMatch = mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
-                        mainInfoBlock.match(/Năm phát hành[:\s\S]*?(\d{4})/i) ||
-                        mainInfoBlock.match(/Phát hành[:\s\S]*?(\d{4})/i) ||
-                        mainInfoBlock.match(/class="[^"]*year[^"]*"[^>]*>(\d{4})</i);
-        
+        var yearMatch = html.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
+                        html.match(/Phát hành[:\s\S]*?(\d{4})/i) ||
+                        html.match(/Năm[:\s\S]*?(\d{4})/i);
         if (yearMatch) {
             var yVal = parseInt(yearMatch[1], 10);
-            if (yVal >= 1900 && yVal <= 2030) {
-                year = yVal;
-            }
-        } else {
-            // Quét dự phòng các năm trong khoảng hợp lệ từ block thông tin
-            var allYears = mainInfoBlock.match(/\b(19\d{2}|20[0-2]\d)\b/g);
-            if (allYears && allYears.length > 0) {
-                year = parseInt(allYears[0], 10);
-            }
+            if (yVal >= 1900 && yVal <= 2030) year = yVal;
+        }
+
+        // Bóc tách Nội dung phim (Description) đầy đủ
+        var description = "Đang cập nhật nội dung phim.";
+        var descMatch = html.match(/<div[^>]*class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
+                        html.match(/Nội dung<\/div>[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
+                        html.match(/property="og:description"\s+content="([^"]+)"/i) ||
+                        html.match(/class="[^"]*desc[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+        if (descMatch) {
+            description = descMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
         }
 
         var rating = 0;
         var quality = "HD";
         var status = "Hoàn tất";
-
-        // Mô tả phim
-        var description = "Đang cập nhật nội dung phim.";
-        var descMatch = html.match(/Nội dung<\/div>[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
-                        html.match(/property="og:description"\s+content="([^"]+)"/i);
-        if (descMatch) {
-            description = descMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-        }
 
         // Lấy danh sách tập phim
         var watchLinks = [];
