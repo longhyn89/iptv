@@ -13,8 +13,8 @@ function getManifest() {
   return JSON.stringify({
     "id": "clbpxVIP",
     "name": "CLB Phim Xưa VIP",
-    "version": "1.3.6",
-    "info": "Fix lỗi không load danh sách phim (Fixed Cookie)",
+    "version": "1.3.8",
+    "info": "Full code extension chuẩn xác fix lỗi load danh sách phim",
     "BASEURL": "https://clbphimxua.com",
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png",
     "headers": {
@@ -104,79 +104,65 @@ function getUrlCategories() { return ""; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
-// =============== HÀM BÓC TÁCH DANH SÁCH ===============
+// =============== HÀM BÓC TÁCH DANH SÁCH LINH HOẠT ===============
 function parseListResponse(htmlResponse, url) {
   console.log("Loading List Data From:\n" + url);
   var items = [];
+  var seenLinks = {};
 
-  var contentArea = htmlResponse;
-  var mainMatch = htmlResponse.match(/(<main[\s\S]*?<\/main>|<div[^>]*id="primary"[^>]*>[\s\S]*?<\/div>\s*<footer)/i);
-  if (mainMatch) {
-    contentArea = mainMatch[0];
-  }
-
-  var blockRegex = /<article[^>]*>([\s\S]*?)<\/article>/gi;
-  var blocks = [];
+  var generalRegex = /<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
   var match;
-  while ((match = blockRegex.exec(contentArea)) !== null) {
-    blocks.push(match[1]);
-  }
 
-  if (blocks.length > 0) {
-    for (var i = 0; i < blocks.length; i++) {
-      var block = blocks[i];
-      var linkMatch = block.match(/<a[^>]+href="([^"]+)"/i);
-      
-      var imgMatch = block.match(/<img[^>]+(?:data-lazy-src|data-src|src)="([^"]+)"/i);
-      var titleMatch = block.match(/<img[^>]+alt="([^"]+)"/i) || block.match(/title="([^"]+)"/i) || block.match(/<h[2-4][^>]*>([\s\S]*?)<\/h[2-4]>/i);
+  while ((match = generalRegex.exec(htmlResponse)) !== null) {
+    var link = match[1];
+    var innerHTML = match[2];
 
-      if (linkMatch && imgMatch) {
-        var link = linkMatch[1];
-        var thumb = imgMatch[1];
-        
-        if (thumb.indexOf("data:image") === 0 || thumb.indexOf("blank.gif") !== -1) {
-          var realImgMatch = block.match(/data-src="([^"]+)"/i) || block.match(/data-lazy-src="([^"]+)"/i);
-          if (realImgMatch) thumb = realImgMatch[1];
-        }
-
-        var title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : "Không có tên";
-        title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").trim();
-
-        var slugMatch = link.match(/clbphimxua\.com\/([^\/]+)\/?/);
-        var slug = slugMatch ? slugMatch[1] : link;
-
-        var year = 0;
-        var yearMatch = title.match(/(19\d{2}|20\d{2})/);
-        if (yearMatch) year = parseInt(yearMatch[1], 10);
-
-        items.push({
-          id: slug,
-          title: title,
-          posterUrl: thumb,
-          backdropUrl: thumb,
-          year: year
-        });
+    if (innerHTML && innerHTML.indexOf("<img") !== -1) {
+      if (
+        link.indexOf('/category/') !== -1 || 
+        link.indexOf('/tag/') !== -1 || 
+        link.indexOf('/author/') !== -1 || 
+        link.indexOf('/page/') !== -1 || 
+        link.indexOf('#') !== -1 ||
+        seenLinks[link]
+      ) {
+        continue;
       }
-    }
-  } else {
-    var fallbackRegex = /<a[^>]+href="([^"]+)"[^>]*>[\s\S]*?<img[^>]+(?:data-lazy-src|data-src|src)="([^"]+)"/gi;
-    var fbMatch;
-    while ((fbMatch = fallbackRegex.exec(contentArea)) !== null) {
-      var fbLink = fbMatch[1];
-      var fbThumb = fbMatch[2];
-      
-      if (fbLink.indexOf('/category/') !== -1 || fbLink.indexOf('/tag/') !== -1 || fbLink.indexOf('/author/') !== -1) continue;
-      if (fbThumb.indexOf("data:image") === 0) continue;
 
-      var fbSlugMatch = fbLink.match(/clbphimxua\.com\/([^\/]+)\/?/);
-      var fbSlug = fbSlugMatch ? fbSlugMatch[1] : fbLink;
+      var imgMatch = innerHTML.match(/<img[^>]+(?:data-lazy-src|data-src|src)="([^"]+)"/i);
+      if (!imgMatch) continue;
+
+      var thumb = imgMatch[1];
+      if (thumb.indexOf("data:image") === 0 || thumb.indexOf("blank.gif") !== -1) {
+        var realImgMatch = innerHTML.match(/data-src="([^"]+)"/i) || innerHTML.match(/data-lazy-src="([^"]+)"/i);
+        if (realImgMatch) thumb = realImgMatch[1];
+        else continue;
+      }
+
+      var titleMatch = innerHTML.match(/alt="([^"]+)"/i) || match[0].match(/title="([^"]+)"/i);
+      var title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : "";
+      
+      if (!title || title === "") {
+        var textMatch = innerHTML.replace(/<[^>]+>/g, ' ').trim();
+        title = textMatch ? textMatch : "Phim mới";
+      }
+
+      title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'").trim();
+      seenLinks[link] = true;
+
+      var slugMatch = link.match(/clbphimxua\.com\/([^\/]+)\/?/);
+      var slug = slugMatch ? slugMatch[1] : link;
+
+      var year = 0;
+      var yearMatch = title.match(/(19\d{2}|20\d{2})/);
+      if (yearMatch) year = parseInt(yearMatch[1], 10);
 
       items.push({
-        id: fbSlug,
-        title: "Phim " + fbSlug,
-        posterUrl: fbThumb,
-        backdropUrl: fbThumb,
-        year: 0
+        id: slug,
+        title: title,
+        posterUrl: thumb,
+        backdropUrl: thumb,
+        year: year
       });
     }
   }
@@ -186,11 +172,12 @@ function parseListResponse(htmlResponse, url) {
   var pageRegex = /<a class="page-numbers".*?>(\d+)<\/a>/gi;
   var pm;
   while ((pm = pageRegex.exec(htmlResponse)) !== null) {
-    if (parseInt(pm[1]) > totalPages) {
-      totalPages = parseInt(pm[1]);
+    var pNum = parseInt(pm[1]);
+    if (pNum > totalPages) {
+      totalPages = pNum;
     }
   }
-  var curPageMatch = htmlResponse.match(/<span aria-current="page"[^>]*>(\d+)<\/span>/i);
+  var curPageMatch = htmlResponse.match(/<span aria-current="page"[^>]*>(\d+)<\/span>/i) || htmlResponse.match(/<span class="page-numbers current"[^>]*>(\d+)<\/span>/i);
   if (curPageMatch) {
     currentPage = parseInt(curPageMatch[1]);
     if (currentPage > totalPages) totalPages = currentPage;
