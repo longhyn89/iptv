@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.1.2 (Bắt chuẩn xác theo cấu trúc DOM thực tế của website)
+// Phiên bản: 1.1.3 (Bổ sung bộ lọc đa tầng, khắc phục triệt để lỗi mất dữ liệu)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.1.3",
+        "version": "1.1.4",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -276,57 +276,73 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Chuẩn xác theo DOM thực tế) =====
+// ===== PARSE MOVIE DETAIL (Đa tầng chống mất dữ liệu) =====
 
 function parseMovieDetail(html, url) {
     try {
         var id = url || "";
         
-        // Tiêu đề
+        // 1. Tiêu đề phim
         var titleMatch = html.match(/<h1[^>]*class="heading_movie"[^>]*>([\s\S]*?)<\/h1>/i) || html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || html.match(/property="og:title"\s+content="([^"]+)"/i);
         var title = titleMatch ? titleMatch[1].replace(/<[^>]*>/g, '').trim() : "HDvnn Movie";
 
-        // Ảnh Poster
+        // 2. Ảnh Poster
         var imgMatch = html.match(/property="og:image"\s+content="([^"]+)"/i);
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // Bóc tách Thể loại chính xác từ <div class="list_cate">
+        // 3. Thể loại (Quét linh hoạt qua list_cate hoặc bất kỳ thẻ chứa /the-loai/)
         var genre = "Phim Lẻ";
         var genresList = [];
-        var listCateMatch = html.match(/<div[^>]*class="list_cate"[^>]*>([\s\S]*?)<\/div>/i);
-        if (listCateMatch) {
-            var cateHtml = listCateMatch[1];
-            var gRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
-            var gMatch;
-            while ((gMatch = gRegex.exec(cateHtml)) !== null) {
-                var gName = gMatch[2].replace(/<[^>]*>/g, '').trim();
-                if (gName && genresList.indexOf(gName) === -1) {
-                    genresList.push(gName);
-                }
+        var listCateMatch = html.match(/<div[^>]*class="[^"]*list_cate[^"]*"[^>]*>([\s\S]*?)<\/div>/i) || html;
+        var cateHtml = listCateMatch ? listCateMatch[1] : html;
+        var gRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
+        var gMatch;
+        while ((gMatch = gRegex.exec(cateHtml)) !== null) {
+            var gName = gMatch[2].replace(/<[^>]*>/g, '').trim();
+            if (gName && genresList.indexOf(gName) === -1) {
+                genresList.push(gName);
             }
         }
         if (genresList.length > 0) {
             genre = genresList.join(", ");
         }
 
-        // Bóc tách năm phát hành động
+        // 4. Năm phát hành
         var year = 2024;
         var yearMatch = html.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
                         html.match(/<div[^>]*class="[^"]*year[^"]*"[^>]*>(\d{4})<\/div>/i) ||
-                        html.match(/Phát hành[:\s\S]*?(\d{4})/i);
+                        html.match(/Phát hành[:\s\S]*?(\d{4})/i) ||
+                        html.match(/(\d{4})/i);
         if (yearMatch) {
             var yVal = parseInt(yearMatch[1], 10);
             if (yVal >= 1900 && yVal <= 2030) year = yVal;
         }
 
-        // Bóc tách Nội dung phim chính xác từ <div class="desc ah-frame-bg list_episode">
+        // 5. Nội dung phim (Quét qua thẻ desc, thông tin text trong p hoặc og:description)
         var description = "Đang cập nhật nội dung phim.";
-        var descBlockMatch = html.match(/<div[^>]*class="desc ah-frame-bg list_episode"[^>]*>([\s\S]*?)<\/div>/i) ||
-                             html.match(/<div[^>]*class="[^"]*desc[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
+        var descBlockMatch = html.match(/<div[^>]*class="[^"]*desc[^"]*">([\s\S]*?)<\/div>/i) ||
+                             html.match(/<div[^>]*class="[^"]*list_episode[^"]*">([\s\S]*?)<\/div>/i) ||
                              html.match(/property="og:description"\s+content="([^"]+)"/i);
         if (descBlockMatch) {
-            description = descBlockMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+            var cleanDesc = descBlockMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+            if (cleanDesc.length > 5) {
+                description = cleanDesc;
+            }
+        }
+        
+        // Dự phòng nếu nội dung vẫn bị lấy nhầm chuỗi ngắn
+        if (description.length < 10) {
+            var pFallback = html.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+            if (pFallback && pFallback.length > 0) {
+                for (var pf = 0; pf < pFallback.length; pf++) {
+                    var pText = pFallback[pf].replace(/<[^>]*>/g, ' ').trim();
+                    if (pText.length > 30) {
+                        description = pText;
+                        break;
+                    }
+                }
+            }
         }
 
         var rating = 0;
