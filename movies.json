@@ -11,7 +11,7 @@
         },
         {
             "id": "nguonc",
-            "name": "Nguồn C (WEB)",
+            "name": "Nguồn C",
             "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/nguonc.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png"
