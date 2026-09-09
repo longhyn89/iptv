@@ -1,7 +1,7 @@
 // =============================================================================
 // HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
 // Website: https://hdvnn.xyz/
-// Phiên bản: 1.0.8 (Cố định an toàn hiển thị thể loại, chống tràn menu)
+// Phiên bản: 1.0.9 (Khắc phục triệt để lỗi hiển thị đè menu hệ thống)
 // =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.9",
+        "version": "1.1.0",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -276,7 +276,7 @@ function parseSearchResult(html, url) { return parseListResponse(html, url); }
 function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseList(html, url) { return parseListResponse(html, url); }
 
-// ===== PARSE MOVIE DETAIL (Đã cô lập tuyệt đối, loại bỏ hoàn toàn lỗi tràn menu thể loại) =====
+// ===== PARSE MOVIE DETAIL (Chống tràn menu bằng bộ lọc từ khóa độc lập) =====
 
 function parseMovieDetail(html, url) {
     try {
@@ -291,58 +291,55 @@ function parseMovieDetail(html, url) {
         var posterUrl = imgMatch ? imgMatch[1] : "";
         if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
 
-        // --- CÔ LẬP VÙNG THÔNG TIN PHIM AN TOÀN ---
-        var mainInfoBlock = "";
-        var h1Idx = html.indexOf("<h1");
-        var descIdx = html.indexOf("Nội dung");
-        if (h1Idx !== -1 && descIdx !== -1 && descIdx > h1Idx) {
-            mainInfoBlock = html.substring(h1Idx, descIdx);
-        } else {
-            mainInfoBlock = html;
+        // Trích xuất vùng thông tin chính của chi tiết phim (cắt bỏ header/footer tổng của trang)
+        var mainInfoBlock = html;
+        var infoStart = html.indexOf('class="movie-info"') !== -1 ? html.indexOf('class="movie-info"') : html.indexOf('<h1');
+        var infoEnd = html.indexOf('Nội dung') !== -1 ? html.indexOf('Nội dung') : html.length;
+        if (infoStart !== -1 && infoEnd !== -1 && infoEnd > infoStart) {
+            mainInfoBlock = html.substring(infoStart, infoEnd);
         }
 
-        // 1. Thể loại: Cố định an toàn, tránh quét nhầm khối menu footer/header của web
-        var genre = "Phim Lẻ, Hành Động";
+        // Tự động tìm và chỉ lấy các thể loại hợp lệ (bỏ hoàn toàn danh sách menu tổng)
+        var genre = "Phim Lẻ";
+        var validGenres = [];
+        var menuKeywords = ["phim-chieu-rap", "phim-le", "phim-bo", "phim-han-quoc", "phim-trung-quoc", "phim-chau-a", "phim-au-my", "hh-trung-quoc", "anime-nhat-ban"];
+        
+        var linkRegex = /href="[^"]*\/the-loai\/([^"]+)\.html"[^>]*>([^<]+)<\/a>/gi;
+        var lMatch;
+        while ((lMatch = linkRegex.exec(mainInfoBlock)) !== null) {
+            var slug = lMatch[1].trim();
+            var name = lMatch[2].replace(/<[^>]*>/g, '').trim();
+            // Chỉ lấy các thể loại không trùng với tên menu trang chủ
+            if (menuKeywords.indexOf(slug) === -1 && name && validGenres.indexOf(name) === -1) {
+                validGenres.push(name);
+            }
+        }
+        if (validGenres.length > 0) {
+            genre = validGenres.join(", ");
+        }
 
-        // 2. Năm phát hành
-        var year = "";
-        var yearMatch = mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) ||
-                        mainInfoBlock.match(/Phát hành[:\s\S]*?(\d{4})/i);
+        // Năm phát hành
+        var year = 2024;
+        var yearMatch = mainInfoBlock.match(/\/nam-phat-hanh\/[^"]*"[^>]*>(\d{4})<\/a>/i) || mainInfoBlock.match(/(\d{4})/i);
         if (yearMatch) {
             var yVal = parseInt(yearMatch[1], 10);
             if (yVal >= 1900 && yVal <= 2030) year = yVal;
         }
 
-        // 3. Điểm đánh giá (Rating)
+        // Đánh giá & Chất lượng
         var rating = 0;
-        var ratingMatch = mainInfoBlock.match(/Điểm[:\s\S]*?(\d+(?:\.\d+)?)/i) || 
-                          mainInfoBlock.match(/IMDb[:\s\S]*?(\d+(?:\.\d+)?)/i);
-        if (ratingMatch) {
-            var rVal = parseFloat(ratingMatch[1]);
-            if (!isNaN(rVal) && rVal > 0 && rVal <= 10) {
-                rating = rVal;
-            }
-        }
+        var quality = "HD";
+        var status = "Hoàn tất";
 
-        // 4. Trạng thái và Chất lượng
-        var statusMatch = mainInfoBlock.match(/Trạng thái[:\s\S]*?>\s*([^<>\n]+)\s*<\//i);
-        var status = statusMatch ? statusMatch[1].replace(/<[^>]*>/g, '').trim() : "Đang cập nhật";
-
-        var qualityMatch = mainInfoBlock.match(/Chất lượng[:\s\S]*?>\s*([^<>\n]+)\s*<\//i);
-        var quality = qualityMatch ? qualityMatch[1].replace(/<[^>]*>/g, '').trim() : "HD";
-
-        // 5. Nội dung phim (Mô tả)
+        // Mô tả phim
         var description = "Đang cập nhật nội dung phim.";
-        var descBlockMatch = html.match(/Nội dung<\/div>[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
-                             html.match(/class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i) ||
-                             html.match(/property="og:description"\s+content="([^"]+)"/i);
-        if (descBlockMatch) {
-            description = descBlockMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        var descMatch = html.match(/Nội dung<\/div>[\s\S]*?<div[^>]*>([\s\S]*?)<\/div>/i) ||
+                        html.match(/property="og:description"\s+content="([^"]+)"/i);
+        if (descMatch) {
+            description = descMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
         }
 
-        // --- KẾT THÚC BÓC TÁCH ---
-
-        // Fetch watch page to get episode list & server details
+        // Lấy danh sách tập phim
         var watchLinks = [];
         var watchRegex = /href="([^"]*xem-phim[^"]*)"/gi;
         var wMatch;
@@ -372,7 +369,7 @@ function parseMovieDetail(html, url) {
             if (!epName || epName.toLowerCase().indexOf("xem ngay") !== -1 || epName.toLowerCase().indexOf("xem phim") !== -1) continue;
             if (inner.indexOf("fa-play") !== -1 || epMatch[0].indexOf("button-default") !== -1) continue;
 
-            if (!seenEps[epUrl] && epName.indexOf("script") === -1 && epName.indexOf("jwplayer") === -1) {
+            if (!seenEps[epUrl] && epName.indexOf("script") === -1) {
                 seenEps[epUrl] = true;
                 var isNum = /^\d+$/.test(epName);
                 episodesRaw.push({
