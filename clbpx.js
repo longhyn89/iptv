@@ -1,5 +1,96 @@
-var BASEURL = "https://sc.k-20.xyz";
-var BASESOURCE = "";
+BASEURL = "https://clbphimxua.com";
+BASESOURCE = "";
+
+function getValidCookie() {
+  var domain = "https://clbphimxua.com";
+  var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
+  // 1. Kiểm tra Cookie hiện tại của domain bằng getSetCookies
+  console.log("[LOG] -> Kiểm tra trạng thái đăng nhập qua getSetCookies...");
+  var checkCookies = getSetCookies(domain, {
+    "User-Agent": userAgent
+  });
+  var checkCookieStr = "";
+
+  if (checkCookies && checkCookies.length > 0) {
+    checkCookieStr = checkCookies.map(function(c) {
+      return c.split(";")[0].trim();
+    }).join("; ");
+  }
+
+  // 2. Nếu đã có cookie wordpress_logged_in_ -> Dùng luôn, KHÔNG cần đăng nhập lại
+  if (checkCookieStr && checkCookieStr.indexOf("wordpress_logged_in_") !== -1) {
+    console.log("[LOG] -> ĐÃ ĐĂNG NHẬP SẴN! Dùng lại Cookie hiện tại.");
+    return checkCookieStr;
+  }
+
+  // 3. Nếu chưa đăng nhập -> Mới tiến hành POST đăng nhập
+  console.log("[LOG] -> CHƯA ĐĂNG NHẬP! Tiến hành gửi POST đăng nhập...");
+  return loginAndGetCookie();
+}
+
+function loginAndGetCookie() {
+  var domain = "https://clbphimxua.com";
+  var loginUrl = domain + "/wp-login.php";
+  var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
+  // Bước 1: Dùng getSetCookies lấy test cookie ban đầu
+  var initCookiesArr = getSetCookies(loginUrl, {
+    "User-Agent": userAgent
+  });
+  var initialCookies = "";
+
+  if (initCookiesArr && initCookiesArr.length > 0) {
+    initialCookies = initCookiesArr.map(function(c) {
+      return c.split(";")[0].trim();
+    }).join("; ");
+  }
+
+  if (initialCookies.indexOf("wordpress_test_cookie") === -1) {
+    initialCookies += (initialCookies ? "; " : "") + "wordpress_test_cookie=WP%20Cookie%20check";
+  }
+
+  // Bước 2: POST đăng nhập
+  var bodyData = "log=" + encodeURIComponent("gun95941@gmail.com") +
+    "&pwd=" + encodeURIComponent("123456") +
+    "&rememberme=forever" +
+    "&wp-submit=" + encodeURIComponent("Đăng nhập") +
+    "&redirect_to=" + encodeURIComponent(domain + "/wp-admin/") +
+    "&testcookie=1";
+
+  var loginRes = httpRequest(loginUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Cookie": initialCookies,
+      "Origin": domain,
+      "Referer": loginUrl,
+      "User-Agent": userAgent
+    },
+    body: bodyData
+  });
+
+  // Bước 3: Lấy Set-Cookie xác thực trả về
+  var authCookiesArr = [];
+  if (loginRes && loginRes.setCookies) {
+    authCookiesArr = loginRes.setCookies.map(function(c) {
+      return c.split(";")[0].trim();
+    });
+  }
+
+  var fullCookieStr = authCookiesArr.join("; ");
+
+  if (fullCookieStr && fullCookieStr.indexOf("wordpress_") !== -1) {
+    toast("Đăng nhập thành công!");
+    return fullCookieStr;
+  } else {
+    toast("Đăng nhập thất bại!");
+    return "";
+  }
+}
+
+// Chạy kiểm tra phiên trước
+var cookie = getValidCookie();
 
 function getManifest() {
   return JSON.stringify({
@@ -7,8 +98,14 @@ function getManifest() {
     "name": "CLB Phim Xưa VIP",
     "version": "1.0.1",
     "info": "",
-    "BASEURL": BASEURL,
+    "BASEURL": "https://clbphimxua.com",
     "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/clbpxVIP.png",
+    "headers": {
+      "Host": "clbphimxua.com",
+      "Referer": "https://clbphimxua.com",
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Cookie": cookie
+    },
     "isEnabled": true,
     "isAdult": false,
     "adblock": false,
@@ -19,10 +116,15 @@ function getManifest() {
   });
 }
 
+
+
+
+
+
 function getHomeSections() {
   return JSON.stringify([{
-    slug: 'series/home',
-    title: 'Phim Bộ Mới',
+    slug: 'home',
+    title: 'Mới Cập Nhật',
     type: 'Grid',
     path: ''
   }]);
@@ -32,45 +134,77 @@ function getPrimaryCategories() {
   if (typeof localStorage !== 'undefined' && localStorage.getItem("SVDATA")) {
     localStorage.removeItem("SVDATA");
   }
-  return JSON.stringify([
-    { name: 'Kiếm Hiệp', slug: 'Kiếm Hiệp' },
-    { name: 'Tiên Hiệp', slug: 'Tiên Hiệp' },
-    { name: 'Tâm Lý', slug: 'Tâm Lý' },
-    { name: 'Ma Kinh Dị', slug: 'Ma Kinh Dị' },
-    { name: 'Điện Ảnh Châu Á', slug: 'Điện Ảnh Châu Á' },
-    { name: 'Điện Ảnh Âu Mỹ', slug: 'Điện Ảnh Âu Mỹ' },
-    { name: 'Hàn Quốc', slug: 'Hàn Quốc' },
-    { name: 'Anime', slug: 'Anime' },
-    { name: 'TV Series', slug: 'TV Series' },
-    { name: 'Thập Niên 60', slug: 'Thập Niên 60' },
-    { name: 'Thập Niên 70', slug: 'Thập Niên 70' },
-    { name: 'Thập Niên 80', slug: 'Thập Niên 80' },
-    { name: 'Thập Niên 90', slug: 'Thập Niên 90' },
-    { name: 'Thập Niên 2000', slug: 'Thập Niên 2000' }
+  return JSON.stringify([{
+      name: 'Kiếm Hiệp',
+      slug: 'phim-bo-kiem-hiep-co-trang'
+    },
+    {
+      name: 'Tiên Hiệp',
+      slug: 'tien-hiep-ngon-tinh'
+    },
+    {
+      name: 'Tâm Lý',
+      slug: 'tlhd'
+    },
+    {
+      name: 'Ma Kinh Dị',
+      slug: 'ma-kinh-di'
+    },
+    {
+      name: 'Điện Ảnh Châu Á',
+      slug: 'phim-hk-tk'
+    },
+    {
+      name: 'Điện Ảnh Âu Mỹ',
+      slug: 'dien-anh-tay'
+    },
+    {
+      name: 'Hàn Quốc',
+      slug: 'drama-hq-nb'
+    },
+    {
+      name: 'Anime',
+      slug: 'phim-hoat-hinh'
+    },
+    {
+      name: 'TV Series',
+      slug: 'phim-tv'
+    },
+    {
+      name: 'Thập Niên 60',
+      slug: 'thap-nien-60'
+    },
+    {
+      name: 'Thập Niên 70',
+      slug: 'thap-nien-70'
+    },
+    {
+      name: 'Thập Niên 80',
+      slug: 'thap-nien-80'
+    },
+    {
+      name: 'Thập Niên 90',
+      slug: 'thap-nien-90'
+    },
+    {
+      name: 'Thập Niên 2000',
+      slug: 'thap-nien-2000'
+    }
   ]);
 }
 
 function getFilterConfig() {
   return JSON.stringify({
-    sort: [
-      { name: 'Mới nhất', value: 'newest' },
-      { name: 'Cũ nhất', value: 'oldest' }
+    sort: [{
+        name: 'Cũ nhất',
+        value: 'oldest'
+      },
+      {
+        name: 'Mới nhất',
+        value: 'newest'
+      }
     ]
   });
-}
-
-// =============================================================================
-// HELPER: TẠO DIRECT MP4 THEO ĐỘ PHÂN GIẢI (RES)
-// =============================================================================
-function buildDirectMp4Url(rawId, resValue) {
-  if (!rawId) return "";
-  if (rawId.indexOf("http") === 0) return rawId;
-
-  var parts = rawId.split(':');
-  var videoHash = parts[parts.length - 1];
-
-  var embedUrl = "https://abyssplayer.com/" + videoHash;
-  return BASEURL + "/hx-mp4?embed=" + encodeURIComponent(embedUrl) + "&res=" + resValue + "&size=2990283794";
 }
 
 // =============================================================================
@@ -78,224 +212,424 @@ function buildDirectMp4Url(rawId, resValue) {
 // =============================================================================
 
 function getUrlList(slug, filtersJson) {
-  var filters = {};
-  try { filters = JSON.parse(filtersJson || "{}"); } catch(e) {}
+  var filters = JSON.parse(filtersJson || "{}");
   var page = filters.page || 1;
-  var skip = (page - 1) * 20;
+  var baseUrl = BASEURL;
 
-  var type = "series";
-  var catalogId = "clbpx-series";
-
-  if (slug && slug.indexOf("movie") === 0) {
-    type = "movie";
-    catalogId = "clbpx-movie";
+  if (slug === '' || slug === 'home') {
+    if (page > 1) {
+      return baseUrl + "/page/" + page + "/";
+    }
+    return baseUrl + "/";
   }
 
-  var cleanSlug = slug ? slug.replace(/^(series|movie)\/?/, "") : "";
-  var path = "/catalog/" + type + "/" + catalogId;
-
-  if (cleanSlug && cleanSlug !== "home" && cleanSlug !== "") {
-    path += "/genre=" + encodeURIComponent("Thể loại: " + cleanSlug);
+  if (page > 1) {
+    return baseUrl + "/category/" + slug + "/page/" + page + "/";
   }
-
-  if (skip > 0) {
-    path += "/skip=" + skip;
-  }
-
-  return BASEURL + path + ".json";
+  return baseUrl + "/category/" + slug + "/";
 }
 
 function getUrlSearch(keyword, filtersJson) {
-  var filters = {};
-  try { filters = JSON.parse(filtersJson || "{}"); } catch(e) {}
+  var filters = JSON.parse(filtersJson || "{}");
   var page = filters.page || 1;
-  var skip = (page - 1) * 20;
-
-  var path = "/catalog/series/clbpx-series/search=" + encodeURIComponent(keyword);
-  if (skip > 0) {
-    path += "/skip=" + skip;
+  if (page > 1) {
+    return BASEURL + "/page/" + page + "/?s=" + encodeURIComponent(keyword);
   }
-  return BASEURL + path + ".json";
+  return BASEURL + "/?s=" + encodeURIComponent(keyword);
 }
 
 function getUrlDetail(slug) {
   if (!slug) return "";
   if (slug.indexOf("http") === 0) return slug;
-
-  if (slug.indexOf("/") !== -1) {
-    return BASEURL + "/meta/" + slug + ".json";
-  }
-  return BASEURL + "/meta/series/" + slug + ".json";
+  return BASEURL + "/" + slug + "/";
 }
 
-function getUrlCategories() { return ""; }
-function getUrlCountries() { return ""; }
-function getUrlYears() { return ""; }
+function getUrlCategories() {
+  return "";
+}
+
+function getUrlCountries() {
+  return "";
+}
+
+function getUrlYears() {
+  return "";
+}
 
 // =============================================================================
 // PARSERS
 // =============================================================================
 
-function parseListResponse(jsonResponse, url) {
+function parseListResponse(htmlResponse, url) {
+  console.log("list\n" + url);
+
   var items = [];
-  var currentPage = 1;
+  var regex = /<article.*?id="post-[^>]+>[\s\S]*?<a href="([^"]+)".*?>\s*<figure[\s\S]*?<img.*?src="([^"]+)".*?alt="([^"]+)".*?>/gi;
+  var match;
 
-  try {
-    var data = JSON.parse(jsonResponse);
-    var metas = data.metas || [];
+  while ((match = regex.exec(htmlResponse)) !== null) {
+    var link = match[1] || "";
+    var thumb = match[2] || "";
+    var title = match[3] || "";
 
-    for (var i = 0; i < metas.length; i++) {
-      var item = metas[i];
-      var itemType = item.type || "series";
-      var fullId = itemType + "/" + item.id;
+    title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
 
-      var year = 0;
-      if (item.year) {
-        year = parseInt(item.year, 10);
-      } else if (item.releaseInfo) {
-        var yMatch = (item.releaseInfo + "").match(/\d{4}/);
-        if (yMatch) year = parseInt(yMatch[0], 10);
-      }
-
-      items.push({
-        id: fullId,
-        title: item.name || "",
-        posterUrl: item.poster || "",
-        backdropUrl: item.background || item.poster || "",
-        year: year
-      });
+    var slugMatch = link.match(/clbphimxua\.com\/([^\/]+)\/?/);
+    var slug = slugMatch ? slugMatch[1] : link;
+    var year = 0;
+    var yearMatch = title.match(/19\d{2}|20\d{2}/);
+    if (yearMatch) {
+      year = parseInt(yearMatch[0], 10);
     }
-  } catch (e) {
-    console.error("parseListResponse error: " + e);
+
+    items.push({
+      id: slug,
+      title: title.trim(),
+      posterUrl: thumb,
+      backdropUrl: thumb,
+      year: year
+    });
   }
 
-  var skipMatch = url ? url.match(/skip=(\d+)/) : null;
-  if (skipMatch) {
-    currentPage = Math.floor(parseInt(skipMatch[1], 10) / 20) + 1;
+  var totalPages = 1;
+  var currentPage = 1;
+  var pageRegex = /<a class="page-numbers".*?>(\d+)<\/a>/gi;
+  var pm;
+  while ((pm = pageRegex.exec(htmlResponse)) !== null) {
+    if (parseInt(pm[1]) > totalPages) {
+      totalPages = parseInt(pm[1]);
+    }
   }
-
-  var totalPages = items.length >= 20 ? currentPage + 1 : currentPage;
-
+  var curPageMatch = htmlResponse.match(/<span aria-current="page" class="page-numbers current">(\d+)<\/span>/i);
+  if (curPageMatch) {
+    currentPage = parseInt(curPageMatch[1]);
+    if (currentPage > totalPages) totalPages = currentPage;
+  }
+  //console.log("list:\n" + JSON.stringify(items));
   return JSON.stringify({
     items: items,
     pagination: {
       currentPage: currentPage,
-      totalPage: totalPages,
       totalPages: totalPages
     }
   });
 }
 
-function parseSearchResponse(jsonResponse, url) {
-  return parseListResponse(jsonResponse, url);
+function parseSearchResponse(htmlResponse) {
+  return parseListResponse(htmlResponse);
 }
 
-function parseMovieDetail(jsonResponse) {
+function extractVideoId(url) {
+  if (!url) return "";
+  var match = url.match(/[?&]v=([^&]+)/);
+  return match ? match[1] : url;
+}
+
+function BASE64ENCODE(str) {
   try {
-    var data = JSON.parse(jsonResponse);
-    var meta = data.meta || {};
+    if (!str) return "";
 
-    var id = meta.id || "";
-    var title = meta.name || "";
-    var posterUrl = meta.poster || "";
-    var backdropUrl = meta.background || posterUrl;
-    var description = meta.description || "";
-
-    var year = 0;
-    if (meta.year) {
-      year = parseInt(meta.year, 10);
-    } else if (meta.releaseInfo) {
-      var yMatch = (meta.releaseInfo + "").match(/\d{4}/);
-      if (yMatch) year = parseInt(yMatch[0], 10);
+    var utf8Bytes = [];
+    for (var i = 0; i < str.length; i++) {
+      var code = str.charCodeAt(i);
+      if (code < 128) {
+        utf8Bytes.push(code);
+      } else if (code < 2048) {
+        utf8Bytes.push((code >> 6) | 192, (code & 63) | 128);
+      } else if (
+        (code & 0xfc00) === 0xd800 &&
+        i + 1 < str.length &&
+        (str.charCodeAt(i + 1) & 0xfc00) === 0xdc00
+      ) {
+        code =
+          0x10000 + ((code & 0x03ff) << 10) + (str.charCodeAt(++i) & 0x03ff);
+        utf8Bytes.push(
+          (code >> 18) | 240,
+          ((code >> 12) & 63) | 128,
+          ((code >> 6) & 63) | 128,
+          (code & 63) | 128,
+        );
+      } else {
+        utf8Bytes.push(
+          (code >> 12) | 224,
+          ((code >> 6) & 63) | 128,
+          (code & 63) | 128,
+        );
+      }
     }
 
+    var chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var encoded = "";
+    var byte1, byte2, byte3;
+    var b1, b2, b3, b4;
+
+    for (var j = 0; j < utf8Bytes.length; j += 3) {
+      byte1 = utf8Bytes[j];
+      byte2 = j + 1 < utf8Bytes.length ? utf8Bytes[j + 1] : NaN;
+      byte3 = j + 2 < utf8Bytes.length ? utf8Bytes[j + 2] : NaN;
+
+      b1 = byte1 >> 2;
+      b2 = ((byte1 & 3) << 4) | (isNaN(byte2) ? 0 : byte2 >> 4);
+      b3 = isNaN(byte2) ?
+        64 :
+        ((byte2 & 15) << 2) | (isNaN(byte3) ? 0 : byte3 >> 6);
+      b4 = isNaN(byte3) ? 64 : byte3 & 63;
+
+      encoded +=
+        chars.charAt(b1) +
+        chars.charAt(b2) +
+        chars.charAt(b3) +
+        chars.charAt(b4);
+    }
+
+    return encoded;
+  } catch (e) {
+    console.log("[BASE64ENCODE Error]:", e.message || e);
+    return "";
+  }
+}
+
+function parseMovieDetail(htmlResponse) {
+  try {
+    var id = "";
+    var title = "";
+    var posterUrl = "";
+    var description = "";
+    var saveSV = [];
+    var nameMV = "";
+    var slugMatch = htmlResponse.match(/<link rel="canonical" href="([^"]+)"/i);
+    if (slugMatch) {
+      var canonicalUrl = slugMatch[1];
+      var parts = canonicalUrl.split('/');
+      id = parts[parts.length - 2] || parts[parts.length - 1] || "unknown_movie";
+    } else {
+      id = "movie_" + new Date().getTime();
+    }
+
+    var titleMatch = htmlResponse.match(/<h1 class="single-title">([^<]+)<\/h1>/i);
+    if (titleMatch) title = titleMatch[1].trim();
+    title = title.replace(/&#8211;/g, '-').replace(/&#8217;/g, "'");
+    nameMV = title;
+    var posterMatch = htmlResponse.match(/<img[^>]*class="[^"]*wp-post-image[^"]*"[^>]*src="([^"]+)"/i);
+    if (!posterMatch) {
+      posterMatch = htmlResponse.match(/<img[^>]*src="([^"]+)"[^>]*class="[^"]*wp-post-image[^"]*"/i);
+    }
+    if (!posterMatch) {
+      posterMatch = htmlResponse.match(/<article[^>]*>[\s\S]*?<figure>\s*<img[^>]*src="([^"]+)"/i);
+    }
+    if (posterMatch) posterUrl = posterMatch[1];
+    else {
+      var ogImg = htmlResponse.match(/<meta property="og:image" content="([^"]+)"/i);
+      if (ogImg) posterUrl = ogImg[1];
+    }
+
+    var descMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<a href/i);
+    if (descMatch) {
+      description = descMatch[1].replace(/<[^>]+>/g, '').trim();
+    }
+
+    var year = 0;
+    var yearMatch = title.match(/(19\d{2}|20\d{2})/);
+    if (yearMatch) year = parseInt(yearMatch[1], 10);
+
     var servers = [];
-    var videos = meta.videos || [];
+    var contentArea = "";
+    var contentMatch = htmlResponse.match(/<div class="sigle-post-content-area">([\s\S]*?)<\/div>/i);
+    contentArea = contentMatch ? contentMatch[1] : htmlResponse;
 
-    if (videos.length > 0) {
-      var eps1080 = [];
-      var eps720 = [];
+    var serverPatterns = [{
+        pattern: /\(L\u1ed3ng Ti\u1ebfng\)/gi,
+        name: "Lồng Tiếng"
+      },
+      {
+        pattern: /\(L&#7891;ng Ti&#7871;ng\)/gi,
+        name: "Lồng Tiếng"
+      },
+      {
+        pattern: /\(Ph\u1ee5 \u0110\u1ec1\)/gi,
+        name: "Phụ Đề"
+      },
+      {
+        pattern: /\(Ph&#7909; &#272;&#7873;\)/gi,
+        name: "Phụ Đề"
+      },
+      {
+        pattern: /\(Thuy\u1ebft Minh\)/gi,
+        name: "Thuyết Minh"
+      },
+      {
+        pattern: /\(Thuy&#7871;t Minh\)/gi,
+        name: "Thuyết Minh"
+      }
+    ];
 
-      for (var i = 0; i < videos.length; i++) {
-        var v = videos[i];
-        var epId = v.id || id;
-        var epName = v.title || v.name || ("Tập " + (v.episode || (i + 1)));
+    var boldSections = [];
+    var boldRegex = /<b[^>]*>([\s\S]*?)<\/b>/gi;
+    var bMatch;
+    while ((bMatch = boldRegex.exec(contentArea)) !== null) {
+      boldSections.push(bMatch[1]);
+    }
 
-        var url1080 = buildDirectMp4Url(epId, 5); // res=5
-        var url720 = buildDirectMp4Url(epId, 4);  // res=4
+    // ✅ Đã sửa: Chuẩn hóa URL bằng Regex cực kỳ an toàn, không lo lỗi crash
+    function normalizeEpUrl(rawUrl) {
+      if (!rawUrl) return "";
+      // Loại bỏ domain cũ nếu có (http://domain.com hoặc https://domain.com)
+      var pathAndQuery = rawUrl.replace(/^https?:\/\/[^\/]+/i, '');
 
-        eps1080.push({
-          id: url1080, url: url1080, file: url1080, link: url1080, datasend: url1080,
-          name: epName, slug: epId
-        });
+      // Bắt buộc phải có dấu / ở đầu đường dẫn
+      if (!pathAndQuery.startsWith('/')) {
+        pathAndQuery = '/' + pathAndQuery;
+      }
 
-        eps720.push({
-          id: url720, url: url720, file: url720, link: url720, datasend: url720,
-          name: epName, slug: epId
+      return "https://example.com" + pathAndQuery;
+    }
+
+    if (boldSections.length > 0) {
+      for (var si = 0; si < boldSections.length; si++) {
+        var section = boldSections[si];
+        var serverName = "";
+
+        for (var pi = 0; pi < serverPatterns.length; pi++) {
+          serverPatterns[pi].pattern.lastIndex = 0;
+          if (serverPatterns[pi].pattern.test(section)) {
+            serverName = serverPatterns[pi].name;
+            break;
+          }
+        }
+
+        if (!serverName) {
+          var headerMatch = section.match(/^\s*\(([^)]+)\)/);
+          if (headerMatch) serverName = headerMatch[1].trim();
+        }
+
+        var sectionEpisodes = [];
+        var sectionLinkRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=[a-zA-Z0-9_-]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+        var slMatch;
+        var saveEp = [];
+
+        while ((slMatch = sectionLinkRegex.exec(section)) !== null) {
+          var epUrl = normalizeEpUrl(slMatch[1]);
+          var epLabel = slMatch[2].replace(/<[^>]+>/g, '').trim();
+
+          if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(slMatch[2])) {
+            epLabel = sectionEpisodes.length === 0 && boldSections.length === 1 ? "Xem phim" : "Tập " + (sectionEpisodes.length + 1);
+          }
+
+          var vMatch = epUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+          var videoId = vMatch ? vMatch[1] : "";
+          if (videoId) saveEp.push(videoId);
+          var link = BASEURL + "?"
+          sectionEpisodes.push({
+            id: epUrl,
+            name: epLabel,
+            slug: epUrl
+          });
+        }
+
+        if (sectionEpisodes.length > 0) {
+          var finalServerName = serverName || ("Server " + (servers.length + 1));
+          saveSV.push({
+            nameMV: nameMV,
+            name: finalServerName,
+            episodes: saveEp
+          });
+          servers.push({
+            name: finalServerName,
+            episodes: sectionEpisodes
+          });
+        }
+      }
+    }
+
+    if (servers.length === 0) {
+      var episodes = [];
+      var fallbackSaveEp = [];
+      var allLinksRegex = /<a href="([^"]*clbpx(?:\.html)?\?v=[a-zA-Z0-9_-]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+      var lMatch;
+
+      while ((lMatch = allLinksRegex.exec(htmlResponse)) !== null) {
+        var epUrl = normalizeEpUrl(lMatch[1]);
+        var epLabel = lMatch[2].replace(/<[^>]+>/g, '').trim();
+
+        if (!epLabel || /^\s*$/.test(epLabel) || /<img/i.test(lMatch[2])) {
+          epLabel = "Tập " + (episodes.length + 1);
+        }
+
+        var vMatch = epUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+        var videoId = vMatch ? vMatch[1] : "";
+        if (videoId) fallbackSaveEp.push(videoId);
+        var link = "https://sc.k-20.xyz/stream/series/clbpx:lo2b09rr074-2q1390mfi:" + videoId + ".json"
+        episodes.push({
+          id: epUrl,
+          name: epLabel,
+          slug: epUrl
         });
       }
 
-      // Tạo 2 Server riêng biệt để phòng trường hợp 1080p bị fallback
-      servers.push({ name: "Server 1080p (Full HD)", episodes: eps1080 });
-      servers.push({ name: "Server 720p (HD Khuyên Dùng)", episodes: eps720 });
-
-    } else {
-      var url1080 = buildDirectMp4Url(id, 5);
-      var url720 = buildDirectMp4Url(id, 4);
-
-      servers.push({
-        name: "Server 1080p (Full HD)",
-        episodes: [{ id: url1080, url: url1080, file: url1080, link: url1080, datasend: url1080, name: "Xem phim", slug: id }]
-      });
-      servers.push({
-        name: "Server 720p (HD Khuyên Dùng)",
-        episodes: [{ id: url720, url: url720, file: url720, link: url720, datasend: url720, name: "Xem phim", slug: id }]
-      });
+      if (episodes.length > 0) {
+        saveSV.push({
+          nameMV: nameMV,
+          name: "Thuyết Minh",
+          episodes: fallbackSaveEp
+        });
+        servers.push({
+          name: "Thuyết Minh",
+          episodes: episodes
+        });
+      }
     }
 
-    return JSON.stringify({
+    var $return = JSON.stringify({
       id: id,
       title: title,
       posterUrl: posterUrl,
-      backdropUrl: backdropUrl,
+      backdropUrl: posterUrl,
       description: description,
       year: year,
       rating: 0,
-      quality: "1080p / 720p HD",
+      quality: "HD",
       servers: servers,
-      category: (meta.genres || []).join(", "),
+      category: "",
       country: "",
       director: "",
-      casts: ""
+      casts: "",
+      datasend: ""
     });
 
+    console.log("return parseMovie\n" + $return);
+    return $return;
+
   } catch (error) {
-    console.error("parseMovieDetail error: " + error);
+    console.error("parseMovieDetail error: ", error);
     return "null";
   }
 }
 
+
+
 function parseDetailResponse(htmlResponse, fallbackUrl, datasend) {
-  var streamUrl = fallbackUrl || datasend || htmlResponse || "";
-
-  if (typeof streamUrl === 'string') {
-    streamUrl = streamUrl.trim();
+  try {
+    console.log("Detailt:\n" + fallbackUrl)
+    var vMatch = fallbackUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+    var videoId = vMatch ? vMatch[1] : "";
+    var stream = "https://abysscdn.com/?v=" + videoId;
+    console.log("Stream:\n" + stream)
+    return JSON.stringify({
+      url: stream,
+      mimeType: "video/mp4",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      }
+    });
+  } catch (error) {
+    console.log("Lỗi parseDetail\n" + error);
+    return JSON.stringify({
+      url: "https://vaxplugin.alokillgtv.workers.dev/blankvd.mp4",
+      mimeType: "video/mp4",
+      isEmbed: false,
+      headers: {},
+      subtitles: []
+    });
   }
-
-  return JSON.stringify({
-    url: streamUrl,
-    playUrl: streamUrl,
-    file: streamUrl,
-    link: streamUrl,
-    mimeType: "video/mp4",
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "Referer": "https://sc.k-20.xyz/",
-      "Accept": "*/*"
-    }
-  });
-}
-
-function getStream(htmlResponse, fallbackUrl, datasend) {
-  return parseDetailResponse(htmlResponse, fallbackUrl, datasend);
 }
