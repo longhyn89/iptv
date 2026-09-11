@@ -1066,7 +1066,8 @@ http://brayann.com/live/5C5F037FFC9C/1C2A31683714/56652.ts
 http://brayann.com/live/5C5F037FFC9C/1C2A31683714/56576.ts
 #EXTINF:-1 tvg-id="SuperTennis.it@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/it/thumb/6/6a/SuperTennis_-_Logo_2016.svg/960px-SuperTennis_-_Logo_2016.svg.png" group-title="Sports",SuperTennis
 #https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/outgest/aa3673f1-e178-44a9-a947-ef41db73211a/manifest.m3u8
-http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=228924&extension=ts&play_token=YXZGHgbJdF
+#http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=228924&extension=ts&play_token=YXZGHgbJdF
+http://brayann.com/live/5C5F037FFC9C/1C2A31683714/76634.ts
 #EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel
 #http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=811667&extension=ts&play_token=hQJMZ1MrZZ
 http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=858523&extension=ts&play_token=cJrAzFQ84p
