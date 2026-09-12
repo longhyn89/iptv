@@ -654,15 +654,13 @@ https://s2129134.cdn.mytvnet.vn/pkg20/live_dzones/cbb.smil/manifest.mpd
 #EXTINF:-1 tvg-id="" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/dggc7pF/PIWI.jpg", PIWI
 #EXTINF:-1 tvg-id="" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/DRDGz0q/OSN-Nick-jr.png", Nick jr
 #EXTINF:-1 tvg-id="" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/mbwghSJ/NICKELODEON.png", NICKELODEON
-#EXTINF:-1 tvg-id="davinci" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/7RwmDbp/Da-vinci-learning-21.png", DAVINCI LEARNING
-https://live.fptplay53.net/fnxhd2/davincihd_vhls.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="animax" group-title="🌈| KIDS" tvg-logo="https://i.ibb.co/CmS9nWL/Animax.webp", Animax
 #EXTINF:-1 group-title="🌈| KIDS" tvg-logo="https://i.imgur.com/FblenhB.png",PBS Kids
 https://livestream.pbskids.org/out/v1/14507d931bbe48a69287e4850e53443c/est.m3u8
 #EXTINF:0 type="stream" group-title="🌈| KIDS" tvg-id="ebskids" tvg-logo="https://i.ibb.co/Tk66hWb/ebskids.png",EBS Kids
 #https://ebsonair.ebs.co.kr/ebsufamilypc/familypc1m/chunklist.m3u8
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/69162.ts
-#EXTINF:-1 tvg-id="BabySharkTV.us@SD" tvg-logo="https://i.imgur.com/SbBKr8L.png" group-title="🌈| KIDS",Baby Shark TV (1080p)
+#EXTINF:-1 tvg-id="BabySharkTV.us@SD" tvg-logo="https://i.imgur.com/SbBKr8L.png" group-title="🌈| KIDS",Baby Shark TV
 https://newidco-babysharktv-1-us.roku.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="bbcworldnews" group-title="🌏| Quốc tế" tvg-logo="https://i.ytimg.com/vi/jL2fsQB9J-g/maxresdefault.jpg", BBC World News
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
@@ -783,18 +781,18 @@ https://s7771.cdn.mytvnet.vn/pkg20/live_dzones/bbcearth.smil/manifest.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=9a09a73ec1dc348584e2f130e27da667:06f8d1a6feaffbdab92adf347e7b469c
 https://s7771.cdn.mytvnet.vn/pkg20/live_dzones/aplus.smil/manifest.mpd
-#EXTINF:-1 tvg-id="Strongman.us@UK" tvg-logo="https://i.imgur.com/bVQBF6R.png" group-title="🌏| Quốc tế",Strongman (720p)
+#EXTINF:-1 tvg-id="Strongman.us@UK" tvg-logo="https://i.imgur.com/bVQBF6R.png" group-title="🌏| Quốc tế",Strongman HD
 https://rightsboosterltd-scl-1-eu.rakuten.wurl.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="hgtv" group-title="🌏| Quốc tế" tvg-logo="https://raw.githubusercontent.com/vuminhthanh12/Logo/refs/heads/main/hgtv.png", HGTV
 https://vmttv.dpdns.org/tv360/?id=hgtv
 #EXTINF:-1 tvg-id="historyhd" group-title="🌏| Quốc tế" tvg-logo="https://img-zlr1.tv360.vn/image1/2024/06/03/22/1717427367441/869de47c9504_640_360.png", History HD
 https://vmttv.dpdns.org/tv360/?id=history-hd
-#EXTINF:-1 tvg-id="spotv1" tvg-logo="https://i.imgur.com/HaoVsm5.png" group-title="MyTV",SPOTV (720p)
+#EXTINF:-1 tvg-id="spotv1" tvg-logo="https://i.imgur.com/HaoVsm5.png" group-title="MyTV",SPOTV
 #http://line.krishka.xyz/live/CedricEsserTV/60697A/1505814.ts
 #https://thinkkast.dpdns.org/thinkkast/cg_spotvhd/versiglia/index.m3u8
 #http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941564&extension=ts&play_token=Cip8lmqEkR
 #http://pro.auramax.name/play/live.php?mac=00:1A:79:00:29:C2&stream=1856441&extension=ts&play_token=ZEAmfwTxoK
-#EXTINF:-1 tvg-id="spotv2" tvg-logo="https://i.imgur.com/YD8fbTH.png" group-title="MyTV",SPOTV 2 (720p)
+#EXTINF:-1 tvg-id="spotv2" tvg-logo="https://i.imgur.com/YD8fbTH.png" group-title="MyTV",SPOTV2
 #http://line.krishka.xyz/live/CedricEsserTV/60697A/1505815.ts
 #https://thinkkast.dpdns.org/thinkkast/dr_spotv2hd/versiglia/index.m3u8
 #http://procdnnet.eu/play/live.php?mac=00:1a:79:02:a0:fc&stream=941563&extension=ts&play_token=huQFvc3bgn
@@ -1265,8 +1263,8 @@ https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/236_144.png" group-title="Sports", Bein Sports 1 Asia
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052432.ts
 #EXTINF:-1 tvg-id="" tvg-logo="http://linear-poster.astro.com.my/prod/logo/beINSPORTS2.png" group-title="Sports", Bein Sports 2 Asia
-#http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052426.ts
-http://4kip55.xyz/live/5C5F037FFC9C/1C2A31683714/78138.ts
+#http://4kip55.xyz/live/5C5F037FFC9C/1C2A31683714/78138.ts
+http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052426.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 Asia
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052430.ts
 #EXTINF:-1 tvg-id="spotv1" tvg-logo="https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=1980" group-title="Dự Phòng",SPOTV HD
