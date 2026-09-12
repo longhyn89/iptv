@@ -1446,61 +1446,43 @@ http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065815&extension
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Dự Phòng", Bein Sports 3 Asia
 #http://line.watchtivo-8k.com/play/live.php?mac=00:1A:79:22:02:62&stream=901321&extension=ts&play_token=Q50jrnLZTE
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=2065814&extension=ts&play_token=aDr8bCcxwd
-
-
-
-
-
-
-
 #EXTINF:-1 tvg-id="sctv1hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/DYVGW60/sctv1-hd-BEARTV.png", SCTV1 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv1
 #EXTINF:-1 tvg-id="sctv2hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/cctcsNH/sctv2-hd-BEARTV.png", SCTV2 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv2
 #EXTINF:-1 tvg-id="sctv3hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/bW9fKGv/sctv3-hd-BEARTV.png", SCTV3 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv3
 #EXTINF:-1 tvg-id="sctv4hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/2N5hVDx/sctv4-hd-BEARTV.png", SCTV4 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv4
 #EXTINF:-1 tvg-id="sctv5hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD
-
-#https://vmttv.dpdns.org/VTVGo/?sctv5
-https://vietanhtv.id.vn/sctv/sctv5-a3cdb592/index.m3u8
+https://vmttv.dpdns.org/VTVGo/?sctv5
 #EXTINF:-1 tvg-id="sctv6hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/DDf1zhNX/SCTV6-logo-2011.webp", SCTV6 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv6
 #EXTINF:-1 tvg-id="sctv7hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/X8fCcpx/sctv7-hd-BEARTV.png", SCTV7 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv7
 #EXTINF:-1 tvg-id="sctv8hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/0tVLK8b/sctv8-BEARTV.png", SCTV8 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv8
 #EXTINF:-1 tvg-id="sctv9hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/VLJrprr/sctv9-hd-BEARTV.png", SCTV9 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv9
 #EXTINF:-1 tvg-id="sctv10hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/LhqTgJ6N/SCTV10-logo-2011.webp", SCTV10 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv10
 #EXTINF:-1 tvg-id="sctv11hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/Jy3cThG/sctv11-hd-BEARTV.png", SCTV11 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv11
 #EXTINF:-1 tvg-id="sctv12hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/nDbnG8h/sctv12-hd-BEARTV.png", SCTV12 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv12
 #EXTINF:-1 tvg-id="sctv13hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/YXt8w8v/sctv13-hd-BEARTV.png", SCTV13 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv13
 #EXTINF:-1 tvg-id="sctv14hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/n8YQ0hB/sctv14-hd-BEARTV.png", SCTV14 HD
-
-#EXTINF:-1 tvg-id="sctv15hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/q1PkQkp/sctv15-hd-BEARTV.png", SCTV15 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv14
 #EXTINF:-1 tvg-id="sctv16hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/CMr9xN0/sctv16-hd-BEARTV.png", SCTV16 HD
-
-#EXTINF:-1 tvg-id="sctv17hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/R48wrKp/sctv17-hd-BEARTV.png", SCTV17 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv16
 #EXTINF:-1 tvg-id="sctv18hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/72PK5Nr/sctv18-hd-BEARTV.png", SCTV18 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv18
 #EXTINF:-1 tvg-id="sctv19hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/gMJ1GRG/sctv19-hd-BEARTV.png", SCTV19 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv19
 #EXTINF:-1 tvg-id="sctv20hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/f9swgvg/sctv20-hd-BEARTV.png", SCTV20 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv20
 #EXTINF:-1 tvg-id="sctv21hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/njnhPPB/sctv21-hd-BEARTV.png", SCTV21 HD
-
-#EXTINF:-1 tvg-id="sctv22hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/FVFwKRc/sctv22-hd-BEARTV.png", SCTV22 HD
-
+https://vmttv.dpdns.org/VTVGo/?sctv21
 #EXTINF:-1 tvg-id="sctvhdpth" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/G561126/SCTVTH-BEARTV.png", SCTV HD Phim Tổng Hợp
-
-#EXTINF:-1 tvg-id="sctv4k" group-title="Dự Phòng" tvg-logo="https://imaginary.endpoint.cdn.sctvonline.vn/tenants/none_tenant/photos/logo-sctv4k_e0a24400.jpg?s3_origin=https%3A%2F%2Fsctv-main-2.s3-hcm.cloud.cmctelecom.vn&type=webp&version=10&width=384", SCTV4K
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)
-https://vietanhtv.id.vn/sctv/sctv-4k/index.m3u8
+https://vmttv.dpdns.org/VTVGo/?sctvphim
