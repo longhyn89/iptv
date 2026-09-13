@@ -1396,8 +1396,7 @@ https://vietanhtv.id.vn/sctv/sctv2-57c3884d/index.m3u8
 #https://vmttv.dpdns.org/VTVGo/?sctv3
 https://vietanhtv.id.vn/sctv/sctv3-hd-cf3adaca/index.m3u8
 #EXTINF:-1 tvg-id="sctv4hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/2N5hVDx/sctv4-hd-BEARTV.png", SCTV4 HD
-#https://vmttv.dpdns.org/VTVGo/?sctv4
-https://vietanhtv.id.vn/sctv/sctv4-ae779f7e/index.m3u8
+https://vmttv.dpdns.org/VTVGo/?sctv4
 #EXTINF:-1 tvg-id="sctv5hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/8DMRX6x/SCTV5.png", SCTV5 HD
 #https://vmttv.dpdns.org/VTVGo/?sctv5
 https://vietanhtv.id.vn/sctv/sctv5-a3cdb592/index.m3u8
@@ -1414,7 +1413,8 @@ https://vietanhtv.id.vn/sctv/sctv8-c12d138b/index.m3u8
 
 
 #EXTINF:-1 tvg-id="sctv9hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/VLJrprr/sctv9-hd-BEARTV.png", SCTV9 HD
-https://vmttv.dpdns.org/VTVGo/?sctv9
+#https://vmttv.dpdns.org/VTVGo/?sctv9
+https://vietanhtv.id.vn/sctv/sctv9-cdd19ab2/index.m3u8
 #EXTINF:-1 tvg-id="sctv10hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/LhqTgJ6N/SCTV10-logo-2011.webp", SCTV10 HD
 https://vmttv.dpdns.org/VTVGo/?sctv10
 #EXTINF:-1 tvg-id="sctv11hd" group-title="Dự Phòng" tvg-logo="https://i.ibb.co/Jy3cThG/sctv11-hd-BEARTV.png", SCTV11 HD
