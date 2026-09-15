@@ -1267,6 +1267,8 @@ http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052432.ts
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052426.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/313_144.png" group-title="Sports", Bein Sports 3 Asia
 http://1notchup.online/live/5C5F037FFC9C/1C2A31683714/1052430.ts
+#EXTINF:-1 group-title="Dự Phòng" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHF7-F4M4a2MER_7nvNPhD5YV8GVKB4YHr2ilVhK88&s=10", Sky Sports Main Event
+http://103.175.129.146/live/5C5F037FFC9C/1C2A31683714/365037.ts
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Dự Phòng", Tennis Channel 1
 http://procdnnet.eu/play/live.php?mac=00:1A:79:AD:94:2E&stream=1881741&extension=ts&play_token=KM5AbVrybM
 #EXTINF:-1 tvg-id="" tvg-logo="https://i.ibb.co/fcts7mn/tennis-logo.png" group-title="Dự Phòng", Tennis Channel 2
