@@ -18,7 +18,7 @@
         },
         {
             "id": "onflix",
-            "name": "Onflix",
+            "name": "Onflix (ALL)",
             "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/onflix.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/onflix.png"
