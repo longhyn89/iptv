@@ -4,14 +4,14 @@
         
         {
             "id": "kkphim",
-            "name": "KKPhim",
+            "name": "KKPhim (ALL)",
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/kkphim.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/kkphim.png"
         },
         {
             "id": "nguonc",
-            "name": "Nguồn C",
+            "name": "Nguồn C (WEB)",
             "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/nguonc.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png"
