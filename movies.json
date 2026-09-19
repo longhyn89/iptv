@@ -39,7 +39,7 @@
         },
         {
             "id": "vlxx",
-            "name": "VLXX",
+            "name": "VLXX (EXO)",
             "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/vlxx.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico"
