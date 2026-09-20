@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -307,28 +307,28 @@ function parseMovieDetail(html, url) {
             category = getField('video_categories') || "";
             lactor = getField('video_models') || "";
 
-            // Chọn 1 link video có chất lượng tốt nhất
-            var bestUrl = getField('video_alt_url3') || 
-                          getField('video_alt_url2') || 
-                          getField('video_alt_url') || 
-                          getField('video_url');
+            // Tách từng độ phân giải thành 1 server riêng biệt
+            var addServerQuality = function(urlKey, defaultName) {
+                var vUrl = getField(urlKey);
+                if (vUrl && vUrl.indexOf("http") !== -1) {
+                    var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
+                    var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
+                    
+                    servers.push({
+                        name: "Server " + defaultName,
+                        episodes: [{
+                            id: safeId,
+                            name: "Full", // 1 tập duy nhất
+                            slug: "full"
+                        }]
+                    });
+                }
+            };
 
-            if (bestUrl && bestUrl.indexOf("http") !== -1) {
-                var cleanUrl = bestUrl.replace(/[\s\S]*?http/i, "http");
-                
-                // Bọc link video thật vào một param ảo để app không tự tải nguyên video
-                var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
-
-                // Tạo duy nhất 1 tập Full
-                servers.push({
-                    name: "Phát trực tiếp",
-                    episodes: [{
-                        id: safeId,
-                        name: "Full",
-                        slug: "full"
-                    }]
-                });
-            }
+            addServerQuality('video_alt_url3', '4K / FHD');
+            addServerQuality('video_alt_url2', '1080p');
+            addServerQuality('video_alt_url', 'HD 720p');
+            addServerQuality('video_url', 'SD');
         }
 
         if (servers.length === 0) {
