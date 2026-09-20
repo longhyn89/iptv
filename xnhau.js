@@ -12,7 +12,7 @@ function getManifest() {
         "name": "xNhau (ALL)",
         "description": "Kho clip và phim xNhau hot nhất, cập nhật liên tục.",
         "info": "Nguồn phim xNhau chất lượng cao HD/FHD.",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "baseUrl": "https://xnhau.art",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
         "isEnabled": true,
@@ -128,7 +128,6 @@ function getUrlList(slug, filtersJson) {
             targetPath = cat;
         }
 
-        // Tự động nhận diện và bù chữ "/category/" cho các thư mục
         if (targetPath.indexOf("/") === -1 && targetPath !== "movies" && targetPath !== "search") {
             targetPath = "/category/" + targetPath;
         }
@@ -219,8 +218,8 @@ function cleanText(str) {
 
 function parseListResponse(html, url) {
     try {
-        var items = [];
-        var seen = {};
+        var itemsMap = {};
+        var itemKeys = [];
 
         var itemRegex = /<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var match;
@@ -228,73 +227,83 @@ function parseListResponse(html, url) {
         while ((match = itemRegex.exec(html)) !== null) {
             var href = match[1];
             
-            // Lọc các link rác
-            if (href === "/" || href === "#" || href.indexOf("/category/") !== -1 || href.indexOf("page=") !== -1) {
+            // Bỏ các liên kết trang tĩnh / điều hướng
+            if (!href || href === "/" || href === "#" || href.indexOf("/category/") !== -1 || href.indexOf("page=") !== -1 || href.indexOf("javascript:") !== -1) {
                 continue;
             }
-            if (seen[href]) continue;
 
+            var fullA = match[0];
             var inner = match[2];
-            var imgMatch = inner.match(/<img[^>]+(?:src|data-src|data-original|data-lazy-src)="([^"]+)"/i);
 
-            if (imgMatch) {
-                seen[href] = true;
-                var posterUrl = imgMatch[1];
+            // 1. Trích xuất Thumbnail Ảnh
+            var imgMatch = inner.match(/<img[^>]+(?:src|data-src|data-original|data-lazy-src)="([^"]+)"/i);
+            var posterUrl = "";
+            if (imgMatch && imgMatch[1]) {
+                posterUrl = imgMatch[1];
                 if (posterUrl.indexOf("/") === 0) {
                     posterUrl = BASEURL + posterUrl;
                 }
+            }
 
-                // --- BÓC TÁCH TIÊU ĐỀ ĐA TẦNG ---
-                var title = "";
+            // 2. Trích xuất Tiêu đề (Thử qua nhiều lớp)
+            var extractedTitle = "";
 
-                // 1. Ưu tiên thuộc tính title="..." của thẻ <a>
-                var titleAttr = match[0].match(/title="([^"]+)"/i);
-                if (titleAttr && titleAttr[1].trim() !== "") {
-                    title = cleanText(titleAttr[1]);
+            // Cách A: Từ thuộc tính title / alt
+            var titleAttr = fullA.match(/title="([^"]+)"/i) || inner.match(/alt="([^"]+)"/i);
+            if (titleAttr && titleAttr[1] && titleAttr[1].trim() !== "" && titleAttr[1].toLowerCase() !== "thumbnail") {
+                extractedTitle = cleanText(titleAttr[1]);
+            }
+
+            // Cách B: Từ text bên trong thẻ (Đã lọc bỏ các thẻ span phụ)
+            if (!extractedTitle) {
+                var cleanInner = inner.replace(/<span[^>]*>[\s\S]*?<\/span>/gi, "").replace(/<img[^>]*>/gi, "");
+                var textContent = cleanText(cleanInner);
+                if (textContent && textContent.length > 2 && textContent.indexOf("lượt xem") === -1) {
+                    extractedTitle = textContent;
                 }
+            }
 
-                // 2. Thuộc tính alt="..." của thẻ <img>
-                if (!title) {
-                    var altAttr = inner.match(/alt="([^"]+)"/i);
-                    if (altAttr && altAttr[1].trim() !== "") {
-                        title = cleanText(altAttr[1]);
-                    }
-                }
+            // 3. Trích xuất Thời lượng / Lượt xem
+            var viewsMatch = inner.match(/<span>([^<]*(?:lượt xem|views|\d+:\d+)[^<]*)<\/span>/i);
+            var duration = viewsMatch ? viewsMatch[1].trim() : "Full HD";
 
-                // 3. Class chứa text tiêu đề (title, line-clamp, name...)
-                if (!title) {
-                    var classMatch = inner.match(/<[^>]*class="[^"]*(?:line-clamp|title|name|text-md)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i);
-                    if (classMatch && classMatch[1].trim() !== "") {
-                        title = cleanText(classMatch[1]);
-                    }
-                }
-
-                // 4. Thẻ Heading (h2, h3, h4)
-                if (!title) {
-                    var headingMatch = inner.match(/<h[2-6][^>]*>([\s\S]*?)<\/h[2-6]>/i);
-                    if (headingMatch && headingMatch[1].trim() !== "") {
-                        title = cleanText(headingMatch[1]);
-                    }
-                }
-
-                if (!title) {
-                    title = "Không có tiêu đề";
-                }
-
-                var viewsMatch = inner.match(/<span>([^<]*(?:lượt xem|views)[^<]*)<\/span>/i);
-                var duration = viewsMatch ? viewsMatch[1].trim() : "Full HD";
-
-                items.push({
+            // 4. Gộp dữ liệu vào Map theo href
+            if (!itemsMap[href]) {
+                itemsMap[href] = {
                     "id": href,
-                    "title": title,
+                    "title": extractedTitle,
                     "posterUrl": posterUrl,
                     "backdropUrl": posterUrl,
                     "duration": duration,
                     "quality": "HD"
-                });
+                };
+                itemKeys.push(href);
+            } else {
+                // Nếu đã có từ trước, bổ sung thông tin còn thiếu
+                if (!itemsMap[href].posterUrl && posterUrl) {
+                    itemsMap[href].posterUrl = posterUrl;
+                    itemsMap[href].backdropUrl = posterUrl;
+                }
+                if ((!itemsMap[href].title || itemsMap[href].title === "") && extractedTitle) {
+                    itemsMap[href].title = extractedTitle;
+                }
             }
         }
 
+        // Tạo danh sách kết quả cuối cùng
+        var items = [];
+        for (var i = 0; i < itemKeys.length; i++) {
+            var item = itemsMap[itemKeys[i]];
+            // Chỉ lấy item nào thực sự có ảnh Thumbnail (tránh các link dạng bài viết/icon)
+            if (item.posterUrl) {
+                if (!item.title || item.title.trim() === "") {
+                    item.title = "Video xNhau";
+                }
+                items.push(item);
+            }
+        }
+
+        // Phân trang
         var totalPages = 99;
         var pageMatches = html.match(/page=(\d+)/g);
         if (pageMatches) {
@@ -437,35 +446,44 @@ function parseMovieDetail(html, url) {
             });
         }
 
-        var relatedMovies = [];
-        var relSeen = {};
-        if (url) relSeen[url] = true;
-
+        // Cập nhật bóc tách Video liên quan theo Map/Merge
+        var relMap = {};
+        var relKeys = [];
         var relRegex = /<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var rMatch;
-        while ((rMatch = relRegex.exec(html)) !== null && relatedMovies.length < 12) {
+
+        while ((rMatch = relRegex.exec(html)) !== null) {
             var rHref = rMatch[1];
-            if (rHref === "/" || rHref === "#" || rHref.indexOf("/category/") !== -1) continue;
-            if (relSeen[rHref]) continue;
+            if (!rHref || rHref === "/" || rHref === "#" || rHref.indexOf("/category/") !== -1 || rHref === url) continue;
 
             var rInner = rMatch[2];
             var rImgMatch = rInner.match(/<img[^>]+(?:src|data-src|data-original)="([^"]+)"/i);
-            var rTitleMatch = rInner.match(/<[^>]*class="[^"]*(?:line-clamp|title)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i) ||
-                              rInner.match(/alt="([^"]+)"/i) ||
-                              rMatch[0].match(/title="([^"]+)"/i);
+            var rPoster = rImgMatch ? rImgMatch[1] : "";
+            if (rPoster && rPoster.indexOf("/") === 0) rPoster = BASEURL + rPoster;
 
-            if (rImgMatch) {
-                relSeen[rHref] = true;
-                var rPoster = rImgMatch[1];
-                if (rPoster.indexOf("/") === 0) rPoster = BASEURL + rPoster;
-                var rTitle = rTitleMatch ? cleanText(rTitleMatch[1]) : "Video liên quan";
+            var rTitleAttr = rMatch[0].match(/title="([^"]+)"/i) || rInner.match(/alt="([^"]+)"/i);
+            var rTitle = rTitleAttr ? cleanText(rTitleAttr[1]) : cleanText(rInner.replace(/<[^>]+>/g, ""));
 
-                relatedMovies.push({
+            if (!relMap[rHref]) {
+                relMap[rHref] = {
                     "id": rHref,
                     "title": rTitle,
                     "posterUrl": rPoster,
                     "backdropUrl": rPoster
-                });
+                };
+                relKeys.push(rHref);
+            } else {
+                if (!relMap[rHref].posterUrl && rPoster) relMap[rHref].posterUrl = rPoster;
+                if ((!relMap[rHref].title || relMap[rHref].title === "") && rTitle) relMap[rHref].title = rTitle;
+            }
+        }
+
+        var relatedMovies = [];
+        for (var k = 0; k < relKeys.length && relatedMovies.length < 12; k++) {
+            var rItem = relMap[relKeys[k]];
+            if (rItem.posterUrl) {
+                if (!rItem.title) rItem.title = "Video liên quan";
+                relatedMovies.push(rItem);
             }
         }
 
