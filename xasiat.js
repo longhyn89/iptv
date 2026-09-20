@@ -29,7 +29,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -189,8 +189,7 @@ function parseMovieDetail(html, url) {
         var limg = "";
         var ldes = "Không có mô tả.";
         var category = "";
-        var highQualityEpisodes = []; // Server 1: 4K / FHD / HD
-        var sdQualityEpisodes = [];   // Server 2: SD / Cơ bản
+        var episodes = [];
         var foundUrls = [];
 
         var idMatch = /<link\s+rel="canonical"\s+href="([^"]+)"/i.exec(html) ||
@@ -211,7 +210,7 @@ function parseMovieDetail(html, url) {
         ldes = getField('video_tags') || "Không có mô tả.";
         category = getField('video_categories') || "";
 
-        var extractAndPush = function(keys, epName, isHighQuality) {
+        var addEpisode = function(keys, labelName) {
             for (var i = 0; i < keys.length; i++) {
                 var vUrl = getField(keys[i]);
                 if (vUrl) {
@@ -224,34 +223,32 @@ function parseMovieDetail(html, url) {
                         if (foundUrls.indexOf(cleanUrl) === -1) {
                             foundUrls.push(cleanUrl);
                             var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
-                            var epObj = { id: safeId, name: epName, slug: "full" };
-                            if (isHighQuality) {
-                                highQualityEpisodes.push(epObj);
-                            } else {
-                                sdQualityEpisodes.push(epObj);
-                            }
+                            episodes.push({
+                                id: safeId,
+                                name: labelName,
+                                slug: "full"
+                            });
                         }
                     }
                 }
             }
         };
 
-        // Gom các biến chất lượng cao vào Server 1
-        extractAndPush(['video_alt_url4', 'video_url_4k'], '4K Ultra HD', true);
-        extractAndPush(['video_alt_url3', 'video_url_2160p'], '2160p / 4K', true);
-        extractAndPush(['video_alt_url2', 'video_url_1080p'], '1080p / Full HD', true);
-        extractAndPush(['video_alt_url', 'video_url_hd'], '720p / HD', true);
+        // Thứ tự ưu tiên đưa các mức độ nét lên đầu danh sách nút bấm
+        addEpisode(['video_alt_url4', 'video_url_4k'], '🚀 Xem 4K (Ultra HD)');
+        addEpisode(['video_alt_url3', 'video_url_2160p'], '🔥 Xem 2160p (4K)');
+        addEpisode(['video_alt_url2', 'video_url_1080p'], '⭐ Xem Full HD (1080p)');
+        addEpisode(['video_alt_url', 'video_url_hd'], '📺 Xem HD (720p)');
+        addEpisode(['video_url', 'video_url_sd'], '📱 Xem SD (480p)');
 
-        // Gom biến chất lượng thấp vào Server 2
-        extractAndPush(['video_url', 'video_url_sd'], 'SD / 480p', false);
-
-        // Fallback quét thẻ <source> trong HTML5
+        // Fallback thẻ <source>
         var sourceRegex = /<source\s+[^>]*src=["']([^"']+)["'][^>]*>/gi;
         var srcMatch;
+        var count = 1;
         while ((srcMatch = sourceRegex.exec(html)) !== null) {
             var sUrl = srcMatch[1];
             var labelMatch = srcMatch[0].match(/(?:title|label|res)=["']([^"']+)["']/i);
-            var sName = labelMatch ? labelMatch[1] : "Nguồn phát";
+            var sName = labelMatch ? ("Xem " + labelMatch[1]) : ("Xem Nguồn " + count);
             
             if (sUrl.indexOf("http") !== -1 || sUrl.indexOf("//") === 0) {
                 if (sUrl.indexOf("//") === 0) sUrl = "https:" + sUrl;
@@ -259,22 +256,21 @@ function parseMovieDetail(html, url) {
                 if (foundUrls.indexOf(cleanSrc) === -1) {
                     foundUrls.push(cleanSrc);
                     var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanSrc);
-                    highQualityEpisodes.push({ id: safeId, name: sName, slug: "full" });
+                    episodes.push({
+                        id: safeId,
+                        name: sName,
+                        slug: "full"
+                    });
+                    count++;
                 }
             }
         }
 
         var servers = [];
-        if (highQualityEpisodes.length > 0) {
+        if (episodes.length > 0) {
             servers.push({
-                name: "Server 4K / HD (Chất lượng cao)",
-                episodes: highQualityEpisodes
-            });
-        }
-        if (sdQualityEpisodes.length > 0) {
-            servers.push({
-                name: "Server SD (Cơ bản)",
-                episodes: sdQualityEpisodes
+                name: "Chọn Chất Lượng Phát",
+                episodes: episodes
             });
         }
 
