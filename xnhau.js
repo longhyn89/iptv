@@ -12,7 +12,7 @@ function getManifest() {
         "name": "xNhau (ALL)",
         "description": "Kho clip và phim xNhau hot nhất, cập nhật liên tục.",
         "info": "Nguồn phim xNhau chất lượng cao HD/FHD.",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "baseUrl": "https://xnhau.art",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
         "isEnabled": true,
@@ -235,12 +235,7 @@ function parseListResponse(html, url) {
             if (seen[href]) continue;
 
             var inner = match[2];
-            
             var imgMatch = inner.match(/<img[^>]+(?:src|data-src|data-original|data-lazy-src)="([^"]+)"/i);
-            
-            var titleMatch = inner.match(/<[^>]*class="[^"]*(?:line-clamp|title|name)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i) ||
-                             inner.match(/alt="([^"]+)"/i) ||
-                             match[0].match(/title="([^"]+)"/i);
 
             if (imgMatch) {
                 seen[href] = true;
@@ -249,8 +244,42 @@ function parseListResponse(html, url) {
                     posterUrl = BASEURL + posterUrl;
                 }
 
-                var title = titleMatch ? cleanText(titleMatch[1] || "") : "Không có tiêu đề";
-                if (!title && titleMatch && titleMatch[2]) title = cleanText(titleMatch[2]);
+                // --- BÓC TÁCH TIÊU ĐỀ ĐA TẦNG ---
+                var title = "";
+
+                // 1. Ưu tiên thuộc tính title="..." của thẻ <a>
+                var titleAttr = match[0].match(/title="([^"]+)"/i);
+                if (titleAttr && titleAttr[1].trim() !== "") {
+                    title = cleanText(titleAttr[1]);
+                }
+
+                // 2. Thuộc tính alt="..." của thẻ <img>
+                if (!title) {
+                    var altAttr = inner.match(/alt="([^"]+)"/i);
+                    if (altAttr && altAttr[1].trim() !== "") {
+                        title = cleanText(altAttr[1]);
+                    }
+                }
+
+                // 3. Class chứa text tiêu đề (title, line-clamp, name...)
+                if (!title) {
+                    var classMatch = inner.match(/<[^>]*class="[^"]*(?:line-clamp|title|name|text-md)[^"]*"[^>]*>([\s\S]*?)<\/[^>]+>/i);
+                    if (classMatch && classMatch[1].trim() !== "") {
+                        title = cleanText(classMatch[1]);
+                    }
+                }
+
+                // 4. Thẻ Heading (h2, h3, h4)
+                if (!title) {
+                    var headingMatch = inner.match(/<h[2-6][^>]*>([\s\S]*?)<\/h[2-6]>/i);
+                    if (headingMatch && headingMatch[1].trim() !== "") {
+                        title = cleanText(headingMatch[1]);
+                    }
+                }
+
+                if (!title) {
+                    title = "Không có tiêu đề";
+                }
 
                 var viewsMatch = inner.match(/<span>([^<]*(?:lượt xem|views)[^<]*)<\/span>/i);
                 var duration = viewsMatch ? viewsMatch[1].trim() : "Full HD";
