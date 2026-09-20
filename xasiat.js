@@ -29,7 +29,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -196,12 +196,9 @@ function parseMovieDetail(html, url) {
             /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
         id = idMatch ? idMatch[1] : (url || "");
 
-        // Quét trên toàn bộ HTML thay vì giới hạn trong cục flashvars
         var getField = function(name) {
-            // Check nháy đơn
             var m1 = html.match(new RegExp("\\b" + name + "\\b\\s*[:=]\\s*'((?:[^'\\\\]|\\\\.)*)'"));
             if (m1) return m1[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
-            // Check ngoặc kép
             var m2 = html.match(new RegExp("\\b" + name + "\\b\\s*[:=]\\s*\"((?:[^\"\\\\]|\\\\.)*)\""));
             if (m2) return m2[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
             return "";
@@ -231,42 +228,17 @@ function parseMovieDetail(html, url) {
                                 episodes: [{ id: safeId, name: "Full", slug: "full" }]
                             });
                         }
-                        return; // Đã tìm thấy ở một key thì dừng, chuyển qua quality khác
+                        return;
                     }
                 }
             }
         };
 
-        // Ưu tiên check các biến 4K chuyên dụng
-        addServerQuality(['video_alt_url4', 'video_url_4k'], '4K');
+        addServerQuality(['video_alt_url4', 'video_url_4k'], '4K Ultra HD');
         addServerQuality(['video_alt_url3', 'video_url_2160p'], '2160p / 4K');
-        addServerQuality(['video_alt_url2', 'video_url_1080p'], '1080p / FHD');
+        addServerQuality(['video_alt_url2', 'video_url_1080p'], '1080p / Full HD');
         addServerQuality(['video_alt_url', 'video_url_hd'], '720p / HD');
-        addServerQuality(['video_url', 'video_url_sd'], '480p / SD');
-
-        // FALLBACK: Đề phòng web dùng thẻ HTML5 <source> (Tự động bắt link)
-        var sourceRegex = /<source\s+[^>]*src=["']([^"']+)["'][^>]*>/gi;
-        var srcMatch;
-        var count = 1;
-        while ((srcMatch = sourceRegex.exec(html)) !== null) {
-            var sUrl = srcMatch[1];
-            var labelMatch = srcMatch[0].match(/(?:title|label|res)=["']([^"']+)["']/i);
-            var sName = labelMatch ? labelMatch[1] : ("Link " + count);
-            
-            if (sUrl.indexOf("http") !== -1 || sUrl.indexOf("//") === 0) {
-                if (sUrl.indexOf("//") === 0) sUrl = "https:" + sUrl;
-                var cleanSrc = sUrl.replace(/[\s\S]*?http/i, "http");
-                if (foundUrls.indexOf(cleanSrc) === -1) {
-                    foundUrls.push(cleanSrc);
-                    var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanSrc);
-                    servers.push({
-                        name: "Server " + sName,
-                        episodes: [{ id: safeId, name: "Full", slug: "full" }]
-                    });
-                    count++;
-                }
-            }
-        }
+        addServerQuality(['video_url', 'video_url_sd'], 'SD / 480p');
 
         if (servers.length === 0) {
             return JSON.stringify({
