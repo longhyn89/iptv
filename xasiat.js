@@ -29,7 +29,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -190,52 +190,101 @@ function parseMovieDetail(html, url) {
         var ldes = "Không có mô tả.";
         var category = "";
         var servers = [];
+        var foundUrls = [];
 
         var idMatch = /<link\s+rel="canonical"\s+href="([^"]+)"/i.exec(html) ||
             /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
         id = idMatch ? idMatch[1] : (url || "");
 
-        var fvMatch = html.match(/var\s+flashvars\s*=\s*\{([\s\S]*?)\};/);
-        var flashvarsBody = fvMatch ? fvMatch[1] : "";
-
+        // Quét trên toàn bộ HTML thay vì giới hạn trong cục flashvars
         var getField = function(name) {
-            if (!flashvarsBody) return "";
-            var m = flashvarsBody.match(new RegExp(name + "\\s*:\\s*'((?:[^'\\\\]|\\\\.)*)'"));
-            if (m) return m[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
-            var mNum = flashvarsBody.match(new RegExp(name + "\\s*:\\s*([^,\\s}]+)"));
-            return mNum ? mNum[1] : "";
+            // Check nháy đơn
+            var m1 = html.match(new RegExp("\\b" + name + "\\b\\s*[:=]\\s*'((?:[^'\\\\]|\\\\.)*)'"));
+            if (m1) return m1[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
+            // Check ngoặc kép
+            var m2 = html.match(new RegExp("\\b" + name + "\\b\\s*[:=]\\s*\"((?:[^\"\\\\]|\\\\.)*)\""));
+            if (m2) return m2[1].replace(/\\'/g, "'").replace(/\\"/g, '"');
+            return "";
         };
 
-        if (flashvarsBody) {
-            lname = getField('video_title') || lname;
-            limg = getField('preview_url') || getField('preview_url3') || getField('preview_url1') || "";
-            ldes = getField('video_tags') || ldes;
-            category = getField('video_categories') || "";
+        var titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+        lname = getField('video_title') || (titleMatch ? titleMatch[1] : lname);
+        limg = getField('preview_url') || getField('preview_url3') || getField('preview_url1') || "";
+        ldes = getField('video_tags') || "Không có mô tả.";
+        category = getField('video_categories') || "";
 
-            var addServerQuality = function(urlKey, defaultName) {
-                var vUrl = getField(urlKey);
-                if (vUrl && vUrl.indexOf("http") !== -1) {
-                    var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
-                    var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
+        var addServerQuality = function(keys, defaultName) {
+            for (var i = 0; i < keys.length; i++) {
+                var vUrl = getField(keys[i]);
+                if (vUrl) {
+                    if (vUrl.indexOf('%3A') !== -1 || vUrl.indexOf('%2F') !== -1) {
+                        try { vUrl = decodeURIComponent(vUrl); } catch(e){}
+                    }
+                    if (vUrl.indexOf("http") !== -1 || vUrl.indexOf("//") === 0) {
+                        if (vUrl.indexOf("//") === 0) vUrl = "https:" + vUrl;
+                        var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
+                        if (foundUrls.indexOf(cleanUrl) === -1) {
+                            foundUrls.push(cleanUrl);
+                            var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
+                            servers.push({
+                                name: "Server " + defaultName,
+                                episodes: [{ id: safeId, name: "Full", slug: "full" }]
+                            });
+                        }
+                        return; // Đã tìm thấy ở một key thì dừng, chuyển qua quality khác
+                    }
+                }
+            }
+        };
+
+        // Ưu tiên check các biến 4K chuyên dụng
+        addServerQuality(['video_alt_url4', 'video_url_4k'], '4K');
+        addServerQuality(['video_alt_url3', 'video_url_2160p'], '2160p / 4K');
+        addServerQuality(['video_alt_url2', 'video_url_1080p'], '1080p / FHD');
+        addServerQuality(['video_alt_url', 'video_url_hd'], '720p / HD');
+        addServerQuality(['video_url', 'video_url_sd'], '480p / SD');
+
+        // FALLBACK: Đề phòng web dùng thẻ HTML5 <source> (Tự động bắt link)
+        var sourceRegex = /<source\s+[^>]*src=["']([^"']+)["'][^>]*>/gi;
+        var srcMatch;
+        var count = 1;
+        while ((srcMatch = sourceRegex.exec(html)) !== null) {
+            var sUrl = srcMatch[1];
+            var labelMatch = srcMatch[0].match(/(?:title|label|res)=["']([^"']+)["']/i);
+            var sName = labelMatch ? labelMatch[1] : ("Link " + count);
+            
+            if (sUrl.indexOf("http") !== -1 || sUrl.indexOf("//") === 0) {
+                if (sUrl.indexOf("//") === 0) sUrl = "https:" + sUrl;
+                var cleanSrc = sUrl.replace(/[\s\S]*?http/i, "http");
+                if (foundUrls.indexOf(cleanSrc) === -1) {
+                    foundUrls.push(cleanSrc);
+                    var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanSrc);
                     servers.push({
-                        name: "Server " + defaultName,
+                        name: "Server " + sName,
                         episodes: [{ id: safeId, name: "Full", slug: "full" }]
                     });
+                    count++;
                 }
-            };
+            }
+        }
 
-            addServerQuality('video_alt_url3', '4K / FHD');
-            addServerQuality('video_alt_url2', '1080p');
-            addServerQuality('video_alt_url', 'HD 720p');
-            addServerQuality('video_url', 'SD');
+        if (servers.length === 0) {
+            return JSON.stringify({
+                id: id || url || "error",
+                title: "Video không khả dụng",
+                description: "Video riêng tư hoặc không tìm thấy nguồn phát.",
+                posterUrl: limg || "",
+                backdropUrl: limg || "",
+                servers: []
+            });
         }
 
         return JSON.stringify({
             id: id,
-            title: lname,
+            title: _trim(lname),
             posterUrl: limg,
             backdropUrl: limg,
-            description: ldes,
+            description: _trim(ldes),
             quality: "",
             year: 2026,
             rating: 0,
@@ -320,7 +369,7 @@ function buildMenu(menuArray, type) {
 }
 
 // =============================================================================
-// MINI JQUERY PARSER (_$) - ĐÃ TỐI ƯU VÀ XOÁ BỎ HÀM NÂNG CAO CỦA ES6
+// MINI JQUERY PARSER (_$)
 // =============================================================================
 function _$(htmlOrBlock) {
     if (htmlOrBlock && typeof htmlOrBlock === 'object' && htmlOrBlock.elements) return htmlOrBlock;
