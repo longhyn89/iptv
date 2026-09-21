@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin - Clean Pure m3u8 Link (Final)
+// SexLive.porn Plugin - Final Fixed Code (Anti-Ad & Clean m3u8)
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -10,7 +10,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.9",
+        "version": "1.0.10",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -238,7 +238,7 @@ function getUrlDetail(slug) {
 
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
     if (episodeSlug && episodeSlug.indexOf(".m3u8") > -1) {
-        return episodeSlug; // Trả về link m3u8 thuần túy không gắn thêm gì cả
+        return episodeSlug.split("|")[0].trim();
     }
     if (episodeSlug && episodeSlug.indexOf("http") === 0) {
         return episodeSlug;
@@ -313,32 +313,25 @@ function extractM3u8Url(html) {
     if (!html) return "";
     var streamUrl = "";
 
-    var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
-    if (jsonLdMatch) {
-        try {
-            var jld = JSON.parse(jsonLdMatch[1]);
-            if (jld && jld.embedUrl && jld.embedUrl.indexOf(".m3u8") > -1) {
-                streamUrl = jld.embedUrl;
+    // Quét toàn bộ các link m3u8 và lọc bỏ các link quảng cáo TikTok / ad-site
+    var matches = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/gi);
+    if (matches) {
+        for (var i = 0; i < matches.length; i++) {
+            var candidate = matches[i].replace(/\\/g, "").trim();
+            if (candidate.indexOf("tiktokcdn.com") > -1 || candidate.indexOf("ad-site") > -1) {
+                continue;
             }
-        } catch (e) {}
-    }
-
-    if (!streamUrl) {
-        var optMatch = html.match(/data-link="([^"]+\.m3u8[^"]*)"/i) || html.match(/src="([^"]+\.m3u8[^"]*)"/i);
-        if (optMatch && optMatch[1]) {
-            streamUrl = optMatch[1];
+            streamUrl = candidate;
+            break;
         }
     }
 
+    // Dự phòng tìm link mp4 trực tiếp nếu không có m3u8 sạch
     if (!streamUrl) {
-        var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-        if (m3u8Match) {
-            streamUrl = m3u8Match[0];
+        var mp4Match = html.match(/https?:\/\/[^"'\s<>]+\.mp4[^"'\s<>]*/i);
+        if (mp4Match) {
+            streamUrl = mp4Match[0].replace(/\\/g, "").trim();
         }
-    }
-
-    if (streamUrl) {
-        streamUrl = streamUrl.replace(/\\/g, "").trim();
     }
 
     return streamUrl;
