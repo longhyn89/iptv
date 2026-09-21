@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (ExoPlayer Dynamic Token Mode - Khắc phục lỗi kẹt request)
+// SexLive.porn Plugin (ExoPlayer Full Fixed Mode - v1.0.8)
 // https://sexlive.porn/
 // =============================================================================
 
@@ -11,7 +11,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -435,7 +435,6 @@ function parseMovieDetail(responseStr, url) {
             }
         }
 
-        // Ưu tiên trích xuất trực tiếp link m3u8 từ script hoặc HTML của trang chi tiết
         var directM3u8 = "";
         var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
         if (m3u8Match) {
@@ -553,10 +552,15 @@ function parseDetailResponse(html, url) {
             "headers": {
                 "Referer": "https://sexlive.porn/",
                 "Origin": "https://sexlive.porn",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+                "Accept": "*/*",
+                "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+                "Connection": "keep-alive"
             },
             "httpConfig": {
                 "followRedirects": true,
+                "readTimeout": 30000,
+                "connectTimeout": 30000,
                 "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
             }
         });
