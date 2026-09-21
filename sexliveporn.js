@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (Tương thích 100% Rhino JS & Android TV)
+// SexLive.porn Plugin (Tương thích WebView cho App SuperOK)
 // https://sexlive.porn/
 // =============================================================================
 
@@ -11,13 +11,13 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",
-        "playerType": "exoplayer"
+        "playerType": "webview"
     });
 }
 
@@ -270,7 +270,7 @@ function getUrlDetail(slug) {
 }
 
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
-    if (episodeSlug && (episodeSlug.indexOf(".m3u8") > -1 || episodeSlug.indexOf("http") === 0)) {
+    if (episodeSlug && episodeSlug.indexOf("http") === 0) {
         return episodeSlug;
     }
     return getUrlDetail(slug);
@@ -367,7 +367,7 @@ function parseMovieDetail(responseStr, url) {
         var categories = [];
         var tags = [];
         var year = 2026;
-        var streamUrl = "";
+        var streamUrl = url || "";
         var serverEpisodes = [];
 
         if (!responseStr) {
@@ -382,7 +382,6 @@ function parseMovieDetail(responseStr, url) {
                     if (jld.name) title = decodeHtmlEntities(jld.name);
                     if (jld.thumbnailUrl) posterUrl = jld.thumbnailUrl;
                     if (jld.description) description = decodeHtmlEntities(jld.description);
-                    if (jld.embedUrl) streamUrl = jld.embedUrl;
                     if (jld.uploadDate) {
                         var mYear = String(jld.uploadDate).match(/^(\d{4})/);
                         if (mYear) year = parseInt(mYear[1], 10) || 2026;
@@ -410,52 +409,11 @@ function parseMovieDetail(responseStr, url) {
             if (descMatch) description = decodeHtmlEntities(descMatch[1].replace(/<[^>]+>/g, " ").trim());
         }
 
-        var metaBlock = responseStr.match(/<ul\s+class="item__meta">([\s\S]*?)<\/ul>/i);
-        if (metaBlock) {
-            var metaHtml = metaBlock[1];
-            var genreRegex = /<a\s+href="\/genres\/[^"]*"[^>]*>([\s\S]*?)<\/a>/gi;
-            var gMatch;
-            while ((gMatch = genreRegex.exec(metaHtml)) !== null) {
-                categories.push(decodeHtmlEntities(gMatch[1].replace(/<[^>]+>/g, "").trim()));
-            }
-
-            var tagRegex = /<a\s+href="\/tags\/[^"]*"[^>]*>([\s\S]*?)<\/a>/gi;
-            var tgMatch;
-            while ((tgMatch = tagRegex.exec(metaHtml)) !== null) {
-                tags.push(decodeHtmlEntities(tgMatch[1].replace(/<[^>]+>/g, "").trim()));
-            }
-        }
-
-        var optionRegex = /<option[^>]+data-link="([^"]+)"[^>]*>([\s\S]*?)<\/option>/gi;
-        var optMatch;
-        var episodes = [];
-        var epIndex = 1;
-
-        while ((optMatch = optionRegex.exec(responseStr)) !== null) {
-            var link = optMatch[1].trim();
-            var epName = decodeHtmlEntities(optMatch[2].replace(/<[^>]+>/g, "").trim()) || ("Link " + epIndex);
-            episodes.push({
-                "id": link,
-                "name": epName,
-                "slug": "ep-" + epIndex
-            });
-            if (!streamUrl) streamUrl = link;
-            epIndex++;
-        }
-
-        if (episodes.length === 0) {
-            if (!streamUrl) {
-                var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-                if (m3u8Match) streamUrl = m3u8Match[0].trim();
-            }
-            if (!streamUrl) streamUrl = url || "";
-
-            episodes.push({
-                "id": streamUrl,
-                "name": "Full HD",
-                "slug": "full"
-            });
-        }
+        var episodes = [{
+            "id": streamUrl,
+            "name": "Xem Trực Tiếp",
+            "slug": "full"
+        }];
 
         serverEpisodes.push({
             "name": "SexLive Server",
@@ -497,12 +455,6 @@ function parseMovieDetail(responseStr, url) {
             });
         }
 
-        var catStr = categories.join(", ");
-        if (!catStr) catStr = "Live Stream, Gái Xinh";
-        if (tags.length > 0) {
-            catStr += " (" + tags.slice(0, 5).join(", ") + ")";
-        }
-
         return JSON.stringify({
             "id": url || "",
             "title": title || "SexLive Video",
@@ -513,7 +465,7 @@ function parseMovieDetail(responseStr, url) {
             "year": year,
             "rating": 5.0,
             "quality": "Full HD",
-            "category": catStr,
+            "category": "Live Stream, Gái Xinh",
             "country": "Live Stream",
             "episode_current": "Full",
             "episode_total": "1",
@@ -534,37 +486,11 @@ function parseDetail(responseStr, url) { return parseMovieDetail(responseStr, ur
 
 function parseDetailResponse(html, url) {
     try {
-        var streamUrl = url || "";
-
-        if (html) {
-            var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
-            if (jsonLdMatch) {
-                try {
-                    var jld = JSON.parse(jsonLdMatch[1]);
-                    if (jld && jld.embedUrl) {
-                        streamUrl = jld.embedUrl;
-                    }
-                } catch (e) {}
-            }
-
-            if (!streamUrl || streamUrl.indexOf(".m3u8") === -1) {
-                var optMatch = html.match(/<option[^>]+data-link="([^"]+\.m3u8[^"]*)"/i);
-                if (optMatch && optMatch[1]) {
-                    streamUrl = optMatch[1];
-                } else {
-                    var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-                    if (m3u8Match) {
-                        streamUrl = m3u8Match[0];
-                    }
-                }
-            }
-        }
-
-        // Đảm bảo ép kiểu trả về chính xác cho ExoPlayer của cả 2 app
+        var targetUrl = url || "";
         return JSON.stringify({
-            "url": streamUrl,
-            "isEmbed": false,
-            "mimeType": "application/x-mpegURL",
+            "url": targetUrl,
+            "isEmbed": true,
+            "mimeType": "text/html",
             "headers": {
                 "Referer": "https://sexlive.porn/",
                 "Origin": "https://sexlive.porn",
@@ -574,12 +500,9 @@ function parseDetailResponse(html, url) {
     } catch (e) {
         return JSON.stringify({ 
             "url": url || "", 
-            "isEmbed": false, 
-            "mimeType": "application/x-mpegURL",
-            "headers": {
-                "Referer": "https://sexlive.porn/",
-                "Origin": "https://sexlive.porn"
-            }
+            "isEmbed": true, 
+            "mimeType": "text/html",
+            "headers": {} 
         });
     }
 }
