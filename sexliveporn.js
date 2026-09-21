@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (Tương thích 100% Rhino JS & Android TV - Đã fix lỗi CDN)
+// SexLive.porn Plugin (Tương thích 100% Rhino JS & Android TV - Fix Token CDN)
 // https://sexlive.porn/
 // =============================================================================
 
@@ -11,7 +11,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -551,9 +551,15 @@ function parseDetailResponse(html, url) {
         var streamUrl = url || "";
 
         if (html) {
-            var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
+            // Lấy trọn vẹn link m3u8 kèm cả mã Token đằng sau dấu ?
+            var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
             if (m3u8Match) {
                 streamUrl = m3u8Match[0].trim();
+            } else {
+                var altMatch = html.match(/https?:\/\/[^"'\s<>]+\/(?:playlist|index|manifest)\/?[^"'\s<>]*/i);
+                if (altMatch) {
+                    streamUrl = altMatch[0].trim();
+                }
             }
         }
 
@@ -561,8 +567,8 @@ function parseDetailResponse(html, url) {
             streamUrl = url || "";
         }
 
-        var isEmbed = streamUrl.indexOf(".m3u8") === -1 && streamUrl.indexOf(".mp4") === -1;
-        var mimeType = isEmbed ? "text/html" : (streamUrl.indexOf(".m3u8") > -1 ? "application/x-mpegURL" : "video/mp4");
+        var isEmbed = streamUrl.indexOf(".m3u8") === -1 && streamUrl.indexOf(".mp4") === -1 && streamUrl.indexOf("playlist") === -1;
+        var mimeType = isEmbed ? "text/html" : "application/x-mpegURL";
 
         return JSON.stringify({
             "url": streamUrl,
