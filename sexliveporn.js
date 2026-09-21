@@ -11,7 +11,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -213,7 +213,6 @@ function getUrlList(slug, filtersJson) {
             url = BASEURL + "/" + url;
         }
 
-        // Add page param
         if (page > 1) {
             if (url.indexOf("?") > -1) {
                 url = url.replace(/([?&])p=\d+/i, "$1p=" + page);
@@ -299,7 +298,6 @@ function parseListResponse(html, url) {
         while ((match = itemRegex.exec(html)) !== null) {
             var block = match[1];
 
-            // Extract link
             var linkMatch = block.match(/href="([^"]*\/view\/[^"]*)"/i);
             if (!linkMatch) continue;
             var link = linkMatch[1].trim();
@@ -311,13 +309,11 @@ function parseListResponse(html, url) {
             if (seenLinks[link]) continue;
             seenLinks[link] = true;
 
-            // Extract title
             var titleMatch = block.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*title="([^"]*)"[^>]*>/i) ||
                              block.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i) ||
                              block.match(/title="([^"]+)"/i);
             var title = titleMatch ? decodeHtmlEntities(titleMatch[1].replace(/<[^>]+>/g, "").trim()) : "";
 
-            // Extract image
             var imgMatch = block.match(/<img[^>]+(?:src|data-src)="([^"]+)"/i);
             var posterUrl = imgMatch ? imgMatch[1].trim() : "";
             if (posterUrl && posterUrl.indexOf("http") !== 0) {
@@ -358,21 +354,10 @@ function parseListResponse(html, url) {
     }
 }
 
-function parseList(html, url) {
-    return parseListResponse(html, url);
-}
-
-function parseHomeResponse(html, url) {
-    return parseListResponse(html, url);
-}
-
-function parseSearchResponse(html, url) {
-    return parseListResponse(html, url);
-}
-
-function parseSearchResult(html, url) {
-    return parseListResponse(html, url);
-}
+function parseList(html, url) { return parseListResponse(html, url); }
+function parseHomeResponse(html, url) { return parseListResponse(html, url); }
+function parseSearchResponse(html, url) { return parseListResponse(html, url); }
+function parseSearchResult(html, url) { return parseListResponse(html, url); }
 
 function parseMovieDetail(responseStr, url) {
     try {
@@ -389,7 +374,6 @@ function parseMovieDetail(responseStr, url) {
             return JSON.stringify({ "id": url || "", "title": "Không có dữ liệu", "description": "", "servers": [] });
         }
 
-        // Try JSON-LD first
         var jsonLdMatch = responseStr.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
         if (jsonLdMatch) {
             try {
@@ -407,7 +391,6 @@ function parseMovieDetail(responseStr, url) {
             } catch (e) {}
         }
 
-        // Fallbacks for title
         if (!title) {
             var tMatch = responseStr.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
                          responseStr.match(/<meta\s+property="og:title"\s+content="([^"]*)"/i) ||
@@ -415,21 +398,18 @@ function parseMovieDetail(responseStr, url) {
             if (tMatch) title = decodeHtmlEntities(tMatch[1].replace(/<[^>]+>/g, "").trim());
         }
 
-        // Fallbacks for poster
         if (!posterUrl) {
             var imgMatch = responseStr.match(/<meta\s+property="og:image"\s+content="([^"]*)"/i) ||
                            responseStr.match(/<div class="item__cover">[\s\S]*?<img[^>]+src="([^"]+)"/i);
             if (imgMatch) posterUrl = imgMatch[1].trim();
         }
 
-        // Fallbacks for description
         if (!description) {
             var descMatch = responseStr.match(/<meta\s+name="description"\s+content="([^"]*)"/i) ||
                             responseStr.match(/<meta\s+property="og:description"\s+content="([^"]*)"/i);
             if (descMatch) description = decodeHtmlEntities(descMatch[1].replace(/<[^>]+>/g, " ").trim());
         }
 
-        // Categories & Tags from item__meta
         var metaBlock = responseStr.match(/<ul\s+class="item__meta">([\s\S]*?)<\/ul>/i);
         if (metaBlock) {
             var metaHtml = metaBlock[1];
@@ -446,7 +426,6 @@ function parseMovieDetail(responseStr, url) {
             }
         }
 
-        // Look for stream options in select #filter__link
         var optionRegex = /<option[^>]+data-link="([^"]+)"[^>]*>([\s\S]*?)<\/option>/gi;
         var optMatch;
         var episodes = [];
@@ -464,7 +443,6 @@ function parseMovieDetail(responseStr, url) {
             epIndex++;
         }
 
-        // If no options found, look for direct m3u8 in page
         if (episodes.length === 0) {
             if (!streamUrl) {
                 var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
@@ -484,7 +462,6 @@ function parseMovieDetail(responseStr, url) {
             "episodes": episodes
         });
 
-        // Related movies
         var relatedItems = [];
         var rItemRegex = /<div class="item">([\s\S]*?)<\/div>\s*<\/div>/gi;
         var rMatch;
@@ -553,118 +530,63 @@ function parseMovieDetail(responseStr, url) {
     }
 }
 
-function parseDetail(responseStr, url) {
-    return parseMovieDetail(responseStr, url);
-}
+function parseDetail(responseStr, url) { return parseMovieDetail(responseStr, url); }
 
 function parseDetailResponse(html, url) {
     try {
         var streamUrl = url || "";
 
-        // Check if url is already direct m3u8
-        if (streamUrl && streamUrl.indexOf(".m3u8") > -1) {
-            return JSON.stringify({
-                "url": streamUrl,
-                "isEmbed": false,
-                "mimeType": "application/x-mpegURL",
-                "headers": {
-                    "Referer": "https://sexlive.porn/",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-                }
-            });
-        }
-
         if (html) {
-            // Check JSON-LD
             var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
             if (jsonLdMatch) {
                 try {
                     var jld = JSON.parse(jsonLdMatch[1]);
-                    if (jld && jld.embedUrl && jld.embedUrl.indexOf(".m3u8") > -1) {
-                        return JSON.stringify({
-                            "url": jld.embedUrl,
-                            "isEmbed": false,
-                            "mimeType": "application/x-mpegURL",
-                            "headers": {
-                                "Referer": "https://sexlive.porn/",
-                                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-                            }
-                        });
+                    if (jld && jld.embedUrl) {
+                        streamUrl = jld.embedUrl;
                     }
                 } catch (e) {}
             }
 
-            // Check option data-link
-            var optMatch = html.match(/<option[^>]+data-link="([^"]+\.m3u8[^"]*)"/i);
-            if (optMatch && optMatch[1]) {
-                return JSON.stringify({
-                    "url": optMatch[1],
-                    "isEmbed": false,
-                    "mimeType": "application/x-mpegURL",
-                    "headers": {
-                        "Referer": "https://sexlive.porn/",
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            if (!streamUrl || streamUrl.indexOf(".m3u8") === -1) {
+                var optMatch = html.match(/<option[^>]+data-link="([^"]+\.m3u8[^"]*)"/i);
+                if (optMatch && optMatch[1]) {
+                    streamUrl = optMatch[1];
+                } else {
+                    var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
+                    if (m3u8Match) {
+                        streamUrl = m3u8Match[0];
                     }
-                });
-            }
-
-            // Check direct m3u8 match
-            var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-            if (m3u8Match) {
-                return JSON.stringify({
-                    "url": m3u8Match[0],
-                    "isEmbed": false,
-                    "mimeType": "application/x-mpegURL",
-                    "headers": {
-                        "Referer": "https://sexlive.porn/",
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-                    }
-                });
-            }
-
-            // Check iframe
-            var iframeMatch = html.match(/<iframe\s+[^>]*src=["']([^"']+)["']/i);
-            if (iframeMatch && iframeMatch[1]) {
-                return JSON.stringify({
-                    "url": iframeMatch[1].trim(),
-                    "isEmbed": true,
-                    "mimeType": "text/html",
-                    "headers": {
-                        "Referer": BASEURL + "/",
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                    }
-                });
+                }
             }
         }
 
-        var isEmbed = streamUrl.indexOf(".m3u8") === -1 && streamUrl.indexOf(".mp4") === -1;
-        var mimeType = isEmbed ? "text/html" : (streamUrl.indexOf(".m3u8") > -1 ? "application/x-mpegURL" : "video/mp4");
-
+        // Đảm bảo ép kiểu trả về chính xác cho ExoPlayer của cả 2 app
         return JSON.stringify({
             "url": streamUrl,
-            "isEmbed": isEmbed,
-            "mimeType": mimeType,
+            "isEmbed": false,
+            "mimeType": "application/x-mpegURL",
             "headers": {
-                "Referer": BASEURL + "/",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                "Referer": "https://sexlive.porn/",
+                "Origin": "https://sexlive.porn",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
             }
         });
     } catch (e) {
-        return JSON.stringify({ "url": url || "", "isEmbed": true, "headers": {} });
+        return JSON.stringify({ 
+            "url": url || "", 
+            "isEmbed": false, 
+            "mimeType": "application/x-mpegURL",
+            "headers": {
+                "Referer": "https://sexlive.porn/",
+                "Origin": "https://sexlive.porn"
+            }
+        });
     }
 }
 
-function parseEmbedResponse(html, url) {
-    return parseDetailResponse(html, url);
-}
-
-function parseEpisodePlayer(response, url) {
-    return parseDetailResponse(response, url);
-}
-
-function parsePlayerUrl(response, url) {
-    return parseDetailResponse(response, url);
-}
+function parseEmbedResponse(html, url) { return parseDetailResponse(html, url); }
+function parseEpisodePlayer(response, url) { return parseDetailResponse(response, url); }
+function parsePlayerUrl(response, url) { return parseDetailResponse(response, url); }
 
 function parseCategoriesResponse(apiResponseJson) {
     return JSON.stringify(getCategoryData());
