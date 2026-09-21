@@ -1,6 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (Tương thích WebView cho App SuperOK)
-// https://sexlive.porn/
+// SexLive.porn Plugin (ExoPlayer Optimized for SuperOK & Vax)
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -11,13 +10,13 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",
-        "playerType": "webview"
+        "playerType": "exoplayer"
     });
 }
 
@@ -146,11 +145,7 @@ function getPrimaryCategories() {
     var cats = getCategoryData();
     var list = [];
     for (var i = 0; i < cats.length; i++) {
-        list.push({
-            slug: cats[i].slug,
-            name: cats[i].name,
-            value: cats[i].slug
-        });
+        list.push({ slug: cats[i].slug, name: cats[i].name, value: cats[i].slug });
     }
     return JSON.stringify(list);
 }
@@ -159,25 +154,15 @@ function getFilterConfig() {
     var cats = getCategoryData();
     var list = [];
     for (var i = 0; i < cats.length; i++) {
-        list.push({
-            name: cats[i].name,
-            value: cats[i].slug
-        });
+        list.push({ name: cats[i].name, value: cats[i].slug });
     }
-    return JSON.stringify({
-        category: list
-    });
+    return JSON.stringify({ category: list });
 }
-
-// =============================================================================
-// URL GENERATION
-// =============================================================================
 
 function getUrlList(slug, filtersJson) {
     try {
         var page = 1;
         var path = "";
-
         if (filtersJson) {
             var filters = null;
             if (typeof filtersJson === "number") {
@@ -190,7 +175,6 @@ function getUrlList(slug, filtersJson) {
             } else if (typeof filtersJson === "object") {
                 filters = filtersJson;
             }
-
             if (filters) {
                 if (filters.page) page = parseInt(filters.page, 10) || 1;
                 if (filters.category) {
@@ -202,28 +186,20 @@ function getUrlList(slug, filtersJson) {
                 }
             }
         }
-
-        if (!path) {
-            path = slug || "";
-        }
-
+        if (!path) path = slug || "";
         var url = path;
         if (url.indexOf("http") !== 0) {
             if (url.charAt(0) === "/") url = url.substring(1);
             url = BASEURL + "/" + url;
         }
-
         if (page > 1) {
             if (url.indexOf("?") > -1) {
                 url = url.replace(/([?&])p=\d+/i, "$1p=" + page);
-                if (url.indexOf("p=") === -1) {
-                    url += "&p=" + page;
-                }
+                if (url.indexOf("p=") === -1) url += "&p=" + page;
             } else {
                 url += "?p=" + page;
             }
         }
-
         return url;
     } catch (e) {
         return BASEURL + "/";
@@ -246,50 +222,31 @@ function getUrlSearch(keyword, filtersJson) {
         }
         if (filters && filters.page) page = parseInt(filters.page, 10) || 1;
     }
-
     var q = keyword ? encodeURIComponent(keyword) : "";
     var url = BASEURL + "/search?Keyword=" + q;
-    if (page > 1) {
-        url += "&p=" + page;
-    }
+    if (page > 1) url += "&p=" + page;
     return url;
 }
 
-function getSearchUrl(q, page) {
-    return getUrlSearch(q, page);
-}
-
+function getSearchUrl(q, page) { return getUrlSearch(q, page); }
 function getUrlDetail(slug) {
     if (!slug) return "";
-    var id = slug;
-    if (id.indexOf("http") === 0) {
-        return id;
-    }
-    if (id.charAt(0) !== "/") id = "/" + id;
-    return BASEURL + id;
+    if (slug.indexOf("http") === 0) return slug;
+    if (slug.charAt(0) !== "/") slug = "/" + slug;
+    return BASEURL + slug;
 }
 
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
-    if (episodeSlug && episodeSlug.indexOf("http") === 0) {
+    if (episodeSlug && (episodeSlug.indexOf(".m3u8") > -1 || episodeSlug.indexOf("http") === 0)) {
         return episodeSlug;
     }
     return getUrlDetail(slug);
 }
 
-function getUrlCategories() { return ""; }
-function getUrlCountries() { return ""; }
-function getUrlYears() { return ""; }
-
-// =============================================================================
-// PARSERS
-// =============================================================================
-
 function parseListResponse(html, url) {
     try {
         var items = [];
-        if (!html) {
-            return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1, hasNext: false } });
-        }
+        if (!html) return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1, hasNext: false } });
 
         var itemRegex = /<div class="item">([\s\S]*?)<\/div>\s*<\/div>/gi;
         var match;
@@ -297,7 +254,6 @@ function parseListResponse(html, url) {
 
         while ((match = itemRegex.exec(html)) !== null) {
             var block = match[1];
-
             var linkMatch = block.match(/href="([^"]*\/view\/[^"]*)"/i);
             if (!linkMatch) continue;
             var link = linkMatch[1].trim();
@@ -305,13 +261,11 @@ function parseListResponse(html, url) {
                 if (link.charAt(0) !== "/") link = "/" + link;
                 link = BASEURL + link;
             }
-
             if (seenLinks[link]) continue;
             seenLinks[link] = true;
 
             var titleMatch = block.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*title="([^"]*)"[^>]*>/i) ||
-                             block.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i) ||
-                             block.match(/title="([^"]+)"/i);
+                             block.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i);
             var title = titleMatch ? decodeHtmlEntities(titleMatch[1].replace(/<[^>]+>/g, "").trim()) : "";
 
             var imgMatch = block.match(/<img[^>]+(?:src|data-src)="([^"]+)"/i);
@@ -340,17 +294,10 @@ function parseListResponse(html, url) {
 
         return JSON.stringify({
             "items": items,
-            "pagination": {
-                "currentPage": currentPage,
-                "totalPages": 999,
-                "hasNext": items.length >= 24
-            }
+            "pagination": { "currentPage": currentPage, "totalPages": 999, "hasNext": items.length >= 24 }
         });
     } catch (e) {
-        return JSON.stringify({
-            "items": [],
-            "pagination": { "currentPage": 1, "totalPages": 1, "hasNext": false }
-        });
+        return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1, hasNext: false } });
     }
 }
 
@@ -364,15 +311,10 @@ function parseMovieDetail(responseStr, url) {
         var title = "";
         var posterUrl = "";
         var description = "";
-        var categories = [];
-        var tags = [];
-        var year = 2026;
-        var streamUrl = url || "";
+        var streamUrl = "";
         var serverEpisodes = [];
 
-        if (!responseStr) {
-            return JSON.stringify({ "id": url || "", "title": "Không có dữ liệu", "description": "", "servers": [] });
-        }
+        if (!responseStr) return JSON.stringify({ "id": url || "", "title": "Không có dữ liệu", "servers": [] });
 
         var jsonLdMatch = responseStr.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
         if (jsonLdMatch) {
@@ -382,103 +324,50 @@ function parseMovieDetail(responseStr, url) {
                     if (jld.name) title = decodeHtmlEntities(jld.name);
                     if (jld.thumbnailUrl) posterUrl = jld.thumbnailUrl;
                     if (jld.description) description = decodeHtmlEntities(jld.description);
-                    if (jld.uploadDate) {
-                        var mYear = String(jld.uploadDate).match(/^(\d{4})/);
-                        if (mYear) year = parseInt(mYear[1], 10) || 2026;
-                    }
+                    if (jld.embedUrl) streamUrl = jld.embedUrl;
                 }
             } catch (e) {}
         }
 
         if (!title) {
-            var tMatch = responseStr.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) ||
-                         responseStr.match(/<meta\s+property="og:title"\s+content="([^"]*)"/i) ||
-                         responseStr.match(/<title>([^<]*)<\/title>/i);
+            var tMatch = responseStr.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || responseStr.match(/<title>([^<]*)<\/title>/i);
             if (tMatch) title = decodeHtmlEntities(tMatch[1].replace(/<[^>]+>/g, "").trim());
         }
 
         if (!posterUrl) {
-            var imgMatch = responseStr.match(/<meta\s+property="og:image"\s+content="([^"]*)"/i) ||
-                           responseStr.match(/<div class="item__cover">[\s\S]*?<img[^>]+src="([^"]+)"/i);
+            var imgMatch = responseStr.match(/<meta\s+property="og:image"\s+content="([^"]*)"/i);
             if (imgMatch) posterUrl = imgMatch[1].trim();
         }
 
-        if (!description) {
-            var descMatch = responseStr.match(/<meta\s+name="description"\s+content="([^"]*)"/i) ||
-                            responseStr.match(/<meta\s+property="og:description"\s+content="([^"]*)"/i);
-            if (descMatch) description = decodeHtmlEntities(descMatch[1].replace(/<[^>]+>/g, " ").trim());
+        if (!streamUrl) {
+            var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
+            if (m3u8Match) streamUrl = m3u8Match[0].trim();
         }
 
         var episodes = [{
-            "id": streamUrl,
-            "name": "Xem Trực Tiếp",
+            "id": streamUrl || url,
+            "name": "Full HD",
             "slug": "full"
         }];
 
         serverEpisodes.push({
-            "name": "SexLive Server",
+            "name": "ExoPlayer Server",
             "episodes": episodes
         });
 
-        var relatedItems = [];
-        var rItemRegex = /<div class="item">([\s\S]*?)<\/div>\s*<\/div>/gi;
-        var rMatch;
-        var seenR = {};
-
-        while ((rMatch = rItemRegex.exec(responseStr)) !== null) {
-            var rBlock = rMatch[1];
-            var rLinkMatch = rBlock.match(/href="([^"]*\/view\/[^"]*)"/i);
-            if (!rLinkMatch) continue;
-            var rLink = rLinkMatch[1].trim();
-            if (rLink.indexOf("http") !== 0) {
-                if (rLink.charAt(0) !== "/") rLink = "/" + rLink;
-                rLink = BASEURL + rLink;
-            }
-            if (rLink === url || seenR[rLink]) continue;
-            seenR[rLink] = true;
-
-            var rTitleMatch = rBlock.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*title="([^"]*)"[^>]*>/i) ||
-                              rBlock.match(/<h3[^>]*class="item__title"[^>]*>[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i);
-            var rTitle = rTitleMatch ? decodeHtmlEntities(rTitleMatch[1].replace(/<[^>]+>/g, "").trim()) : "";
-
-            var rImgMatch = rBlock.match(/<img[^>]+(?:src|data-src)="([^"]+)"/i);
-            var rPoster = rImgMatch ? rImgMatch[1].trim() : "";
-
-            relatedItems.push({
-                "id": rLink,
-                "title": rTitle || "Video liên quan",
-                "posterUrl": rPoster,
-                "backdropUrl": rPoster,
-                "year": year,
-                "quality": "Full HD",
-                "rating": ""
-            });
-        }
-
         return JSON.stringify({
             "id": url || "",
-            "title": title || "SexLive Video",
-            "originName": "",
+            "title": title || "Video",
             "posterUrl": posterUrl,
             "backdropUrl": posterUrl,
             "description": description,
-            "year": year,
+            "year": 2026,
             "rating": 5.0,
             "quality": "Full HD",
-            "category": "Live Stream, Gái Xinh",
-            "country": "Live Stream",
-            "episode_current": "Full",
-            "episode_total": "1",
-            "servers": serverEpisodes,
-            "relatedMovies": relatedItems
+            "servers": serverEpisodes
         });
     } catch (e) {
-        return JSON.stringify({
-            "id": url || "",
-            "title": "Lỗi phân giải",
-            "description": "Lỗi: " + e,
-            "servers": []
-        });
+        return JSON.stringify({ "id": url || "", "title": "Lỗi", "servers": [] });
     }
 }
 
@@ -486,23 +375,33 @@ function parseDetail(responseStr, url) { return parseMovieDetail(responseStr, ur
 
 function parseDetailResponse(html, url) {
     try {
-        var targetUrl = url || "";
-        return JSON.stringify({
-            "url": targetUrl,
-            "isEmbed": true,
-            "mimeType": "text/html",
-            "headers": {
-                "Referer": "https://sexlive.porn/",
-                "Origin": "https://sexlive.porn",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+        var streamUrl = url || "";
+
+        if (html) {
+            var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
+            if (jsonLdMatch) {
+                try {
+                    var jld = JSON.parse(jsonLdMatch[1]);
+                    if (jld && jld.embedUrl) streamUrl = jld.embedUrl;
+                } catch (e) {}
             }
+            if (!streamUrl || streamUrl.indexOf(".m3u8") === -1) {
+                var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
+                if (m3u8Match) streamUrl = m3u8Match[0];
+            }
+        }
+
+        // Cấu trúc tinh gọn chuẩn nhất cho ExoPlayer nhận diện luồng HLS
+        return JSON.stringify({
+            "url": streamUrl,
+            "isEmbed": false,
+            "mimeType": "application/x-mpegURL"
         });
     } catch (e) {
-        return JSON.stringify({ 
-            "url": url || "", 
-            "isEmbed": true, 
-            "mimeType": "text/html",
-            "headers": {} 
+        return JSON.stringify({
+            "url": url || "",
+            "isEmbed": false,
+            "mimeType": "application/x-mpegURL"
         });
     }
 }
@@ -510,10 +409,6 @@ function parseDetailResponse(html, url) {
 function parseEmbedResponse(html, url) { return parseDetailResponse(html, url); }
 function parseEpisodePlayer(response, url) { return parseDetailResponse(response, url); }
 function parsePlayerUrl(response, url) { return parseDetailResponse(response, url); }
-
-function parseCategoriesResponse(apiResponseJson) {
-    return JSON.stringify(getCategoryData());
-}
-
+function parseCategoriesResponse(apiResponseJson) { return JSON.stringify(getCategoryData()); }
 function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
