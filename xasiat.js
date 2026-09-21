@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.1.3",
+        "version": "1.1.4",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -270,7 +270,7 @@ function parseMovieDetail(html, url) {
         var limg = "";
         var ldes = "Không có mô tả.";
         var category = "";
-        var episode_current = ""; // Đã bỏ hiển thị "Tập hiện tại"
+        var episode_current = "";
         var quality = "";
         var year = 2026;
         var rating = 0;
@@ -286,6 +286,7 @@ function parseMovieDetail(html, url) {
         id = idMatch ? idMatch[1] : (url || "");
         cachedMovieDetailId = id;
 
+        // Trích xuất flashvars qua regex trực tiếp
         var fvMatch = html.match(/var\s+flashvars\s*=\s*\{([\s\S]*?)\};/);
         var flashvarsBody = fvMatch ? fvMatch[1] : "";
 
@@ -306,23 +307,49 @@ function parseMovieDetail(html, url) {
             category = getField('video_categories') || "";
             lactor = getField('video_models') || "";
 
-            // Lấy duy nhất 1 link chất lượng cao nhất để làm nút "Xem Phim"
-            // Việc này giúp giao diện không bị dàn trải thành 1 "danh sách tập"
-            var bestUrl = getField('video_alt_url3') || getField('video_alt_url2') || getField('video_alt_url') || getField('video_url');
-            
-            if (bestUrl && bestUrl.indexOf("http") !== -1) {
-                var cleanUrl = bestUrl.replace(/[\s\S]*?http/i, "http");
-                var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
+            var episodes = [];
+
+            var addEp = function(urlKey, textKey, defaultName, slug) {
+                if (episodes.length > 0) return; // CHỈ THÊM DÒNG NÀY: Dừng lại ngay khi đã lấy được 1 link (không tạo list tập)
                 
-                servers.push({
-                    name: "Nguồn Phát",
-                    episodes: [{
+                var vUrl = getField(urlKey);
+                if (vUrl && vUrl.indexOf("http") !== -1) {
+                    var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
+                    
+                    // Bọc link video thật vào một param ảo để app không tự tải nguyên video
+                    var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
+                    
+                    episodes.push({
                         id: safeId, 
-                        name: "Xem Phim", 
-                        slug: "play"
-                    }]
+                        name: "Xem Phim", // Đổi nhẹ thành "Xem Phim" thay vì hiện tên chất lượng
+                        slug: slug
+                    });
+                }
+            };
+
+            // Vẫn kiểm tra tuần tự từ cao xuống thấp, nhưng addEp sẽ tự ngắt khi tìm thấy 1 link
+            addEp('video_alt_url3', 'video_alt_url3_text', '4K / FHD', 'hd4k');
+            addEp('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
+            addEp('video_alt_url', 'video_alt_url_text', 'Chất lượng cao (HD)', 'hd720');
+            addEp('video_url', 'video_url_text', 'SD', 'sd');
+
+            if (episodes.length > 0) {
+                servers.push({
+                    name: "Phát trực tiếp",
+                    episodes: episodes
                 });
             }
+        }
+
+        if (servers.length === 0) {
+            return JSON.stringify({
+                id: cachedMovieDetailId || url || "error",
+                title: "Video không khả dụng",
+                description: "Video riêng tư hoặc không tìm thấy nguồn phát.",
+                posterUrl: limg || "",
+                backdropUrl: limg || "",
+                servers: []
+            });
         }
 
         return JSON.stringify({
@@ -337,7 +364,7 @@ function parseMovieDetail(html, url) {
             status: status,
             category: category,
             episode_current: episode_current,
-            servers: servers, 
+            servers: servers,
             duration: lduran || "",
             casts: lactor || "",
             director: ldirec || "",
@@ -348,7 +375,7 @@ function parseMovieDetail(html, url) {
         log(e);
         return JSON.stringify({
             id: cachedMovieDetailId || url || "error",
-            title: "Lỗi hiển thị dữ liệu",
+            title: "error",
             servers: []
         });
     }
