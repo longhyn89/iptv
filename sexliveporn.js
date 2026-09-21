@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin - Hardcode Direct m3u8 to Episode ID
+// SexLive.porn Plugin - Force Referer Header for ExoPlayer
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -10,7 +10,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -236,9 +236,12 @@ function getUrlDetail(slug) {
     return BASEURL + slug;
 }
 
-// Ép buộc trả về thẳng link .m3u8 nếu episodeSlug chính là nó
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
     if (episodeSlug && episodeSlug.indexOf(".m3u8") > -1) {
+        // Gắn kèm Referer chống chặn từ CDN
+        if (episodeSlug.indexOf("|Referer") === -1) {
+            return episodeSlug + "|Referer=" + BASEURL + "/";
+        }
         return episodeSlug;
     }
     if (episodeSlug && episodeSlug.indexOf("http") === 0) {
@@ -310,12 +313,10 @@ function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResult(html, url) { return parseListResponse(html, url); }
 
-// Hàm vét cạn tối ưu trích xuất .m3u8 sạch sẽ hoàn toàn
 function extractM3u8Url(html) {
     if (!html) return "";
     var streamUrl = "";
 
-    // 1. Quét JSON-LD
     var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
     if (jsonLdMatch) {
         try {
@@ -326,7 +327,6 @@ function extractM3u8Url(html) {
         } catch (e) {}
     }
 
-    // 2. Quét data-link / src
     if (!streamUrl) {
         var optMatch = html.match(/data-link="([^"]+\.m3u8[^"]*)"/i) || html.match(/src="([^"]+\.m3u8[^"]*)"/i);
         if (optMatch && optMatch[1]) {
@@ -334,7 +334,6 @@ function extractM3u8Url(html) {
         }
     }
 
-    // 3. Quét tự do toàn trang
     if (!streamUrl) {
         var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
         if (m3u8Match) {
@@ -342,9 +341,12 @@ function extractM3u8Url(html) {
         }
     }
 
-    // Làm sạch dấu escape
     if (streamUrl) {
         streamUrl = streamUrl.replace(/\\/g, "").trim();
+        // Tự động gắn Referer chuẩn vào đuôi URL để ExoPlayer vượt qua bảo vệ CDN
+        if (streamUrl.indexOf("|Referer") === -1) {
+            streamUrl += "|Referer=" + BASEURL + "/";
+        }
     }
 
     return streamUrl;
@@ -381,11 +383,10 @@ function parseMovieDetail(responseStr, url) {
             if (imgMatch) posterUrl = imgMatch[1].trim();
         }
 
-        // Lấy link m3u8 trực tiếp ép làm ID cho tập phim
         var streamUrl = extractM3u8Url(responseStr) || url || "";
 
         var episodes = [{
-            "id": streamUrl,     // Đưa thẳng link .m3u8 vào ID tập phim
+            "id": streamUrl,
             "name": "Full HD",
             "slug": streamUrl
         }];
