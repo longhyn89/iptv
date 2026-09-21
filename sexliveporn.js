@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (Chế độ WebView tối ưu - Fix triệt để lỗi CDN & Player)
+// SexLive.porn Plugin (ExoPlayer Mode - Sạch sẽ, không quảng cáo, fix triệt để CDN)
 // https://sexlive.porn/
 // =============================================================================
 
@@ -11,13 +11,13 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.3",
+        "version": "1.0.4",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",
-        "playerType": "webview" // Chuyển sang webview để xử lý trọn gói player web gốc
+        "playerType": "exoplayer" // Quay lại ExoPlayer để xem trực tiếp mượt mà
     });
 }
 
@@ -270,7 +270,7 @@ function getUrlDetail(slug) {
 }
 
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
-    if (episodeSlug && episodeSlug.indexOf("http") === 0) {
+    if (episodeSlug && (episodeSlug.indexOf(".m3u8") > -1 || episodeSlug.indexOf("http") === 0)) {
         return episodeSlug;
     }
     return getUrlDetail(slug);
@@ -378,7 +378,7 @@ function parseMovieDetail(responseStr, url) {
         var categories = [];
         var tags = [];
         var year = 2026;
-        var streamUrl = url || "";
+        var streamUrl = "";
         var serverEpisodes = [];
 
         if (!responseStr) {
@@ -393,6 +393,7 @@ function parseMovieDetail(responseStr, url) {
                     if (jld.name) title = decodeHtmlEntities(jld.name);
                     if (jld.thumbnailUrl) posterUrl = jld.thumbnailUrl;
                     if (jld.description) description = decodeHtmlEntities(jld.description);
+                    if (jld.embedUrl) streamUrl = jld.embedUrl;
                     if (jld.uploadDate) {
                         var mYear = String(jld.uploadDate).match(/^(\d{4})/);
                         if (mYear) year = parseInt(mYear[1], 10) || 2026;
@@ -436,11 +437,36 @@ function parseMovieDetail(responseStr, url) {
             }
         }
 
-        var episodes = [{
-            "id": url || "",
-            "name": "Xem Trực Tiếp (WebView)",
-            "slug": "webview-stream"
-        }];
+        var optionRegex = /<option[^>]+data-link="([^"]+)"[^>]*>([\s\S]*?)<\/option>/gi;
+        var optMatch;
+        var episodes = [];
+        var epIndex = 1;
+
+        while ((optMatch = optionRegex.exec(responseStr)) !== null) {
+            var link = optMatch[1].trim();
+            var epName = decodeHtmlEntities(optMatch[2].replace(/<[^>]+>/g, "").trim()) || ("Link " + epIndex);
+            episodes.push({
+                "id": link,
+                "name": epName,
+                "slug": "ep-" + epIndex
+            });
+            if (!streamUrl) streamUrl = link;
+            epIndex++;
+        }
+
+        if (episodes.length === 0) {
+            if (!streamUrl) {
+                var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
+                if (m3u8Match) streamUrl = m3u8Match[0].trim();
+            }
+            if (!streamUrl) streamUrl = url || "";
+
+            episodes.push({
+                "id": streamUrl,
+                "name": "Full HD",
+                "slug": "full"
+            });
+        }
 
         serverEpisodes.push({
             "name": "SexLive Server",
@@ -523,18 +549,33 @@ function parseDetailResponse(html, url) {
     try {
         var streamUrl = url || "";
 
+        if (html) {
+            var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
+            if (m3u8Match) {
+                streamUrl = m3u8Match[0].trim();
+            }
+        }
+
+        if (!streamUrl) {
+            streamUrl = url || "";
+        }
+
         return JSON.stringify({
             "url": streamUrl,
-            "isEmbed": true, // Bắt buộc bật WebView để ứng dụng tải trực tiếp trang web
-            "mimeType": "text/html",
+            "isEmbed": false, // Trả về false để bắt buộc dùng ExoPlayer mượt mà
+            "mimeType": "application/x-mpegURL",
             "headers": {
                 "Referer": "https://sexlive.porn/",
                 "Origin": "https://sexlive.porn",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            },
+            "httpConfig": {
+                "followRedirects": true,
+                "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
             }
         });
     } catch (e) {
-        return JSON.stringify({ "url": url || "", "isEmbed": true, "headers": {} });
+        return JSON.stringify({ "url": url || "", "isEmbed": false, "headers": {} });
     }
 }
 
@@ -555,4 +596,4 @@ function parseCategoriesResponse(apiResponseJson) {
 }
 
 function parseCountriesResponse(html) { return "[]"; }
-function parseYearsResponse(html) { return "[]"; }
+function-parseYearsResponse(html) { return "[]"; }
