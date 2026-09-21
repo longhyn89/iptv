@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.1.1",
+        "version": "1.1.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -134,9 +134,17 @@ function getUrlDetail(slug) {
     return BASEURL + "/" + slug;
 }
 
-function getUrlCategories() { return ""; }
-function getUrlCountries() { return ""; }
-function getUrlYears() { return ""; }
+function getUrlCategories() {
+    return "";
+}
+
+function getUrlCountries() {
+    return "";
+}
+
+function getUrlYears() {
+    return "";
+}
 
 // =============================================================================
 // PARSERS
@@ -145,6 +153,8 @@ function parseListResponse(html, $url) {
 	try {
 		var items = [];
 		_$(html).find(".item").find("a").each(function() {
+			var year = "";
+			var lang = "";
 			var current = this.find(".duration").text() || "";
 			var href = this.attr("href") || "";
 			if (href.indexOf("http") == -1) {
@@ -166,6 +176,7 @@ function parseListResponse(html, $url) {
 					"posterUrl": cleanThumb,
 					"backdropUrl": cleanThumb,
 					"quality": quality.trim(),
+					"lang": lang,
 					"episode_current": current.trim()
 				});
 			}
@@ -173,14 +184,25 @@ function parseListResponse(html, $url) {
 		
 		return JSON.stringify({
 			"items": items,
-			"pagination": { "currentPage": 1, "totalPages": 999 }
+			"pagination": {
+				"currentPage": 1,
+				"totalPages": 999
+			}
 		});
 		
 	} catch (e) {
 		log(e);
 		return JSON.stringify({
-			"items": [],
-			"pagination": { "currentPage": 1, "totalPages": 1 }
+			"items": [{
+				"id": $url || "",
+				"title": "Lỗi: " + e,
+				"posterUrl": "",
+				"backdropUrl": ""
+			}],
+			"pagination": {
+				"currentPage": 1,
+				"totalPages": 1
+			}
 		});
 	}
 }
@@ -189,21 +211,78 @@ function parseSearchResponse(html, $url) {
     return parseListResponse(html, $url);
 }
 
+function parseScript(rawScript) {
+	var result = {
+		success: false,
+		data: {},
+		embedHtml: ''
+	};
+	
+	if (!rawScript || typeof rawScript !== 'string') {
+		return result;
+	}
+	
+	try {
+		var embedMatch = rawScript.match(/return\s+('(?:[^'\\]|\\.)*')/);
+		if (embedMatch) {
+			result.embedHtml = embedMatch[1].slice(1, -1);
+		}
+		
+		var objectContentMatch = rawScript.match(/var\s+\w+\s*=\s*\{([\s\S]*?)\};/);
+		
+		if (objectContentMatch) {
+			var objectBody = objectContentMatch[1];
+			var pairRegex = /(\w+)\s*:\s*(?:'((?:[^'\\]|\\.)*)'|([^,\s}]+))/g;
+			var match;
+			
+			while ((match = pairRegex.exec(objectBody)) !== null) {
+				var key = match[1];
+				var value = match[2] !== undefined ? match[2] : match[3];
+				
+				if (match[2] !== undefined) {
+					value = value.replace(/\\'/g, "'").replace(/\\"/g, '"');
+				} else {
+					if (value === 'true') value = true;
+					else if (value === 'false') value = false;
+					else if (!isNaN(value)) value = Number(value);
+				}
+				
+				result.data[key] = value;
+			}
+			
+			if (Object.keys(result.data).length > 0) {
+				result.success = true;
+			}
+		}
+	} catch (error) {
+		log("SafeParser Error: " + error);
+	}
+	
+	return result;
+}
+
 function parseMovieDetail(html, url) {
     var cachedMovieDetailId = "";
     try {
+        log(url);
         var id = "";
         var lname = "Đang cập nhật...";
         var limg = "";
         var ldes = "Không có mô tả.";
         var category = "";
+        var episode_current = ""; // Đã bỏ hiển thị "Tập hiện tại"
+        var quality = "";
+        var year = 2026;
+        var rating = 0;
+        var servers = [];
+        var extra = "";
         var lactor = "";
         var ldirec = "";
         var lduran = "";
-        var servers = [];
+        var status = "";
 
         var idMatch = /<link\s+rel="canonical"\s+href="([^"]+)"/i.exec(html) ||
-                      /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
+            /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(html);
         id = idMatch ? idMatch[1] : (url || "");
         cachedMovieDetailId = id;
 
@@ -227,40 +306,23 @@ function parseMovieDetail(html, url) {
             category = getField('video_categories') || "";
             lactor = getField('video_models') || "";
 
-            var addQualityAsServer = function(urlKey, textKey, defaultName) {
-                var vUrl = getField(urlKey);
-                if (vUrl && vUrl.indexOf("http") !== -1) {
-                    var text = getField(textKey) || defaultName;
-                    var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
-                    var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
-                    
-                    servers.push({
-                        name: defaultName,
-                        episodes: [{
-                            id: safeId, 
-                            name: "1", // GÁN CỐ ĐỊNH CHÍNH XÁC LÀ SỐ "1" ĐỂ TRÁNH LỖI CRASH
-                            slug: "1"
-                        }]
-                    });
-                }
-            };
-
-            addQualityAsServer('video_alt_url3', 'video_alt_url3_text', '4K');
-            addQualityAsServer('video_alt_url2', 'video_alt_url2_text', '1080p');
-            addQualityAsServer('video_alt_url', 'video_alt_url_text', 'HD');
-            addQualityAsServer('video_url', 'video_url_text', 'SD');
-        }
-
-        if (servers.length === 0) {
-            // Backup nếu không bắt được flashvars
-            servers.push({
-                name: "Mặc định",
-                episodes: [{
-                    id: id,
-                    name: "1",
-                    slug: "1"
-                }]
-            });
+            // Lấy duy nhất 1 link chất lượng cao nhất để làm nút "Xem Phim"
+            // Việc này giúp giao diện không bị dàn trải thành 1 "danh sách tập"
+            var bestUrl = getField('video_alt_url3') || getField('video_alt_url2') || getField('video_alt_url') || getField('video_url');
+            
+            if (bestUrl && bestUrl.indexOf("http") !== -1) {
+                var cleanUrl = bestUrl.replace(/[\s\S]*?http/i, "http");
+                var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
+                
+                servers.push({
+                    name: "Nguồn Phát",
+                    episodes: [{
+                        id: safeId, 
+                        name: "Xem Phim", 
+                        slug: "play"
+                    }]
+                });
+            }
         }
 
         return JSON.stringify({
@@ -269,18 +331,24 @@ function parseMovieDetail(html, url) {
             posterUrl: limg,
             backdropUrl: limg,
             description: ldes,
+            quality: quality,
+            year: year,
+            rating: rating,
+            status: status,
             category: category,
-            servers: servers,
+            episode_current: episode_current,
+            servers: servers, 
             duration: lduran || "",
             casts: lactor || "",
-            director: ldirec || ""
+            director: ldirec || "",
+            extra: extra
         });
         
     } catch (e) {
         log(e);
         return JSON.stringify({
             id: cachedMovieDetailId || url || "error",
-            title: "Lỗi tải phim",
+            title: "Lỗi hiển thị dữ liệu",
             servers: []
         });
     }
@@ -290,9 +358,11 @@ function parseDetailResponse(html, url) {
     try {
         var streamUrl = "";
         
+        // Lấy lại link mp4 thật từ param ảo đã bọc ở trên
         if (url && url.indexOf("?direct_play=") !== -1) {
             streamUrl = decodeURIComponent(url.split("?direct_play=")[1]);
-        } else if (url && typeof url === 'string' && url.indexOf("http") === 0) {
+        } 
+        else if (url && typeof url === 'string' && url.indexOf("http") === 0) {
             streamUrl = url;
         } else if (html && typeof html === 'string' && html.indexOf("http") === 0) {
             streamUrl = html;
@@ -325,14 +395,32 @@ function parseEmbedPlayer(html, url) {
     return parseDetailResponse(html, url);
 }
 
+function sortEpisodesByName(data) {
+    data.forEach(server => {
+        if (server.episodes && Array.isArray(server.episodes)) {
+            server.episodes.sort((a, b) => {
+                const matchA = a.name.match(/Tập\s*(\d+)/i);
+                const matchB = b.name.match(/Tập\s*(\d+)/i);
+                const numA = matchA ? parseInt(matchA[1], 10) : 0;
+                const numB = matchB ? parseInt(matchB[1], 10) : 0;
+                return numA - numB;
+            });
+        }
+    });
+    return data;
+}
+
 function parseCategoriesResponse(apiResponseJson) {
     var listurl = getLISTmenu();
     var menulist = buildMenu(listurl);
     return JSON.stringify(menulist);
 }
 
+function parseCountriesResponse(html) { return "[]"; }
+function parseYearsResponse(html) { return "[]"; }
+
 function getLISTmenu() {
-    return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored9508"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/tags/japanese/","name":"japanese"},{"link":"/tags/asian/","name":"asian"},{"link":"/tags/onlyfans2/","name":"onlyfans"}]`;
+    return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored9508"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/categories/","name":"Load more..."},{"link":"/tags/japanese/","name":"japanese"},{"link":"/tags/asian/","name":"asian"},{"link":"/tags/japan/","name":"japan"},{"link":"/tags/onlyfans2/","name":"onlyfans"},{"link":"/tags/beautiful/","name":"beautiful"},{"link":"/tags/creampie/","name":"creampie"},{"link":"/tags/blowjob/","name":"blowjob"},{"link":"/tags/teen/","name":"teen"},{"link":"/tags/big-tits/","name":"big tits"},{"link":"/tags/cute/","name":"cute"},{"link":"/tags/tiny-body/","name":"tiny body"},{"link":"/tags/big-dick/","name":"big dick"},{"link":"/tags/anal/","name":"anal"},{"link":"/tags/slim-body/","name":"slim body"},{"link":"/tags/wife/","name":"wife"},{"link":"/tags/chinese/","name":"chinese"},{"link":"/tags/fc2ppv/","name":"fc2ppv"},{"link":"/tags/slut/","name":"slut"},{"link":"/tags/masturbation/","name":"masturbation"},{"link":"/tags/virgin/","name":"virgin"},{"link":"/tags/black/","name":"black"},{"link":"/tags/student/","name":"student"},{"link":"/tags/babe/","name":"babe"},{"link":"/tags/small-tits/","name":"small tits"},{"link":"/tags/girls/","name":"girls"},{"link":"/tags/thai/","name":"thai"},{"link":"/tags/school/","name":"school"},{"link":"/tags/girlfriend/","name":"girlfriend"},{"link":"/tags/nude/","name":"nude"},{"link":"/tags/brunette/","name":"brunette"},{"link":"/tags/squirting/","name":"squirting"},{"link":"/tags/18-year-old/","name":"18-year-old"},{"link":"/tags/lovepop/","name":"lovepop"},{"link":"/tags/milf/","name":"milf"},{"link":"/tags/china/","name":"china"},{"link":"/tags/dildo/","name":"dildo"},{"link":"/tags/solo/","name":"solo"},{"link":"/tags/graphis/","name":"graphis"},{"link":"/tags/idol/","name":"idol"},{"link":"/tags/homemade/","name":"homemade"},{"link":"/tags/hardcore/","name":"hardcore"},{"link":"/tags/college/","name":"college"},{"link":"/tags/uniform/","name":"uniform"},{"link":"/tags/threesome/","name":"threesome"},{"link":"/tags/boyfriend2/","name":"boyfriend"},{"link":"/tags/teacher/","name":"teacher"},{"link":"/tags/friend/","name":"friend"},{"link":"/tags/20-year-old/","name":"20-year-old"},{"link":"/tags/","name":"Show All Tags"}]`
 }
 
 function buildMenu(menuArray, type) {
