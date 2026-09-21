@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin - Fixed Direct .m3u8 Extractor
+// SexLive.porn Plugin - Final Fix (JSON-LD Unescape & Clean URL)
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -10,7 +10,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -306,24 +306,12 @@ function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResult(html, url) { return parseListResponse(html, url); }
 
-// Hàm trích xuất ưu tiên tuyệt đối file .m3u8 thật
+// Hàm trích xuất an toàn ưu tiên qua JSON-LD để tự động loại bỏ các dấu gạch chéo escape (\/)
 function extractM3u8Url(html) {
     if (!html) return "";
     var streamUrl = "";
 
-    // TƯƠI ƯU TIÊN 1: Quét thẳng trực tiếp đuôi .m3u8 trong toàn bộ HTML
-    var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-    if (m3u8Match) {
-        return m3u8Match[0];
-    }
-
-    // ƯU TIÊN 2: Tìm qua thuộc tính data-link hoặc src chứa .m3u8
-    var optMatch = html.match(/data-link="([^"]+\.m3u8[^"]*)"/i) || html.match(/src="([^"]+\.m3u8[^"]*)"/i);
-    if (optMatch && optMatch[1]) {
-        return optMatch[1];
-    }
-
-    // ƯU TIÊN 3: Kiểm tra JSON-LD nhưng bắt buộc phải chứa .m3u8 bên trong
+    // ƯU TIÊN 1: Bóc trực tiếp qua JSON-LD (giúp tự động giải mã các ký tự escape URL thành chuẩn)
     var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
     if (jsonLdMatch) {
         try {
@@ -332,6 +320,27 @@ function extractM3u8Url(html) {
                 streamUrl = jld.embedUrl;
             }
         } catch (e) {}
+    }
+
+    // ƯU TIÊN 2: Quét thẻ option hoặc data-link
+    if (!streamUrl) {
+        var optMatch = html.match(/data-link="([^"]+\.m3u8[^"]*)"/i) || html.match(/src="([^"]+\.m3u8[^"]*)"/i);
+        if (optMatch && optMatch[1]) {
+            streamUrl = optMatch[1];
+        }
+    }
+
+    // ƯU TIÊN 3: Quét tự do toàn bộ HTML và thay thế gạch chéo ngược nếu có
+    if (!streamUrl) {
+        var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
+        if (m3u8Match) {
+            streamUrl = m3u8Match[0];
+        }
+    }
+
+    // Dọn dẹp an toàn các ký tự escape backslash nếu vô tình sót lại
+    if (streamUrl) {
+        streamUrl = streamUrl.replace(/\\/g, "");
     }
 
     return streamUrl;
