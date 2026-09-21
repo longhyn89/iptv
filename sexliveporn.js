@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (ExoPlayer Mode - Fix triệt để lỗi cú pháp & CDN)
+// SexLive.porn Plugin (ExoPlayer Dynamic Token Mode - Khắc phục lỗi kẹt request)
 // https://sexlive.porn/
 // =============================================================================
 
@@ -11,7 +11,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.5",
+        "version": "1.0.7",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -378,7 +378,6 @@ function parseMovieDetail(responseStr, url) {
         var categories = [];
         var tags = [];
         var year = 2026;
-        var streamUrl = "";
         var serverEpisodes = [];
 
         if (!responseStr) {
@@ -393,7 +392,6 @@ function parseMovieDetail(responseStr, url) {
                     if (jld.name) title = decodeHtmlEntities(jld.name);
                     if (jld.thumbnailUrl) posterUrl = jld.thumbnailUrl;
                     if (jld.description) description = decodeHtmlEntities(jld.description);
-                    if (jld.embedUrl) streamUrl = jld.embedUrl;
                     if (jld.uploadDate) {
                         var mYear = String(jld.uploadDate).match(/^(\d{4})/);
                         if (mYear) year = parseInt(mYear[1], 10) || 2026;
@@ -437,36 +435,29 @@ function parseMovieDetail(responseStr, url) {
             }
         }
 
-        var optionRegex = /<option[^>]+data-link="([^"]+)"[^>]*>([\s\S]*?)<\/option>/gi;
-        var optMatch;
-        var episodes = [];
-        var epIndex = 1;
-
-        while ((optMatch = optionRegex.exec(responseStr)) !== null) {
-            var link = optMatch[1].trim();
-            var epName = decodeHtmlEntities(optMatch[2].replace(/<[^>]+>/g, "").trim()) || ("Link " + epIndex);
-            episodes.push({
-                "id": link,
-                "name": epName,
-                "slug": "ep-" + epIndex
-            });
-            if (!streamUrl) streamUrl = link;
-            epIndex++;
-        }
-
-        if (episodes.length === 0) {
-            if (!streamUrl) {
-                var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
-                if (m3u8Match) streamUrl = m3u8Match[0].trim();
+        // Ưu tiên trích xuất trực tiếp link m3u8 từ script hoặc HTML của trang chi tiết
+        var directM3u8 = "";
+        var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
+        if (m3u8Match) {
+            directM3u8 = m3u8Match[0].trim();
+        } else {
+            var matchSlug = (url || "").match(/\/view\/([^\/?#]+)/i);
+            if (matchSlug) {
+                var slugName = matchSlug[1];
+                if (slugName.indexOf("video-") === 0) {
+                    slugName = slugName.replace("video-", "");
+                }
+                directM3u8 = "https://cdn.sexlive.porn/videos/m3u8/sexlive_" + slugName + "/index.m3u8";
+            } else {
+                directM3u8 = url || "";
             }
-            if (!streamUrl) streamUrl = url || "";
-
-            episodes.push({
-                "id": streamUrl,
-                "name": "Full HD",
-                "slug": "full"
-            });
         }
+
+        var episodes = [{
+            "id": directM3u8,
+            "name": "Full HD (ExoPlayer)",
+            "slug": "full-hd"
+        }];
 
         serverEpisodes.push({
             "name": "SexLive Server",
@@ -548,16 +539,11 @@ function parseDetail(responseStr, url) {
 function parseDetailResponse(html, url) {
     try {
         var streamUrl = url || "";
-
-        if (html) {
+        if (html && html.indexOf(".m3u8") > -1) {
             var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8(?:\?[^"'\s<>]+)?/i);
             if (m3u8Match) {
                 streamUrl = m3u8Match[0].trim();
             }
-        }
-
-        if (!streamUrl) {
-            streamUrl = url || "";
         }
 
         return JSON.stringify({
