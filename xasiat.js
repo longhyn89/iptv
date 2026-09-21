@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.7",
+        "version": "1.0.3",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -150,61 +150,61 @@ function getUrlYears() {
 // PARSERS
 // =============================================================================
 function parseListResponse(html, $url) {
-    try {
-        var items = [];
-        _$(html).find(".item").find("a").each(function() {
-            var year = "";
-            var lang = "";
-            var current = this.find(".duration").text() || "";
-            var href = this.attr("href") || "";
-            if (href.indexOf("http") == -1) {
-                href = BASEURL + (href.charAt(0) === '/' ? href : '/' + href);
-            }
-            var quality = this.find('span[class*="is-"]').text() || "";
-            var title = this.find("strong.title").text() || this.find("img").attr("alt") || this.attr("title") || "";
-            var src = this.find("img").attr("data-original") || this.find("img").attr("data-webp") || this.find("img").attr("src") || "";
-            if (src && src.indexOf("http") == -1) {
-                src = BASEURL + (src.charAt(0) === '/' ? src : '/' + src);
-            }
-            
-            if (href && href.indexOf("http") > -1) {
-                var cleanThumb = src.replace(/&amp;/g, '&');
-                
-                items.push({
-                    "id": href,
-                    "title": title.trim(),
-                    "posterUrl": cleanThumb,
-                    "backdropUrl": cleanThumb,
-                    "quality": quality.trim(),
-                    "lang": lang,
-                    "episode_current": current.trim()
-                });
-            }
-        });
-        
-        return JSON.stringify({
-            "items": items,
-            "pagination": {
-                "currentPage": 1,
-                "totalPages": 999
-            }
-        });
-        
-    } catch (e) {
-        log(e);
-        return JSON.stringify({
-            "items": [{
-                "id": $url || "",
-                "title": "Lỗi: " + e,
-                "posterUrl": "",
-                "backdropUrl": ""
-            }],
-            "pagination": {
-                "currentPage": 1,
-                "totalPages": 1
-            }
-        });
-    }
+	try {
+		var items = [];
+		_$(html).find(".item").find("a").each(function() {
+			var year = "";
+			var lang = "";
+			var current = this.find(".duration").text() || "";
+			var href = this.attr("href") || "";
+			if (href.indexOf("http") == -1) {
+				href = BASEURL + (href.charAt(0) === '/' ? href : '/' + href);
+			}
+			var quality = this.find('span[class*="is-"]').text() || "";
+			var title = this.find("strong.title").text() || this.find("img").attr("alt") || this.attr("title") || "";
+			var src = this.find("img").attr("data-original") || this.find("img").attr("data-webp") || this.find("img").attr("src") || "";
+			if (src && src.indexOf("http") == -1) {
+				src = BASEURL + (src.charAt(0) === '/' ? src : '/' + src);
+			}
+			
+			if (href && href.indexOf("http") > -1) {
+				var cleanThumb = src.replace(/&amp;/g, '&');
+				
+				items.push({
+					"id": href,
+					"title": title.trim(),
+					"posterUrl": cleanThumb,
+					"backdropUrl": cleanThumb,
+					"quality": quality.trim(),
+					"lang": lang,
+					"episode_current": current.trim()
+				});
+			}
+		});
+		
+		return JSON.stringify({
+			"items": items,
+			"pagination": {
+				"currentPage": 1,
+				"totalPages": 999
+			}
+		});
+		
+	} catch (e) {
+		log(e);
+		return JSON.stringify({
+			"items": [{
+				"id": $url || "",
+				"title": "Lỗi: " + e,
+				"posterUrl": "",
+				"backdropUrl": ""
+			}],
+			"pagination": {
+				"currentPage": 1,
+				"totalPages": 1
+			}
+		});
+	}
 }
 
 function parseSearchResponse(html, $url) {
@@ -212,53 +212,53 @@ function parseSearchResponse(html, $url) {
 }
 
 function parseScript(rawScript) {
-    var result = {
-        success: false,
-        data: {},
-        embedHtml: ''
-    };
-    
-    if (!rawScript || typeof rawScript !== 'string') {
-        return result;
-    }
-    
-    try {
-        var embedMatch = rawScript.match(/return\s+('(?:[^'\\]|\\.)*')/);
-        if (embedMatch) {
-            result.embedHtml = embedMatch[1].slice(1, -1);
-        }
-        
-        var objectContentMatch = rawScript.match(/var\s+\w+\s*=\s*\{([\s\S]*?)\};/);
-        
-        if (objectContentMatch) {
-            var objectBody = objectContentMatch[1];
-            var pairRegex = /(\w+)\s*:\s*(?:'((?:[^'\\]|\\.)*)'|([^,\s}]+))/g;
-            var match;
-            
-            while ((match = pairRegex.exec(objectBody)) !== null) {
-                var key = match[1];
-                var value = match[2] !== undefined ? match[2] : match[3];
-                
-                if (match[2] !== undefined) {
-                    value = value.replace(/\\'/g, "'").replace(/\\"/g, '"');
-                } else {
-                    if (value === 'true') value = true;
-                    else if (value === 'false') value = false;
-                    else if (!isNaN(value)) value = Number(value);
-                }
-                
-                result.data[key] = value;
-            }
-            
-            if (Object.keys(result.data).length > 0) {
-                result.success = true;
-            }
-        }
-    } catch (error) {
-        log("SafeParser Error: " + error);
-    }
-    
-    return result;
+	var result = {
+		success: false,
+		data: {},
+		embedHtml: ''
+	};
+	
+	if (!rawScript || typeof rawScript !== 'string') {
+		return result;
+	}
+	
+	try {
+		var embedMatch = rawScript.match(/return\s+('(?:[^'\\]|\\.)*')/);
+		if (embedMatch) {
+			result.embedHtml = embedMatch[1].slice(1, -1);
+		}
+		
+		var objectContentMatch = rawScript.match(/var\s+\w+\s*=\s*\{([\s\S]*?)\};/);
+		
+		if (objectContentMatch) {
+			var objectBody = objectContentMatch[1];
+			var pairRegex = /(\w+)\s*:\s*(?:'((?:[^'\\]|\\.)*)'|([^,\s}]+))/g;
+			var match;
+			
+			while ((match = pairRegex.exec(objectBody)) !== null) {
+				var key = match[1];
+				var value = match[2] !== undefined ? match[2] : match[3];
+				
+				if (match[2] !== undefined) {
+					value = value.replace(/\\'/g, "'").replace(/\\"/g, '"');
+				} else {
+					if (value === 'true') value = true;
+					else if (value === 'false') value = false;
+					else if (!isNaN(value)) value = Number(value);
+				}
+				
+				result.data[key] = value;
+			}
+			
+			if (Object.keys(result.data).length > 0) {
+				result.success = true;
+			}
+		}
+	} catch (error) {
+		log("SafeParser Error: " + error);
+	}
+	
+	return result;
 }
 
 function parseMovieDetail(html, url) {
@@ -307,38 +307,32 @@ function parseMovieDetail(html, url) {
             category = getField('video_categories') || "";
             lactor = getField('video_models') || "";
 
-            var episodes = [];
-
-            var addEp = function(urlKey, textKey, defaultName, slug) {
-                // Đã cố định: Chỉ lấy 1 tập duy nhất (ưu tiên link chất lượng cao nhất)
-                if (episodes.length > 0) return;
-
+            // Xóa mảng episodes chung, chia mỗi chất lượng thành 1 server riêng biệt
+            var addQualityAsServer = function(urlKey, textKey, defaultName, slug) {
                 var vUrl = getField(urlKey);
                 if (vUrl && vUrl.indexOf("http") !== -1) {
+                    var text = getField(textKey) || defaultName;
                     var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
                     
                     // Bọc link video thật vào một param ảo để app không tự tải nguyên video
                     var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
                     
-                    episodes.push({
-                        id: safeId, 
-                        name: "Full",
-                        slug: slug
+                    // Tạo một Server mới cho mỗi chất lượng tìm thấy
+                    servers.push({
+                        name: "Bản " + text, // VD: Bản 1080p, Bản HD...
+                        episodes: [{
+                            id: safeId, 
+                            name: "Full", // Phim lẻ chỉ có 1 tập
+                            slug: slug
+                        }]
                     });
                 }
             };
 
-            addEp('video_alt_url3', 'video_alt_url3_text', '4K / FHD', 'hd4k');
-            addEp('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
-            addEp('video_alt_url', 'video_alt_url_text', 'Chất lượng cao (HD)', 'hd720');
-            addEp('video_url', 'video_url_text', 'SD', 'sd');
-
-            if (episodes.length > 0) {
-                servers.push({
-                    name: "Phát trực tiếp",
-                    episodes: episodes
-                });
-            }
+            addQualityAsServer('video_alt_url3', 'video_alt_url3_text', '4K / FHD', 'hd4k');
+            addQualityAsServer('video_alt_url2', 'video_alt_url2_text', '1080p', 'hd1080');
+            addQualityAsServer('video_alt_url', 'video_alt_url_text', 'HD', 'hd720');
+            addQualityAsServer('video_url', 'video_url_text', 'SD', 'sd');
         }
 
         if (servers.length === 0) {
