@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin - Force Referer Header for ExoPlayer
+// SexLive.porn Plugin - Clean Pure m3u8 Link (Final)
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -10,7 +10,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.8",
+        "version": "1.0.9",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -238,11 +238,7 @@ function getUrlDetail(slug) {
 
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
     if (episodeSlug && episodeSlug.indexOf(".m3u8") > -1) {
-        // Gắn kèm Referer chống chặn từ CDN
-        if (episodeSlug.indexOf("|Referer") === -1) {
-            return episodeSlug + "|Referer=" + BASEURL + "/";
-        }
-        return episodeSlug;
+        return episodeSlug; // Trả về link m3u8 thuần túy không gắn thêm gì cả
     }
     if (episodeSlug && episodeSlug.indexOf("http") === 0) {
         return episodeSlug;
@@ -343,10 +339,6 @@ function extractM3u8Url(html) {
 
     if (streamUrl) {
         streamUrl = streamUrl.replace(/\\/g, "").trim();
-        // Tự động gắn Referer chuẩn vào đuôi URL để ExoPlayer vượt qua bảo vệ CDN
-        if (streamUrl.indexOf("|Referer") === -1) {
-            streamUrl += "|Referer=" + BASEURL + "/";
-        }
     }
 
     return streamUrl;
