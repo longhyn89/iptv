@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin - Final Fix (JSON-LD Unescape & Clean URL)
+// SexLive.porn Plugin - Hardcode Direct m3u8 to Episode ID
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -10,7 +10,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -236,8 +236,12 @@ function getUrlDetail(slug) {
     return BASEURL + slug;
 }
 
+// Ép buộc trả về thẳng link .m3u8 nếu episodeSlug chính là nó
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
-    if (episodeSlug && (episodeSlug.indexOf(".m3u8") > -1 || episodeSlug.indexOf("http") === 0)) {
+    if (episodeSlug && episodeSlug.indexOf(".m3u8") > -1) {
+        return episodeSlug;
+    }
+    if (episodeSlug && episodeSlug.indexOf("http") === 0) {
         return episodeSlug;
     }
     return getUrlDetail(slug);
@@ -306,12 +310,12 @@ function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResult(html, url) { return parseListResponse(html, url); }
 
-// Hàm trích xuất an toàn ưu tiên qua JSON-LD để tự động loại bỏ các dấu gạch chéo escape (\/)
+// Hàm vét cạn tối ưu trích xuất .m3u8 sạch sẽ hoàn toàn
 function extractM3u8Url(html) {
     if (!html) return "";
     var streamUrl = "";
 
-    // ƯU TIÊN 1: Bóc trực tiếp qua JSON-LD (giúp tự động giải mã các ký tự escape URL thành chuẩn)
+    // 1. Quét JSON-LD
     var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
     if (jsonLdMatch) {
         try {
@@ -322,7 +326,7 @@ function extractM3u8Url(html) {
         } catch (e) {}
     }
 
-    // ƯU TIÊN 2: Quét thẻ option hoặc data-link
+    // 2. Quét data-link / src
     if (!streamUrl) {
         var optMatch = html.match(/data-link="([^"]+\.m3u8[^"]*)"/i) || html.match(/src="([^"]+\.m3u8[^"]*)"/i);
         if (optMatch && optMatch[1]) {
@@ -330,7 +334,7 @@ function extractM3u8Url(html) {
         }
     }
 
-    // ƯU TIÊN 3: Quét tự do toàn bộ HTML và thay thế gạch chéo ngược nếu có
+    // 3. Quét tự do toàn trang
     if (!streamUrl) {
         var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
         if (m3u8Match) {
@@ -338,9 +342,9 @@ function extractM3u8Url(html) {
         }
     }
 
-    // Dọn dẹp an toàn các ký tự escape backslash nếu vô tình sót lại
+    // Làm sạch dấu escape
     if (streamUrl) {
-        streamUrl = streamUrl.replace(/\\/g, "");
+        streamUrl = streamUrl.replace(/\\/g, "").trim();
     }
 
     return streamUrl;
@@ -377,12 +381,13 @@ function parseMovieDetail(responseStr, url) {
             if (imgMatch) posterUrl = imgMatch[1].trim();
         }
 
+        // Lấy link m3u8 trực tiếp ép làm ID cho tập phim
         var streamUrl = extractM3u8Url(responseStr) || url || "";
 
         var episodes = [{
-            "id": streamUrl,
+            "id": streamUrl,     // Đưa thẳng link .m3u8 vào ID tập phim
             "name": "Full HD",
-            "slug": "full"
+            "slug": streamUrl
         }];
 
         serverEpisodes.push({
@@ -411,9 +416,7 @@ function parseDetail(responseStr, url) { return parseMovieDetail(responseStr, ur
 function parseDetailResponse(html, url) {
     try {
         var streamUrl = extractM3u8Url(html);
-        if (!streamUrl) {
-            streamUrl = url || "";
-        }
+        if (!streamUrl) streamUrl = url || "";
 
         return JSON.stringify({
             "url": streamUrl,
