@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (ExoPlayer Optimized for SuperOK & Vax)
+// SexLive.porn Plugin - Fixed Direct .m3u8 Extractor
 // =============================================================================
 
 var BASEURL = "https://sexlive.porn";
@@ -10,7 +10,7 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.3",
+        "version": "1.0.5",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
@@ -306,12 +306,42 @@ function parseHomeResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResponse(html, url) { return parseListResponse(html, url); }
 function parseSearchResult(html, url) { return parseListResponse(html, url); }
 
+// Hàm trích xuất ưu tiên tuyệt đối file .m3u8 thật
+function extractM3u8Url(html) {
+    if (!html) return "";
+    var streamUrl = "";
+
+    // TƯƠI ƯU TIÊN 1: Quét thẳng trực tiếp đuôi .m3u8 trong toàn bộ HTML
+    var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
+    if (m3u8Match) {
+        return m3u8Match[0];
+    }
+
+    // ƯU TIÊN 2: Tìm qua thuộc tính data-link hoặc src chứa .m3u8
+    var optMatch = html.match(/data-link="([^"]+\.m3u8[^"]*)"/i) || html.match(/src="([^"]+\.m3u8[^"]*)"/i);
+    if (optMatch && optMatch[1]) {
+        return optMatch[1];
+    }
+
+    // ƯU TIÊN 3: Kiểm tra JSON-LD nhưng bắt buộc phải chứa .m3u8 bên trong
+    var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
+    if (jsonLdMatch) {
+        try {
+            var jld = JSON.parse(jsonLdMatch[1]);
+            if (jld && jld.embedUrl && jld.embedUrl.indexOf(".m3u8") > -1) {
+                streamUrl = jld.embedUrl;
+            }
+        } catch (e) {}
+    }
+
+    return streamUrl;
+}
+
 function parseMovieDetail(responseStr, url) {
     try {
         var title = "";
         var posterUrl = "";
         var description = "";
-        var streamUrl = "";
         var serverEpisodes = [];
 
         if (!responseStr) return JSON.stringify({ "id": url || "", "title": "Không có dữ liệu", "servers": [] });
@@ -324,7 +354,6 @@ function parseMovieDetail(responseStr, url) {
                     if (jld.name) title = decodeHtmlEntities(jld.name);
                     if (jld.thumbnailUrl) posterUrl = jld.thumbnailUrl;
                     if (jld.description) description = decodeHtmlEntities(jld.description);
-                    if (jld.embedUrl) streamUrl = jld.embedUrl;
                 }
             } catch (e) {}
         }
@@ -339,13 +368,10 @@ function parseMovieDetail(responseStr, url) {
             if (imgMatch) posterUrl = imgMatch[1].trim();
         }
 
-        if (!streamUrl) {
-            var m3u8Match = responseStr.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-            if (m3u8Match) streamUrl = m3u8Match[0].trim();
-        }
+        var streamUrl = extractM3u8Url(responseStr) || url || "";
 
         var episodes = [{
-            "id": streamUrl || url,
+            "id": streamUrl,
             "name": "Full HD",
             "slug": "full"
         }];
@@ -375,23 +401,11 @@ function parseDetail(responseStr, url) { return parseMovieDetail(responseStr, ur
 
 function parseDetailResponse(html, url) {
     try {
-        var streamUrl = url || "";
-
-        if (html) {
-            var jsonLdMatch = html.match(/<script\s+type="application\/ld(?:&#x2B;|\+)json">([\s\S]*?)<\/script>/i);
-            if (jsonLdMatch) {
-                try {
-                    var jld = JSON.parse(jsonLdMatch[1]);
-                    if (jld && jld.embedUrl) streamUrl = jld.embedUrl;
-                } catch (e) {}
-            }
-            if (!streamUrl || streamUrl.indexOf(".m3u8") === -1) {
-                var m3u8Match = html.match(/https?:\/\/[^"'\s<>]+\.m3u8[^"'\s<>]*/i);
-                if (m3u8Match) streamUrl = m3u8Match[0];
-            }
+        var streamUrl = extractM3u8Url(html);
+        if (!streamUrl) {
+            streamUrl = url || "";
         }
 
-        // Cấu trúc tinh gọn chuẩn nhất cho ExoPlayer nhận diện luồng HLS
         return JSON.stringify({
             "url": streamUrl,
             "isEmbed": false,
