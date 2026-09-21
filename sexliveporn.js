@@ -1,5 +1,5 @@
 // =============================================================================
-// SexLive.porn Plugin (ExoPlayer Mode - Sạch sẽ, không quảng cáo, fix triệt để CDN)
+// SexLive.porn Plugin (ExoPlayer Mode - Fix triệt để lỗi cú pháp & CDN)
 // https://sexlive.porn/
 // =============================================================================
 
@@ -11,13 +11,13 @@ function getManifest() {
         "name": "SexLive Porn",
         "description": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
         "info": "Nguồn livestream và video trực tuyến SexLive.porn Full HD.",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",
-        "playerType": "exoplayer" // Quay lại ExoPlayer để xem trực tiếp mượt mà
+        "playerType": "exoplayer"
     });
 }
 
@@ -562,7 +562,7 @@ function parseDetailResponse(html, url) {
 
         return JSON.stringify({
             "url": streamUrl,
-            "isEmbed": false, // Trả về false để bắt buộc dùng ExoPlayer mượt mà
+            "isEmbed": false,
             "mimeType": "application/x-mpegURL",
             "headers": {
                 "Referer": "https://sexlive.porn/",
@@ -596,4 +596,4 @@ function parseCategoriesResponse(apiResponseJson) {
 }
 
 function parseCountriesResponse(html) { return "[]"; }
-function-parseYearsResponse(html) { return "[]"; }
+function parseYearsResponse(html) { return "[]"; }
