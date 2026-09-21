@@ -7,7 +7,7 @@ function getManifest() {
         "name": "XXX Châu Á",
         "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
-        "version": "1.0.9",
+        "version": "1.1.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
@@ -286,7 +286,6 @@ function parseMovieDetail(html, url) {
         id = idMatch ? idMatch[1] : (url || "");
         cachedMovieDetailId = id;
 
-        // Trích xuất flashvars qua regex trực tiếp
         var fvMatch = html.match(/var\s+flashvars\s*=\s*\{([\s\S]*?)\};/);
         var flashvarsBody = fvMatch ? fvMatch[1] : "";
 
@@ -314,15 +313,13 @@ function parseMovieDetail(html, url) {
                     var text = getField(textKey) || defaultName;
                     var cleanUrl = vUrl.replace(/[\s\S]*?http/i, "http");
                     
-                    // Bọc link video thật vào một param ảo để app không tự tải nguyên video
                     var safeId = BASEURL + "/?direct_play=" + encodeURIComponent(cleanUrl);
                     
-                    // Tạo một Server mới cho mỗi chất lượng tìm thấy
                     servers.push({
-                        name: "Bản " + text, // VD: Bản 1080p, Bản HD...
+                        name: "Bản " + text, 
                         episodes: [{
                             id: safeId, 
-                            name: "Full", // Phim lẻ chỉ có 1 tập
+                            name: "Tập 1", // <-- Đã sửa thành "Tập 1" để tránh lỗi parse số nguyên của App
                             slug: slug
                         }]
                     });
@@ -379,7 +376,6 @@ function parseDetailResponse(html, url) {
     try {
         var streamUrl = "";
         
-        // Lấy lại link mp4 thật từ param ảo đã bọc ở trên
         if (url && url.indexOf("?direct_play=") !== -1) {
             streamUrl = decodeURIComponent(url.split("?direct_play=")[1]);
         } 
@@ -441,7 +437,7 @@ function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
 
 function getLISTmenu() {
-    return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored9508"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/categories/","name":"Load more..."},{"link":"/tags/japanese/","name":"japanese"},{"link":"/tags/asian/","name":"asian"},{"link":"/tags/japan/","name":"japan"},{"link":"/tags/onlyfans2/","name":"onlyfans"},{"link":"/tags/beautiful/","name":"beautiful"},{"link":"/tags/creampie/","name":"creampie"},{"link":"/tags/blowjob/","name":"blowjob"},{"link":"/tags/teen/","name":"teen"},{"link":"/tags/big-tits/","name":"big tits"},{"link":"/tags/cute/","name":"cute"},{"link":"/tags/tiny-body/","name":"tiny body"},{"link":"/tags/big-dick/","name":"big dick"},{"link":"/tags/anal/","name":"anal"},{"link":"/tags/slim-body/","name":"slim body"},{"link":"/tags/wife/","name":"wife"},{"link":"/tags/chinese/","name":"chinese"},{"link":"/tags/fc2ppv/","name":"fc2ppv"},{"link":"/tags/slut/","name":"slut"},{"link":"/tags/masturbation/","name":"masturbation"},{"link":"/tags/virgin/","name":"virgin"},{"link":"/tags/black/","name":"black"},{"link":"/tags/student/","name":"student"},{"link":"/tags/babe/","name":"babe"},{"link":"/tags/small-tits/","name":"small tits"},{"link":"/tags/girls/","name":"girls"},{"link":"/tags/thai/","name":"thai"},{"link":"/tags/school/","name":"school"},{"link":"/tags/girlfriend/","name":"girlfriend"},{"link":"/tags/nude/","name":"nude"},{"link":"/tags/brunette/","name":"brunette"},{"link":"/tags/squirting/","name":"squirting"},{"link":"/tags/18-year-old/","name":"18-year-old"},{"link":"/tags/lovepop/","name":"lovepop"},{"link":"/tags/milf/","name":"milf"},{"link":"/tags/china/","name":"china"},{"link":"/tags/dildo/","name":"dildo"},{"link":"/tags/solo/","name":"solo"},{"link":"/tags/graphis/","name":"graphis"},{"link":"/tags/idol/","name":"idol"},{"link":"/tags/homemade/","name":"homemade"},{"link":"/tags/hardcore/","name":"hardcore"},{"link":"/tags/college/","name":"college"},{"link":"/tags/uniform/","name":"uniform"},{"link":"/tags/threesome/","name":"threesome"},{"link":"/tags/boyfriend2/","name":"boyfriend"},{"link":"/tags/teacher/","name":"teacher"},{"link":"/tags/friend/","name":"friend"},{"link":"/tags/20-year-old/","name":"20-year-old"},{"link":"/tags/","name":"Show All Tags"}]`
+    return `[{"link":"/categories/jav-4k/","name":"Hàng 4K"},{"link":"/categories/gravure-idols/","name":"Gravure Idols"},{"link":"/categories/amateur3/","name":"Amateur"},{"link":"/categories/southeast-asia/","name":"Southeast Asia"},{"link":"/categories/jav-uncensored/","name":"JAV Uncensored9508"},{"link":"/categories/jav-amateur/","name":"JAV Amateur"},{"link":"/categories/western-girls/","name":"Western Girls"},{"link":"/categories/china-taiwan/","name":"China & Taiwan"},{"link":"/categories/korea/","name":"South Korea"},{"link":"/categories/jav/","name":"JAV & AV Models"},{"link":"/categories/cosplay/","name":"Cosplay"},{"link":"/categories/","name":"Load more..."},{"link":"/tags/japanese/","name":"japanese"},{"link":"/tags/asian/","name":"asian"},{"link":"/tags/japan/","name":"japan"},{"link":"/tags/onlyfans2/","name":"onlyfans"},{"link":"/tags/beautiful/","name":"beautiful"},{"link":"/tags/creampie/","name":"creampie"},{"link":"/tags/blowjob/","name":"blowjob"},{"link":"/tags/teen/","name":"teen"},{"link":"/tags/big-tits/","name":"big tits"},{"link":"/tags/cute/","name":"cute"},{"link":"/tags/tiny-body/","name":"tiny body"},{"link":"/tags/big-dick/","name":"big dick"},{"link":"/tags/anal/","name":"anal"},{"link":"/tags/slim-body/","name":"slim body"},{"link":"/tags/wife/","name":"wife"},{"link":"/tags/chinese/","name":"chinese"},{"link":"/tags/fc2ppv/","name":"fc2ppv"},{"link":"/tags/slut/","name":"slut"},{"link":"/tags/masturbation/","name":"masturbation"},{"link":"/tags/virgin/","name":"virgin"},{"link":"/tags/black/","name":"black"},{"link":"/tags/student/","name":"student"},{"link":"/tags/babe/","name":"babe"},{"link":"/tags/small-tits/","name":"small tits"},{"link":"/tags/girls/","name":"girls"},{"link":"/tags/thai/","name":"thai"},{"link":"/tags/school/","name":"school"},{"link":"/tags/girlfriend/","name":"girlfriend"},{"link":"/tags/nude/","name":"nude"},{"link":"/tags/brunette/","name":"brunette"},{"link":"/tags/squirting/","name":"squirting"},{"link":"/tags/18-year-old/","name":"18-year-old"},{"link":"/tags/lovepop/","name":"lovepop"},{"link":"/tags/milf/","name":"milf"},{"link":"/tags/china/","name":"china"},{"link":"/tags/dildo/","name":"dildo"},{"link":"/tags/solo/","name":"solo"},{"link":"/tags/graphis/","name":"graphis"},{"link":"/tags/idol/","name":"idol"},{"link":"/tags/homemade/","name":"homemade"},{"link":"/tags/hardcore/","name":"hardcore"},{"link":"/tags/college/","name":"college"},{"link":"/tags/uniform/","name":"uniform"},{"link":"/tags/threesome/","name":"threesome"},{"link":"/tags/boyfriend2/","name":"boyfriend"},{"link":"/tags/teacher/","name":"teacher"},{"link":"/tags/friend/","name":"friend"},{"link":"/tags/20-year-old/","name":"20-year-old"},{"link":"/tags/","name":"Show All Tags"}]`;
 }
 
 function buildMenu(menuArray, type) {
