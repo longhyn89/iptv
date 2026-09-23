@@ -68,7 +68,7 @@
         {
             "id": "animevietsub",
             "name": "AnimeVietSub",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/animevietsub.js",
             "iconUrl": "https://animevietsub.xyz/statics/default/images/logo.png"
         }
