@@ -6,9 +6,9 @@ function getManifest() {
     return JSON.stringify({
         "id": "animevietsub",
         "name": "AnimeVietSub",
-        "version": "1.1.0",
-        "baseUrl": "https://animevietsub.xyz",
-        "iconUrl": "https://animevietsub.xyz/statics/default/images/logo.png",
+        "version": "1.1.2",
+        "baseUrl": "https://animevietsub.tv",
+        "iconUrl": "https://animevietsub.tv/statics/default/images/logo.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "embedtoexoplay"
@@ -20,8 +20,7 @@ function getHomeSections() {
         { slug: 'anime-moi-cap-nhat', title: 'Anime Mới Cập Nhật', type: 'Grid', path: '/' },
         { slug: 'anime-bo', title: 'Anime Bộ', type: 'Horizontal', path: 'anime-bo' },
         { slug: 'anime-le', title: 'Anime Lẻ/Movie', type: 'Horizontal', path: 'anime-le' },
-        { slug: 'hoat-hinh-trung-quoc', title: 'HH Trung Quốc', type: 'Horizontal', path: 'hoat-hinh-trung-quoc' },
-        { slug: 'anime-sap-chieu', title: 'Anime Sắp Chiếu', type: 'Horizontal', path: 'anime-sap-chieu' }
+        { slug: 'hoat-hinh-trung-quoc', title: 'HH Trung Quốc', type: 'Horizontal', path: 'hoat-hinh-trung-quoc' }
     ]);
 }
 
@@ -30,11 +29,9 @@ function getPrimaryCategories() {
         { name: 'Anime Bộ', slug: 'anime-bo' },
         { name: 'Anime Lẻ', slug: 'anime-le' },
         { name: 'HH Trung Quốc', slug: 'hoat-hinh-trung-quoc' },
-        { name: 'Anime Sắp Chiếu', slug: 'anime-sap-chieu' },
         { name: 'Hành Động', slug: 'the-loai/hanh-dong' },
         { name: 'Phiêu Lưu', slug: 'the-loai/phieu-luu' },
-        { name: 'Hài Hước', slug: 'the-loai/hai-huoc' },
-        { name: 'Phép Thuật', slug: 'the-loai/phep-thuat' }
+        { name: 'Hài Hước', slug: 'the-loai/hai-huoc' }
     ]);
 }
 
@@ -42,8 +39,7 @@ function getFilterConfig() {
     return JSON.stringify({
         sort: [
             { name: 'Mới cập nhật', value: 'latest' },
-            { name: 'Lượt xem', value: 'view' },
-            { name: 'Bình chọn', value: 'rating' }
+            { name: 'Lượt xem', value: 'view' }
         ]
     });
 }
@@ -58,6 +54,10 @@ function log(msg) {
 // URL GENERATION
 // =============================================================================
 
+function getBaseUrl() {
+    return "https://animevietsub.tv";
+}
+
 function getUrlList(slug, filtersJson) {
     try {
         var filters = JSON.parse(filtersJson || "{}");
@@ -69,11 +69,11 @@ function getUrlList(slug, filtersJson) {
         }
 
         targetSlug = targetSlug.replace(/^\/|\/$/g, '');
-        var baseUrl = "https://animevietsub.xyz";
+        var baseUrl = getBaseUrl();
 
         if (targetSlug === 'anime-moi-cap-nhat' || targetSlug === '') {
             if (page === 1) return baseUrl + "/";
-            return baseUrl + "/anime-moi-cap-nhat/trang-" + page + ".html";
+            return baseUrl + "/trang-" + page + ".html";
         }
 
         if (page === 1) {
@@ -82,7 +82,7 @@ function getUrlList(slug, filtersJson) {
             return baseUrl + "/" + targetSlug + "/trang-" + page + ".html";
         }
     } catch (e) {
-        return "https://animevietsub.xyz/";
+        return getBaseUrl() + "/";
     }
 }
 
@@ -91,28 +91,29 @@ function getUrlSearch(keyword, filtersJson) {
         var filters = JSON.parse(filtersJson || "{}");
         var page = filters.page || 1;
         var cleanKeyword = encodeURIComponent(keyword.trim());
+        var baseUrl = getBaseUrl();
         
         if (page === 1) {
-            return "https://animevietsub.xyz/tim-kiem/" + cleanKeyword + "/";
+            return baseUrl + "/tim-kiem/" + cleanKeyword + "/";
         } else {
-            return "https://animevietsub.xyz/tim-kiem/" + cleanKeyword + "/trang-" + page + ".html";
+            return baseUrl + "/tim-kiem/" + cleanKeyword + "/trang-" + page + ".html";
         }
     } catch (e) {
-        return "https://animevietsub.xyz/";
+        return getBaseUrl() + "/";
     }
 }
 
 function getUrlDetail(slug) {
-    if (!slug) return "https://animevietsub.xyz/";
+    if (!slug) return getBaseUrl() + "/";
     if (slug.indexOf("http") === 0) return slug;
     
     var cleanSlug = slug.replace(/^\/|\/$/g, '').replace(/^phim\//, '');
-    return "https://animevietsub.xyz/phim/" + cleanSlug + "/";
+    return getBaseUrl() + "/phim/" + cleanSlug + "/";
 }
 
-function getUrlCategories() { return "https://animevietsub.xyz"; }
-function getUrlCountries() { return "https://animevietsub.xyz"; }
-function getUrlYears() { return "https://animevietsub.xyz"; }
+function getUrlCategories() { return getBaseUrl(); }
+function getUrlCountries() { return getBaseUrl(); }
+function getUrlYears() { return getBaseUrl(); }
 
 // =============================================================================
 // PARSERS
@@ -123,66 +124,57 @@ function parseListResponse(htmlContent) {
         var movies = [];
         var seen = {};
 
-        function extractMovie(cardHtml) {
-            var linkMatch = /href="([^"]*\/phim\/[^"]+)"/i.exec(cardHtml);
-            if (!linkMatch) return null;
+        // Pattern bóc tách từng thẻ chứa phim
+        var linkPattern = /<a[^>]*href="([^"]*\/phim\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+        var match;
 
-            var href = linkMatch[1];
+        while ((match = linkPattern.exec(htmlContent)) !== null) {
+            var href = match[1];
+            var innerContent = match[2];
+
+            // Rút gọn slug
             var slugMatch = /\/phim\/([^/]+)/.exec(href);
-            var slug = slugMatch ? slugMatch[1] : href.split('/').pop();
+            var slug = slugMatch ? slugMatch[1] : "";
             slug = slug.replace(/\/$/, '');
 
-            if (!slug || seen[slug]) return null;
-            seen[slug] = true;
+            if (!slug || seen[slug]) continue;
 
-            var titleMatch = /title="([^"]+)"/i.exec(cardHtml) || 
-                             /<h3[^>]*>([\s\S]*?)<\/h3>/i.exec(cardHtml) ||
-                             /<h2[^>]*>([\s\S]*?)<\/h2>/i.exec(cardHtml);
+            // Bóc tách Tiêu đề
+            var titleMatch = /title="([^"]+)"/i.exec(match[0]) || 
+                             /<h[2-4][^>]*>([\s\S]*?)<\/h[2-4]>/i.exec(innerContent) ||
+                             /alt="([^"]+)"/i.exec(innerContent);
+            
             var title = titleMatch ? titleMatch[1].replace(/<[^>]*>/g, "").trim() : slug;
 
-            var imgMatch = /(?:src|data-src)="([^"]+)"/i.exec(cardHtml);
+            // Bóc tách Ảnh
+            var imgMatch = /(?:data-src|src)="([^"]+)"/i.exec(innerContent) || /(?:data-src|src)="([^"]+)"/i.exec(match[0]);
             var posterUrl = imgMatch ? imgMatch[1] : "";
 
-            var epMatch = /class="mli-eps"[^>]*>[\s\S]*?<i>([^<]+)<\/i>/i.exec(cardHtml) ||
-                          /class="eps"[^>]*>([\s\S]*?)<\/span>/i.exec(cardHtml);
+            // Bóc tách Tập phim
+            var epMatch = /<i>([^<]+)<\/i>/i.exec(innerContent) || /class="[^"]*eps[^"]*"[^>]*>([\s\S]*?)<\/span>/i.exec(innerContent);
             var episode_current = epMatch ? "Tập " + epMatch[1].replace(/<[^>]*>/g, "").trim() : "";
 
-            var year = 0;
-            var yearMatch = /(\d{4})/.exec(title);
-            if (yearMatch) year = parseInt(yearMatch[1]);
-
-            return {
+            seen[slug] = true;
+            movies.push({
                 id: slug,
                 title: title,
                 posterUrl: posterUrl,
                 backdropUrl: posterUrl,
-                year: year,
-                quality: "FHD",
+                year: 0,
+                quality: "HD",
                 episode_current: episode_current,
                 lang: "Vietsub"
-            };
+            });
         }
 
-        // Regex bắt khối bài viết
-        var itemPattern = /<(?:article|li|div)[^>]*class="[^"]*(?:TPost|item|film)[^"]*"[^>]*>[\s\S]*?<\/(?:article|li|div)>/gi;
-        var match;
-        while ((match = itemPattern.exec(htmlContent)) !== null) {
-            var movie = extractMovie(match[0]);
-            if (movie) movies.push(movie);
-        }
-
-        // Fallback quét tất cả thẻ <a> chứa /phim/
-        if (movies.length === 0) {
-            var fallbackPattern = /<a[^>]*href="[^"]*\/phim\/[^"]+"[^>]*>[\s\S]*?<\/a>/gi;
-            while ((match = fallbackPattern.exec(htmlContent)) !== null) {
-                var movie = extractMovie(match[0]);
-                if (movie) movies.push(movie);
-            }
-        }
-
+        // Bóc tách phân trang
         var totalPages = 1;
-        var lastPageMatch = /href="[^"]*trang-(\d+)\.html"/i.exec(htmlContent);
-        if (lastPageMatch) totalPages = parseInt(lastPageMatch[1]);
+        var pageMatch = /trang-(\d+)\.html/gi;
+        var pMatch;
+        while ((pMatch = pageMatch.exec(htmlContent)) !== null) {
+            var pNum = parseInt(pMatch[1]);
+            if (pNum > totalPages) totalPages = pNum;
+        }
 
         var currentPage = 1;
         var curPageMatch = /class="[^"]*current[^"]*">(\d+)<\/span>/i.exec(htmlContent);
@@ -218,46 +210,34 @@ function parseMovieDetail(htmlContent) {
         var descMatch = /class="(?:Description|description|film-info-desc)"[^>]*>([\s\S]*?)<\/div>/i.exec(htmlContent);
         var description = descMatch ? descMatch[1].replace(/<[^>]*>/g, "").trim() : "";
 
-        var posterMatch = /<img[^>]*class="[^"]*(?:poster|attachment-img-mov-md)[^"]*"[^>]*(?:src|data-src)="([^"]+)"/i.exec(htmlContent);
+        var posterMatch = /(?:data-src|src)="([^"]+)"/i.exec(htmlContent);
         var posterUrl = posterMatch ? posterMatch[1] : "";
 
-        // Trả về dạng MẢNG Array đúng chuẩn SuperOK
         var genres = [];
-        var genreBlockMatch = /Thể loại:([\s\S]*?)(?:<\/li>|<br)/i.exec(htmlContent);
-        if (genreBlockMatch) {
-            var gMatch;
-            var gPattern = /<a[^>]*>([^<]+)<\/a>/gi;
-            while ((gMatch = gPattern.exec(genreBlockMatch[1])) !== null) {
-                genres.push(gMatch[1].trim());
+        var genrePattern = /\/the-loai\/[^"]+"[^>]*>([^<]+)<\/a>/gi;
+        var gMatch;
+        var seenG = {};
+        while ((gMatch = genrePattern.exec(htmlContent)) !== null) {
+            var gName = gMatch[1].trim();
+            if (!seenG[gName]) {
+                seenG[gName] = true;
+                genres.push(gName);
             }
         }
 
-        var countries = [];
-        var countryBlockMatch = /Quốc gia:([\s\S]*?)(?:<\/li>|<br)/i.exec(htmlContent);
-        if (countryBlockMatch) {
-            var cMatch;
-            var cPattern = /<a[^>]*>([^<]+)<\/a>/gi;
-            while ((cMatch = cPattern.exec(countryBlockMatch[1])) !== null) {
-                countries.push(cMatch[1].trim());
-            }
-        }
-
-        var year = 0;
-        var yearMatch = /(\d{4})/.exec(htmlContent);
-        if (yearMatch) year = parseInt(yearMatch[1]);
-
-        // Trích xuất danh sách tập
+        // Bóc tách danh sách tập
         var episodes = [];
         var epPattern = /<a\s+[^>]*href="([^"]*\/tap-[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
         var epMatch;
         var seenEp = {};
+        var baseUrl = getBaseUrl();
 
         while ((epMatch = epPattern.exec(htmlContent)) !== null) {
             var epUrl = epMatch[1];
             var epName = epMatch[2].replace(/<[^>]*>/g, "").trim();
 
             if (epUrl.indexOf('http') !== 0) {
-                epUrl = "https://animevietsub.xyz" + (epUrl.startsWith('/') ? '' : '/') + epUrl;
+                epUrl = baseUrl + (epUrl.startsWith('/') ? '' : '/') + epUrl;
             }
 
             if (!seenEp[epUrl]) {
@@ -273,14 +253,14 @@ function parseMovieDetail(htmlContent) {
         var servers = [];
         if (episodes.length > 0) {
             servers.push({
-                name: "AnimeVsub",
+                name: "Server Vietsub",
                 episodes: episodes
             });
         }
 
         var extra = "";
         if (slug !== "unknown") {
-            extra = "https://animevietsub.xyz/phim/" + slug + "/xem-phim.html";
+            extra = baseUrl + "/phim/" + slug + "/xem-phim.html";
         }
 
         return JSON.stringify({
@@ -289,13 +269,13 @@ function parseMovieDetail(htmlContent) {
             posterUrl: posterUrl,
             backdropUrl: posterUrl,
             description: description,
-            year: year,
+            year: 2024,
             servers: servers,
             episode_current: episodes.length > 0 ? "Tập " + episodes.length : "",
             lang: "Vietsub",
             quality: "FHD",
-            category: genres,    // Phải là Array
-            country: countries,  // Phải là Array
+            category: genres,
+            country: ["Nhật Bản"],
             status: "Hoàn tất",
             extra: extra
         });
@@ -332,7 +312,7 @@ function parseDetailResponse(htmlContent, pageUrl) {
                 isEmbed: false,
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36",
-                    "Referer": pageUrl || "https://animevietsub.xyz/",
+                    "Referer": pageUrl || "https://animevietsub.tv/",
                     "Custom-Js": bypassJs
                 },
                 subtitles: []
@@ -354,14 +334,14 @@ function parseEmbedResponse(htmlContent, url) {
                 isEmbed: false,
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36",
-                    "Referer": "https://animevietsub.xyz/"
+                    "Referer": "https://animevietsub.tv/"
                 },
                 subtitles: []
             });
         }
 
         var nextUrlMatch = url.match(/nextUrl=([^&]+)/);
-        var referer = nextUrlMatch ? decodeURIComponent(nextUrlMatch[1]) : "https://animevietsub.xyz/";
+        var referer = nextUrlMatch ? decodeURIComponent(nextUrlMatch[1]) : "https://animevietsub.tv/";
 
         return JSON.stringify({
             url: url,
@@ -378,29 +358,8 @@ function parseEmbedResponse(htmlContent, url) {
     }
 }
 
-// =============================================================================
-// CATEGORIES
-// =============================================================================
-
 function parseCategoriesResponse(htmlContent) {
-    try {
-        var categories = [];
-        var catPattern = /<a\s+href="[^"]*\/the-loai\/([^"]+)"[^>]*>([^<]+)<\/a>/gi;
-        var match;
-        var seen = {};
-
-        while ((match = catPattern.exec(htmlContent)) !== null) {
-            var catSlug = match[1].replace(/\//g, "");
-            var catName = match[2].trim();
-            if (catSlug && catName && !seen[catSlug]) {
-                seen[catSlug] = true;
-                categories.push({ name: catName, slug: "the-loai/" + catSlug });
-            }
-        }
-        return JSON.stringify(categories);
-    } catch (e) {
-        return "[]";
-    }
+    return "[]";
 }
 
 function parseCountriesResponse(htmlContent) { return "[]"; }
