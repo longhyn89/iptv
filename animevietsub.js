@@ -6,9 +6,9 @@ function getManifest() {
     return JSON.stringify({
         "id": "animevietsub",
         "name": "AnimeVietSub",
-        "version": "1.0.7",
-        "baseUrl": "https://animevietsub.love",
-        "iconUrl": "https://animevietsub.love/statics/default/images/logo.png",
+        "version": "1.0.8",
+        "baseUrl": "https://animevietsubs.cc",
+        "iconUrl": "https://animevietsubs.cc/statics/default/images/logo.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "embedtoexoplay"
@@ -74,7 +74,7 @@ function getUrlList(slug, filtersJson) {
         if (targetSlug.startsWith("/")) targetSlug = targetSlug.substring(1);
         if (targetSlug.endsWith("/")) targetSlug = targetSlug.substring(0, targetSlug.length - 1);
 
-        var baseUrl = "https://animevietsub.love";
+        var baseUrl = "https://animevietsubs.cc";
         
         // Handle Trang chủ (phim mới cập nhật)
         if (targetSlug === 'anime-moi-cap-nhat' || targetSlug === '') {
@@ -89,7 +89,7 @@ function getUrlList(slug, filtersJson) {
             return baseUrl + "/" + targetSlug + "/trang-" + page + ".html";
         }
     } catch (e) {
-        return "https://animevietsub.love/";
+        return "https://animevietsubs.cc/";
     }
 }
 
@@ -100,12 +100,12 @@ function getUrlSearch(keyword, filtersJson) {
         var cleanKeyword = encodeURIComponent(keyword.trim());
         
         if (page === 1) {
-            return "https://animevietsub.love/tim-kiem/" + cleanKeyword + "/";
+            return "https://animevietsubs.cc/tim-kiem/" + cleanKeyword + "/";
         } else {
-            return "https://animevietsub.love/tim-kiem/" + cleanKeyword + "/trang-" + page + ".html";
+            return "https://animevietsubs.cc/tim-kiem/" + cleanKeyword + "/trang-" + page + ".html";
         }
     } catch (e) {
-        return "https://animevietsub.love/";
+        return "https://animevietsubs.cc/";
     }
 }
 
@@ -116,12 +116,12 @@ function getUrlDetail(slug) {
     if (cleanSlug.startsWith("/")) cleanSlug = cleanSlug.substring(1);
     if (cleanSlug.startsWith("phim/")) cleanSlug = cleanSlug.substring(5);
     
-    return "https://animevietsub.love/phim/" + cleanSlug;
+    return "https://animevietsubs.cc/phim/" + cleanSlug;
 }
 
-function getUrlCategories() { return "https://animevietsub.love"; }
-function getUrlCountries() { return "https://animevietsub.love"; }
-function getUrlYears() { return "https://animevietsub.love"; }
+function getUrlCategories() { return "https://animevietsubs.cc"; }
+function getUrlCountries() { return "https://animevietsubs.cc"; }
+function getUrlYears() { return "https://animevietsubs.cc"; }
 
 // =============================================================================
 // PARSERS
@@ -301,7 +301,7 @@ function parseMovieDetail(htmlContent) {
             var epName = epMatch[2].replace(/<[^>]*>/g, "").trim();
             
             if (epUrl.indexOf('http') !== 0) {
-                epUrl = "https://animevietsub.love" + (epUrl.startsWith('/') ? '' : '/') + epUrl;
+                epUrl = "https://animevietsubs.cc" + (epUrl.startsWith('/') ? '' : '/') + epUrl;
             }
             
             // Tránh add trùng tập
@@ -353,7 +353,7 @@ function parseMovieDetail(htmlContent) {
         var extra = "";
         var isPlayPage = (id && id.indexOf("xem-phim") > -1) || htmlContent.indexOf("window.PLAYER_DATA") > -1;
         if (!isPlayPage && slug && slug !== "error") {
-            extra = "https://animevietsub.love/phim/" + slug + "/xem-phim.html";
+            extra = "https://animevietsubs.cc/phim/" + slug + "/xem-phim.html";
         }
 
         return JSON.stringify({
@@ -415,7 +415,7 @@ function parseDetailResponse(htmlContent, pageUrl) {
                 isEmbed: false,
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    "Referer": pageUrl || "https://animevietsub.love/",
+                    "Referer": pageUrl || "https://animevietsubs.cc/",
                     "Custom-Js": bypassJs
                 },
                 subtitles: []
@@ -440,7 +440,7 @@ function parseEmbedResponse(htmlContent, url) {
                 isEmbed: false,
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    "Referer": "https://animevietsub.love/"
+                    "Referer": "https://animevietsubs.cc/"
                 },
                 subtitles: []
             });
@@ -449,7 +449,7 @@ function parseEmbedResponse(htmlContent, url) {
         // Không tìm thấy m3u8 → trả embed với Block-Scripts chặn avs-shield
         // Trích xuất nextUrl từ URL embed hiện tại để làm Referer chuẩn
         var nextUrlMatch = url.match(/nextUrl=([^&]+)/);
-        var referer = nextUrlMatch ? decodeURIComponent(nextUrlMatch[1]) : "https://animevietsub.love/";
+        var referer = nextUrlMatch ? decodeURIComponent(nextUrlMatch[1]) : "https://animevietsubs.cc/";
 
         return JSON.stringify({
             url: url,
