@@ -64,14 +64,8 @@
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/xasiat.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png"
-        },
-        {
-            "id": "animevietsub",
-            "name": "AnimeVietSub",
-            "version": "1.0.8",
-            "scriptUrl": "https://raw.githubusercontent.com/longhyn89/iptv/refs/heads/main/animevietsub.js",
-            "iconUrl": "https://animevietsub.xyz/statics/default/images/logo.png"
         }
+       
         
         
     ]
