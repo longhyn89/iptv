@@ -486,7 +486,7 @@ https://freem3u.xyz/api/live/play.m3u8?vid=35
 #EXTINF:-1 tvg-id="angiang3" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/Jz474K1/An-Giang-BEARTV.png", ATV | TH An Giang 3 - Báo và PTTH An Giang
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0
 #https://live.fptplay53.net/epzsd1/angiang03_hls.smil/chunklist.m3u8
-
+https://tv.angiangtv.vn/live/kgtv1/kgtv1.m3u8
 #EXTINF:-1 tvg-id="bacninh" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/pLwf7JF/BACNINH-BEARTV.png", BTV HD | TH Bắc Ninh
 #https://liveh34.vtvprime.vn/hls/BACGIANGTV/03.m3u8
 https://live.fptplay53.net/fnxsd1/bacninh01_hls.smil/chunklist.m3u8
