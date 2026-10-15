@@ -595,7 +595,7 @@ https://freem3u.xyz/api/live/play.m3u8?vid=77
 #https://live.fptplay53.net/epzsd1/quangngai_hls.smil/chunklist.m3u8
 https://freem3u.xyz/api/live/play.m3u8?vid=81
 #EXTINF:-1 tvg-id="quangngai2" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/7NQRSTM9/QNg-TV2.webp", QNgTV2 - Báo và PTTH Quảng Ngãi
-#https://live.fptplay53.net/epzsd1/quangngai01_hls.smil/chunklist.m3u8
+https://247.dpdns.org/module/IPTV/?id=QNgTV2&accKenh=vuminhthanh1
 #EXTINF:-1 tvg-id="quangninh1" group-title="🇻🇳| Địa phương" tvg-logo="https://i.ibb.co/5hkJWkY/Quang-Ninh1-BEARTV.webp", QTV1 HD | TH Quảng Ninh
 #https://live.fptplay53.net/fnxsd1/quangninh1_hls.smil/chunklist.m3u8
 https://freem3u.xyz/api/live/play.m3u8?vid=82
