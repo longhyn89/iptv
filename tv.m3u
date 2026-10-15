@@ -741,7 +741,7 @@ https://s7771.cdn.mytvnet.vn/pkg20/live_dzones/bbcworldnews.smil/manifest.mpd
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://liveh12.vtvprime.vn/hls/DAVINVY/04.m3u8
 #https://live.fptplay53.net/fnxhd2/davincihd_vhls.smil/chunklist.m3u8
-https://freem3u.xyz/api/live/play.m3u8?vid=214
+https://vmttv.dpdns.org/tv360/?id=davinci-hd
 #EXTINF:0 tvg-id="kix" group-title="🌏| Quốc tế" tvg-logo="https://i.ibb.co/Q8NX9GC/kix-BEARTV.png", Kix HD
 #EXTVLCOPT:http-user-agent="CloudTV"
 #https://vpsttt.vietanhtv.top/tv360/tv360.php?id=9901
