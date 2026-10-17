@@ -1354,19 +1354,19 @@ http://103.175.129.146/live/5C5F037FFC9C/1C2A31683714/365037.ts
 
 
 
-#EXTINF:-1 group-title="Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/37/Eurosport1hd.png", Eurosport 1
+#EXTINF:-1 group-title="Dự Phòng" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/37/Eurosport1hd.png", Eurosport 1
+http://kdd55.xyz/live/5C5F037FFC9C/1C2A31683714/56652.ts
+#EXTINF:-1 group-title="Dự Phòng" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/d5/Eurosport2hd.png", Eurosport 2
+http://kdd55.xyz/live/5C5F037FFC9C/1C2A31683714/56651.ts
+#EXTINF:-1 tvg-id="SuperTennis.it@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/it/thumb/6/6a/SuperTennis_-_Logo_2016.svg/960px-SuperTennis_-_Logo_2016.svg.png" group-title="Dự Phòng",SuperTennis
 
-#EXTINF:-1 group-title="Sports" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/d5/Eurosport2hd.png", Eurosport 2
+#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Dự Phòng", Tennis Channel
 
-#EXTINF:-1 tvg-id="SuperTennis.it@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/it/thumb/6/6a/SuperTennis_-_Logo_2016.svg/960px-SuperTennis_-_Logo_2016.svg.png" group-title="Sports",SuperTennis
+#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="Dự Phòng", T2 Tennis Channel
 
-#EXTINF:-1 tvg-id="Tennis Channel.de" tvg-logo="https://iptvboss.xyz/logos/USA/TennisChannel.us.png" group-title="Sports", Tennis Channel
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLIhFir_z0TLRKKW3fb6Ltu2JSJwWBXHxZg4U8AS65gw&s=10" group-title="Dự Phòng",Tennis+
 
-#EXTINF:-1 tvg-id="plex.tv.Tennis.Channel.2.plex" tvg-logo="https://iptvboss.xyz/logos/USA/T2TennisChannel.us.png" group-title="Sports", T2 Tennis Channel
-
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLIhFir_z0TLRKKW3fb6Ltu2JSJwWBXHxZg4U8AS65gw&s=10" group-title="Sports",Tennis+
-
-#EXTINF:-1 group-title="Sports" tvg-id="skytennis" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYesSuSeeJDhkQ2CjDAUyR1LX8xVGlQVKYxrezIS9O&s=10",Sky Sports Tennis
+#EXTINF:-1 group-title="Dự Phòng" tvg-id="skytennis" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYesSuSeeJDhkQ2CjDAUyR1LX8xVGlQVKYxrezIS9O&s=10",Sky Sports Tennis
 
 
 
