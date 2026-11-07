@@ -6,8 +6,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "vlxx",
         "name": "VLXX",
-        "version": "1.0.0",
-        "baseUrl": "https://vlxx.phd",
+        "version": "1.0.1",
+        "baseUrl": "https://vlxx.app",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico",
         "isEnabled": true,
         "isAdult": true,
@@ -54,7 +54,7 @@ function getFilterConfig() {
 function getUrlList(slug, filtersJson) {
     var filters = JSON.parse(filtersJson || "{}");
     var page = filters.page || 1;
-    var baseUrl = "https://vlxx.phd";
+    var baseUrl = "https://vlxx.app";
 
     if (slug === '' || slug === 'home') {
         if (page > 1) {
@@ -73,9 +73,9 @@ function getUrlSearch(keyword, filtersJson) {
     var filters = JSON.parse(filtersJson || "{}");
     var page = filters.page || 1;
     var safeKeyword = encodeURIComponent(keyword.replace(/\s+/g, '-'));
-    var url = "https://vlxx.phd/search/" + safeKeyword + "/";
+    var url = "https://vlxx.app/search/" + safeKeyword + "/";
     if (page > 1) {
-        url = "https://vlxx.phd/search/" + safeKeyword + "/" + page + "/";
+        url = "https://vlxx.app/search/" + safeKeyword + "/" + page + "/";
     }
     return url;
 }
@@ -84,7 +84,7 @@ function getUrlDetail(slug) {
     if (!slug) return "";
     if (slug.indexOf("http") === 0) return slug;
     if (slug.charAt(0) !== '/') slug = '/' + slug;
-    return "https://vlxx.phd" + slug;
+    return "https://vlxx.app" + slug;
 }
 
 function getUrlCategories() { return ""; }
@@ -276,11 +276,11 @@ function parseDetailResponse(html, fetchedUrl) {
         var vlxxServer = (deviceType === "desktop") ? "1" : "2";
 
         return JSON.stringify({
-            url: "https://vlxx.phd/ajax.php",
+            url: "https://vlxx.app/ajax.php",
             isEmbed: true,
             postBody: "vlxx_server=" + vlxxServer + "&id=" + videoId + "&server=" + serverId,
             headers: {
-                "Referer": "https://vlxx.phd/",
+                "Referer": "https://vlxx.app/",
                 "Stream-Regex": "https?:\\/\\/[^\"'\\s]+\\.(?:vl|m3u8|mp4)[^\"'\\s]*"
             }
         });
@@ -302,7 +302,7 @@ function parseEmbedResponse(html, url) {
                             url: srcMatch[1],
                             isEmbed: true,
                             headers: {
-                                "Referer": "https://vlxx.phd/"
+                                "Referer": "https://vlxx.app/"
                             }
                         });
                     }
@@ -315,7 +315,7 @@ function parseEmbedResponse(html, url) {
                         url: iframeMatch[1],
                         isEmbed: true,
                         headers: {
-                            "Referer": "https://vlxx.phd/"
+                            "Referer": "https://vlxx.app/"
                         }
                     });
                 }
